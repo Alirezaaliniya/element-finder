@@ -13,13 +13,23 @@
     "downloads"
   ],
   "host_permissions": ["<all_urls>"],
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
   "background": {
     "service_worker": "src/background/service-worker.js",
     "type": "module"
   },
   "action": {
     "default_popup": "src/ui/popup/popup.html",
-    "default_title": "Element Finder Studio"
+    "default_title": "Element Finder Studio",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
   },
   "web_accessible_resources": [
     {

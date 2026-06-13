@@ -73,6 +73,16 @@ No build tooling is required — the codebase is plain ES modules loaded nativel
   provider implementing `suggestMapping` / `suggestFix` / `correctStructure`
   and the mapping + validation engines consume it automatically.
 
+## Release
+
+```
+node tools/build-release.mjs
+```
+
+Produces `releases/element-finder-studio-v<version>.zip` with `manifest.json`
+at the archive root (the layout the Chrome Web Store and "Load unpacked"
+expect), excluding dev-only files. The version is read from `manifest.json`.
+
 ## Tests
 
 ```
