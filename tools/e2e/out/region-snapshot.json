@@ -1,0 +1,2289 @@
+{
+ "schemaVersion": 1,
+ "appVersion": "0.1.0",
+ "meta": {
+  "url": "http://localhost:8126/fixture.html",
+  "title": "",
+  "lang": "fa",
+  "dir": "rtl",
+  "extractedAt": "2026-06-13T03:40:24.332Z",
+  "viewport": {
+   "width": 1440,
+   "height": 900
+  },
+  "scope": "element",
+  "customCss": ".nias-pop-animation{filter: drop-shadow(0 10px 20px rgba(0,0,0,.2));}\n.ns-button:hover{transform: scale(1.05);}"
+ },
+ "tree": {
+  "id": "01cfe1f",
+  "tag": "div",
+  "role": "container",
+  "label": "section (div)",
+  "domPath": "body:nth-child(2)>div:nth-child(1)>div:nth-child(1)",
+  "classes": [
+   "elementor-element",
+   "elementor-element-5ed3a3a9",
+   "e-flex",
+   "e-con",
+   "e-parent"
+  ],
+  "customClasses": [],
+  "attrs": {},
+  "semantic": {
+   "kind": "section",
+   "isRepeated": false,
+   "patternKey": null,
+   "elementorNative": {
+    "elType": "container",
+    "settings": {
+     "background_background": "classic"
+    },
+    "sourceId": "5ed3a3a9"
+   }
+  },
+  "layout": {
+   "display": "flex",
+   "direction": "row",
+   "wrap": "nowrap",
+   "justify": "space-around",
+   "align": "center",
+   "gap": {
+    "row": "normal",
+    "column": "normal"
+   }
+  },
+  "rect": {
+   "x": 0,
+   "y": 0,
+   "width": 1440,
+   "height": 513
+  },
+  "content": {},
+  "styles": {
+   "desktop": {
+    "display": "flex",
+    "position": "relative",
+    "top": "0px",
+    "right": "0px",
+    "bottom": "0px",
+    "left": "0px",
+    "z-index": "auto",
+    "width": "1440px",
+    "max-width": "none",
+    "height": "513px",
+    "min-height": "513px",
+    "margin-top": "0px",
+    "margin-right": "0px",
+    "margin-bottom": "0px",
+    "margin-left": "0px",
+    "padding-top": "0px",
+    "padding-right": "0px",
+    "padding-bottom": "0px",
+    "padding-left": "0px",
+    "text-decoration-line": "none",
+    "background-color": "rgba(0, 0, 0, 0)",
+    "background-image": "none",
+    "background-position": "0% 0%",
+    "background-repeat": "repeat",
+    "background-size": "auto",
+    "background-attachment": "scroll",
+    "border-top-style": "none",
+    "border-top-width": "0px",
+    "border-right-width": "0px",
+    "border-bottom-width": "0px",
+    "border-left-width": "0px",
+    "border-top-color": "rgb(30, 41, 59)",
+    "border-top-left-radius": "0px",
+    "border-top-right-radius": "0px",
+    "border-bottom-right-radius": "0px",
+    "border-bottom-left-radius": "0px",
+    "box-shadow": "none",
+    "opacity": "1",
+    "overflow": "hidden",
+    "flex-direction": "row",
+    "flex-wrap": "nowrap",
+    "justify-content": "space-around",
+    "align-items": "center",
+    "align-self": "auto",
+    "order": "0",
+    "flex-grow": "0",
+    "row-gap": "normal",
+    "column-gap": "normal",
+    "object-fit": "fill",
+    "aspect-ratio": "auto",
+    "--width": "1200px"
+   },
+   "tablet": {},
+   "mobile": {}
+  },
+  "settings": {
+   "desktop": {
+    "min_height": {
+     "unit": "px",
+     "size": 513,
+     "sizes": []
+    },
+    "width": {
+     "unit": "px",
+     "size": 1200,
+     "sizes": []
+    },
+    "content_width": "full",
+    "overflow": "hidden",
+    "flex_direction": "row",
+    "flex_justify_content": "space-around",
+    "flex_align_items": "center"
+   },
+   "tablet": {},
+   "mobile": {}
+  },
+  "mapping": {
+   "elType": "container",
+   "widgetType": null,
+   "confidence": 1,
+   "source": "elementor-native",
+   "alternatives": []
+  },
+  "assets": [],
+  "hidden": false,
+  "warnings": [],
+  "children": [
+   {
+    "id": "ce191754",
+    "tag": "div",
+    "role": "container",
+    "label": "⚡ image",
+    "domPath": "body:nth-child(2)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)",
+    "classes": [
+     "elementor-element",
+     "elementor-element-661f0e95",
+     "nias-pop-animation",
+     "elementor-widget",
+     "elementor-widget-image"
+    ],
+    "customClasses": [
+     "nias-pop-animation"
+    ],
+    "attrs": {},
+    "semantic": {
+     "kind": "section",
+     "isRepeated": false,
+     "patternKey": null,
+     "elementorNative": {
+      "elType": "widget",
+      "widgetType": "image",
+      "settings": {
+       "_position": "absolute"
+      },
+      "sourceId": "661f0e95"
+     }
+    },
+    "layout": {
+     "display": "block"
+    },
+    "rect": {
+     "x": 874,
+     "y": 0,
+     "width": 240,
+     "height": 252
+    },
+    "content": {
+     "src": "http://localhost:8126/img/image24.avif",
+     "alt": "",
+     "title": "",
+     "_hoistedFrom": "13187ca1"
+    },
+    "styles": {
+     "desktop": {
+      "display": "block",
+      "position": "absolute",
+      "top": "0px",
+      "right": "326px",
+      "bottom": "261px",
+      "left": "874px",
+      "z-index": "auto",
+      "width": "240px",
+      "max-width": "none",
+      "height": "252px",
+      "min-height": "0px",
+      "margin-top": "0px",
+      "margin-right": "0px",
+      "margin-bottom": "0px",
+      "margin-left": "0px",
+      "padding-top": "0px",
+      "padding-right": "0px",
+      "padding-bottom": "0px",
+      "padding-left": "0px",
+      "text-decoration-line": "none",
+      "background-color": "rgba(0, 0, 0, 0)",
+      "background-image": "none",
+      "background-position": "0% 0%",
+      "background-repeat": "repeat",
+      "background-size": "auto",
+      "background-attachment": "scroll",
+      "border-top-style": "none",
+      "border-top-width": "0px",
+      "border-right-width": "0px",
+      "border-bottom-width": "0px",
+      "border-left-width": "0px",
+      "border-top-color": "rgb(30, 41, 59)",
+      "border-top-left-radius": "0px",
+      "border-top-right-radius": "0px",
+      "border-bottom-right-radius": "0px",
+      "border-bottom-left-radius": "0px",
+      "box-shadow": "none",
+      "opacity": "1",
+      "overflow": "visible",
+      "flex-direction": "row",
+      "flex-wrap": "nowrap",
+      "justify-content": "normal",
+      "align-items": "normal",
+      "align-self": "auto",
+      "order": "0",
+      "flex-grow": "0",
+      "row-gap": "normal",
+      "column-gap": "normal",
+      "object-fit": "fill",
+      "aspect-ratio": "auto"
+     },
+     "tablet": {},
+     "mobile": {}
+    },
+    "settings": {
+     "desktop": {
+      "_position": "absolute",
+      "_offset_orientation_h": "end",
+      "_offset_x_end": {
+       "unit": "px",
+       "size": 326,
+       "sizes": []
+      },
+      "_offset_y": {
+       "unit": "px",
+       "size": 0,
+       "sizes": []
+      }
+     },
+     "tablet": {},
+     "mobile": {}
+    },
+    "mapping": {
+     "elType": "widget",
+     "widgetType": "image",
+     "confidence": 1,
+     "source": "elementor-native",
+     "alternatives": []
+    },
+    "assets": [
+     "a8572e4a6"
+    ],
+    "hidden": false,
+    "warnings": [],
+    "children": [
+     {
+      "id": "19696a73",
+      "tag": "div",
+      "role": "container",
+      "label": "section (div)",
+      "domPath": "body:nth-child(2)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)",
+      "classes": [
+       "elementor-widget-container"
+      ],
+      "customClasses": [],
+      "attrs": {},
+      "semantic": {
+       "kind": "section",
+       "isRepeated": false,
+       "patternKey": null,
+       "elementorNative": null
+      },
+      "layout": {
+       "display": "block"
+      },
+      "rect": {
+       "x": 874,
+       "y": 0,
+       "width": 240,
+       "height": 252
+      },
+      "content": {},
+      "styles": {
+       "desktop": {
+        "display": "block",
+        "position": "static",
+        "top": "auto",
+        "right": "auto",
+        "bottom": "auto",
+        "left": "auto",
+        "z-index": "auto",
+        "width": "240px",
+        "max-width": "none",
+        "height": "252px",
+        "min-height": "0px",
+        "margin-top": "0px",
+        "margin-right": "0px",
+        "margin-bottom": "0px",
+        "margin-left": "0px",
+        "padding-top": "0px",
+        "padding-right": "0px",
+        "padding-bottom": "0px",
+        "padding-left": "0px",
+        "text-decoration-line": "none",
+        "background-color": "rgba(0, 0, 0, 0)",
+        "background-image": "none",
+        "background-position": "0% 0%",
+        "background-repeat": "repeat",
+        "background-size": "auto",
+        "background-attachment": "scroll",
+        "border-top-style": "none",
+        "border-top-width": "0px",
+        "border-right-width": "0px",
+        "border-bottom-width": "0px",
+        "border-left-width": "0px",
+        "border-top-color": "rgb(30, 41, 59)",
+        "border-top-left-radius": "0px",
+        "border-top-right-radius": "0px",
+        "border-bottom-right-radius": "0px",
+        "border-bottom-left-radius": "0px",
+        "box-shadow": "none",
+        "opacity": "1",
+        "overflow": "visible",
+        "flex-direction": "row",
+        "flex-wrap": "nowrap",
+        "justify-content": "normal",
+        "align-items": "normal",
+        "align-self": "auto",
+        "order": "0",
+        "flex-grow": "0",
+        "row-gap": "normal",
+        "column-gap": "normal",
+        "object-fit": "fill",
+        "aspect-ratio": "auto"
+       },
+       "tablet": {},
+       "mobile": {}
+      },
+      "settings": {
+       "desktop": {},
+       "tablet": {},
+       "mobile": {}
+      },
+      "mapping": {
+       "elType": "container",
+       "widgetType": null,
+       "confidence": 0.75,
+       "source": "rule",
+       "alternatives": [],
+       "ruleId": "container-flex"
+      },
+      "assets": [],
+      "hidden": false,
+      "warnings": [],
+      "children": [
+       {
+        "id": "13187ca1",
+        "tag": "img",
+        "role": "widget",
+        "label": "img: image24.avif",
+        "domPath": "body:nth-child(2)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)>div:nth-child(1)>img:nth-child(1)",
+        "classes": [],
+        "customClasses": [],
+        "attrs": {},
+        "semantic": {
+         "kind": null,
+         "isRepeated": false,
+         "patternKey": null,
+         "elementorNative": null
+        },
+        "layout": {
+         "display": "inline"
+        },
+        "rect": {
+         "x": 874,
+         "y": 0,
+         "width": 240,
+         "height": 240
+        },
+        "content": {
+         "src": "http://localhost:8126/img/image24.avif",
+         "alt": "",
+         "title": ""
+        },
+        "styles": {
+         "desktop": {
+          "display": "inline",
+          "position": "static",
+          "top": "auto",
+          "right": "auto",
+          "bottom": "auto",
+          "left": "auto",
+          "z-index": "auto",
+          "width": "240px",
+          "max-width": "none",
+          "height": "240px",
+          "min-height": "0px",
+          "margin-top": "0px",
+          "margin-right": "0px",
+          "margin-bottom": "0px",
+          "margin-left": "0px",
+          "padding-top": "0px",
+          "padding-right": "0px",
+          "padding-bottom": "0px",
+          "padding-left": "0px",
+          "text-decoration-line": "none",
+          "background-color": "rgba(0, 0, 0, 0)",
+          "background-image": "none",
+          "background-position": "0% 0%",
+          "background-repeat": "repeat",
+          "background-size": "auto",
+          "background-attachment": "scroll",
+          "border-top-style": "none",
+          "border-top-width": "0px",
+          "border-right-width": "0px",
+          "border-bottom-width": "0px",
+          "border-left-width": "0px",
+          "border-top-color": "rgb(30, 41, 59)",
+          "border-top-left-radius": "0px",
+          "border-top-right-radius": "0px",
+          "border-bottom-right-radius": "0px",
+          "border-bottom-left-radius": "0px",
+          "box-shadow": "none",
+          "opacity": "1",
+          "overflow": "clip",
+          "flex-direction": "row",
+          "flex-wrap": "nowrap",
+          "justify-content": "normal",
+          "align-items": "normal",
+          "align-self": "auto",
+          "order": "0",
+          "flex-grow": "0",
+          "row-gap": "normal",
+          "column-gap": "normal",
+          "object-fit": "fill",
+          "aspect-ratio": "auto 240 / 240"
+         },
+         "tablet": {},
+         "mobile": {}
+        },
+        "settings": {
+         "desktop": {},
+         "tablet": {},
+         "mobile": {}
+        },
+        "mapping": {
+         "elType": "widget",
+         "widgetType": "image",
+         "confidence": 0.98,
+         "source": "rule",
+         "alternatives": [],
+         "ruleId": "image"
+        },
+        "assets": [
+         "a8572e4a6"
+        ],
+        "hidden": false,
+        "warnings": [],
+        "children": []
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "cf02065e",
+    "tag": "div",
+    "role": "container",
+    "label": "section (div)",
+    "domPath": "body:nth-child(2)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)",
+    "classes": [
+     "elementor-element",
+     "elementor-element-57f3fdc2",
+     "e-con",
+     "e-child"
+    ],
+    "customClasses": [],
+    "attrs": {},
+    "semantic": {
+     "kind": "section",
+     "isRepeated": false,
+     "patternKey": null,
+     "elementorNative": {
+      "elType": "container",
+      "sourceId": "57f3fdc2"
+     }
+    },
+    "layout": {
+     "display": "flex",
+     "direction": "row",
+     "wrap": "wrap",
+     "justify": "normal",
+     "align": "center",
+     "gap": {
+      "row": "normal",
+      "column": "normal"
+     }
+    },
+    "rect": {
+     "x": 184,
+     "y": 183,
+     "width": 1071,
+     "height": 147
+    },
+    "content": {},
+    "styles": {
+     "desktop": {
+      "display": "flex",
+      "position": "static",
+      "top": "auto",
+      "right": "auto",
+      "bottom": "auto",
+      "left": "auto",
+      "z-index": "auto",
+      "width": "1071.17px",
+      "max-width": "none",
+      "height": "147px",
+      "min-height": "auto",
+      "margin-top": "0px",
+      "margin-right": "0px",
+      "margin-bottom": "0px",
+      "margin-left": "0px",
+      "padding-top": "0px",
+      "padding-right": "0px",
+      "padding-bottom": "0px",
+      "padding-left": "0px",
+      "text-decoration-line": "none",
+      "background-color": "rgba(0, 0, 0, 0)",
+      "background-image": "none",
+      "background-position": "0% 0%",
+      "background-repeat": "repeat",
+      "background-size": "auto",
+      "background-attachment": "scroll",
+      "border-top-style": "none",
+      "border-top-width": "0px",
+      "border-right-width": "0px",
+      "border-bottom-width": "0px",
+      "border-left-width": "0px",
+      "border-top-color": "rgb(30, 41, 59)",
+      "border-top-left-radius": "0px",
+      "border-top-right-radius": "0px",
+      "border-bottom-right-radius": "0px",
+      "border-bottom-left-radius": "0px",
+      "box-shadow": "none",
+      "opacity": "1",
+      "overflow": "visible",
+      "flex-direction": "row",
+      "flex-wrap": "wrap",
+      "justify-content": "normal",
+      "align-items": "center",
+      "align-self": "auto",
+      "order": "0",
+      "flex-grow": "0",
+      "row-gap": "normal",
+      "column-gap": "normal",
+      "object-fit": "fill",
+      "aspect-ratio": "auto",
+      "--width": "400px"
+     },
+     "tablet": {},
+     "mobile": {}
+    },
+    "settings": {
+     "desktop": {
+      "width": {
+       "unit": "px",
+       "size": 400,
+       "sizes": []
+      },
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_wrap": "wrap",
+      "flex_align_items": "center"
+     },
+     "tablet": {},
+     "mobile": {}
+    },
+    "mapping": {
+     "elType": "container",
+     "widgetType": null,
+     "confidence": 1,
+     "source": "elementor-native",
+     "alternatives": []
+    },
+    "assets": [],
+    "hidden": false,
+    "warnings": [],
+    "children": [
+     {
+      "id": "07da7c1",
+      "tag": "div",
+      "role": "container",
+      "label": "⚡ heading",
+      "domPath": "body:nth-child(2)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(1)",
+      "classes": [
+       "elementor-element",
+       "elementor-element-5a48e45e",
+       "elementor-widget",
+       "elementor-widget-heading"
+      ],
+      "customClasses": [],
+      "attrs": {},
+      "semantic": {
+       "kind": "section",
+       "isRepeated": false,
+       "patternKey": null,
+       "elementorNative": {
+        "elType": "widget",
+        "widgetType": "heading",
+        "sourceId": "5a48e45e"
+       }
+      },
+      "layout": {
+       "display": "block"
+      },
+      "rect": {
+       "x": 1060,
+       "y": 199,
+       "width": 196,
+       "height": 43
+      },
+      "content": {
+       "text": "یادگیری المنتور در",
+       "_hoistedFrom": "65078af",
+       "headerSize": "span"
+      },
+      "styles": {
+       "desktop": {
+        "display": "block",
+        "position": "static",
+        "top": "auto",
+        "right": "auto",
+        "bottom": "auto",
+        "left": "auto",
+        "z-index": "auto",
+        "width": "195.828px",
+        "max-width": "none",
+        "height": "43px",
+        "min-height": "auto",
+        "margin-top": "0px",
+        "margin-right": "0px",
+        "margin-bottom": "0px",
+        "margin-left": "0px",
+        "padding-top": "0px",
+        "padding-right": "0px",
+        "padding-bottom": "0px",
+        "padding-left": "0px",
+        "text-decoration-line": "none",
+        "text-align": "center",
+        "background-color": "rgba(0, 0, 0, 0)",
+        "background-image": "none",
+        "background-position": "0% 0%",
+        "background-repeat": "repeat",
+        "background-size": "auto",
+        "background-attachment": "scroll",
+        "border-top-style": "none",
+        "border-top-width": "0px",
+        "border-right-width": "0px",
+        "border-bottom-width": "0px",
+        "border-left-width": "0px",
+        "border-top-color": "rgb(30, 41, 59)",
+        "border-top-left-radius": "0px",
+        "border-top-right-radius": "0px",
+        "border-bottom-right-radius": "0px",
+        "border-bottom-left-radius": "0px",
+        "box-shadow": "none",
+        "opacity": "1",
+        "overflow": "visible",
+        "flex-direction": "row",
+        "flex-wrap": "nowrap",
+        "justify-content": "normal",
+        "align-items": "normal",
+        "align-self": "auto",
+        "order": "0",
+        "flex-grow": "0",
+        "row-gap": "normal",
+        "column-gap": "normal",
+        "object-fit": "fill",
+        "aspect-ratio": "auto"
+       },
+       "tablet": {},
+       "mobile": {}
+      },
+      "settings": {
+       "desktop": {
+        "align": "center",
+        "typography_typography": "custom",
+        "typography_font_size": {
+         "unit": "px",
+         "size": 32,
+         "sizes": []
+        },
+        "typography_line_height": {
+         "unit": "px",
+         "size": 40,
+         "sizes": []
+        }
+       },
+       "tablet": {},
+       "mobile": {}
+      },
+      "mapping": {
+       "elType": "widget",
+       "widgetType": "heading",
+       "confidence": 1,
+       "source": "elementor-native",
+       "alternatives": []
+      },
+      "assets": [],
+      "hidden": false,
+      "warnings": [],
+      "children": [
+       {
+        "id": "65078af",
+        "tag": "span",
+        "role": "widget",
+        "label": "span: یادگیری المنتور در",
+        "domPath": "body:nth-child(2)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(1)>div:nth-child(1)>span:nth-child(1)",
+        "classes": [
+         "elementor-heading-title"
+        ],
+        "customClasses": [],
+        "attrs": {},
+        "semantic": {
+         "kind": null,
+         "isRepeated": false,
+         "patternKey": null,
+         "elementorNative": null
+        },
+        "layout": {
+         "display": "inline"
+        },
+        "rect": {
+         "x": 1060,
+         "y": 201,
+         "width": 196,
+         "height": 36
+        },
+        "content": {
+         "text": "یادگیری المنتور در"
+        },
+        "styles": {
+         "desktop": {
+          "display": "inline",
+          "position": "static",
+          "top": "auto",
+          "right": "auto",
+          "bottom": "auto",
+          "left": "auto",
+          "z-index": "auto",
+          "width": "auto",
+          "max-width": "none",
+          "height": "auto",
+          "min-height": "0px",
+          "margin-top": "0px",
+          "margin-right": "0px",
+          "margin-bottom": "0px",
+          "margin-left": "0px",
+          "padding-top": "0px",
+          "padding-right": "0px",
+          "padding-bottom": "0px",
+          "padding-left": "0px",
+          "font-size": "32px",
+          "line-height": "40px",
+          "text-decoration-line": "none",
+          "background-color": "rgba(0, 0, 0, 0)",
+          "background-image": "none",
+          "background-position": "0% 0%",
+          "background-repeat": "repeat",
+          "background-size": "auto",
+          "background-attachment": "scroll",
+          "border-top-style": "none",
+          "border-top-width": "0px",
+          "border-right-width": "0px",
+          "border-bottom-width": "0px",
+          "border-left-width": "0px",
+          "border-top-color": "rgb(30, 41, 59)",
+          "border-top-left-radius": "0px",
+          "border-top-right-radius": "0px",
+          "border-bottom-right-radius": "0px",
+          "border-bottom-left-radius": "0px",
+          "box-shadow": "none",
+          "opacity": "1",
+          "overflow": "visible",
+          "flex-direction": "row",
+          "flex-wrap": "nowrap",
+          "justify-content": "normal",
+          "align-items": "normal",
+          "align-self": "auto",
+          "order": "0",
+          "flex-grow": "0",
+          "row-gap": "normal",
+          "column-gap": "normal",
+          "object-fit": "fill",
+          "aspect-ratio": "auto"
+         },
+         "tablet": {},
+         "mobile": {}
+        },
+        "settings": {
+         "desktop": {
+          "typography_typography": "custom",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 32,
+           "sizes": []
+          },
+          "typography_line_height": {
+           "unit": "px",
+           "size": 40,
+           "sizes": []
+          }
+         },
+         "tablet": {},
+         "mobile": {}
+        },
+        "mapping": {
+         "elType": "widget",
+         "widgetType": "text-editor",
+         "confidence": 0.7,
+         "source": "rule",
+         "alternatives": [],
+         "ruleId": "text-editor"
+        },
+        "assets": [],
+        "hidden": false,
+        "warnings": [],
+        "children": []
+       }
+      ]
+     },
+     {
+      "id": "6e26a07",
+      "tag": "div",
+      "role": "container",
+      "label": "⚡ heading",
+      "domPath": "body:nth-child(2)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(2)",
+      "classes": [
+       "elementor-element",
+       "elementor-element-37499ff2",
+       "elementor-widget",
+       "elementor-widget-heading"
+      ],
+      "customClasses": [],
+      "attrs": {},
+      "semantic": {
+       "kind": "section",
+       "isRepeated": false,
+       "patternKey": null,
+       "elementorNative": {
+        "elType": "widget",
+        "widgetType": "heading",
+        "sourceId": "37499ff2"
+       }
+      },
+      "layout": {
+       "display": "block"
+      },
+      "rect": {
+       "x": 779,
+       "y": 183,
+       "width": 281,
+       "height": 75
+      },
+      "content": {
+       "text": "آکادمی نیاس",
+       "headerSize": "h1",
+       "_hoistedFrom": "e606abf1"
+      },
+      "styles": {
+       "desktop": {
+        "display": "block",
+        "position": "static",
+        "top": "auto",
+        "right": "auto",
+        "bottom": "auto",
+        "left": "auto",
+        "z-index": "auto",
+        "width": "280.953px",
+        "max-width": "none",
+        "height": "75px",
+        "min-height": "auto",
+        "margin-top": "0px",
+        "margin-right": "0px",
+        "margin-bottom": "0px",
+        "margin-left": "0px",
+        "padding-top": "0px",
+        "padding-right": "0px",
+        "padding-bottom": "0px",
+        "padding-left": "0px",
+        "text-decoration-line": "none",
+        "text-align": "center",
+        "background-color": "rgba(0, 0, 0, 0)",
+        "background-image": "none",
+        "background-position": "0% 0%",
+        "background-repeat": "repeat",
+        "background-size": "auto",
+        "background-attachment": "scroll",
+        "border-top-style": "none",
+        "border-top-width": "0px",
+        "border-right-width": "0px",
+        "border-bottom-width": "0px",
+        "border-left-width": "0px",
+        "border-top-color": "rgb(30, 41, 59)",
+        "border-top-left-radius": "0px",
+        "border-top-right-radius": "0px",
+        "border-bottom-right-radius": "0px",
+        "border-bottom-left-radius": "0px",
+        "box-shadow": "none",
+        "opacity": "1",
+        "overflow": "visible",
+        "flex-direction": "row",
+        "flex-wrap": "nowrap",
+        "justify-content": "normal",
+        "align-items": "normal",
+        "align-self": "auto",
+        "order": "0",
+        "flex-grow": "0",
+        "row-gap": "normal",
+        "column-gap": "normal",
+        "object-fit": "fill",
+        "aspect-ratio": "auto"
+       },
+       "tablet": {},
+       "mobile": {}
+      },
+      "settings": {
+       "desktop": {
+        "align": "center",
+        "typography_typography": "custom",
+        "typography_font_size": {
+         "unit": "px",
+         "size": 69,
+         "sizes": []
+        },
+        "typography_font_weight": "bold",
+        "typography_line_height": {
+         "unit": "px",
+         "size": 75,
+         "sizes": []
+        },
+        "color": "#20242E"
+       },
+       "tablet": {},
+       "mobile": {}
+      },
+      "mapping": {
+       "elType": "widget",
+       "widgetType": "heading",
+       "confidence": 1,
+       "source": "elementor-native",
+       "alternatives": []
+      },
+      "assets": [],
+      "hidden": false,
+      "warnings": [],
+      "children": [
+       {
+        "id": "e606abf1",
+        "tag": "h1",
+        "role": "widget",
+        "label": "h1: آکادمی نیاس",
+        "domPath": "body:nth-child(2)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(2)>div:nth-child(1)>h1:nth-child(1)",
+        "classes": [
+         "elementor-heading-title"
+        ],
+        "customClasses": [],
+        "attrs": {},
+        "semantic": {
+         "kind": null,
+         "isRepeated": false,
+         "patternKey": null,
+         "elementorNative": null
+        },
+        "layout": {
+         "display": "block"
+        },
+        "rect": {
+         "x": 779,
+         "y": 183,
+         "width": 281,
+         "height": 75
+        },
+        "content": {
+         "text": "آکادمی نیاس",
+         "headerSize": "h1"
+        },
+        "styles": {
+         "desktop": {
+          "display": "block",
+          "position": "static",
+          "top": "auto",
+          "right": "auto",
+          "bottom": "auto",
+          "left": "auto",
+          "z-index": "auto",
+          "width": "280.953px",
+          "max-width": "none",
+          "height": "75px",
+          "min-height": "0px",
+          "margin-top": "0px",
+          "margin-right": "0px",
+          "margin-bottom": "0px",
+          "margin-left": "0px",
+          "padding-top": "0px",
+          "padding-right": "0px",
+          "padding-bottom": "0px",
+          "padding-left": "0px",
+          "font-size": "69px",
+          "font-weight": "700",
+          "line-height": "75px",
+          "text-decoration-line": "none",
+          "color": "rgb(32, 36, 46)",
+          "background-color": "rgba(0, 0, 0, 0)",
+          "background-image": "none",
+          "background-position": "0% 0%",
+          "background-repeat": "repeat",
+          "background-size": "auto",
+          "background-attachment": "scroll",
+          "border-top-style": "none",
+          "border-top-width": "0px",
+          "border-right-width": "0px",
+          "border-bottom-width": "0px",
+          "border-left-width": "0px",
+          "border-top-color": "rgb(32, 36, 46)",
+          "border-top-left-radius": "0px",
+          "border-top-right-radius": "0px",
+          "border-bottom-right-radius": "0px",
+          "border-bottom-left-radius": "0px",
+          "box-shadow": "none",
+          "opacity": "1",
+          "overflow": "visible",
+          "flex-direction": "row",
+          "flex-wrap": "nowrap",
+          "justify-content": "normal",
+          "align-items": "normal",
+          "align-self": "auto",
+          "order": "0",
+          "flex-grow": "0",
+          "row-gap": "normal",
+          "column-gap": "normal",
+          "object-fit": "fill",
+          "aspect-ratio": "auto"
+         },
+         "tablet": {},
+         "mobile": {}
+        },
+        "settings": {
+         "desktop": {
+          "typography_typography": "custom",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 69,
+           "sizes": []
+          },
+          "typography_font_weight": "bold",
+          "typography_line_height": {
+           "unit": "px",
+           "size": 75,
+           "sizes": []
+          },
+          "color": "#20242E"
+         },
+         "tablet": {},
+         "mobile": {}
+        },
+        "mapping": {
+         "elType": "widget",
+         "widgetType": "heading",
+         "confidence": 0.98,
+         "source": "rule",
+         "alternatives": [],
+         "ruleId": "heading"
+        },
+        "assets": [],
+        "hidden": false,
+        "warnings": [],
+        "children": []
+       }
+      ]
+     },
+     {
+      "id": "4a279b0",
+      "tag": "div",
+      "role": "container",
+      "label": "⚡ button",
+      "domPath": "body:nth-child(2)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(3)",
+      "classes": [
+       "elementor-element",
+       "elementor-element-35072f31",
+       "elementor-widget",
+       "elementor-widget-button"
+      ],
+      "customClasses": [
+       "ns-button"
+      ],
+      "attrs": {},
+      "semantic": {
+       "kind": "section",
+       "isRepeated": false,
+       "patternKey": null,
+       "elementorNative": {
+        "elType": "widget",
+        "widgetType": "button",
+        "sourceId": "35072f31"
+       }
+      },
+      "layout": {
+       "display": "block"
+      },
+      "rect": {
+       "x": 275,
+       "y": 189,
+       "width": 503,
+       "height": 64
+      },
+      "content": {
+       "text": "شرکت در دوره",
+       "href": "https://nias.ir/course/elementor/",
+       "target": "",
+       "isButtonLike": true,
+       "_hoistedFrom": "0ab50c18"
+      },
+      "styles": {
+       "desktop": {
+        "display": "block",
+        "position": "static",
+        "top": "auto",
+        "right": "auto",
+        "bottom": "auto",
+        "left": "auto",
+        "z-index": "auto",
+        "width": "503.438px",
+        "max-width": "none",
+        "height": "64px",
+        "min-height": "auto",
+        "margin-top": "0px",
+        "margin-right": "0px",
+        "margin-bottom": "0px",
+        "margin-left": "0px",
+        "padding-top": "0px",
+        "padding-right": "0px",
+        "padding-bottom": "0px",
+        "padding-left": "0px",
+        "text-decoration-line": "none",
+        "background-color": "rgba(0, 0, 0, 0)",
+        "background-image": "none",
+        "background-position": "0% 0%",
+        "background-repeat": "repeat",
+        "background-size": "auto",
+        "background-attachment": "scroll",
+        "border-top-style": "none",
+        "border-top-width": "0px",
+        "border-right-width": "0px",
+        "border-bottom-width": "0px",
+        "border-left-width": "0px",
+        "border-top-color": "rgb(30, 41, 59)",
+        "border-top-left-radius": "0px",
+        "border-top-right-radius": "0px",
+        "border-bottom-right-radius": "0px",
+        "border-bottom-left-radius": "0px",
+        "box-shadow": "none",
+        "opacity": "1",
+        "overflow": "visible",
+        "flex-direction": "row",
+        "flex-wrap": "nowrap",
+        "justify-content": "normal",
+        "align-items": "normal",
+        "align-self": "auto",
+        "order": "0",
+        "flex-grow": "0",
+        "row-gap": "normal",
+        "column-gap": "normal",
+        "object-fit": "fill",
+        "aspect-ratio": "auto",
+        "--width": "47%"
+       },
+       "tablet": {},
+       "mobile": {}
+      },
+      "settings": {
+       "desktop": {
+        "width": {
+         "unit": "%",
+         "size": 47,
+         "sizes": []
+        },
+        "content_width": "full",
+        "padding": {
+         "unit": "px",
+         "top": "15",
+         "right": "25",
+         "bottom": "15",
+         "left": "25",
+         "isLinked": false
+        },
+        "typography_typography": "custom",
+        "typography_text_decoration": "underline",
+        "color": "#FFFFFF",
+        "background_background": "classic",
+        "background_color": "#FF6B35",
+        "border_radius": {
+         "unit": "px",
+         "top": "10",
+         "right": "10",
+         "bottom": "10",
+         "left": "10",
+         "isLinked": true
+        }
+       },
+       "tablet": {},
+       "mobile": {}
+      },
+      "mapping": {
+       "elType": "widget",
+       "widgetType": "button",
+       "confidence": 1,
+       "source": "elementor-native",
+       "alternatives": []
+      },
+      "assets": [],
+      "hidden": false,
+      "warnings": [],
+      "children": [
+       {
+        "id": "0ab50c18",
+        "tag": "a",
+        "role": "widget",
+        "label": "link: شرکت در دوره",
+        "domPath": "body:nth-child(2)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(3)>div:nth-child(1)>div:nth-child(1)>a:nth-child(1)",
+        "classes": [
+         "elementor-button",
+         "ns-button"
+        ],
+        "customClasses": [
+         "ns-button"
+        ],
+        "attrs": {
+         "href": "https://nias.ir/course/elementor/"
+        },
+        "semantic": {
+         "kind": null,
+         "isRepeated": false,
+         "patternKey": null,
+         "elementorNative": null
+        },
+        "layout": {
+         "display": "inline-block"
+        },
+        "rect": {
+         "x": 644,
+         "y": 189,
+         "width": 135,
+         "height": 64
+        },
+        "content": {
+         "text": "شرکت در دوره",
+         "href": "https://nias.ir/course/elementor/",
+         "target": "",
+         "rel": "",
+         "isButtonLike": true
+        },
+        "styles": {
+         "desktop": {
+          "display": "inline-block",
+          "position": "static",
+          "top": "auto",
+          "right": "auto",
+          "bottom": "auto",
+          "left": "auto",
+          "z-index": "auto",
+          "width": "84.9062px",
+          "max-width": "none",
+          "height": "34px",
+          "min-height": "0px",
+          "margin-top": "0px",
+          "margin-right": "0px",
+          "margin-bottom": "0px",
+          "margin-left": "0px",
+          "padding-top": "15px",
+          "padding-right": "25px",
+          "padding-bottom": "15px",
+          "padding-left": "25px",
+          "text-decoration-line": "underline",
+          "color": "rgb(255, 255, 255)",
+          "background-color": "rgb(255, 107, 53)",
+          "background-image": "none",
+          "background-position": "0% 0%",
+          "background-repeat": "repeat",
+          "background-size": "auto",
+          "background-attachment": "scroll",
+          "border-top-style": "none",
+          "border-top-width": "0px",
+          "border-right-width": "0px",
+          "border-bottom-width": "0px",
+          "border-left-width": "0px",
+          "border-top-color": "rgb(255, 255, 255)",
+          "border-top-left-radius": "10px",
+          "border-top-right-radius": "10px",
+          "border-bottom-right-radius": "10px",
+          "border-bottom-left-radius": "10px",
+          "box-shadow": "none",
+          "opacity": "1",
+          "overflow": "visible",
+          "flex-direction": "row",
+          "flex-wrap": "nowrap",
+          "justify-content": "normal",
+          "align-items": "normal",
+          "align-self": "auto",
+          "order": "0",
+          "flex-grow": "0",
+          "row-gap": "normal",
+          "column-gap": "normal",
+          "object-fit": "fill",
+          "aspect-ratio": "auto"
+         },
+         "tablet": {},
+         "mobile": {}
+        },
+        "settings": {
+         "desktop": {
+          "padding": {
+           "unit": "px",
+           "top": "15",
+           "right": "25",
+           "bottom": "15",
+           "left": "25",
+           "isLinked": false
+          },
+          "typography_typography": "custom",
+          "typography_text_decoration": "underline",
+          "color": "#FFFFFF",
+          "background_background": "classic",
+          "background_color": "#FF6B35",
+          "border_radius": {
+           "unit": "px",
+           "top": "10",
+           "right": "10",
+           "bottom": "10",
+           "left": "10",
+           "isLinked": true
+          }
+         },
+         "tablet": {},
+         "mobile": {}
+        },
+        "mapping": {
+         "elType": "widget",
+         "widgetType": "button",
+         "confidence": 0.92,
+         "source": "rule",
+         "alternatives": [],
+         "ruleId": "button"
+        },
+        "assets": [],
+        "hidden": false,
+        "warnings": [],
+        "children": []
+       }
+      ]
+     },
+     {
+      "id": "71a75c3",
+      "tag": "div",
+      "role": "container",
+      "label": "⚡ image",
+      "domPath": "body:nth-child(2)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(4)",
+      "classes": [
+       "elementor-element",
+       "elementor-element-d1b9e92",
+       "elementor-widget",
+       "elementor-widget-image"
+      ],
+      "customClasses": [],
+      "attrs": {},
+      "semantic": {
+       "kind": "section",
+       "isRepeated": false,
+       "patternKey": null,
+       "elementorNative": {
+        "elType": "widget",
+        "widgetType": "image",
+        "sourceId": "d1b9e92"
+       }
+      },
+      "layout": {
+       "display": "block"
+      },
+      "rect": {
+       "x": 752,
+       "y": 258,
+       "width": 503,
+       "height": 72
+      },
+      "content": {
+       "src": "http://localhost:8126/img/group36885.webp",
+       "alt": "",
+       "title": "",
+       "_hoistedFrom": "87992fa"
+      },
+      "styles": {
+       "desktop": {
+        "display": "block",
+        "position": "static",
+        "top": "auto",
+        "right": "auto",
+        "bottom": "auto",
+        "left": "auto",
+        "z-index": "auto",
+        "width": "503.438px",
+        "max-width": "none",
+        "height": "72px",
+        "min-height": "auto",
+        "margin-top": "0px",
+        "margin-right": "0px",
+        "margin-bottom": "0px",
+        "margin-left": "0px",
+        "padding-top": "0px",
+        "padding-right": "0px",
+        "padding-bottom": "0px",
+        "padding-left": "0px",
+        "text-decoration-line": "none",
+        "background-color": "rgba(0, 0, 0, 0)",
+        "background-image": "none",
+        "background-position": "0% 0%",
+        "background-repeat": "repeat",
+        "background-size": "auto",
+        "background-attachment": "scroll",
+        "border-top-style": "none",
+        "border-top-width": "0px",
+        "border-right-width": "0px",
+        "border-bottom-width": "0px",
+        "border-left-width": "0px",
+        "border-top-color": "rgb(30, 41, 59)",
+        "border-top-left-radius": "0px",
+        "border-top-right-radius": "0px",
+        "border-bottom-right-radius": "0px",
+        "border-bottom-left-radius": "0px",
+        "box-shadow": "none",
+        "opacity": "1",
+        "overflow": "visible",
+        "flex-direction": "row",
+        "flex-wrap": "nowrap",
+        "justify-content": "normal",
+        "align-items": "normal",
+        "align-self": "auto",
+        "order": "0",
+        "flex-grow": "0",
+        "row-gap": "normal",
+        "column-gap": "normal",
+        "object-fit": "fill",
+        "aspect-ratio": "auto",
+        "--width": "47%"
+       },
+       "tablet": {},
+       "mobile": {}
+      },
+      "settings": {
+       "desktop": {
+        "width": {
+         "unit": "%",
+         "size": 47,
+         "sizes": []
+        },
+        "content_width": "full"
+       },
+       "tablet": {},
+       "mobile": {}
+      },
+      "mapping": {
+       "elType": "widget",
+       "widgetType": "image",
+       "confidence": 1,
+       "source": "elementor-native",
+       "alternatives": []
+      },
+      "assets": [
+       "a3e853940"
+      ],
+      "hidden": false,
+      "warnings": [],
+      "children": [
+       {
+        "id": "87992fa",
+        "tag": "img",
+        "role": "widget",
+        "label": "img: group36885.webp",
+        "domPath": "body:nth-child(2)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(4)>div:nth-child(1)>img:nth-child(1)",
+        "classes": [],
+        "customClasses": [],
+        "attrs": {},
+        "semantic": {
+         "kind": null,
+         "isRepeated": false,
+         "patternKey": null,
+         "elementorNative": null
+        },
+        "layout": {
+         "display": "inline"
+        },
+        "rect": {
+         "x": 1076,
+         "y": 258,
+         "width": 180,
+         "height": 60
+        },
+        "content": {
+         "src": "http://localhost:8126/img/group36885.webp",
+         "alt": "",
+         "title": ""
+        },
+        "styles": {
+         "desktop": {
+          "display": "inline",
+          "position": "static",
+          "top": "auto",
+          "right": "auto",
+          "bottom": "auto",
+          "left": "auto",
+          "z-index": "auto",
+          "width": "180px",
+          "max-width": "none",
+          "height": "60px",
+          "min-height": "0px",
+          "margin-top": "0px",
+          "margin-right": "0px",
+          "margin-bottom": "0px",
+          "margin-left": "0px",
+          "padding-top": "0px",
+          "padding-right": "0px",
+          "padding-bottom": "0px",
+          "padding-left": "0px",
+          "text-decoration-line": "none",
+          "background-color": "rgba(0, 0, 0, 0)",
+          "background-image": "none",
+          "background-position": "0% 0%",
+          "background-repeat": "repeat",
+          "background-size": "auto",
+          "background-attachment": "scroll",
+          "border-top-style": "none",
+          "border-top-width": "0px",
+          "border-right-width": "0px",
+          "border-bottom-width": "0px",
+          "border-left-width": "0px",
+          "border-top-color": "rgb(30, 41, 59)",
+          "border-top-left-radius": "0px",
+          "border-top-right-radius": "0px",
+          "border-bottom-right-radius": "0px",
+          "border-bottom-left-radius": "0px",
+          "box-shadow": "none",
+          "opacity": "1",
+          "overflow": "clip",
+          "flex-direction": "row",
+          "flex-wrap": "nowrap",
+          "justify-content": "normal",
+          "align-items": "normal",
+          "align-self": "auto",
+          "order": "0",
+          "flex-grow": "0",
+          "row-gap": "normal",
+          "column-gap": "normal",
+          "object-fit": "fill",
+          "aspect-ratio": "auto 180 / 60"
+         },
+         "tablet": {},
+         "mobile": {}
+        },
+        "settings": {
+         "desktop": {},
+         "tablet": {},
+         "mobile": {}
+        },
+        "mapping": {
+         "elType": "widget",
+         "widgetType": "image",
+         "confidence": 0.98,
+         "source": "rule",
+         "alternatives": [],
+         "ruleId": "image"
+        },
+        "assets": [
+         "a3e853940"
+        ],
+        "hidden": false,
+        "warnings": [],
+        "children": []
+       }
+      ]
+     },
+     {
+      "id": "a4deeb7",
+      "tag": "div",
+      "role": "container",
+      "label": "⚡ heading",
+      "domPath": "body:nth-child(2)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(5)",
+      "classes": [
+       "elementor-element",
+       "elementor-element-6ace0186",
+       "elementor-widget",
+       "elementor-widget-heading"
+      ],
+      "customClasses": [],
+      "attrs": {},
+      "semantic": {
+       "kind": "section",
+       "isRepeated": false,
+       "patternKey": null,
+       "elementorNative": {
+        "elType": "widget",
+        "widgetType": "heading",
+        "sourceId": "6ace0186"
+       }
+      },
+      "layout": {
+       "display": "block"
+      },
+      "rect": {
+       "x": 473,
+       "y": 277,
+       "width": 279,
+       "height": 34
+      },
+      "content": {
+       "text": "با بروز ترین متد های نوین و کلی پروژه استاد شو .",
+       "_hoistedFrom": "846be747",
+       "headerSize": "span"
+      },
+      "styles": {
+       "desktop": {
+        "display": "block",
+        "position": "static",
+        "top": "auto",
+        "right": "auto",
+        "bottom": "auto",
+        "left": "auto",
+        "z-index": "auto",
+        "width": "279.484px",
+        "max-width": "none",
+        "height": "34px",
+        "min-height": "auto",
+        "margin-top": "0px",
+        "margin-right": "0px",
+        "margin-bottom": "0px",
+        "margin-left": "0px",
+        "padding-top": "0px",
+        "padding-right": "0px",
+        "padding-bottom": "0px",
+        "padding-left": "0px",
+        "text-decoration-line": "none",
+        "text-align": "center",
+        "background-color": "rgba(0, 0, 0, 0)",
+        "background-image": "none",
+        "background-position": "0% 0%",
+        "background-repeat": "repeat",
+        "background-size": "auto",
+        "background-attachment": "scroll",
+        "border-top-style": "none",
+        "border-top-width": "0px",
+        "border-right-width": "0px",
+        "border-bottom-width": "0px",
+        "border-left-width": "0px",
+        "border-top-color": "rgb(30, 41, 59)",
+        "border-top-left-radius": "0px",
+        "border-top-right-radius": "0px",
+        "border-bottom-right-radius": "0px",
+        "border-bottom-left-radius": "0px",
+        "box-shadow": "none",
+        "opacity": "1",
+        "overflow": "visible",
+        "flex-direction": "row",
+        "flex-wrap": "nowrap",
+        "justify-content": "normal",
+        "align-items": "normal",
+        "align-self": "auto",
+        "order": "0",
+        "flex-grow": "0",
+        "row-gap": "normal",
+        "column-gap": "normal",
+        "object-fit": "fill",
+        "aspect-ratio": "auto"
+       },
+       "tablet": {},
+       "mobile": {}
+      },
+      "settings": {
+       "desktop": {
+        "align": "center",
+        "color": "#94969A"
+       },
+       "tablet": {},
+       "mobile": {}
+      },
+      "mapping": {
+       "elType": "widget",
+       "widgetType": "heading",
+       "confidence": 1,
+       "source": "elementor-native",
+       "alternatives": []
+      },
+      "assets": [],
+      "hidden": false,
+      "warnings": [],
+      "children": [
+       {
+        "id": "846be747",
+        "tag": "span",
+        "role": "widget",
+        "label": "span: با بروز ترین متد های نوین و کلی…",
+        "domPath": "body:nth-child(2)>div:nth-child(1)>div:nth-child(1)>div:nth-child(2)>div:nth-child(5)>div:nth-child(1)>span:nth-child(1)",
+        "classes": [
+         "elementor-heading-title"
+        ],
+        "customClasses": [],
+        "attrs": {},
+        "semantic": {
+         "kind": null,
+         "isRepeated": false,
+         "patternKey": null,
+         "elementorNative": null
+        },
+        "layout": {
+         "display": "inline"
+        },
+        "rect": {
+         "x": 473,
+         "y": 284,
+         "width": 279,
+         "height": 19
+        },
+        "content": {
+         "text": "با بروز ترین متد های نوین و کلی پروژه استاد شو ."
+        },
+        "styles": {
+         "desktop": {
+          "display": "inline",
+          "position": "static",
+          "top": "auto",
+          "right": "auto",
+          "bottom": "auto",
+          "left": "auto",
+          "z-index": "auto",
+          "width": "auto",
+          "max-width": "none",
+          "height": "auto",
+          "min-height": "0px",
+          "margin-top": "0px",
+          "margin-right": "0px",
+          "margin-bottom": "0px",
+          "margin-left": "0px",
+          "padding-top": "0px",
+          "padding-right": "0px",
+          "padding-bottom": "0px",
+          "padding-left": "0px",
+          "text-decoration-line": "none",
+          "color": "rgb(148, 150, 154)",
+          "background-color": "rgba(0, 0, 0, 0)",
+          "background-image": "none",
+          "background-position": "0% 0%",
+          "background-repeat": "repeat",
+          "background-size": "auto",
+          "background-attachment": "scroll",
+          "border-top-style": "none",
+          "border-top-width": "0px",
+          "border-right-width": "0px",
+          "border-bottom-width": "0px",
+          "border-left-width": "0px",
+          "border-top-color": "rgb(148, 150, 154)",
+          "border-top-left-radius": "0px",
+          "border-top-right-radius": "0px",
+          "border-bottom-right-radius": "0px",
+          "border-bottom-left-radius": "0px",
+          "box-shadow": "none",
+          "opacity": "1",
+          "overflow": "visible",
+          "flex-direction": "row",
+          "flex-wrap": "nowrap",
+          "justify-content": "normal",
+          "align-items": "normal",
+          "align-self": "auto",
+          "order": "0",
+          "flex-grow": "0",
+          "row-gap": "normal",
+          "column-gap": "normal",
+          "object-fit": "fill",
+          "aspect-ratio": "auto"
+         },
+         "tablet": {},
+         "mobile": {}
+        },
+        "settings": {
+         "desktop": {
+          "color": "#94969A"
+         },
+         "tablet": {},
+         "mobile": {}
+        },
+        "mapping": {
+         "elType": "widget",
+         "widgetType": "text-editor",
+         "confidence": 0.7,
+         "source": "rule",
+         "alternatives": [],
+         "ruleId": "text-editor"
+        },
+        "assets": [],
+        "hidden": false,
+        "warnings": [],
+        "children": []
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "id": "4488f89d",
+    "tag": "div",
+    "role": "container",
+    "label": "⚡ image",
+    "domPath": "body:nth-child(2)>div:nth-child(1)>div:nth-child(1)>div:nth-child(3)",
+    "classes": [
+     "elementor-element",
+     "elementor-element-16068df4",
+     "elementor-widget",
+     "elementor-widget-image"
+    ],
+    "customClasses": [],
+    "attrs": {},
+    "semantic": {
+     "kind": "section",
+     "isRepeated": false,
+     "patternKey": null,
+     "elementorNative": {
+      "elType": "widget",
+      "widgetType": "image",
+      "sourceId": "16068df4"
+     }
+    },
+    "layout": {
+     "display": "block"
+    },
+    "rect": {
+     "x": 1240,
+     "y": 40,
+     "width": 120,
+     "height": 132
+    },
+    "content": {
+     "src": "http://localhost:8126/img/Frame-57-1.webp",
+     "alt": "",
+     "title": "",
+     "_hoistedFrom": "6e4ed78"
+    },
+    "styles": {
+     "desktop": {
+      "display": "block",
+      "position": "absolute",
+      "top": "40px",
+      "right": "80px",
+      "bottom": "341px",
+      "left": "1240px",
+      "z-index": "auto",
+      "width": "120px",
+      "max-width": "none",
+      "height": "132px",
+      "min-height": "0px",
+      "margin-top": "0px",
+      "margin-right": "0px",
+      "margin-bottom": "0px",
+      "margin-left": "0px",
+      "padding-top": "0px",
+      "padding-right": "0px",
+      "padding-bottom": "0px",
+      "padding-left": "0px",
+      "text-decoration-line": "none",
+      "background-color": "rgba(0, 0, 0, 0)",
+      "background-image": "none",
+      "background-position": "0% 0%",
+      "background-repeat": "repeat",
+      "background-size": "auto",
+      "background-attachment": "scroll",
+      "border-top-style": "none",
+      "border-top-width": "0px",
+      "border-right-width": "0px",
+      "border-bottom-width": "0px",
+      "border-left-width": "0px",
+      "border-top-color": "rgb(30, 41, 59)",
+      "border-top-left-radius": "0px",
+      "border-top-right-radius": "0px",
+      "border-bottom-right-radius": "0px",
+      "border-bottom-left-radius": "0px",
+      "box-shadow": "none",
+      "opacity": "1",
+      "overflow": "visible",
+      "flex-direction": "row",
+      "flex-wrap": "nowrap",
+      "justify-content": "normal",
+      "align-items": "normal",
+      "align-self": "auto",
+      "order": "0",
+      "flex-grow": "0",
+      "row-gap": "normal",
+      "column-gap": "normal",
+      "object-fit": "fill",
+      "aspect-ratio": "auto"
+     },
+     "tablet": {},
+     "mobile": {}
+    },
+    "settings": {
+     "desktop": {
+      "_position": "absolute",
+      "_offset_orientation_h": "end",
+      "_offset_x_end": {
+       "unit": "px",
+       "size": 80,
+       "sizes": []
+      },
+      "_offset_y": {
+       "unit": "px",
+       "size": 40,
+       "sizes": []
+      }
+     },
+     "tablet": {},
+     "mobile": {}
+    },
+    "mapping": {
+     "elType": "widget",
+     "widgetType": "image",
+     "confidence": 1,
+     "source": "elementor-native",
+     "alternatives": []
+    },
+    "assets": [
+     "ac773ee07"
+    ],
+    "hidden": false,
+    "warnings": [],
+    "children": [
+     {
+      "id": "c80c54e",
+      "tag": "div",
+      "role": "container",
+      "label": "section (div)",
+      "domPath": "body:nth-child(2)>div:nth-child(1)>div:nth-child(1)>div:nth-child(3)>div:nth-child(1)",
+      "classes": [
+       "elementor-widget-container"
+      ],
+      "customClasses": [],
+      "attrs": {},
+      "semantic": {
+       "kind": "section",
+       "isRepeated": false,
+       "patternKey": null,
+       "elementorNative": null
+      },
+      "layout": {
+       "display": "block"
+      },
+      "rect": {
+       "x": 1240,
+       "y": 40,
+       "width": 120,
+       "height": 132
+      },
+      "content": {},
+      "styles": {
+       "desktop": {
+        "display": "block",
+        "position": "static",
+        "top": "auto",
+        "right": "auto",
+        "bottom": "auto",
+        "left": "auto",
+        "z-index": "auto",
+        "width": "120px",
+        "max-width": "none",
+        "height": "132px",
+        "min-height": "0px",
+        "margin-top": "0px",
+        "margin-right": "0px",
+        "margin-bottom": "0px",
+        "margin-left": "0px",
+        "padding-top": "0px",
+        "padding-right": "0px",
+        "padding-bottom": "0px",
+        "padding-left": "0px",
+        "text-decoration-line": "none",
+        "background-color": "rgba(0, 0, 0, 0)",
+        "background-image": "none",
+        "background-position": "0% 0%",
+        "background-repeat": "repeat",
+        "background-size": "auto",
+        "background-attachment": "scroll",
+        "border-top-style": "none",
+        "border-top-width": "0px",
+        "border-right-width": "0px",
+        "border-bottom-width": "0px",
+        "border-left-width": "0px",
+        "border-top-color": "rgb(30, 41, 59)",
+        "border-top-left-radius": "0px",
+        "border-top-right-radius": "0px",
+        "border-bottom-right-radius": "0px",
+        "border-bottom-left-radius": "0px",
+        "box-shadow": "none",
+        "opacity": "1",
+        "overflow": "visible",
+        "flex-direction": "row",
+        "flex-wrap": "nowrap",
+        "justify-content": "normal",
+        "align-items": "normal",
+        "align-self": "auto",
+        "order": "0",
+        "flex-grow": "0",
+        "row-gap": "normal",
+        "column-gap": "normal",
+        "object-fit": "fill",
+        "aspect-ratio": "auto"
+       },
+       "tablet": {},
+       "mobile": {}
+      },
+      "settings": {
+       "desktop": {},
+       "tablet": {},
+       "mobile": {}
+      },
+      "mapping": {
+       "elType": "container",
+       "widgetType": null,
+       "confidence": 0.75,
+       "source": "rule",
+       "alternatives": [],
+       "ruleId": "container-flex"
+      },
+      "assets": [],
+      "hidden": false,
+      "warnings": [],
+      "children": [
+       {
+        "id": "6e4ed78",
+        "tag": "img",
+        "role": "widget",
+        "label": "img: Frame-57-1.webp",
+        "domPath": "body:nth-child(2)>div:nth-child(1)>div:nth-child(1)>div:nth-child(3)>div:nth-child(1)>img:nth-child(1)",
+        "classes": [],
+        "customClasses": [],
+        "attrs": {},
+        "semantic": {
+         "kind": null,
+         "isRepeated": false,
+         "patternKey": null,
+         "elementorNative": null
+        },
+        "layout": {
+         "display": "inline"
+        },
+        "rect": {
+         "x": 1240,
+         "y": 40,
+         "width": 120,
+         "height": 120
+        },
+        "content": {
+         "src": "http://localhost:8126/img/Frame-57-1.webp",
+         "alt": "",
+         "title": ""
+        },
+        "styles": {
+         "desktop": {
+          "display": "inline",
+          "position": "static",
+          "top": "auto",
+          "right": "auto",
+          "bottom": "auto",
+          "left": "auto",
+          "z-index": "auto",
+          "width": "120px",
+          "max-width": "none",
+          "height": "120px",
+          "min-height": "0px",
+          "margin-top": "0px",
+          "margin-right": "0px",
+          "margin-bottom": "0px",
+          "margin-left": "0px",
+          "padding-top": "0px",
+          "padding-right": "0px",
+          "padding-bottom": "0px",
+          "padding-left": "0px",
+          "text-decoration-line": "none",
+          "background-color": "rgba(0, 0, 0, 0)",
+          "background-image": "none",
+          "background-position": "0% 0%",
+          "background-repeat": "repeat",
+          "background-size": "auto",
+          "background-attachment": "scroll",
+          "border-top-style": "none",
+          "border-top-width": "0px",
+          "border-right-width": "0px",
+          "border-bottom-width": "0px",
+          "border-left-width": "0px",
+          "border-top-color": "rgb(30, 41, 59)",
+          "border-top-left-radius": "0px",
+          "border-top-right-radius": "0px",
+          "border-bottom-right-radius": "0px",
+          "border-bottom-left-radius": "0px",
+          "box-shadow": "none",
+          "opacity": "1",
+          "overflow": "clip",
+          "flex-direction": "row",
+          "flex-wrap": "nowrap",
+          "justify-content": "normal",
+          "align-items": "normal",
+          "align-self": "auto",
+          "order": "0",
+          "flex-grow": "0",
+          "row-gap": "normal",
+          "column-gap": "normal",
+          "object-fit": "fill",
+          "aspect-ratio": "auto 120 / 120"
+         },
+         "tablet": {},
+         "mobile": {}
+        },
+        "settings": {
+         "desktop": {},
+         "tablet": {},
+         "mobile": {}
+        },
+        "mapping": {
+         "elType": "widget",
+         "widgetType": "image",
+         "confidence": 0.98,
+         "source": "rule",
+         "alternatives": [],
+         "ruleId": "image"
+        },
+        "assets": [
+         "ac773ee07"
+        ],
+        "hidden": false,
+        "warnings": [],
+        "children": []
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "assets": [
+  {
+   "id": "a8572e4a6",
+   "type": "image",
+   "url": "http://localhost:8126/img/image24.avif",
+   "inline": null,
+   "filename": "image24.avif",
+   "mime": "",
+   "origin": "localhost:8126",
+   "meta": {
+    "alt": "",
+    "width": 1,
+    "height": 1,
+    "loading": ""
+   },
+   "usedBy": [
+    "13187ca1"
+   ]
+  },
+  {
+   "id": "a3e853940",
+   "type": "image",
+   "url": "http://localhost:8126/img/group36885.webp",
+   "inline": null,
+   "filename": "group36885.webp",
+   "mime": "",
+   "origin": "localhost:8126",
+   "meta": {
+    "alt": "",
+    "width": 1,
+    "height": 1,
+    "loading": ""
+   },
+   "usedBy": [
+    "87992fa"
+   ]
+  },
+  {
+   "id": "ac773ee07",
+   "type": "image",
+   "url": "http://localhost:8126/img/Frame-57-1.webp",
+   "inline": null,
+   "filename": "Frame-57-1.webp",
+   "mime": "",
+   "origin": "localhost:8126",
+   "meta": {
+    "alt": "",
+    "width": 1,
+    "height": 1,
+    "loading": ""
+   },
+   "usedBy": [
+    "6e4ed78"
+   ]
+  }
+ ],
+ "globals": {
+  "colors": [
+   {
+    "value": "#20242E",
+    "count": 1
+   },
+   {
+    "value": "#FFFFFF",
+    "count": 1
+   },
+   {
+    "value": "#FF6B35",
+    "count": 1
+   },
+   {
+    "value": "#94969A",
+    "count": 1
+   }
+  ],
+  "fonts": []
+ },
+ "stats": {
+  "domNodesSeen": 24,
+  "nodesExtracted": 24,
+  "nodesSkipped": 0,
+  "patternsDetected": 0,
+  "assetsCollected": 3,
+  "durationMs": 11,
+  "enginePhases": {
+   "dom": {
+    "ok": true,
+    "durationMs": 4
+   },
+   "content": {
+    "ok": true,
+    "durationMs": 2
+   },
+   "css": {
+    "ok": true,
+    "durationMs": 3
+   },
+   "responsive": {
+    "ok": true,
+    "durationMs": 0
+   },
+   "assets": {
+    "ok": true,
+    "durationMs": 1
+   },
+   "mapping": {
+    "ok": true,
+    "durationMs": 1
+   }
+  }
+ }
+}

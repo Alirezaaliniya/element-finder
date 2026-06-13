@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Element Finder Studio — Builder</title>
+  <link rel="stylesheet" href="builder.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">⚡ <strong>Element Finder Studio</strong></div>
+    <div class="project-info">
+      <input id="project-name" class="project-name" placeholder="Untitled project" spellcheck="false">
+      <span id="project-meta" class="project-meta"></span>
+    </div>
+    <div class="toolbar">
+      <button id="btn-undo" title="Undo (Ctrl+Z)" disabled>↶</button>
+      <button id="btn-redo" title="Redo (Ctrl+Y)" disabled>↷</button>
+      <span class="sep"></span>
+      <div class="device-switch" role="group" aria-label="Preview device">
+        <button data-device="desktop" class="active" title="Desktop">🖥</button>
+        <button data-device="tablet" title="Tablet ≤1024px">📱</button>
+        <button data-device="mobile" title="Mobile ≤767px">📲</button>
+      </div>
+      <span class="sep"></span>
+      <button id="btn-validate">✓ Validate</button>
+      <button id="btn-save">💾 Save</button>
+      <button id="btn-version" title="Freeze current state as a version">🏷 Version</button>
+      <button id="btn-projects">📁 Projects</button>
+      <button id="btn-export" class="primary">⤓ Export</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <aside class="pane pane-tree">
+      <div class="pane-head">
+        <span>Structure</span>
+        <span id="tree-count" class="badge"></span>
+      </div>
+      <div id="tree" class="tree" tabindex="0"></div>
+    </aside>
+
+    <section class="pane pane-preview">
+      <div class="pane-head">
+        <span>Preview</span>
+        <span id="preview-size" class="badge"></span>
+      </div>
+      <div class="preview-stage">
+        <iframe id="preview" title="Reconstruction preview" src="preview.html"></iframe>
+      </div>
+      <div id="validation-panel" class="validation-panel hidden"></div>
+    </section>
+
+    <aside class="pane pane-inspector">
+      <div class="pane-head"><span>Inspector</span></div>
+      <div id="inspector" class="inspector">
+        <p class="empty">Select an element in the tree or preview.</p>
+      </div>
+    </aside>
+  </main>
+
+  <dialog id="export-dialog" class="dialog"></dialog>
+  <dialog id="projects-dialog" class="dialog"></dialog>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script type="module" src="builder.js"></script>
+</body>
+</html>

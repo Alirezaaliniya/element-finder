@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Element Finder Studio</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <div class="logo">⚡</div>
+    <div>
+      <h1>Element Finder Studio</h1>
+      <p class="tagline">Web → Elementor extraction platform</p>
+    </div>
+  </header>
+
+  <main>
+    <button id="extract-page" class="action primary">
+      <span class="icon">⤓</span>
+      <span>
+        <strong>Extract full page</strong>
+        <small>Analyze the whole page and open the builder</small>
+      </span>
+    </button>
+
+    <button id="pick-element" class="action">
+      <span class="icon">⌖</span>
+      <span>
+        <strong>Pick an element</strong>
+        <small>Click any section on the page to extract just it</small>
+      </span>
+    </button>
+
+    <button id="open-builder" class="action">
+      <span class="icon">▦</span>
+      <span>
+        <strong>Open builder</strong>
+        <small>Projects, preview, validation &amp; export</small>
+      </span>
+    </button>
+  </main>
+
+  <footer>
+    <div id="status" class="status idle">Ready</div>
+  </footer>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

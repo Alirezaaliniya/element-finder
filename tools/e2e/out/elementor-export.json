@@ -1,0 +1,2965 @@
+{
+ "content": [
+  {
+   "id": "7590556f",
+   "settings": {},
+   "elements": [
+    {
+     "id": "4c0b2f6",
+     "settings": {
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "10",
+       "bottom": "0",
+       "left": "10",
+       "isLinked": false
+      },
+      "min_height": {
+       "unit": "px",
+       "size": 120,
+       "sizes": []
+      },
+      "width": {
+       "unit": "%",
+       "size": 100,
+       "sizes": []
+      },
+      "content_width": "full",
+      "z_index": 9,
+      "flex_direction": "column",
+      "hide_tablet": "hidden-tablet",
+      "hide_mobile": "hidden-mobile"
+     },
+     "elements": [
+      {
+       "id": "9ddf677d",
+       "settings": {
+        "padding": {
+         "unit": "px",
+         "top": "10",
+         "right": "0",
+         "bottom": "10",
+         "left": "0",
+         "isLinked": false
+        },
+        "flex_direction": "row"
+       },
+       "elements": [
+        {
+         "id": "9f34502",
+         "settings": {
+          "padding": {
+           "unit": "px",
+           "top": "10",
+           "right": "10",
+           "bottom": "10",
+           "left": "10",
+           "isLinked": true
+          },
+          "width": {
+           "unit": "%",
+           "size": 50,
+           "sizes": []
+          },
+          "content_width": "full",
+          "z_index": 9,
+          "flex_direction": "column",
+          "flex_justify_content": "flex-end",
+          "flex_align_items": "flex-start",
+          "flex_gap": {
+           "unit": "px",
+           "size": 20,
+           "column": "20",
+           "row": "20",
+           "isLinked": true
+          },
+          "width_mobile": {
+           "unit": "%",
+           "size": 100,
+           "sizes": []
+          },
+          "hide_mobile": "hidden-mobile"
+         },
+         "elements": [
+          {
+           "id": "41d11d2",
+           "settings": {
+            "social_icon_list": []
+           },
+           "elements": [],
+           "isInner": false,
+           "widgetType": "social-icons",
+           "elType": "widget"
+          }
+         ],
+         "isInner": true,
+         "elType": "container"
+        },
+        {
+         "id": "71af7511",
+         "settings": {
+          "padding": {
+           "unit": "px",
+           "top": "10",
+           "right": "10",
+           "bottom": "10",
+           "left": "10",
+           "isLinked": true
+          },
+          "width": {
+           "unit": "%",
+           "size": 50,
+           "sizes": []
+          },
+          "content_width": "full",
+          "z_index": 9,
+          "flex_direction": "column",
+          "flex_justify_content": "flex-end",
+          "flex_align_items": "flex-end",
+          "flex_gap": {
+           "unit": "px",
+           "size": 20,
+           "column": "20",
+           "row": "20",
+           "isLinked": true
+          },
+          "width_mobile": {
+           "unit": "%",
+           "size": 100,
+           "sizes": []
+          },
+          "hide_mobile": "hidden-mobile"
+         },
+         "elements": [
+          {
+           "id": "faa0febb",
+           "settings": {
+            "icon_list": [
+             {
+              "text": "بلاگ",
+              "link": {
+               "url": "http://localhost/saipa/blog/",
+               "is_external": "",
+               "nofollow": "",
+               "custom_attributes": ""
+              },
+              "selected_icon": {
+               "value": "fas fa-check",
+               "library": "fa-solid"
+              },
+              "_id": "653f9015"
+             },
+             {
+              "text": "پیگیری سفارش",
+              "link": {
+               "url": "http://localhost/saipa/tracking/",
+               "is_external": "",
+               "nofollow": "",
+               "custom_attributes": ""
+              },
+              "selected_icon": {
+               "value": "fas fa-check",
+               "library": "fa-solid"
+              },
+              "_id": "d6aa472"
+             },
+             {
+              "text": "نظرات",
+              "selected_icon": {
+               "value": "fas fa-check",
+               "library": "fa-solid"
+              },
+              "_id": "81a04cfa"
+             }
+            ]
+           },
+           "elements": [],
+           "isInner": false,
+           "widgetType": "icon-list",
+           "elType": "widget"
+          }
+         ],
+         "isInner": true,
+         "elType": "container"
+        }
+       ],
+       "isInner": true,
+       "elType": "container"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    },
+    {
+     "id": "1a7fd3c",
+     "settings": {
+      "width": {
+       "unit": "%",
+       "size": 100,
+       "sizes": []
+      },
+      "content_width": "full",
+      "z_index": 9,
+      "flex_direction": "column",
+      "hide_tablet": "hidden-tablet",
+      "hide_mobile": "hidden-mobile"
+     },
+     "elements": [
+      {
+       "id": "cc78d9cf",
+       "settings": {
+        "flex_direction": "column",
+        "flex_gap": {
+         "unit": "px",
+         "size": 20,
+         "column": "20",
+         "row": "20",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "7e61c74f",
+         "settings": {
+          "background_background": "classic",
+          "background_color": "#FFFFFF",
+          "border_radius": {
+           "unit": "px",
+           "top": "50",
+           "right": "50",
+           "bottom": "50",
+           "left": "50",
+           "isLinked": true
+          },
+          "z_index": 9,
+          "flex_direction": "column",
+          "width_mobile": {
+           "unit": "%",
+           "size": 100,
+           "sizes": []
+          },
+          "content_width_mobile": "full",
+          "hide_mobile": "hidden-mobile"
+         },
+         "elements": [
+          {
+           "id": "ab40eed",
+           "settings": {
+            "flex_direction": "row"
+           },
+           "elements": [
+            {
+             "id": "1eaa3b25",
+             "settings": {
+              "padding": {
+               "unit": "px",
+               "top": "10",
+               "right": "10",
+               "bottom": "10",
+               "left": "10",
+               "isLinked": true
+              },
+              "width": {
+               "unit": "%",
+               "size": 40,
+               "sizes": []
+              },
+              "content_width": "full",
+              "z_index": 9,
+              "flex_direction": "row-reverse",
+              "flex_justify_content": "flex-end",
+              "flex_align_items": "center",
+              "flex_gap": {
+               "unit": "px",
+               "size": 20,
+               "column": "20",
+               "row": "20",
+               "isLinked": true
+              },
+              "width_mobile": {
+               "unit": "%",
+               "size": 100,
+               "sizes": []
+              },
+              "hide_mobile": "hidden-mobile"
+             },
+             "elements": [
+              {
+               "id": "360382a5",
+               "settings": {
+                "description_text": "سلام saipa عزیز!",
+                "selected_icon": {
+                 "value": {
+                  "url": "",
+                  "id": ""
+                 },
+                 "library": "svg"
+                },
+                "link": {
+                 "url": "http://localhost/saipa/my-account/",
+                 "is_external": "",
+                 "nofollow": "",
+                 "custom_attributes": ""
+                }
+               },
+               "elements": [],
+               "isInner": false,
+               "widgetType": "icon-box",
+               "elType": "widget"
+              }
+             ],
+             "isInner": true,
+             "elType": "container"
+            },
+            {
+             "id": "399b096",
+             "settings": {
+              "padding": {
+               "unit": "px",
+               "top": "10",
+               "right": "10",
+               "bottom": "10",
+               "left": "10",
+               "isLinked": true
+              },
+              "width": {
+               "unit": "%",
+               "size": 20,
+               "sizes": []
+              },
+              "content_width": "full",
+              "z_index": 99,
+              "flex_direction": "column",
+              "flex_justify_content": "center",
+              "flex_gap": {
+               "unit": "px",
+               "size": 20,
+               "column": "20",
+               "row": "20",
+               "isLinked": true
+              },
+              "width_mobile": {
+               "unit": "%",
+               "size": 100,
+               "sizes": []
+              },
+              "hide_mobile": "hidden-mobile"
+             },
+             "elements": [
+              {
+               "id": "7472e72",
+               "settings": {
+                "_position": "absolute",
+                "align": "center",
+                "_z_index": 1,
+                "_offset_x": {
+                 "unit": "px",
+                 "size": 0,
+                 "sizes": []
+                },
+                "_offset_y": {
+                 "unit": "px",
+                 "size": -10,
+                 "sizes": []
+                }
+               },
+               "elements": [],
+               "isInner": false,
+               "widgetType": "theme-site-logo",
+               "elType": "widget"
+              }
+             ],
+             "isInner": true,
+             "elType": "container"
+            },
+            {
+             "id": "b16e7ef",
+             "settings": {
+              "padding": {
+               "unit": "px",
+               "top": "10",
+               "right": "10",
+               "bottom": "10",
+               "left": "10",
+               "isLinked": true
+              },
+              "width": {
+               "unit": "%",
+               "size": 40,
+               "sizes": []
+              },
+              "content_width": "full",
+              "z_index": 9,
+              "flex_direction": "row",
+              "flex_justify_content": "flex-end",
+              "flex_align_items": "center",
+              "flex_gap": {
+               "unit": "px",
+               "size": 20,
+               "column": "20",
+               "row": "20",
+               "isLinked": true
+              },
+              "width_mobile": {
+               "unit": "%",
+               "size": 100,
+               "sizes": []
+              },
+              "hide_mobile": "hidden-mobile"
+             },
+             "elements": [
+              {
+               "id": "05917db",
+               "settings": {
+                "automatically_open_cart": "yes",
+                "cart_type": "side-cart",
+                "open_cart": "click",
+                "_z_index": 9,
+                "_css_classes": "toggle-icon--custom nias-carticon remove-item-position--middle"
+               },
+               "elements": [],
+               "isInner": false,
+               "widgetType": "woocommerce-menu-cart",
+               "elType": "widget"
+              },
+              {
+               "id": "acd75c4b",
+               "settings": {
+                "selected_icon": {
+                 "value": {
+                  "url": "",
+                  "id": ""
+                 },
+                 "library": "svg"
+                },
+                "_ef_inline_svg": "<svg aria-hidden=\"true\" class=\"e-font-icon-svg e-fas-search\" viewBox=\"0 0 512 512\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z\"></path></svg>",
+                "_css_classes": "nias-search-icon"
+               },
+               "elements": [],
+               "isInner": false,
+               "widgetType": "icon",
+               "elType": "widget"
+              }
+             ],
+             "isInner": true,
+             "elType": "container"
+            }
+           ],
+           "isInner": true,
+           "elType": "container"
+          }
+         ],
+         "isInner": true,
+         "elType": "container"
+        }
+       ],
+       "isInner": true,
+       "elType": "container"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    },
+    {
+     "id": "eeb7b73c",
+     "settings": {
+      "margin": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "200",
+       "left": "0",
+       "isLinked": false
+      },
+      "width": {
+       "unit": "%",
+       "size": 100,
+       "sizes": []
+      },
+      "content_width": "full",
+      "z_index": 8,
+      "flex_direction": "column",
+      "hide_tablet": "hidden-tablet",
+      "hide_mobile": "hidden-mobile"
+     },
+     "elements": [
+      {
+       "id": "99b62c4",
+       "settings": {
+        "flex_direction": "row",
+        "flex_justify_content": "center"
+       },
+       "elements": [
+        {
+         "id": "93fb157",
+         "settings": {
+          "background_background": "classic",
+          "background_color": "#F47421",
+          "border_radius": {
+           "unit": "px",
+           "top": "0",
+           "right": "0",
+           "bottom": "50",
+           "left": "50",
+           "isLinked": false
+          },
+          "width": {
+           "unit": "%",
+           "size": 90,
+           "sizes": []
+          },
+          "content_width": "full",
+          "z_index": 8,
+          "flex_direction": "row",
+          "flex_justify_content": "space-between",
+          "flex_gap": {
+           "unit": "px",
+           "size": 20,
+           "column": "20",
+           "row": "20",
+           "isLinked": true
+          },
+          "width_mobile": {
+           "unit": "%",
+           "size": 100,
+           "sizes": []
+          },
+          "hide_mobile": "hidden-mobile"
+         },
+         "elements": [
+          {
+           "id": "48248c2",
+           "settings": {
+            "width": {
+             "unit": "%",
+             "size": 50,
+             "sizes": []
+            },
+            "content_width": "full",
+            "z_index": 8,
+            "flex_direction": "column",
+            "flex_justify_content": "center",
+            "flex_gap": {
+             "unit": "px",
+             "size": 20,
+             "column": "20",
+             "row": "20",
+             "isLinked": true
+            },
+            "width_mobile": {
+             "unit": "%",
+             "size": 100,
+             "sizes": []
+            },
+            "hide_mobile": "hidden-mobile"
+           },
+           "elements": [
+            {
+             "id": "6ec25258",
+             "settings": {
+              "menu_items": [
+               {
+                "item_title": "دسته بندی کالاها",
+                "_id": "cafdda0",
+                "item_dropdown_content": "yes",
+                "item_link": {
+                 "url": "",
+                 "is_external": "",
+                 "nofollow": "",
+                 "custom_attributes": ""
+                },
+                "item_icon": {
+                 "value": "",
+                 "library": ""
+                },
+                "item_icon_active": null,
+                "element_id": ""
+               },
+               {
+                "item_title": "آپشن بر اساس خودرو",
+                "_id": "22688a8",
+                "item_link": {
+                 "url": "",
+                 "is_external": "",
+                 "nofollow": "",
+                 "custom_attributes": ""
+                },
+                "item_dropdown_content": "no",
+                "item_icon": {
+                 "value": "",
+                 "library": ""
+                },
+                "item_icon_active": null,
+                "element_id": ""
+               }
+              ],
+              "content_width": "full_width",
+              "item_layout": "horizontal",
+              "open_on": "hover",
+              "horizontal_scroll": "disable",
+              "breakpoint_selector": "tablet",
+              "menu_item_title_distance_from_content": {
+               "unit": "px",
+               "size": 0,
+               "sizes": []
+              },
+              "menu_item_title_distance_from_content_tablet": {
+               "unit": "px",
+               "size": "",
+               "sizes": []
+              },
+              "menu_item_title_distance_from_content_mobile": {
+               "unit": "px",
+               "size": "",
+               "sizes": []
+              },
+              "_z_index": 999
+             },
+             "elements": [],
+             "isInner": false,
+             "widgetType": "mega-menu",
+             "elType": "widget"
+            }
+           ],
+           "isInner": true,
+           "elType": "container"
+          },
+          {
+           "id": "4f5ce56",
+           "settings": {
+            "width": {
+             "unit": "%",
+             "size": 50,
+             "sizes": []
+            },
+            "content_width": "full",
+            "z_index": 8,
+            "flex_direction": "column",
+            "flex_align_items": "flex-end",
+            "flex_gap": {
+             "unit": "px",
+             "size": 20,
+             "column": "20",
+             "row": "20",
+             "isLinked": true
+            },
+            "width_mobile": {
+             "unit": "%",
+             "size": 100,
+             "sizes": []
+            },
+            "hide_mobile": "hidden-mobile"
+           },
+           "elements": [
+            {
+             "id": "dccf086",
+             "settings": {
+              "_ef_menu_items": [
+               {
+                "text": "خانه",
+                "href": "http://localhost/saipa/"
+               },
+               {
+                "text": "فروشگاه",
+                "href": "http://localhost/saipa/shop/"
+               },
+               {
+                "text": "تماس با ما",
+                "href": "http://localhost/saipa/contact-us/"
+               },
+               {
+                "text": "درباره ما",
+                "href": "http://localhost/saipa/about-us/"
+               },
+               {
+                "text": "حساب کاربری من",
+                "href": "http://localhost/saipa/my-account/"
+               }
+              ],
+              "layout": "horizontal",
+              "hide_tablet": "hidden-tablet",
+              "hide_mobile": "hidden-mobile",
+              "submenu_icon": {
+               "value": "<svg aria-hidden=\"true\" class=\"e-font-icon-svg e-fas-caret-down\" viewBox=\"0 0 320 512\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z\"></path></svg>",
+               "library": "fa-solid"
+              },
+              "toggle": "burger"
+             },
+             "elements": [],
+             "isInner": false,
+             "widgetType": "nav-menu",
+             "elType": "widget"
+            }
+           ],
+           "isInner": true,
+           "elType": "container"
+          }
+         ],
+         "isInner": true,
+         "elType": "container"
+        }
+       ],
+       "isInner": true,
+       "elType": "container"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    },
+    {
+     "id": "4c324a7a",
+     "settings": {
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "10",
+       "bottom": "0",
+       "left": "10",
+       "isLinked": false
+      },
+      "background_background": "classic",
+      "background_color": "#BDBCBCEB",
+      "border_radius": {
+       "unit": "px",
+       "top": "50",
+       "right": "50",
+       "bottom": "50",
+       "left": "50",
+       "isLinked": true
+      },
+      "width": {
+       "unit": "%",
+       "size": 100,
+       "sizes": []
+      },
+      "content_width": "full",
+      "z_index": 999,
+      "_position": "fixed",
+      "_offset_x": {
+       "unit": "px",
+       "size": 0,
+       "sizes": []
+      },
+      "_offset_y": {
+       "unit": "px",
+       "size": 0,
+       "sizes": []
+      },
+      "opacity": {
+       "unit": "px",
+       "size": 0,
+       "sizes": []
+      },
+      "flex_direction": "column",
+      "hide_mobile": "hidden-mobile",
+      "_css_classes": "nias-search-content"
+     },
+     "elements": [
+      {
+       "id": "fb442179",
+       "settings": {
+        "padding": {
+         "unit": "px",
+         "top": "10",
+         "right": "0",
+         "bottom": "10",
+         "left": "0",
+         "isLinked": false
+        },
+        "margin": {
+         "unit": "px",
+         "top": "0",
+         "right": "10",
+         "bottom": "0",
+         "left": "10",
+         "isLinked": false
+        },
+        "flex_direction": "column",
+        "flex_justify_content": "center",
+        "flex_align_items": "center",
+        "flex_gap": {
+         "unit": "px",
+         "size": 20,
+         "column": "20",
+         "row": "20",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "916f648",
+         "settings": {
+          "selected_icon": {
+           "value": {
+            "url": "",
+            "id": ""
+           },
+           "library": "svg"
+          },
+          "_ef_inline_svg": "<svg aria-hidden=\"true\" class=\"e-font-icon-svg e-fas-times\" viewBox=\"0 0 352 512\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z\"></path></svg>",
+          "_css_classes": "nias-search-close"
+         },
+         "elements": [],
+         "isInner": false,
+         "widgetType": "icon",
+         "elType": "widget"
+        },
+        {
+         "id": "2c468b4",
+         "settings": {
+          "tabs_justify_horizontal": "start",
+          "horizontal_scroll_mobile": "disable",
+          "horizontal_scroll": "disable"
+         },
+         "elements": [
+          {
+           "id": "7ecb9a2",
+           "settings": {
+            "padding": {
+             "unit": "px",
+             "top": "10",
+             "right": "10",
+             "bottom": "10",
+             "left": "10",
+             "isLinked": true
+            },
+            "background_background": "classic",
+            "background_color": "#F5F2E7",
+            "border_radius": {
+             "unit": "px",
+             "top": "20",
+             "right": "0",
+             "bottom": "20",
+             "left": "20",
+             "isLinked": false
+            },
+            "flex_direction": "column",
+            "flex_gap": {
+             "unit": "px",
+             "size": 20,
+             "column": "20",
+             "row": "20",
+             "isLinked": true
+            },
+            "width_mobile": {
+             "unit": "%",
+             "size": 100,
+             "sizes": []
+            },
+            "content_width_mobile": "full",
+            "hide_mobile": "hidden-mobile"
+           },
+           "elements": [
+            {
+             "id": "c8d4b5c",
+             "settings": {
+              "title": "در محصولات جستجو کن",
+              "header_size": "span",
+              "align": "center",
+              "typography_typography": "custom",
+              "typography_line_height": {
+               "unit": "px",
+               "size": 16,
+               "sizes": []
+              }
+             },
+             "elements": [],
+             "isInner": false,
+             "widgetType": "heading",
+             "elType": "widget"
+            },
+            {
+             "id": "3334e22",
+             "settings": {
+              "_css_classes": "nias-search-form"
+             },
+             "elements": [],
+             "isInner": false,
+             "widgetType": "shortcode",
+             "elType": "widget"
+            }
+           ],
+           "isInner": true,
+           "elType": "container"
+          }
+         ],
+         "isInner": false,
+         "widgetType": "nested-tabs",
+         "elType": "widget"
+        }
+       ],
+       "isInner": true,
+       "elType": "container"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "05b1515",
+   "settings": {},
+   "elements": [
+    {
+     "id": "ea83241",
+     "settings": {},
+     "elements": [
+      {
+       "id": "77eb7b11",
+       "settings": {
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "10",
+         "bottom": "0",
+         "left": "10",
+         "isLinked": false
+        },
+        "width": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "content_width": "full",
+        "flex_direction": "column",
+        "hide_mobile": "hidden-mobile"
+       },
+       "elements": [
+        {
+         "id": "c1ba175e",
+         "settings": {
+          "padding": {
+           "unit": "px",
+           "top": "10",
+           "right": "0",
+           "bottom": "10",
+           "left": "0",
+           "isLinked": false
+          },
+          "flex_direction": "row"
+         },
+         "elements": [
+          {
+           "id": "784d8813",
+           "settings": {
+            "padding": {
+             "unit": "px",
+             "top": "10",
+             "right": "10",
+             "bottom": "10",
+             "left": "10",
+             "isLinked": true
+            },
+            "width": {
+             "unit": "%",
+             "size": 50,
+             "sizes": []
+            },
+            "content_width": "full",
+            "flex_direction": "column",
+            "flex_gap": {
+             "unit": "px",
+             "size": 20,
+             "column": "20",
+             "row": "20",
+             "isLinked": true
+            },
+            "_flex_align_self": "center",
+            "width_tablet": {
+             "unit": "%",
+             "size": 100,
+             "sizes": []
+            },
+            "width_mobile": {
+             "unit": "%",
+             "size": 100,
+             "sizes": []
+            },
+            "hide_mobile": "hidden-mobile"
+           },
+           "elements": [
+            {
+             "id": "2606f2d",
+             "settings": {
+              "image": {
+               "url": "http://localhost:8123/%D9%86%D9%85%D8%A7%DB%8C%D9%86%D8%AF%DA%AF%DB%8C%20%D8%B1%D8%B3%D9%85%DB%8C%20%D8%B3%D8%A7%DB%8C%D9%BE%D8%A7_files/Mask-group-10.webp",
+               "id": "",
+               "alt": "",
+               "source": "library"
+              },
+              "image_size": "full",
+              "align": "center",
+              "hide_tablet": "hidden-tablet",
+              "hide_mobile": "hidden-mobile"
+             },
+             "elements": [],
+             "isInner": false,
+             "widgetType": "image",
+             "elType": "widget"
+            },
+            {
+             "id": "21feb74",
+             "settings": {
+              "width": {
+               "unit": "%",
+               "size": 100,
+               "sizes": []
+              },
+              "content_width": "full",
+              "flex_direction": "column",
+              "hide_mobile": "hidden-mobile"
+             },
+             "elements": [
+              {
+               "id": "c1d7ce12",
+               "settings": {
+                "flex_direction": "row",
+                "flex_align_items": "center",
+                "flex_gap": {
+                 "unit": "px",
+                 "size": 5,
+                 "column": "5",
+                 "row": "5",
+                 "isLinked": true
+                }
+               },
+               "elements": [
+                {
+                 "id": "3f9d54a",
+                 "settings": {
+                  "title": "نمایندگی رسمی",
+                  "header_size": "div"
+                 },
+                 "elements": [],
+                 "isInner": false,
+                 "widgetType": "heading",
+                 "elType": "widget"
+                },
+                {
+                 "id": "646f0c37",
+                 "settings": {
+                  "title": "سایپا لاهیجان",
+                  "header_size": "h1",
+                  "typography_typography": "custom",
+                  "typography_font_size": {
+                   "unit": "px",
+                   "size": 32,
+                   "sizes": []
+                  },
+                  "typography_font_weight": "bold",
+                  "typography_line_height": {
+                   "unit": "px",
+                   "size": 64,
+                   "sizes": []
+                  },
+                  "title_color": "#F47421",
+                  "typography_font_size_mobile": {
+                   "unit": "px",
+                   "size": 23,
+                   "sizes": []
+                  }
+                 },
+                 "elements": [],
+                 "isInner": false,
+                 "widgetType": "heading",
+                 "elType": "widget"
+                }
+               ],
+               "isInner": true,
+               "elType": "container"
+              }
+             ],
+             "isInner": true,
+             "elType": "container"
+            },
+            {
+             "id": "1abe4a3",
+             "settings": {
+              "editor": "<p>نمایندگی سایپا لاهیجان، منبع اصلی و قابل اعتماد تامین قطعات اصلی خودروهای سایپا با گارانتی شرکتی معتبر. با اعتماد به خدمات ما، شما امکان دسترسی به قطعات اصلی و کیفیت بالا برای خودروهای خود را دارید، همچنین ما به شما اطمینان می‌دهیم که خودروهایتان با قطعات اورجینال بهترین عملکرد و کارایی را خواهند داشت</p>",
+              "align": "justify"
+             },
+             "elements": [],
+             "isInner": false,
+             "widgetType": "text-editor",
+             "elType": "widget"
+            },
+            {
+             "id": "0008959",
+             "settings": {
+              "width": {
+               "unit": "%",
+               "size": 100,
+               "sizes": []
+              },
+              "content_width": "full",
+              "flex_direction": "column",
+              "hide_mobile": "hidden-mobile"
+             },
+             "elements": [
+              {
+               "id": "16885f9c",
+               "settings": {
+                "flex_direction": "row",
+                "flex_gap": {
+                 "unit": "px",
+                 "size": 20,
+                 "column": "20",
+                 "row": "20",
+                 "isLinked": true
+                }
+               },
+               "elements": [
+                {
+                 "id": "674c411",
+                 "settings": {
+                  "text": "محصولات ما",
+                  "link": {
+                   "url": "http://localhost/saipa/shop/",
+                   "is_external": "",
+                   "nofollow": "",
+                   "custom_attributes": ""
+                  },
+                  "text_padding": {
+                   "unit": "px",
+                   "top": "5",
+                   "right": "20",
+                   "bottom": "5",
+                   "left": "20",
+                   "isLinked": false
+                  },
+                  "typography_typography": "custom",
+                  "typography_font_size": {
+                   "unit": "px",
+                   "size": 15,
+                   "sizes": []
+                  },
+                  "typography_line_height": {
+                   "unit": "px",
+                   "size": 30,
+                   "sizes": []
+                  },
+                  "button_text_color": "#FFFFFF",
+                  "align": "center",
+                  "background_background": "classic",
+                  "background_color": "#F47421",
+                  "border_radius": {
+                   "unit": "px",
+                   "top": "20",
+                   "right": "20",
+                   "bottom": "20",
+                   "left": "20",
+                   "isLinked": true
+                  },
+                  "text_padding_mobile": {
+                   "unit": "px",
+                   "top": "5",
+                   "right": "10",
+                   "bottom": "5",
+                   "left": "10",
+                   "isLinked": false
+                  }
+                 },
+                 "elements": [],
+                 "isInner": false,
+                 "widgetType": "button",
+                 "elType": "widget"
+                },
+                {
+                 "id": "44b6794",
+                 "settings": {
+                  "text": "درباره ما بیشتر بدانید",
+                  "link": {
+                   "url": "http://localhost/saipa/about-us/",
+                   "is_external": "",
+                   "nofollow": "",
+                   "custom_attributes": ""
+                  },
+                  "text_padding": {
+                   "unit": "px",
+                   "top": "5",
+                   "right": "20",
+                   "bottom": "5",
+                   "left": "20",
+                   "isLinked": false
+                  },
+                  "typography_typography": "custom",
+                  "typography_font_size": {
+                   "unit": "px",
+                   "size": 15,
+                   "sizes": []
+                  },
+                  "typography_line_height": {
+                   "unit": "px",
+                   "size": 30,
+                   "sizes": []
+                  },
+                  "button_text_color": "#F47421",
+                  "align": "center",
+                  "border_border": "dashed",
+                  "border_width": {
+                   "unit": "px",
+                   "top": "1",
+                   "right": "1",
+                   "bottom": "1",
+                   "left": "1",
+                   "isLinked": true
+                  },
+                  "border_color": "#F47421",
+                  "border_radius": {
+                   "unit": "px",
+                   "top": "20",
+                   "right": "20",
+                   "bottom": "20",
+                   "left": "20",
+                   "isLinked": true
+                  },
+                  "text_padding_mobile": {
+                   "unit": "px",
+                   "top": "5",
+                   "right": "10",
+                   "bottom": "5",
+                   "left": "10",
+                   "isLinked": false
+                  }
+                 },
+                 "elements": [],
+                 "isInner": false,
+                 "widgetType": "button",
+                 "elType": "widget"
+                }
+               ],
+               "isInner": true,
+               "elType": "container"
+              }
+             ],
+             "isInner": true,
+             "elType": "container"
+            },
+            {
+             "id": "d3ecbfb",
+             "settings": {
+              "image": {
+               "url": "http://localhost:8123/%D9%86%D9%85%D8%A7%DB%8C%D9%86%D8%AF%DA%AF%DB%8C%20%D8%B1%D8%B3%D9%85%DB%8C%20%D8%B3%D8%A7%DB%8C%D9%BE%D8%A7_files/Mask-group-12.webp",
+               "id": "",
+               "alt": "",
+               "source": "library"
+              },
+              "image_size": "full",
+              "align": "center",
+              "_z_index": 1,
+              "_position": "absolute",
+              "_offset_x": {
+               "unit": "px",
+               "size": 118.7,
+               "sizes": []
+              },
+              "_offset_orientation_v": "end",
+              "_offset_y_end": {
+               "unit": "px",
+               "size": -63,
+               "sizes": []
+              }
+             },
+             "elements": [],
+             "isInner": false,
+             "widgetType": "image",
+             "elType": "widget"
+            }
+           ],
+           "isInner": true,
+           "elType": "container"
+          },
+          {
+           "id": "8cf4169",
+           "settings": {
+            "background_background": "classic",
+            "background_image": {
+             "url": "http://localhost/saipa/wp-content/uploads/2024/02/Frame-3-14.webp",
+             "id": "",
+             "source": "library"
+            },
+            "background_position": "center center",
+            "background_repeat": "no-repeat",
+            "background_size": "contain",
+            "min_height": {
+             "unit": "px",
+             "size": 372,
+             "sizes": []
+            },
+            "width": {
+             "unit": "%",
+             "size": 50,
+             "sizes": []
+            },
+            "content_width": "full",
+            "flex_direction": "column",
+            "flex_gap": {
+             "unit": "px",
+             "size": 20,
+             "column": "20",
+             "row": "20",
+             "isLinked": true
+            },
+            "width_tablet": {
+             "unit": "%",
+             "size": 100,
+             "sizes": []
+            },
+            "min_height_mobile": {
+             "unit": "px",
+             "size": 200,
+             "sizes": []
+            },
+            "width_mobile": {
+             "unit": "%",
+             "size": 100,
+             "sizes": []
+            },
+            "hide_mobile": "hidden-mobile"
+           },
+           "elements": [],
+           "isInner": true,
+           "elType": "container"
+          }
+         ],
+         "isInner": true,
+         "elType": "container"
+        }
+       ],
+       "isInner": true,
+       "elType": "container"
+      },
+      {
+       "id": "cf180b2",
+       "settings": {
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "10",
+         "bottom": "0",
+         "left": "10",
+         "isLinked": false
+        },
+        "margin": {
+         "unit": "px",
+         "top": "70",
+         "right": "0",
+         "bottom": "50",
+         "left": "0",
+         "isLinked": false
+        },
+        "width": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "content_width": "full",
+        "flex_direction": "column",
+        "hide_mobile": "hidden-mobile"
+       },
+       "elements": [
+        {
+         "id": "5059ee3c",
+         "settings": {
+          "padding": {
+           "unit": "px",
+           "top": "10",
+           "right": "0",
+           "bottom": "10",
+           "left": "0",
+           "isLinked": false
+          },
+          "flex_direction": "column",
+          "flex_gap": {
+           "unit": "px",
+           "size": 20,
+           "column": "20",
+           "row": "20",
+           "isLinked": true
+          }
+         },
+         "elements": [
+          {
+           "id": "9e7ef73",
+           "settings": {
+            "title": "ماشینتو انتخاب کن",
+            "header_size": "h2",
+            "_flex_align_self": "flex-start",
+            "typography_typography": "custom",
+            "typography_font_size": {
+             "unit": "px",
+             "size": 24,
+             "sizes": []
+            },
+            "typography_font_weight": "bold",
+            "typography_line_height": {
+             "unit": "px",
+             "size": 48,
+             "sizes": []
+            },
+            "_css_classes": "nias-tiltebefore"
+           },
+           "elements": [],
+           "isInner": false,
+           "widgetType": "heading",
+           "elType": "widget"
+          },
+          {
+           "id": "6510ea3",
+           "settings": {
+            "carousel_items": [
+             {
+              "slide_title": "اسلاید #1",
+              "_id": "8329ca9"
+             },
+             {
+              "slide_title": "اسلاید #2",
+              "_id": "05be445"
+             },
+             {
+              "slide_title": "اسلاید #2",
+              "_id": "11f224b"
+             },
+             {
+              "slide_title": "اسلاید #2",
+              "_id": "ece9a64"
+             }
+            ],
+            "slides_to_show": "4",
+            "slides_to_show_tablet": "2",
+            "slides_to_show_mobile": "1",
+            "speed": 500,
+            "arrows": "yes",
+            "image_spacing_custom": {
+             "unit": "px",
+             "size": 10,
+             "sizes": []
+            },
+            "image_spacing_custom_tablet": {
+             "unit": "px",
+             "size": "",
+             "sizes": []
+            },
+            "image_spacing_custom_mobile": {
+             "unit": "px",
+             "size": "",
+             "sizes": []
+            }
+           },
+           "elements": [
+            {
+             "id": "57614d0b",
+             "settings": {
+              "padding": {
+               "unit": "px",
+               "top": "0",
+               "right": "10",
+               "bottom": "0",
+               "left": "10",
+               "isLinked": false
+              },
+              "background_background": "classic",
+              "background_image": {
+               "url": "http://localhost/saipa/wp-content/uploads/2024/02/Frame-9-10.webp",
+               "id": "",
+               "source": "library"
+              },
+              "background_position": "center center",
+              "background_repeat": "no-repeat",
+              "background_size": "contain",
+              "min_height": {
+               "unit": "px",
+               "size": 203,
+               "sizes": []
+              },
+              "flex_direction": "column",
+              "width_mobile": {
+               "unit": "%",
+               "size": 100,
+               "sizes": []
+              },
+              "content_width_mobile": "full",
+              "hide_mobile": "hidden-mobile",
+              "_css_classes": "nias-carbox"
+             },
+             "elements": [
+              {
+               "id": "26c0dd7b",
+               "settings": {
+                "padding": {
+                 "unit": "px",
+                 "top": "10",
+                 "right": "0",
+                 "bottom": "10",
+                 "left": "0",
+                 "isLinked": false
+                },
+                "flex_direction": "column",
+                "flex_gap": {
+                 "unit": "px",
+                 "size": 20,
+                 "column": "20",
+                 "row": "20",
+                 "isLinked": true
+                }
+               },
+               "elements": [
+                {
+                 "id": "c43f2199",
+                 "settings": {
+                  "title": "کوییک",
+                  "header_size": "div",
+                  "_flex_align_self": "flex-end",
+                  "_css_classes": "carbox-btn"
+                 },
+                 "elements": [],
+                 "isInner": false,
+                 "widgetType": "heading",
+                 "elType": "widget"
+                }
+               ],
+               "isInner": true,
+               "elType": "container"
+              }
+             ],
+             "isInner": true,
+             "elType": "container"
+            },
+            {
+             "id": "8da72e59",
+             "settings": {
+              "padding": {
+               "unit": "px",
+               "top": "0",
+               "right": "10",
+               "bottom": "0",
+               "left": "10",
+               "isLinked": false
+              },
+              "background_background": "classic",
+              "background_image": {
+               "url": "http://localhost/saipa/wp-content/uploads/2024/02/Frame-12-4.webp",
+               "id": "",
+               "source": "library"
+              },
+              "background_position": "center center",
+              "background_repeat": "no-repeat",
+              "background_size": "contain",
+              "min_height": {
+               "unit": "px",
+               "size": 203,
+               "sizes": []
+              },
+              "flex_direction": "column",
+              "width_mobile": {
+               "unit": "%",
+               "size": 100,
+               "sizes": []
+              },
+              "content_width_mobile": "full",
+              "hide_mobile": "hidden-mobile",
+              "_css_classes": "nias-carbox"
+             },
+             "elements": [
+              {
+               "id": "46c4f824",
+               "settings": {
+                "padding": {
+                 "unit": "px",
+                 "top": "10",
+                 "right": "0",
+                 "bottom": "10",
+                 "left": "0",
+                 "isLinked": false
+                },
+                "flex_direction": "column",
+                "flex_gap": {
+                 "unit": "px",
+                 "size": 20,
+                 "column": "20",
+                 "row": "20",
+                 "isLinked": true
+                }
+               },
+               "elements": [
+                {
+                 "id": "a719496",
+                 "settings": {
+                  "title": "اطلس",
+                  "header_size": "div",
+                  "_flex_align_self": "flex-end",
+                  "_css_classes": "carbox-btn"
+                 },
+                 "elements": [],
+                 "isInner": false,
+                 "widgetType": "heading",
+                 "elType": "widget"
+                }
+               ],
+               "isInner": true,
+               "elType": "container"
+              }
+             ],
+             "isInner": true,
+             "elType": "container"
+            },
+            {
+             "id": "79e9a66",
+             "settings": {
+              "padding": {
+               "unit": "px",
+               "top": "0",
+               "right": "10",
+               "bottom": "0",
+               "left": "10",
+               "isLinked": false
+              },
+              "background_background": "classic",
+              "background_image": {
+               "url": "http://localhost/saipa/wp-content/uploads/2024/02/Frame-12-8.webp",
+               "id": "",
+               "source": "library"
+              },
+              "background_position": "center center",
+              "background_repeat": "no-repeat",
+              "background_size": "contain",
+              "min_height": {
+               "unit": "px",
+               "size": 203,
+               "sizes": []
+              },
+              "flex_direction": "column",
+              "width_mobile": {
+               "unit": "%",
+               "size": 100,
+               "sizes": []
+              },
+              "content_width_mobile": "full",
+              "hide_mobile": "hidden-mobile",
+              "_css_classes": "nias-carbox"
+             },
+             "elements": [
+              {
+               "id": "0090f5c",
+               "settings": {
+                "padding": {
+                 "unit": "px",
+                 "top": "10",
+                 "right": "0",
+                 "bottom": "10",
+                 "left": "0",
+                 "isLinked": false
+                },
+                "flex_direction": "column",
+                "flex_gap": {
+                 "unit": "px",
+                 "size": 20,
+                 "column": "20",
+                 "row": "20",
+                 "isLinked": true
+                }
+               },
+               "elements": [
+                {
+                 "id": "8649d01",
+                 "settings": {
+                  "title": "ساینا",
+                  "header_size": "div",
+                  "_flex_align_self": "flex-end",
+                  "_css_classes": "carbox-btn"
+                 },
+                 "elements": [],
+                 "isInner": false,
+                 "widgetType": "heading",
+                 "elType": "widget"
+                }
+               ],
+               "isInner": true,
+               "elType": "container"
+              }
+             ],
+             "isInner": true,
+             "elType": "container"
+            },
+            {
+             "id": "722775d",
+             "settings": {
+              "padding": {
+               "unit": "px",
+               "top": "0",
+               "right": "10",
+               "bottom": "0",
+               "left": "10",
+               "isLinked": false
+              },
+              "background_background": "classic",
+              "background_image": {
+               "url": "http://localhost/saipa/wp-content/uploads/2024/02/Frame-13-11.webp",
+               "id": "",
+               "source": "library"
+              },
+              "background_position": "center center",
+              "background_repeat": "no-repeat",
+              "background_size": "contain",
+              "min_height": {
+               "unit": "px",
+               "size": 203,
+               "sizes": []
+              },
+              "flex_direction": "column",
+              "width_mobile": {
+               "unit": "%",
+               "size": 100,
+               "sizes": []
+              },
+              "content_width_mobile": "full",
+              "hide_mobile": "hidden-mobile",
+              "_css_classes": "nias-carbox"
+             },
+             "elements": [
+              {
+               "id": "dc291b8e",
+               "settings": {
+                "padding": {
+                 "unit": "px",
+                 "top": "10",
+                 "right": "0",
+                 "bottom": "10",
+                 "left": "0",
+                 "isLinked": false
+                },
+                "flex_direction": "column",
+                "flex_gap": {
+                 "unit": "px",
+                 "size": 20,
+                 "column": "20",
+                 "row": "20",
+                 "isLinked": true
+                }
+               },
+               "elements": [
+                {
+                 "id": "a449ee88",
+                 "settings": {
+                  "title": "شاهین",
+                  "header_size": "div",
+                  "_flex_align_self": "flex-end",
+                  "_css_classes": "carbox-btn"
+                 },
+                 "elements": [],
+                 "isInner": false,
+                 "widgetType": "heading",
+                 "elType": "widget"
+                }
+               ],
+               "isInner": true,
+               "elType": "container"
+              }
+             ],
+             "isInner": true,
+             "elType": "container"
+            }
+           ],
+           "isInner": false,
+           "widgetType": "nested-carousel",
+           "elType": "widget"
+          }
+         ],
+         "isInner": true,
+         "elType": "container"
+        }
+       ],
+       "isInner": true,
+       "elType": "container"
+      },
+      {
+       "id": "bb83f689",
+       "settings": {
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "10",
+         "bottom": "0",
+         "left": "10",
+         "isLinked": false
+        },
+        "width": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "content_width": "full",
+        "flex_direction": "column",
+        "hide_mobile": "hidden-mobile"
+       },
+       "elements": [
+        {
+         "id": "3e4afbb",
+         "settings": {
+          "padding": {
+           "unit": "px",
+           "top": "10",
+           "right": "0",
+           "bottom": "10",
+           "left": "0",
+           "isLinked": false
+          },
+          "flex_direction": "column",
+          "flex_gap": {
+           "unit": "px",
+           "size": 20,
+           "column": "20",
+           "row": "20",
+           "isLinked": true
+          }
+         },
+         "elements": [
+          {
+           "id": "9303962",
+           "settings": {
+            "title": "سیستم صوتی و تصویری",
+            "header_size": "h2",
+            "_flex_align_self": "flex-start",
+            "typography_typography": "custom",
+            "typography_font_size": {
+             "unit": "px",
+             "size": 24,
+             "sizes": []
+            },
+            "typography_font_weight": "bold",
+            "typography_line_height": {
+             "unit": "px",
+             "size": 48,
+             "sizes": []
+            },
+            "_css_classes": "nias-tiltebefore"
+           },
+           "elements": [],
+           "isInner": false,
+           "widgetType": "heading",
+           "elType": "widget"
+          },
+          {
+           "id": "31a452e",
+           "settings": {
+            "_skin": "product",
+            "template_id": "290",
+            "slides_to_show": "4",
+            "slides_to_show_tablet": "2",
+            "slides_to_show_mobile": "1",
+            "slides_to_scroll": "1",
+            "edit_handle_selector": ".elementor-loop-container",
+            "speed": 500,
+            "arrows": "yes",
+            "image_spacing_custom": {
+             "unit": "px",
+             "size": 10,
+             "sizes": []
+            },
+            "image_spacing_custom_tablet": {
+             "unit": "px",
+             "size": "",
+             "sizes": []
+            },
+            "image_spacing_custom_mobile": {
+             "unit": "px",
+             "size": "",
+             "sizes": []
+            },
+            "typography_typography": "custom",
+            "typography_font_family": "nias Peyda",
+            "_css_classes": "nias-loop"
+           },
+           "elements": [],
+           "isInner": false,
+           "widgetType": "loop-carousel",
+           "elType": "widget"
+          }
+         ],
+         "isInner": true,
+         "elType": "container"
+        }
+       ],
+       "isInner": true,
+       "elType": "container"
+      },
+      {
+       "id": "7758e32",
+       "settings": {
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "10",
+         "bottom": "0",
+         "left": "10",
+         "isLinked": false
+        },
+        "margin": {
+         "unit": "px",
+         "top": "-150",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": false
+        },
+        "width": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "content_width": "full",
+        "flex_direction": "column",
+        "hide_mobile": "hidden-mobile"
+       },
+       "elements": [
+        {
+         "id": "7ac35230",
+         "settings": {
+          "padding": {
+           "unit": "px",
+           "top": "10",
+           "right": "0",
+           "bottom": "10",
+           "left": "0",
+           "isLinked": false
+          },
+          "flex_direction": "column",
+          "flex_gap": {
+           "unit": "px",
+           "size": 20,
+           "column": "20",
+           "row": "20",
+           "isLinked": true
+          }
+         },
+         "elements": [
+          {
+           "id": "79b85597",
+           "settings": {
+            "title": "محصولات جانبی",
+            "header_size": "h2",
+            "_flex_align_self": "flex-start",
+            "typography_typography": "custom",
+            "typography_font_size": {
+             "unit": "px",
+             "size": 24,
+             "sizes": []
+            },
+            "typography_font_weight": "bold",
+            "typography_line_height": {
+             "unit": "px",
+             "size": 48,
+             "sizes": []
+            },
+            "_css_classes": "nias-tiltebefore"
+           },
+           "elements": [],
+           "isInner": false,
+           "widgetType": "heading",
+           "elType": "widget"
+          },
+          {
+           "id": "b86918f",
+           "settings": {
+            "_skin": "product",
+            "template_id": "290",
+            "slides_to_show": "4",
+            "slides_to_show_tablet": "2",
+            "slides_to_show_mobile": "1",
+            "slides_to_scroll": "1",
+            "edit_handle_selector": ".elementor-loop-container",
+            "speed": 500,
+            "arrows": "yes",
+            "image_spacing_custom": {
+             "unit": "px",
+             "size": 10,
+             "sizes": []
+            },
+            "image_spacing_custom_tablet": {
+             "unit": "px",
+             "size": "",
+             "sizes": []
+            },
+            "image_spacing_custom_mobile": {
+             "unit": "px",
+             "size": "",
+             "sizes": []
+            },
+            "typography_typography": "custom",
+            "typography_font_family": "nias Peyda",
+            "_css_classes": "nias-loop"
+           },
+           "elements": [],
+           "isInner": false,
+           "widgetType": "loop-carousel",
+           "elType": "widget"
+          }
+         ],
+         "isInner": true,
+         "elType": "container"
+        }
+       ],
+       "isInner": true,
+       "elType": "container"
+      },
+      {
+       "id": "e26c0a6d",
+       "settings": {
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "10",
+         "bottom": "0",
+         "left": "10",
+         "isLinked": false
+        },
+        "margin": {
+         "unit": "px",
+         "top": "-150",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": false
+        },
+        "width": {
+         "unit": "%",
+         "size": 100,
+         "sizes": []
+        },
+        "content_width": "full",
+        "flex_direction": "column",
+        "hide_mobile": "hidden-mobile"
+       },
+       "elements": [
+        {
+         "id": "2137c4e1",
+         "settings": {
+          "padding": {
+           "unit": "px",
+           "top": "10",
+           "right": "0",
+           "bottom": "10",
+           "left": "0",
+           "isLinked": false
+          },
+          "flex_direction": "column",
+          "flex_gap": {
+           "unit": "px",
+           "size": 20,
+           "column": "20",
+           "row": "20",
+           "isLinked": true
+          }
+         },
+         "elements": [
+          {
+           "id": "d0c306f",
+           "settings": {
+            "title": "جدیدترین مقالات",
+            "header_size": "h2",
+            "_flex_align_self": "flex-start",
+            "typography_typography": "custom",
+            "typography_font_size": {
+             "unit": "px",
+             "size": 24,
+             "sizes": []
+            },
+            "typography_font_weight": "bold",
+            "typography_line_height": {
+             "unit": "px",
+             "size": 48,
+             "sizes": []
+            },
+            "_css_classes": "nias-tiltebefore"
+           },
+           "elements": [],
+           "isInner": false,
+           "widgetType": "heading",
+           "elType": "widget"
+          },
+          {
+           "id": "4c82102",
+           "settings": {
+            "template_id": "405",
+            "slides_to_show": "4",
+            "_skin": "post",
+            "slides_to_show_tablet": "2",
+            "slides_to_show_mobile": "1",
+            "slides_to_scroll": "1",
+            "edit_handle_selector": ".elementor-loop-container",
+            "speed": 500,
+            "arrows": "yes",
+            "image_spacing_custom": {
+             "unit": "px",
+             "size": 10,
+             "sizes": []
+            },
+            "image_spacing_custom_tablet": {
+             "unit": "px",
+             "size": "",
+             "sizes": []
+            },
+            "image_spacing_custom_mobile": {
+             "unit": "px",
+             "size": "",
+             "sizes": []
+            }
+           },
+           "elements": [],
+           "isInner": false,
+           "widgetType": "loop-carousel",
+           "elType": "widget"
+          }
+         ],
+         "isInner": true,
+         "elType": "container"
+        }
+       ],
+       "isInner": true,
+       "elType": "container"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    },
+    {
+     "id": "63b797e",
+     "settings": {
+      "_css_classes": "post-tags"
+     },
+     "elements": [],
+     "isInner": true,
+     "elType": "container"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "50a577f9",
+   "settings": {},
+   "elements": [
+    {
+     "id": "3c86c2e9",
+     "settings": {
+      "width": {
+       "unit": "%",
+       "size": 100,
+       "sizes": []
+      },
+      "content_width": "full",
+      "flex_direction": "column",
+      "flex_gap": {
+       "unit": "px",
+       "size": 20,
+       "column": "20",
+       "row": "20",
+       "isLinked": true
+      },
+      "hide_mobile": "hidden-mobile"
+     },
+     "elements": [
+      {
+       "id": "5517890",
+       "settings": {
+        "html": "<div></div>"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "html",
+       "elType": "widget"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    },
+    {
+     "id": "11f17f94",
+     "settings": {
+      "background_background": "classic",
+      "background_color": "#F47421",
+      "width": {
+       "unit": "%",
+       "size": 100,
+       "sizes": []
+      },
+      "content_width": "full",
+      "flex_direction": "column",
+      "hide_mobile": "hidden-mobile",
+      "_css_classes": "Nias-footer"
+     },
+     "elements": [
+      {
+       "id": "1b4f083d",
+       "settings": {
+        "flex_direction": "row",
+        "flex_wrap": "wrap"
+       },
+       "elements": [
+        {
+         "id": "a4252b65",
+         "settings": {
+          "padding": {
+           "unit": "px",
+           "top": "10",
+           "right": "50",
+           "bottom": "10",
+           "left": "10",
+           "isLinked": false
+          },
+          "width": {
+           "unit": "%",
+           "size": 25,
+           "sizes": []
+          },
+          "content_width": "full",
+          "flex_direction": "column",
+          "flex_gap": {
+           "unit": "px",
+           "size": 20,
+           "column": "20",
+           "row": "20",
+           "isLinked": true
+          },
+          "width_mobile": {
+           "unit": "%",
+           "size": 100,
+           "sizes": []
+          },
+          "hide_mobile": "hidden-mobile"
+         },
+         "elements": [
+          {
+           "id": "0c2062de",
+           "settings": {
+            "title": "فروشگاه ما",
+            "header_size": "span",
+            "typography_typography": "custom",
+            "typography_font_family": "iranyekanwebextrabold",
+            "typography_font_weight": "bold",
+            "typography_line_height": {
+             "unit": "px",
+             "size": 16,
+             "sizes": []
+            }
+           },
+           "elements": [],
+           "isInner": false,
+           "widgetType": "heading",
+           "elType": "widget"
+          },
+          {
+           "id": "ea73030",
+           "settings": {
+            "icon_list": [
+             {
+              "text": "لورم اپیسوم",
+              "selected_icon": {
+               "value": "fas fa-check",
+               "library": "fa-solid"
+              },
+              "_id": "f00da32"
+             },
+             {
+              "text": "لورم اپیسوم 2",
+              "selected_icon": {
+               "value": "fas fa-check",
+               "library": "fa-solid"
+              },
+              "_id": "19f0dac9"
+             },
+             {
+              "text": "لورم اپیسوم 3",
+              "selected_icon": {
+               "value": "fas fa-check",
+               "library": "fa-solid"
+              },
+              "_id": "6b6fbbe3"
+             }
+            ],
+            "_css_classes": "niaslist"
+           },
+           "elements": [],
+           "isInner": false,
+           "widgetType": "icon-list",
+           "elType": "widget"
+          }
+         ],
+         "isInner": true,
+         "elType": "container"
+        },
+        {
+         "id": "d663052",
+         "settings": {
+          "padding": {
+           "unit": "px",
+           "top": "10",
+           "right": "10",
+           "bottom": "10",
+           "left": "10",
+           "isLinked": true
+          },
+          "width": {
+           "unit": "%",
+           "size": 25,
+           "sizes": []
+          },
+          "content_width": "full",
+          "flex_direction": "column",
+          "flex_gap": {
+           "unit": "px",
+           "size": 20,
+           "column": "20",
+           "row": "20",
+           "isLinked": true
+          },
+          "width_mobile": {
+           "unit": "%",
+           "size": 100,
+           "sizes": []
+          },
+          "hide_mobile": "hidden-mobile"
+         },
+         "elements": [
+          {
+           "id": "92704e6b",
+           "settings": {
+            "title": "خدمات مشتریان",
+            "header_size": "span",
+            "typography_typography": "custom",
+            "typography_font_family": "iranyekanwebextrabold",
+            "typography_font_weight": "bold",
+            "typography_line_height": {
+             "unit": "px",
+             "size": 16,
+             "sizes": []
+            }
+           },
+           "elements": [],
+           "isInner": false,
+           "widgetType": "heading",
+           "elType": "widget"
+          },
+          {
+           "id": "b462f24a",
+           "settings": {
+            "icon_list": [
+             {
+              "text": "لورم اپیسوم",
+              "selected_icon": {
+               "value": "fas fa-check",
+               "library": "fa-solid"
+              },
+              "_id": "f1699bf"
+             },
+             {
+              "text": "لورم اپیسوم 2",
+              "selected_icon": {
+               "value": "fas fa-check",
+               "library": "fa-solid"
+              },
+              "_id": "394b9342"
+             },
+             {
+              "text": "لورم اپیسوم 3",
+              "selected_icon": {
+               "value": "fas fa-check",
+               "library": "fa-solid"
+              },
+              "_id": "62767b61"
+             }
+            ],
+            "_css_classes": "niaslist"
+           },
+           "elements": [],
+           "isInner": false,
+           "widgetType": "icon-list",
+           "elType": "widget"
+          }
+         ],
+         "isInner": true,
+         "elType": "container"
+        },
+        {
+         "id": "a7ca60df",
+         "settings": {
+          "padding": {
+           "unit": "px",
+           "top": "10",
+           "right": "10",
+           "bottom": "10",
+           "left": "10",
+           "isLinked": true
+          },
+          "width": {
+           "unit": "%",
+           "size": 25,
+           "sizes": []
+          },
+          "content_width": "full",
+          "flex_direction": "column",
+          "flex_gap": {
+           "unit": "px",
+           "size": 20,
+           "column": "20",
+           "row": "20",
+           "isLinked": true
+          },
+          "width_mobile": {
+           "unit": "%",
+           "size": 100,
+           "sizes": []
+          },
+          "hide_mobile": "hidden-mobile"
+         },
+         "elements": [
+          {
+           "id": "23f2755b",
+           "settings": {
+            "title": "دسترسی ها",
+            "header_size": "span",
+            "typography_typography": "custom",
+            "typography_font_family": "iranyekanwebextrabold",
+            "typography_font_weight": "bold",
+            "typography_line_height": {
+             "unit": "px",
+             "size": 16,
+             "sizes": []
+            }
+           },
+           "elements": [],
+           "isInner": false,
+           "widgetType": "heading",
+           "elType": "widget"
+          },
+          {
+           "id": "ef7b3900",
+           "settings": {
+            "icon_list": [
+             {
+              "text": "قانون مندی کسب و کار اینترنتی",
+              "link": {
+               "url": "http://localhost/saipa/policy/",
+               "is_external": "",
+               "nofollow": "",
+               "custom_attributes": ""
+              },
+              "selected_icon": {
+               "value": "fas fa-check",
+               "library": "fa-solid"
+              },
+              "_id": "7da0089d"
+             },
+             {
+              "text": "لورم اپیسوم 2",
+              "selected_icon": {
+               "value": "fas fa-check",
+               "library": "fa-solid"
+              },
+              "_id": "7e5d246"
+             },
+             {
+              "text": "لورم اپیسوم 3",
+              "selected_icon": {
+               "value": "fas fa-check",
+               "library": "fa-solid"
+              },
+              "_id": "b77b3d61"
+             }
+            ],
+            "_css_classes": "niaslist"
+           },
+           "elements": [],
+           "isInner": false,
+           "widgetType": "icon-list",
+           "elType": "widget"
+          }
+         ],
+         "isInner": true,
+         "elType": "container"
+        },
+        {
+         "id": "8cb93e7",
+         "settings": {
+          "padding": {
+           "unit": "px",
+           "top": "10",
+           "right": "10",
+           "bottom": "10",
+           "left": "10",
+           "isLinked": true
+          },
+          "width": {
+           "unit": "%",
+           "size": 25,
+           "sizes": []
+          },
+          "content_width": "full",
+          "flex_direction": "column",
+          "flex_gap": {
+           "unit": "px",
+           "size": 20,
+           "column": "20",
+           "row": "20",
+           "isLinked": true
+          },
+          "width_mobile": {
+           "unit": "%",
+           "size": 100,
+           "sizes": []
+          },
+          "hide_mobile": "hidden-mobile"
+         },
+         "elements": [
+          {
+           "id": "72cec4d",
+           "settings": {
+            "padding": {
+             "unit": "px",
+             "top": "10",
+             "right": "10",
+             "bottom": "10",
+             "left": "10",
+             "isLinked": true
+            },
+            "background_background": "classic",
+            "background_color": "#FFFFFF",
+            "border_radius": {
+             "unit": "px",
+             "top": "20",
+             "right": "20",
+             "bottom": "20",
+             "left": "20",
+             "isLinked": true
+            },
+            "min_height": {
+             "unit": "px",
+             "size": 100,
+             "sizes": []
+            },
+            "width": {
+             "unit": "px",
+             "size": 100,
+             "sizes": []
+            },
+            "content_width": "full",
+            "flex_direction": "column",
+            "flex_gap": {
+             "unit": "px",
+             "size": 20,
+             "column": "20",
+             "row": "20",
+             "isLinked": true
+            },
+            "_flex_align_self": "center",
+            "hide_mobile": "hidden-mobile"
+           },
+           "elements": [
+            {
+             "id": "55d6fcf",
+             "settings": {
+              "html": "<div></div>",
+              "_flex_align_self": "center"
+             },
+             "elements": [],
+             "isInner": false,
+             "widgetType": "html",
+             "elType": "widget"
+            }
+           ],
+           "isInner": true,
+           "elType": "container"
+          },
+          {
+           "id": "e60ce0e5",
+           "settings": {
+            "title": "سایپا را در شبکه های اجتماعی دنبال کنید",
+            "header_size": "div",
+            "align": "center"
+           },
+           "elements": [],
+           "isInner": false,
+           "widgetType": "heading",
+           "elType": "widget"
+          },
+          {
+           "id": "ab5363ed",
+           "settings": {
+            "social_icon_list": []
+           },
+           "elements": [],
+           "isInner": false,
+           "widgetType": "social-icons",
+           "elType": "widget"
+          }
+         ],
+         "isInner": true,
+         "elType": "container"
+        },
+        {
+         "id": "f3b0e82b",
+         "settings": {
+          "padding": {
+           "unit": "px",
+           "top": "50",
+           "right": "10",
+           "bottom": "50",
+           "left": "10",
+           "isLinked": false
+          },
+          "flex_direction": "row",
+          "flex_justify_content": "space-around",
+          "flex_align_items": "center",
+          "flex_gap": {
+           "unit": "px",
+           "size": 5,
+           "column": "5",
+           "row": "5",
+           "isLinked": true
+          },
+          "width_mobile": {
+           "unit": "%",
+           "size": 100,
+           "sizes": []
+          },
+          "content_width_mobile": "full",
+          "hide_mobile": "hidden-mobile"
+         },
+         "elements": [
+          {
+           "id": "cab5afeb",
+           "settings": {
+            "editor": "<p><span>نمایندگی سایپا لاهیجان </span>، <span>همه روزه از ساعت 9 صبح تا 22 شب در کنار شما هستیم.</span></p>",
+            "align_mobile": "center"
+           },
+           "elements": [],
+           "isInner": false,
+           "widgetType": "text-editor",
+           "elType": "widget"
+          },
+          {
+           "id": "cd9d861",
+           "settings": {
+            "editor": "<p>تلفن پشتیبانی : <span>09999316323</span></p>",
+            "align_mobile": "center"
+           },
+           "elements": [],
+           "isInner": false,
+           "widgetType": "text-editor",
+           "elType": "widget"
+          },
+          {
+           "id": "ff0ac92",
+           "settings": {
+            "editor": "<p>ایمیل : <span>info@saipalahijan.com</span></p>",
+            "align_mobile": "center"
+           },
+           "elements": [],
+           "isInner": false,
+           "widgetType": "text-editor",
+           "elType": "widget"
+          },
+          {
+           "id": "626e5711",
+           "settings": {
+            "editor": "<p>آدرس: <span><span>گیلان&nbsp;</span><br></span></p>",
+            "align_mobile": "center"
+           },
+           "elements": [],
+           "isInner": false,
+           "widgetType": "text-editor",
+           "elType": "widget"
+          }
+         ],
+         "isInner": true,
+         "elType": "container"
+        }
+       ],
+       "isInner": true,
+       "elType": "container"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    },
+    {
+     "id": "700fe8c",
+     "settings": {
+      "background_background": "classic",
+      "background_color": "#3D3D3D",
+      "width": {
+       "unit": "%",
+       "size": 100,
+       "sizes": []
+      },
+      "content_width": "full",
+      "flex_direction": "column",
+      "hide_mobile": "hidden-mobile"
+     },
+     "elements": [
+      {
+       "id": "ca86b32e",
+       "settings": {
+        "flex_direction": "column"
+       },
+       "elements": [
+        {
+         "id": "b8a9a88",
+         "settings": {
+          "image": {
+           "url": "http://localhost:8123/%D9%86%D9%85%D8%A7%DB%8C%D9%86%D8%AF%DA%AF%DB%8C%20%D8%B1%D8%B3%D9%85%DB%8C%20%D8%B3%D8%A7%DB%8C%D9%BE%D8%A7_files/LogoMenuMini-1.webp",
+           "id": "",
+           "alt": "",
+           "source": "library"
+          },
+          "image_size": "full",
+          "link_to": "custom",
+          "link": {
+           "url": "http://localhost/saipa",
+           "is_external": "",
+           "nofollow": "",
+           "custom_attributes": ""
+          },
+          "align": "center",
+          "_flex_align_self": "center",
+          "border_radius": {
+           "unit": "px",
+           "top": "8",
+           "right": "8",
+           "bottom": "8",
+           "left": "8",
+           "isLinked": true
+          }
+         },
+         "elements": [],
+         "isInner": false,
+         "widgetType": "image",
+         "elType": "widget"
+        },
+        {
+         "id": "b02dcd43",
+         "settings": {
+          "title": "طراحی شده توسط تیم درنیتو",
+          "header_size": "div",
+          "align": "center"
+         },
+         "elements": [],
+         "isInner": false,
+         "widgetType": "heading",
+         "elType": "widget"
+        }
+       ],
+       "isInner": true,
+       "elType": "container"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    },
+    {
+     "id": "c205449",
+     "settings": {
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "10",
+       "bottom": "0",
+       "left": "10",
+       "isLinked": false
+      },
+      "background_background": "classic",
+      "background_color": "#BDBCBCEB",
+      "border_radius": {
+       "unit": "px",
+       "top": "50",
+       "right": "50",
+       "bottom": "50",
+       "left": "50",
+       "isLinked": true
+      },
+      "width": {
+       "unit": "%",
+       "size": 100,
+       "sizes": []
+      },
+      "content_width": "full",
+      "z_index": 999,
+      "_position": "fixed",
+      "_offset_x": {
+       "unit": "px",
+       "size": 0,
+       "sizes": []
+      },
+      "_offset_y": {
+       "unit": "px",
+       "size": 0,
+       "sizes": []
+      },
+      "opacity": {
+       "unit": "px",
+       "size": 0,
+       "sizes": []
+      },
+      "flex_direction": "column",
+      "hide_mobile": "hidden-mobile",
+      "_css_classes": "nias-search-content"
+     },
+     "elements": [
+      {
+       "id": "ee2741f",
+       "settings": {
+        "padding": {
+         "unit": "px",
+         "top": "10",
+         "right": "0",
+         "bottom": "10",
+         "left": "0",
+         "isLinked": false
+        },
+        "margin": {
+         "unit": "px",
+         "top": "0",
+         "right": "10",
+         "bottom": "0",
+         "left": "10",
+         "isLinked": false
+        },
+        "flex_direction": "column",
+        "flex_justify_content": "center",
+        "flex_align_items": "center",
+        "flex_gap": {
+         "unit": "px",
+         "size": 20,
+         "column": "20",
+         "row": "20",
+         "isLinked": true
+        }
+       },
+       "elements": [
+        {
+         "id": "0af613d",
+         "settings": {
+          "selected_icon": {
+           "value": {
+            "url": "",
+            "id": ""
+           },
+           "library": "svg"
+          },
+          "_ef_inline_svg": "<svg aria-hidden=\"true\" class=\"e-font-icon-svg e-fas-times\" viewBox=\"0 0 352 512\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z\"></path></svg>",
+          "_css_classes": "nias-search-close"
+         },
+         "elements": [],
+         "isInner": false,
+         "widgetType": "icon",
+         "elType": "widget"
+        },
+        {
+         "id": "198c44ca",
+         "settings": {
+          "tabs_justify_horizontal": "start",
+          "horizontal_scroll_mobile": "disable",
+          "horizontal_scroll": "disable"
+         },
+         "elements": [
+          {
+           "id": "e36c5e2",
+           "settings": {
+            "padding": {
+             "unit": "px",
+             "top": "10",
+             "right": "10",
+             "bottom": "10",
+             "left": "10",
+             "isLinked": true
+            },
+            "background_background": "classic",
+            "background_color": "#F5F2E7",
+            "border_radius": {
+             "unit": "px",
+             "top": "20",
+             "right": "0",
+             "bottom": "20",
+             "left": "20",
+             "isLinked": false
+            },
+            "flex_direction": "column",
+            "flex_gap": {
+             "unit": "px",
+             "size": 20,
+             "column": "20",
+             "row": "20",
+             "isLinked": true
+            },
+            "width_mobile": {
+             "unit": "%",
+             "size": 100,
+             "sizes": []
+            },
+            "content_width_mobile": "full",
+            "hide_mobile": "hidden-mobile"
+           },
+           "elements": [
+            {
+             "id": "477e93d",
+             "settings": {
+              "title": "در محصولات جستجو کن",
+              "header_size": "span",
+              "align": "center",
+              "typography_typography": "custom",
+              "typography_line_height": {
+               "unit": "px",
+               "size": 16,
+               "sizes": []
+              }
+             },
+             "elements": [],
+             "isInner": false,
+             "widgetType": "heading",
+             "elType": "widget"
+            },
+            {
+             "id": "43d1938",
+             "settings": {
+              "_css_classes": "nias-search-form"
+             },
+             "elements": [],
+             "isInner": false,
+             "widgetType": "shortcode",
+             "elType": "widget"
+            }
+           ],
+           "isInner": true,
+           "elType": "container"
+          }
+         ],
+         "isInner": false,
+         "widgetType": "nested-tabs",
+         "elType": "widget"
+        }
+       ],
+       "isInner": true,
+       "elType": "container"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  }
+ ],
+ "page_settings": {
+  "custom_css": "/*حذف جمع جزئ*/\n.cart-subtotal{display:none;}\n/*سبد خرید*/\n.elementor-widget-woocommerce-cart .woocommerce table.shop_table .product-remove a{color:transparent!important;\n\tbackground-image:url(https://saipalahijan.com/wp-content/uploads/2024/01/Frame-8-3.svg);\n\tbackground-position:center;\n\tbackground-size:contain;\n\tbackground-repeat:no-repeat;\n\twidth:40px}\n.product-thumbnail{display:block!important;}\n.product-thumbnail img{border-radius:10px}\n.woocommerce .product-thumbnail:before{display:none;}\n/*قبل از تایتل*/\n.nias-tiltebefore:before{content: \"\";\n    background-color: #f47421;\n    width: 100%;\n    height: 10px;\n    position: absolute;\n    bottom: -10px;\n    border-radius: 10px 10px 0 0}\n.nias-tiltebefore:after{content: \"\";\n    top: 20px;\n    width: 100%;\n    height: 0px;\n    position: absolute;\n    box-shadow: 0 0 70px 10px #f47421;\nz-index: -1;}\n/*فونت قیمت*/\nspan.woocommerce-Price-amount.amount{font-size: 20px!important;\n    font-weight: bold;}\n.price del span.woocommerce-Price-amount.amount{font-size:17px!important;\n\tfont-weight:normal;}\n.quantity{margin:0!important;\n\t  width: 115px;\n    display: flex;\n    justify-content: center;\n    align-items: center;}\n/*لوپ محصولات نیاس*/\n.niaslooptitle{overflow:hidden;}\n.niaslooptitle a{overflow: hidden;\n    text-align: center;\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    width: 100%;}\n.niasmainbox:hover .nias-addtocart , .niasmainbox:hover .nias-preview{opacity: 1;\n    visibility: visible;\n    height:max-content;\n    transition:0.5s;}\n/*کد های سرچ نیاس*/\n.nias-search-icon , .nias-search-close{cursor:pointer;}\n.nias-search-form-inner{display: flex;\n    gap: 20px;}\n.nias-search-button , .nias-search-select , .nias-search-input{border: none!important;\n    outline: none!important;\n    border-radius: 10px!important;}\n.nias-search-select{width: 150px;}\n.nias-search-content{position:fixed;\n\tz-index:999;\n\ttop:0;\n\tright:0;\n\theight:100vh;\n\tbackground-color:#bdbcbceb;\nborder-radius:50%;\n\ttransform:scale(0);\n\ttransition:all 0.3s linear;\n\topacity:0;}\n.nias-search-content.active{transform:scale(1);\n\tborder-radius:0;\n\topacity:1;}\n.nias-search-form-inner input{padding:12px;\n\tfont-family: \"nias Peyda\";}\n.product-nias-result-content{max-height: 400px;\n    overflow-y: scroll;}\n.nias-search-select{font-family: \"nias Peyda\";}\n/*حل مشکل لوپ کروسل*/\n.nias-loop .swiper.elementor-loop-container{overflow-y: visible;\n    height: 545px;}\nbody:not(.rtl) .elementor-element.elementor-element-139f60b .elementor-icon-list-text{padding-left:5px;}\nbody.rtl .elementor-element.elementor-element-139f60b .elementor-icon-list-text{padding-right:5px;}\nbody.rtl .elementor-element.elementor-element-8ddd131 .elementor-icon-list-items.elementor-inline-items .elementor-icon-list-item:after{left:calc(-50px/2);}\nbody:not(.rtl) .elementor-element.elementor-element-8ddd131 .elementor-icon-list-items.elementor-inline-items .elementor-icon-list-item:after{right:calc(-50px/2);}",
+  "_ef_source_direction": "rtl",
+  "_ef_source_url": "http://localhost:8123/%D9%86%D9%85%D8%A7%DB%8C%D9%86%D8%AF%DA%AF%DB%8C%20%D8%B1%D8%B3%D9%85%DB%8C%20%D8%B3%D8%A7%DB%8C%D9%BE%D8%A7.htm"
+ },
+ "version": "0.4",
+ "title": "نمایندگی رسمی سایپا",
+ "type": "page"
+}

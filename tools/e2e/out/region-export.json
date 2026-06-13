@@ -1,0 +1,239 @@
+{
+ "content": [
+  {
+   "id": "01cfe1f",
+   "settings": {
+    "min_height": {
+     "unit": "px",
+     "size": 513,
+     "sizes": []
+    },
+    "width": {
+     "unit": "px",
+     "size": 1200,
+     "sizes": []
+    },
+    "content_width": "full",
+    "overflow": "hidden",
+    "flex_direction": "row",
+    "flex_justify_content": "space-around",
+    "flex_align_items": "center",
+    "background_background": "classic"
+   },
+   "elements": [
+    {
+     "id": "ce191754",
+     "settings": {
+      "image": {
+       "url": "http://localhost:8126/img/image24.avif",
+       "id": "",
+       "alt": "",
+       "source": "library"
+      },
+      "image_size": "full",
+      "_position": "absolute",
+      "_offset_orientation_h": "end",
+      "_offset_x_end": {
+       "unit": "px",
+       "size": 326,
+       "sizes": []
+      },
+      "_offset_y": {
+       "unit": "px",
+       "size": 0,
+       "sizes": []
+      },
+      "_css_classes": "nias-pop-animation"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "image",
+     "elType": "widget"
+    },
+    {
+     "id": "cf02065e",
+     "settings": {
+      "width": {
+       "unit": "px",
+       "size": 400,
+       "sizes": []
+      },
+      "content_width": "full",
+      "flex_direction": "row",
+      "flex_wrap": "wrap",
+      "flex_align_items": "center"
+     },
+     "elements": [
+      {
+       "id": "07da7c1",
+       "settings": {
+        "title": "یادگیری المنتور در",
+        "header_size": "span",
+        "align": "center",
+        "typography_typography": "custom",
+        "typography_font_size": {
+         "unit": "px",
+         "size": 32,
+         "sizes": []
+        },
+        "typography_line_height": {
+         "unit": "px",
+         "size": 40,
+         "sizes": []
+        }
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "heading",
+       "elType": "widget"
+      },
+      {
+       "id": "6e26a07",
+       "settings": {
+        "title": "آکادمی نیاس",
+        "header_size": "h1",
+        "align": "center",
+        "typography_typography": "custom",
+        "typography_font_size": {
+         "unit": "px",
+         "size": 69,
+         "sizes": []
+        },
+        "typography_font_weight": "bold",
+        "typography_line_height": {
+         "unit": "px",
+         "size": 75,
+         "sizes": []
+        },
+        "title_color": "#20242E"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "heading",
+       "elType": "widget"
+      },
+      {
+       "id": "4a279b0",
+       "settings": {
+        "text": "شرکت در دوره",
+        "link": {
+         "url": "https://nias.ir/course/elementor/",
+         "is_external": "",
+         "nofollow": "",
+         "custom_attributes": ""
+        },
+        "_element_width": "initial",
+        "_element_custom_width": {
+         "unit": "%",
+         "size": 47,
+         "sizes": []
+        },
+        "text_padding": {
+         "unit": "px",
+         "top": "15",
+         "right": "25",
+         "bottom": "15",
+         "left": "25",
+         "isLinked": false
+        },
+        "typography_typography": "custom",
+        "typography_text_decoration": "underline",
+        "button_text_color": "#FFFFFF",
+        "background_background": "classic",
+        "background_color": "#FF6B35",
+        "border_radius": {
+         "unit": "px",
+         "top": "10",
+         "right": "10",
+         "bottom": "10",
+         "left": "10",
+         "isLinked": true
+        },
+        "_css_classes": "ns-button"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "button",
+       "elType": "widget"
+      },
+      {
+       "id": "71a75c3",
+       "settings": {
+        "image": {
+         "url": "http://localhost:8126/img/group36885.webp",
+         "id": "",
+         "alt": "",
+         "source": "library"
+        },
+        "image_size": "full",
+        "_element_width": "initial",
+        "_element_custom_width": {
+         "unit": "%",
+         "size": 47,
+         "sizes": []
+        }
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "image",
+       "elType": "widget"
+      },
+      {
+       "id": "a4deeb7",
+       "settings": {
+        "title": "با بروز ترین متد های نوین و کلی پروژه استاد شو .",
+        "header_size": "span",
+        "align": "center",
+        "title_color": "#94969A"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "heading",
+       "elType": "widget"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    },
+    {
+     "id": "4488f89d",
+     "settings": {
+      "image": {
+       "url": "http://localhost:8126/img/Frame-57-1.webp",
+       "id": "",
+       "alt": "",
+       "source": "library"
+      },
+      "image_size": "full",
+      "_position": "absolute",
+      "_offset_orientation_h": "end",
+      "_offset_x_end": {
+       "unit": "px",
+       "size": 80,
+       "sizes": []
+      },
+      "_offset_y": {
+       "unit": "px",
+       "size": 40,
+       "sizes": []
+      }
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "image",
+     "elType": "widget"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  }
+ ],
+ "page_settings": {
+  "custom_css": ".nias-pop-animation{filter: drop-shadow(0 10px 20px rgba(0,0,0,.2));}\n.ns-button:hover{transform: scale(1.05);}",
+  "_ef_source_direction": "rtl",
+  "_ef_source_url": "http://localhost:8126/fixture.html"
+ },
+ "version": "0.4",
+ "title": "Imported page",
+ "type": "container"
+}
