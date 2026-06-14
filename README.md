@@ -20,7 +20,6 @@ extension/            The Chrome extension (Manifest V3, ES modules, no build st
     └── ui/           popup + visual builder (tree, preview, inspector, dialogs)
 docs/ARCHITECTURE.md  Engine-by-engine architecture reference
 elementor-*.json      Real Elementor template export used as format ground truth
-نمایندگی رسمی سایپا*  Saved Elementor-built page used as a test fixture
 ```
 
 ## Install (development)
