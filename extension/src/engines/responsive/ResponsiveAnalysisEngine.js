@@ -16,6 +16,7 @@ import { BREAKPOINTS, NODE_ROLES } from '../../common/constants.js';
 import { walkTree } from '../../common/utils.js';
 import { declarationsToSettings } from '../css/converters.js';
 import { CAPTURED_PROPS } from '../css/CssInterpretationEngine.js';
+import { containsVar, resolveCssVars } from '../css/var-resolver.js';
 import { StylesheetIndex } from './StylesheetIndex.js';
 
 export class ResponsiveAnalysisEngine {
@@ -41,6 +42,8 @@ export class ResponsiveAnalysisEngine {
     let tabletNodes = 0;
     let mobileNodes = 0;
 
+    const win = ctx.window ?? document.defaultView;
+
     walkTree(snapshot.tree, (node) => {
       const el = elements.get(node.id);
       if (!el) return;
@@ -49,6 +52,20 @@ export class ResponsiveAnalysisEngine {
       for (const device of [BREAKPOINTS.TABLET, BREAKPOINTS.MOBILE]) {
         const overrides = index.overridesFor(el, device, CAPTURED_PROPS);
         if (!Object.keys(overrides).length) continue;
+
+        // Override declarations are authored CSS and may reference variables
+        // (`color: var(--e-global-color-accent)`); the converters can't parse
+        // var() so unresolved values would silently vanish from the export.
+        // Desktop-computed variable values are a fair stand-in — variables
+        // are rarely redefined per-breakpoint.
+        if (win && Object.values(overrides).some(containsVar)) {
+          const style = win.getComputedStyle(el);
+          for (const [prop, value] of Object.entries(overrides)) {
+            if (containsVar(value)) {
+              overrides[prop] = resolveCssVars(value, (name) => style.getPropertyValue(name));
+            }
+          }
+        }
 
         // Drop overrides identical to the desktop baseline value.
         const meaningful = {};

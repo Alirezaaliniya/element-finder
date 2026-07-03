@@ -128,12 +128,83 @@ export function hoistWidgetContent(node) {
       return true;
     }
 
+    case 'image-carousel':
+    case 'image-gallery': {
+      if (node.content.images?.length) return false;
+      const images = collectImages(node);
+      if (!images.length) return false;
+      node.content.images = images;
+      return true;
+    }
+
+    case 'tabs':
+    case 'accordion':
+    case 'toggle':
+    case 'nested-tabs':
+    case 'nested-accordion': {
+      if (node.content.items?.length) return false;
+      const items = collectTitledSections(node);
+      if (!items.length) return false;
+      node.content.items = items;
+      return true;
+    }
+
+    case 'counter': {
+      if (node.content.counter) return false;
+      const numeric = selfOrDescendant(node, (n) => /[\d]/.test(n.content.text || '') && !n.children.length)
+        ?? selfOrDescendant(node, (n) => /[\d]/.test(n.content.text || ''));
+      const text = numeric?.content.text ?? '';
+      const m = /([\d][\d.,\s]*)/.exec(text);
+      if (!m) return false;
+      const counter = {
+        number: parseFloat(m[1].replace(/[,\s]/g, '')) || 0,
+        prefix: text.slice(0, m.index).trim(),
+        suffix: text.slice(m.index + m[1].length).trim(),
+      };
+      const title = selfOrDescendant(node, (n) =>
+        !!n.content.text && n !== numeric && !/\d/.test(n.content.text));
+      if (title) counter.title = title.content.text;
+      node.content.counter = counter;
+      return true;
+    }
+
+    case 'progress': {
+      if (node.content.progress) return false;
+      const src = selfOrDescendant(node, (n) =>
+        /\d{1,3}\s*%/.test(n.content.text || '') || n.attrs?.['aria-valuenow'] !== undefined);
+      if (!src) return false;
+      const percent = src.attrs?.['aria-valuenow'] !== undefined
+        ? parseFloat(src.attrs['aria-valuenow'])
+        : parseFloat(/(\d{1,3})\s*%/.exec(src.content.text)[1]);
+      if (!Number.isFinite(percent)) return false;
+      const title = selfOrDescendant(node, (n) => !!n.content.text && n !== src && !/\d{1,3}\s*%/.test(n.content.text));
+      node.content.progress = { percent: Math.min(100, Math.max(0, percent)), title: title?.content.text ?? '' };
+      return true;
+    }
+
+    case 'star-rating': {
+      if (node.content.rating != null) return false;
+      // Prefer an explicit numeric rating ("4.5"); fall back to counting star glyphs/icons.
+      const numeric = selfOrDescendant(node, (n) => /^[0-5](\.\d)?$/.test((n.content.text || '').trim()));
+      if (numeric) { node.content.rating = parseFloat(numeric.content.text); return true; }
+      let stars = 0;
+      (function count(n) {
+        if ((n.tag === 'i' || n.tag === 'svg' || n.tag === 'span') && (n.assets.length || n.content.svgMarkup)) stars++;
+        if (/[★⭐]/.test(n.content.text || '')) stars += (n.content.text.match(/[★⭐]/g) || []).length;
+        for (const c of n.children ?? []) count(c);
+      })(node);
+      if (!stars) return false;
+      node.content.rating = Math.min(5, stars);
+      return true;
+    }
+
     case 'icon-box':
     case 'image-box':
     case 'testimonial':
     case 'call-to-action':
     case 'flip-box':
     case 'price-table':
+    case 'alert':
       return hoistComposite(node);
 
     default: {
@@ -174,6 +245,58 @@ function hoistComposite(node) {
 }
 
 /* ------------------------------------------------------------------ */
+
+/** Like firstDescendant but also tests the node itself. */
+function selfOrDescendant(node, pred) {
+  return pred(node) ? node : firstDescendant(node, pred);
+}
+
+/** All descendant images, document order, deduped by src. */
+function collectImages(node) {
+  const seen = new Set();
+  const images = [];
+  (function rec(n) {
+    for (const c of n.children ?? []) {
+      if (c.hidden) continue;
+      const src = c.content.src;
+      if (src && !seen.has(src)) {
+        seen.add(src);
+        images.push({ src, alt: c.content.alt ?? '' });
+      }
+      rec(c);
+    }
+  })(node);
+  return images.slice(0, 30);
+}
+
+/**
+ * Group a tabs/accordion-like structure into { title, body } items.
+ * Each direct child (or grandchild when a single wrapper intervenes) becomes
+ * one item: title from its first heading/summary/button-ish text, body from
+ * the first other text/html payload.
+ */
+function collectTitledSections(node) {
+  let groups = (node.children ?? []).filter((c) => !c.hidden);
+  if (groups.length === 1 && groups[0].children?.length) {
+    groups = groups[0].children.filter((c) => !c.hidden);
+  }
+  const items = [];
+  for (const g of groups) {
+    const titleNode = selfOrDescendant(g, (n) =>
+      !!n.content.text && (HEADING_TAGS.has(n.tag) || n.tag === 'summary' || n.tag === 'button' || n.tag === 'a'))
+      ?? firstDescendant(g, (n) => !!n.content.text && !n.children.length);
+    const bodyNode = firstDescendant(g, (n) =>
+      n !== titleNode && (!!n.content.html || (!!n.content.text && !n.children.length)));
+    if (!titleNode && !bodyNode) continue;
+    items.push({
+      title: titleNode?.content.text ?? `Item ${items.length + 1}`,
+      body: bodyNode?.content.html || bodyNode?.content.text || '',
+    });
+  }
+  // A single "item" is a title+body pair, not a tabbed structure — reject so
+  // the mapping falls back to something saner than a one-tab widget.
+  return items.length >= 2 ? items : [];
+}
 
 /** Shallowest-first (BFS) search through visible descendants. */
 function firstDescendant(node, pred) {

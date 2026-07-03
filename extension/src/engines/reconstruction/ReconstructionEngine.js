@@ -12,17 +12,20 @@
  */
 
 import { BREAKPOINT_MAX_WIDTH, BREAKPOINTS, EL_TYPES } from '../../common/constants.js';
-import { escapeHtml } from '../../common/utils.js';
+import { escapeHtml, findNode } from '../../common/utils.js';
 import { CONTAINERISH_WIDGETS, placeholder, WIDGET_RENDERERS } from './widget-renderers.js';
 
 /** Raw style properties replayed onto preview elements (fidelity allowlist). */
 const PREVIEW_PROPS = [
-  'display', 'flex-direction', 'flex-wrap', 'justify-content', 'align-items',
-  'align-self', 'row-gap', 'column-gap', 'width', 'max-width', 'min-height',
+  'display', 'position', 'top', 'right', 'bottom', 'left', 'z-index',
+  'flex-direction', 'flex-wrap', 'justify-content', 'align-items',
+  'align-self', 'order', 'flex-grow', 'row-gap', 'column-gap',
+  'grid-template-columns',
+  'width', 'max-width', 'min-height', 'aspect-ratio', 'overflow',
   'margin-top', 'margin-right', 'margin-bottom', 'margin-left',
   'padding-top', 'padding-right', 'padding-bottom', 'padding-left',
   'font-family', 'font-size', 'font-weight', 'font-style', 'line-height',
-  'letter-spacing', 'text-transform', 'text-align', 'color',
+  'letter-spacing', 'text-transform', 'text-decoration-line', 'text-align', 'color',
   'background-color', 'background-image', 'background-position',
   'background-repeat', 'background-size',
   'border-top-style', 'border-top-width', 'border-right-width',
@@ -47,7 +50,17 @@ export class ReconstructionEngine {
     const bodyHtml = this.#renderNode(snapshot.tree, snapshot, cssRules, options);
     return {
       bodyHtml,
-      pageCss: cssRules.join('\n'),
+      // Order matters: font-faces first, per-node rules, then the page's
+      // custom-class CSS so it can override interpreted values like it does
+      // on the source page. The final rule brings a picked absolute/fixed
+      // element back into flow while keeping it a containing block for its
+      // own absolute descendants.
+      pageCss: [
+        fontFaceCss(snapshot),
+        cssRules.join('\n'),
+        snapshot.meta.customCss || '',
+        'body>[data-ef-id]{position:relative;inset:auto}',
+      ].filter(Boolean).join('\n'),
       baseCss: BASE_PREVIEW_CSS,
       dir: snapshot.meta.dir === 'rtl' ? 'rtl' : 'ltr',
       lang: snapshot.meta.lang || '',
@@ -89,40 +102,127 @@ ${bodyHtml}
       renderChildren: (n) => n.children.map((c) => this.#renderNode(c, snapshot, cssRules, options)).join(''),
     };
 
+    // Custom classes make the preserved page custom CSS (meta.customCss)
+    // match in the preview, exactly as it will after import.
+    const customClasses = (node.customClasses ?? []).join(' ');
+    const cls = (base) => customClasses ? `${base} ${escapeHtml(customClasses)}` : base;
+
     if (mapping.elType === EL_TYPES.CONTAINER) {
-      return `<div class="ef-container" data-ef-id="${node.id}">${helpers.renderChildren(node)}</div>`;
+      return `<div class="${cls('ef-container')}" data-ef-id="${node.id}">${helpers.renderChildren(node)}</div>`;
     }
 
     const renderer = WIDGET_RENDERERS[mapping.widgetType];
     let inner;
     if (renderer) {
       try { inner = renderer(node, helpers); } catch { inner = placeholder(mapping.widgetType, 'render error'); }
+      // The widget's real styling usually lives on the hoisted descendant
+      // (h2/a/p under the wrapper) whose markup the renderer replaced —
+      // replay that node's styles onto the rendered inner element.
+      this.#emitHoistedCss(node, cssRules);
     } else if (CONTAINERISH_WIDGETS.has(mapping.widgetType)) {
       inner = `<div class="ef-composite"><span class="ef-composite-tag">${escapeHtml(mapping.widgetType)}</span>${helpers.renderChildren(node)}</div>`;
     } else {
       inner = placeholder(mapping.widgetType || 'widget', node.label);
     }
-    return `<div class="ef-widget" data-ef-id="${node.id}">${inner}</div>`;
+    return `<div class="${cls('ef-widget')}" data-ef-id="${node.id}">${inner}</div>`;
   }
 
   #emitCss(node, cssRules) {
-    const sel = `[data-ef-id="${node.id}"]`;
-    const desktop = declBlock(node.styles.desktop);
+    this.#emitCssFor(`[data-ef-id="${node.id}"]`, node.styles, cssRules);
+  }
+
+  /**
+   * Widget renderers replace the wrapper's descendants with generated markup,
+   * so the styles captured on the hoisted source node (`content._hoistedFrom`)
+   * would never reach the preview. Replay them on the rendered inner element
+   * (`> *` — every renderer emits a single root). When hoisting bailed out
+   * (wrapper already had content), locate the styled descendant by widget
+   * semantics instead — its styles exist in the tree but its markup was
+   * replaced, so without this they'd be lost.
+   */
+  #emitHoistedCss(node, cssRules) {
+    const srcId = node.content?._hoistedFrom;
+    let src = srcId ? findNode(node, srcId) : null;
+    if (!src) src = findStyleSource(node);
+    if (!src || src === node) return;
+    this.#emitCssFor(`[data-ef-id="${node.id}"]>*`, src.styles, cssRules, HOISTED_SKIP_PROPS);
+  }
+
+  #emitCssFor(sel, styles, cssRules, skip) {
+    const desktop = declBlock(styles?.desktop, skip);
     if (desktop) cssRules.push(`${sel}{${desktop}}`);
     for (const device of [BREAKPOINTS.TABLET, BREAKPOINTS.MOBILE]) {
-      const decls = declBlock(node.styles[device]);
+      const decls = declBlock(styles?.[device], skip);
       if (decls) cssRules.push(`@media (max-width:${BREAKPOINT_MAX_WIDTH[device]}px){${sel}{${decls}}}`);
     }
   }
 }
 
-function declBlock(raw) {
+const HEADINGISH = new Set(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']);
+
+/** Which descendant carries a widget's real styling, per widget type. */
+const STYLE_SOURCE_PICKERS = {
+  heading: (n) => (HEADINGISH.has(n.tag) || (!!n.content?.text && !n.children?.length)),
+  button: (n) => n.tag === 'a' || n.tag === 'button',
+  'text-editor': (n) => !!n.content?.html || !!n.content?.text,
+  icon: (n) => n.tag === 'svg' || n.tag === 'i' || !!n.content?.svgMarkup,
+  image: (n) => n.tag === 'img' || n.tag === 'picture',
+  blockquote: (n) => !!n.content?.text,
+};
+
+/** Shallowest descendant matching the widget's style-source picker. */
+function findStyleSource(node) {
+  const picker = STYLE_SOURCE_PICKERS[node.mapping?.widgetType];
+  if (!picker) return null;
+  const queue = [...(node.children ?? [])];
+  while (queue.length) {
+    const n = queue.shift();
+    if (n.hidden) continue;
+    if (picker(n)) return n;
+    queue.push(...(n.children ?? []));
+  }
+  return null;
+}
+
+/**
+ * Layout placement belongs to the wrapper; replaying the source's
+ * position/size on the inner element would double-apply it.
+ */
+const HOISTED_SKIP_PROPS = new Set([
+  'position', 'top', 'right', 'bottom', 'left', 'z-index',
+  'width', 'max-width', 'min-height', 'align-self', 'order', 'flex-grow',
+  'margin-top', 'margin-right', 'margin-bottom', 'margin-left',
+]);
+
+/** @font-face rules for the web fonts the asset engine catalogued, so the
+ *  preview renders text with the source page's real fonts. */
+function fontFaceCss(snapshot) {
+  const faces = [];
+  for (const a of snapshot.assets ?? []) {
+    if (a.type !== 'font' || !a.url || !a.meta?.family) continue;
+    faces.push(
+      `@font-face{font-family:"${a.meta.family.replace(/"/g, '')}";` +
+      `src:url("${a.url}");font-weight:${a.meta.weight || 'normal'};` +
+      `font-style:${a.meta.style || 'normal'};font-display:swap}`,
+    );
+  }
+  return faces.join('\n');
+}
+
+function declBlock(raw, skip) {
   if (!raw) return '';
   const parts = [];
   for (const prop of PREVIEW_PROPS) {
+    if (skip?.has(prop)) continue;
     const v = raw[prop];
     if (v === undefined || v === '' || isNoise(prop, v)) continue;
     parts.push(`${prop}:${v}`);
+  }
+  // Out-of-flow boxes have no content-driven height in the rebuilt document —
+  // replay the captured one (in-flow elements must NOT get it, it would
+  // freeze the layout).
+  if ((raw.position === 'absolute' || raw.position === 'fixed') && raw.height && !skip?.has('position')) {
+    parts.push(`height:${raw.height}`);
   }
   return parts.join(';');
 }
@@ -144,8 +244,12 @@ const BASE_PREVIEW_CSS = `
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;font-family:system-ui,sans-serif;line-height:1.5}
 img,video,iframe{max-width:100%}
-.ef-container{position:relative;min-height:4px}
-.ef-widget{position:relative}
+/* No forced position:relative here — an absolute element anchors to its
+   NEAREST positioned ancestor, and in the source that is often a distant
+   section, not the direct parent. The replayed per-node styles carry the
+   real position values, so forcing one on every box would hijack the
+   containing block and misplace every absolutely-positioned element. */
+.ef-container{min-height:4px}
 .ef-selected{outline:2px solid #7c5cff!important;outline-offset:-2px}
 [data-ef-id]:hover{outline:1px dashed rgba(124,92,255,.55);outline-offset:-1px;cursor:pointer}
 .ef-placeholder{border:1px dashed #b6a8ff;background:#f4f1ff;color:#5a4bb5;border-radius:6px;
@@ -153,8 +257,15 @@ img,video,iframe{max-width:100%}
 .ef-composite{border:1px dashed #cfc6ff;border-radius:6px;padding:6px;position:relative}
 .ef-composite-tag{position:absolute;top:-9px;inset-inline-start:8px;background:#7c5cff;color:#fff;
   font-size:10px;padding:1px 6px;border-radius:4px;z-index:2}
-.ef-w-button{display:inline-block;padding:10px 22px;background:#5a4bb5;color:#fff;border-radius:4px;
-  text-decoration:none;font-size:14px}
+/* Neutralize UA/user-agent typography on rendered widget internals: the real
+   values sit on the widget wrapper (direct-mapped nodes) or come from the
+   hoisted >* rules (wrapped nodes) — UA h1-h6 sizing/margins and any styled
+   defaults here would override the inherited truth and skew font sizes. */
+.ef-w-heading{margin:0;font:inherit;color:inherit}
+.ef-w-text>:first-child{margin-top:0}
+.ef-w-text>:last-child{margin-bottom:0}
+.ef-w-button{display:inline-block;padding:0;background:none;border:0;color:inherit;
+  font:inherit;text-decoration:none;cursor:pointer}
 .ef-w-divider hr{border:none;border-top:1px solid #999;margin:8px 0}
 .ef-w-icon svg{width:1em;height:1em;font-size:24px}
 .ef-icon-fallback{font-size:22px;color:#7c5cff}

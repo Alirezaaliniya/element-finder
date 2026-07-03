@@ -20,6 +20,7 @@ export class PreviewPane {
     this.engine = new ReconstructionEngine();
     this.ready = false;
     this.pending = false;
+    this.fontBlobCache = new Map(); // font url -> blob: url (or original on failure)
     this.render = debounce(() => this.#render(), 150);
 
     store.events.on('snapshot', () => this.render());
@@ -72,6 +73,41 @@ export class PreviewPane {
     doc.body.innerHTML = bodyHtml; // generated/sanitized markup; scripts never execute via innerHTML
     this.#applyDevice(this.store.device);
     this.#highlight(this.store.selectedId);
+    void this.#injectFonts(snapshot);
+  }
+
+  /**
+   * Webfonts are CORS-guarded subresources: a `src:url(https://site/font.woff2)`
+   * inside the chrome-extension:// preview is blocked unless the site sends
+   * CORS headers (most don't) — the text silently falls back to system fonts.
+   * The extension itself CAN fetch them (host_permissions), so load each font
+   * binary once and serve it to the iframe as a same-origin blob: URL.
+   */
+  async #injectFonts(snapshot) {
+    const styleEl = this.doc?.getElementById('ef-fonts');
+    if (!styleEl) return;
+    const fonts = (snapshot.assets ?? []).filter((a) => a.type === 'font' && a.url && a.meta?.family);
+    if (!fonts.length) { styleEl.textContent = ''; return; }
+    const rules = await Promise.all(fonts.map(async (a) => {
+      const src = await this.#fontBlobUrl(a.url);
+      return `@font-face{font-family:"${a.meta.family.replace(/"/g, '')}";src:url("${src}");` +
+        `font-weight:${a.meta.weight || 'normal'};font-style:${a.meta.style || 'normal'};font-display:swap}`;
+    }));
+    // Guard against a stale async write after the project changed mid-fetch.
+    if (this.store.snapshot === snapshot && this.doc?.getElementById('ef-fonts')) {
+      this.doc.getElementById('ef-fonts').textContent = rules.join('\n');
+    }
+  }
+
+  async #fontBlobUrl(url) {
+    if (this.fontBlobCache.has(url)) return this.fontBlobCache.get(url);
+    let result = url; // fall back to the original URL (works when the host sends CORS)
+    try {
+      const res = await fetch(url, { credentials: 'omit' });
+      if (res.ok) result = URL.createObjectURL(await res.blob());
+    } catch { /* keep original */ }
+    this.fontBlobCache.set(url, result);
+    return result;
   }
 
   #applyDevice(device) {

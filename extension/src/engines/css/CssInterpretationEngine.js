@@ -15,6 +15,7 @@ import { NODE_ROLES } from '../../common/constants.js';
 import { walkTree } from '../../common/utils.js';
 import { StylesheetIndex } from '../responsive/StylesheetIndex.js';
 import { declarationsToSettings } from './converters.js';
+import { containsVar, resolveCssVars, resolveElementorGlobals } from './var-resolver.js';
 
 export const CAPTURED_PROPS = [
   'display', 'position', 'top', 'right', 'bottom', 'left', 'z-index',
@@ -33,6 +34,7 @@ export const CAPTURED_PROPS = [
   'box-shadow', 'opacity', 'overflow',
   'flex-direction', 'flex-wrap', 'justify-content', 'align-items',
   'align-self', 'order', 'flex-grow', 'row-gap', 'column-gap',
+  'grid-template-columns',
   'object-fit', 'aspect-ratio',
   // Elementor custom properties preserve authored (unresolved) values that
   // computed longhands lose — e.g. `--width: 47%` becomes px in `width`.
@@ -73,17 +75,35 @@ export class CssInterpretationEngine {
     let converted = 0;
     let rescuedBackgrounds = 0;
 
-    walkTree(snapshot.tree, (node) => {
+    // Custom properties inherit, so the body/root computed style answers any
+    // page-level variable (Elementor kit globals live on body.elementor-kit-N).
+    const rootStyle = win.getComputedStyle(ctx.document.body ?? ctx.document.documentElement);
+    const rootLookup = (name) => rootStyle.getPropertyValue(name);
+
+    walkTree(snapshot.tree, (node, parentNode) => {
       const el = elements.get(node.id);
       if (!el) return;
       const style = win.getComputedStyle(el);
+      const varLookup = (name) => style.getPropertyValue(name) || rootLookup(name);
 
-      const parentStyle = el.parentElement ? win.getComputedStyle(el.parentElement) : null;
+      // Inherited-prop filtering must compare against the IR parent, not the
+      // DOM parent: skipped wrappers between the two may be where a font/color
+      // was declared, and a value filtered against them has no surviving node
+      // to carry it. The tree ROOT is compared against nothing — it anchors
+      // the inheritance chain for preview and export, so its inherited
+      // typography (from <html>/ancestors outside the extraction) is always
+      // captured.
+      const parentEl = parentNode ? (elements.get(parentNode.id) ?? el.parentElement) : null;
+      const parentStyle = parentEl ? win.getComputedStyle(parentEl) : null;
       const raw = {};
       for (const prop of CAPTURED_PROPS) {
-        const v = style.getPropertyValue(prop);
+        let v = style.getPropertyValue(prop);
         if (!v) continue;
         if (parentStyle && INHERITED_PROPS.has(prop) && parentStyle.getPropertyValue(prop) === v) continue;
+        // Computed longhands are var-free, but captured custom properties
+        // (--width & co) can still carry var() chains — fold them to values
+        // usable on the import target, where the source variables don't exist.
+        if (containsVar(v)) v = resolveCssVars(v, varLookup);
         raw[prop] = v;
       }
 
@@ -94,10 +114,13 @@ export class CssInterpretationEngine {
       if (!raw['background-image'] || raw['background-image'] === 'none') {
         const lazyVar = style.getPropertyValue('--e-bg-lazyload').trim();
         const dataBg = el.getAttribute?.('data-bg') || el.getAttribute?.('data-background') || el.getAttribute?.('data-bg-url');
-        const declared = lazyVar && lazyVar !== 'none' ? lazyVar
+        let declared = lazyVar && lazyVar !== 'none' ? lazyVar
           : dataBg ? `url("${dataBg}")`
           : sheetIndex.declaredBackgroundFor(el);
-        if (declared) {
+        // Stylesheet-declared values are authored, not computed — they may
+        // reference variables (`background-image: var(--hero-bg)`).
+        if (declared && containsVar(declared)) declared = resolveCssVars(declared, varLookup);
+        if (declared && declared !== 'none' && !containsVar(declared)) {
           raw['background-image'] = declared;
           rescuedBackgrounds++;
         }
@@ -109,6 +132,15 @@ export class CssInterpretationEngine {
       stripAutoMargins(el, win, raw);
 
       node.styles.desktop = raw;
+
+      // Native Elementor data-settings reference kit globals
+      // (`__globals__: { title_color: "globals/colors?id=primary" }`) that do
+      // not exist on the import target — replace them with concrete values
+      // computed here, while the kit CSS is still loaded.
+      if (node.semantic?.elementorNative?.settings) {
+        node.semantic.elementorNative.settings =
+          resolveElementorGlobals(node.semantic.elementorNative.settings, varLookup);
+      }
 
       const isContainer = node.role === NODE_ROLES.CONTAINER;
       node.settings.desktop = declarationsToSettings(raw, { isContainer });
@@ -128,7 +160,7 @@ export class CssInterpretationEngine {
     // page custom CSS under a `.elementor-<postId>` / `.elementor-kit-*` prefix
     // in an inline <style>; we keep rules that target custom classes present in
     // the extracted tree so the styling survives import.
-    snapshot.meta.customCss = collectCustomCss(ctx.document, snapshot.tree);
+    snapshot.meta.customCss = collectCustomCss(ctx.document, snapshot.tree, rootLookup);
 
     log.info(`interpreted ${converted} nodes, rescued ${rescuedBackgrounds} lazy backgrounds, ${snapshot.globals.colors.length} palette colors, ${snapshot.globals.fonts.length} fonts`);
   }
@@ -166,9 +198,11 @@ const MAX_CUSTOM_CSS = 40 * 1024;
 /**
  * Collect inline-<style> rules that target a custom class present in the tree.
  * The class prefix Elementor scopes page custom CSS with (`.elementor-15 `) is
- * stripped so the rules apply inside the imported template.
+ * stripped so the rules apply inside the imported template. Variable
+ * references are folded to page-level computed values (`varLookup`) since the
+ * source variables don't exist on the import target.
  */
-function collectCustomCss(document, tree) {
+function collectCustomCss(document, tree, varLookup) {
   const customClasses = new Set();
   walkTree(tree, (n) => { for (const c of n.customClasses ?? []) customClasses.add(c); });
   if (!customClasses.size) return '';
@@ -184,7 +218,10 @@ function collectCustomCss(document, tree) {
     for (const rule of splitRules(css)) {
       if (![...customClasses].some((c) => rule.selector.includes(`.${c}`))) continue;
       const selector = rule.selector.replace(/\.elementor-(?:\d+|kit-\d+)\s+/g, '').trim();
-      const text = `${selector}{${rule.body}}`;
+      const body = varLookup && containsVar(rule.body)
+        ? resolveCssVars(rule.body, varLookup)
+        : rule.body;
+      const text = `${selector}{${body}}`;
       if (size + text.length > MAX_CUSTOM_CSS) return chunks.join('\n');
       chunks.push(text);
       size += text.length;

@@ -123,6 +123,13 @@ export class BuilderStore {
         source: MAPPING_SOURCES.USER,
         alternatives: prev ? [prev, ...(n.mapping?.alternatives ?? [])].slice(0, 4) : [],
       };
+      // Payloads derived by a PREVIOUS type's hoisting would satisfy the new
+      // type's "already have content" bail-outs and leave stale structure —
+      // clear them so the new widget re-derives from the descendants. Keys
+      // like text/src/href are original or user-edited content and stay.
+      for (const key of ['composite', 'items', 'images', 'counter', 'progress', 'rating', '_hoistedFrom']) {
+        delete n.content[key];
+      }
       // The new widget type may pull its content from descendants
       // (e.g. user maps a wrapper div to "image" — absorb the inner <img>).
       hoistWidgetContent(n);

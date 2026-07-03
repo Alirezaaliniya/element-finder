@@ -8,7 +8,7 @@
  * responsive variants get `_tablet` / `_mobile` suffixes.
  */
 
-import { BREAKPOINTS, DEVICE_SUFFIX, EL_TYPES } from '../../common/constants.js';
+import { BREAKPOINTS, DEVICE_SUFFIX, EL_TYPES, MAPPING_SOURCES } from '../../common/constants.js';
 import { compactObject, escapeHtml } from '../../common/utils.js';
 import { elementorId } from '../../common/utils.js';
 
@@ -103,6 +103,78 @@ const SETTING_ADAPTERS = {
   spacer(node) {
     return { space: { unit: 'px', size: Math.min(200, node.rect?.height ?? 24), sizes: [] } };
   },
+  divider() {
+    return {};
+  },
+  'menu-anchor'(node) {
+    return { anchor: node.attrs?.id ?? '' };
+  },
+  alert(node) {
+    const c = node.content.composite ?? {};
+    return {
+      alert_title: c.title ?? node.content.text ?? '',
+      alert_description: c.description ?? '',
+    };
+  },
+  counter(node) {
+    const c = node.content.counter ?? parseCounterText(node.content.text);
+    return compactObject({
+      starting_number: 0,
+      ending_number: c?.number ?? 0,
+      prefix: c?.prefix || undefined,
+      suffix: c?.suffix || undefined,
+      title: c?.title || undefined,
+    });
+  },
+  progress(node) {
+    const c = node.content.progress ?? {};
+    const fromText = parseFloat(/(\d{1,3})\s*%/.exec(node.content.text ?? '')?.[1]);
+    const percent = c.percent ?? (Number.isFinite(fromText) ? fromText : 100);
+    return {
+      title: c.title ?? '',
+      percent: { unit: '%', size: percent, sizes: [] },
+    };
+  },
+  'star-rating'(node) {
+    return { rating: node.content.rating ?? 5 };
+  },
+  tabs: titledItemsAdapter,
+  accordion: titledItemsAdapter,
+  toggle: titledItemsAdapter,
+  'nested-tabs'(node) {
+    return { tabs: nestedTitles(node).map((t) => ({ tab_title: t, _id: elementorId() })) };
+  },
+  'nested-accordion'(node) {
+    return { items: nestedTitles(node).map((t) => ({ item_title: t, _id: elementorId() })) };
+  },
+  'image-carousel'(node, ctx) {
+    return { carousel: nodeImages(node, ctx).map((i) => ({ id: '', url: i.src })) };
+  },
+  'image-gallery'(node, ctx) {
+    return { wp_gallery: nodeImages(node, ctx).map((i) => ({ id: '', url: i.src })) };
+  },
+  'flip-box'(node) {
+    const c = node.content.composite ?? {};
+    return compactObject({
+      title_text_a: c.title ?? node.content.text ?? '',
+      description_text_a: c.description ?? '',
+      title_text_b: c.title ?? '',
+      description_text_b: c.description ?? '',
+      button_text: c.linkText || undefined,
+      link: c.href ? linkControl(c.href) : undefined,
+    });
+  },
+  'price-table'(node) {
+    const c = node.content.composite ?? {};
+    const price = /[\d.,]+/.exec(c.description ?? node.content.text ?? '')?.[0];
+    return compactObject({
+      heading: c.title ?? '',
+      sub_heading: c.description ?? undefined,
+      price: price ?? '0',
+      button_text: c.linkText || undefined,
+      link: c.href ? linkControl(c.href) : undefined,
+    });
+  },
   'social-icons'(node) {
     // Links may sit below wrapper layers — search descendants, not children.
     const links = [];
@@ -163,6 +235,54 @@ const SETTING_ADAPTERS = {
     };
   },
 };
+
+/**
+ * Classic tabs/accordion/toggle share the `tabs` repeater shape:
+ * [{ tab_title, tab_content, _id }] — content is HTML.
+ */
+function titledItemsAdapter(node) {
+  const items = node.content.items ?? [];
+  return {
+    tabs: items.map((it) => ({
+      tab_title: it.title,
+      tab_content: /</.test(it.body) ? it.body : `<p>${escapeHtml(it.body)}</p>`,
+      _id: elementorId(),
+    })),
+  };
+}
+
+/** Item titles for nested tabs/accordion — must match the child-container count. */
+function nestedTitles(node) {
+  const children = (node.children ?? []).filter((c) => !c.hidden);
+  const count = Math.max(children.length, 1);
+  const titles = (node.content.items ?? []).map((it) => it.title);
+  while (titles.length < count) titles.push(`Item ${titles.length + 1}`);
+  return titles.slice(0, count);
+}
+
+/** Gallery/carousel images: hoisted list first, node assets as fallback. */
+function nodeImages(node, ctx) {
+  if (node.content.images?.length) return node.content.images;
+  const out = [];
+  for (const id of node.assets ?? []) {
+    const asset = ctx?.assetsById?.get(id);
+    if (asset?.url && (asset.type === 'image' || asset.type === 'background')) {
+      out.push({ src: asset.url, alt: asset.meta?.alt ?? '' });
+    }
+  }
+  return out;
+}
+
+/** "1,500+ customers" -> { number: 1500, prefix: '', suffix: '+ customers' } */
+function parseCounterText(text) {
+  const m = /([\d][\d.,\s]*)/.exec(text ?? '');
+  if (!m) return null;
+  return {
+    number: parseFloat(m[1].replace(/[,\s]/g, '')) || 0,
+    prefix: text.slice(0, m.index).trim(),
+    suffix: text.slice(m.index + m[1].length).trim(),
+  };
+}
 
 /** Renames from canonical style-setting names to widget-specific ones. */
 const STYLE_RENAMES = {
@@ -232,9 +352,11 @@ function convertNode(node, ctx, isInner) {
   // A widget cannot carry child elements in Elementor. Content hoisting
   // (mapping engine) absorbs descendants for known widget types; for an
   // unknown composite mapping the children would be silently lost — prefer
-  // preserving the structure as a container over dropping content.
+  // preserving the structure as a container over dropping content. A mapping
+  // the USER chose explicitly is never overridden this way.
   if (
     children.length && !adapter && !isNestedWidget(widgetType) &&
+    node.mapping.source !== MAPPING_SOURCES.USER &&
     !node.semantic.elementorNative && !node.content.text && !node.content.html
   ) {
     return asContainer(node, ctx, isInner);

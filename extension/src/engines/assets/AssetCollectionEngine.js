@@ -22,7 +22,7 @@ const ICON_FONT_CLASS = /(^|\s)(fa[srlbd]?|fa-[\w-]+|eicon-[\w-]+|icon-[\w-]+|ma
 export class AssetCollectionEngine {
   static phaseName = 'asset-collection';
 
-  run(ctx) {
+  async run(ctx) {
     const { snapshot, document, logger } = ctx;
     const log = logger.child('assets');
     const elements = ctx.scratch.get('elementsByNodeId');
@@ -135,14 +135,24 @@ export class AssetCollectionEngine {
     });
 
     // Web fonts from the stylesheet index built by the responsive engine.
+    // Relative src URLs resolve against the DECLARING stylesheet — resolving
+    // against the page URL 404s every theme font served from /wp-content/....
     const sheetIndex = ctx.scratch.get('stylesheetIndex');
-    for (const face of sheetIndex?.fontFaces ?? []) {
-      const srcUrl = resolveUrl(extractCssUrl(face.src), baseUrl);
-      if (!srcUrl) continue;
+    const registerFace = (face) => {
+      const srcUrl = resolveUrl(extractCssUrl(face.src), face.baseHref || baseUrl);
+      if (!srcUrl || !face.family) return;
       register({
         type: 'font', url: srcUrl,
         meta: { family: face.family, weight: face.weight, style: face.style },
       }, null);
+    };
+    for (const face of sheetIndex?.fontFaces ?? []) registerFace(face);
+
+    // Cross-origin stylesheets (Google Fonts, CDN theme CSS) hide their rules
+    // from CSSOM — without their @font-face the preview falls back to system
+    // fonts. Fetch the css text and mine the faces out of it.
+    for (const face of await fetchCrossOriginFontFaces(sheetIndex?.inaccessibleHrefs ?? [], log)) {
+      registerFace(face);
     }
 
     // Favicon — useful in the assets package.
@@ -159,6 +169,44 @@ export class AssetCollectionEngine {
     snapshot.stats.assetsCollected = snapshot.assets.length;
     log.info(`cataloged ${snapshot.assets.length} assets`);
   }
+}
+
+const FONT_FETCH_LIMIT = 12;
+const FONT_FETCH_TIMEOUT = 4000;
+
+/** Fetch cross-origin css text and regex-mine its @font-face blocks. */
+async function fetchCrossOriginFontFaces(hrefs, log) {
+  const faces = [];
+  const targets = hrefs.slice(0, FONT_FETCH_LIMIT);
+  await Promise.allSettled(targets.map(async (href) => {
+    const css = await fetchText(href);
+    if (!css) return;
+    for (const block of css.match(/@font-face\s*\{[^}]*\}/g) ?? []) {
+      const prop = (name) => new RegExp(`${name}\\s*:\\s*([^;}]+)`, 'i').exec(block)?.[1].trim() ?? '';
+      const family = prop('font-family').replace(/^['"]|['"]$/g, '');
+      const src = prop('src');
+      if (!family || !src) continue;
+      faces.push({
+        family, src,
+        weight: prop('font-weight') || 'normal',
+        style: prop('font-style') || 'normal',
+        baseHref: href,
+      });
+    }
+  }));
+  if (faces.length) log.info(`recovered ${faces.length} @font-face rule(s) from cross-origin css`);
+  return faces;
+}
+
+async function fetchText(url) {
+  try {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), FONT_FETCH_TIMEOUT);
+    const res = await fetch(url, { signal: controller.signal, credentials: 'omit' });
+    clearTimeout(timer);
+    if (!res.ok || !/text\/css|text\/plain/.test(res.headers.get('content-type') ?? 'text/css')) return null;
+    return await res.text();
+  } catch { return null; }
 }
 
 function iconLibrary(cls) {

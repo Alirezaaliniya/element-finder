@@ -8,6 +8,7 @@
  */
 
 import { BREAKPOINTS, BREAKPOINT_MAX_WIDTH } from '../../common/constants.js';
+import { containsVar, resolveCssVars } from '../css/var-resolver.js';
 
 export class StylesheetIndex {
   constructor(document) {
@@ -22,14 +23,19 @@ export class StylesheetIndex {
      */
     this.backgroundRules = [];
     this.inaccessibleSheets = 0;
-    this.fontFaces = [];   // { family, src, weight, style }
+    this.inaccessibleHrefs = []; // cross-origin sheets; fonts recoverable via fetch
+    this.fontFaces = [];   // { family, src, weight, style, baseHref }
     this.keyframes = 0;
   }
 
   build() {
     for (const sheet of this.document.styleSheets) {
       let rules;
-      try { rules = sheet.cssRules; } catch { this.inaccessibleSheets++; continue; }
+      try { rules = sheet.cssRules; } catch {
+        this.inaccessibleSheets++;
+        if (sheet.href) this.inaccessibleHrefs.push(sheet.href);
+        continue;
+      }
       if (!rules) continue;
       this.#walkRules(rules, null, sheet.href ?? null);
     }
@@ -49,6 +55,9 @@ export class StylesheetIndex {
           src: s.getPropertyValue('src') || '',
           weight: s.getPropertyValue('font-weight') || 'normal',
           style: s.getPropertyValue('font-style') || 'normal',
+          // src is authored, often relative — it must resolve against the
+          // DECLARING stylesheet, not the page URL.
+          baseHref,
         });
       } else if (rule instanceof CSSStyleRule) {
         if (device) {
@@ -57,7 +66,9 @@ export class StylesheetIndex {
           }
         } else {
           const bg = rule.style.getPropertyValue('background-image') || rule.style.getPropertyValue('background');
-          if (bg && bg.includes('url(')) {
+          // Accept var() references too — declaredBackgroundFor resolves them
+          // per element before extracting the url.
+          if (bg && (bg.includes('url(') || containsVar(bg))) {
             for (const selector of safeSplitSelectors(rule.selectorText)) {
               this.backgroundRules.push({ selector, value: bg.trim(), baseHref });
             }
@@ -85,7 +96,17 @@ export class StylesheetIndex {
       if (matches) found = { value, baseHref };
     }
     if (!found) return null;
-    const m = /url\((['"]?)(.*?)\1\)/.exec(found.value);
+    // Authored values may hide the url behind a variable (`background-image:
+    // var(--hero-bg)`) — resolve against the element's computed style first.
+    let value = found.value;
+    if (containsVar(value)) {
+      const win = this.document.defaultView;
+      if (win) {
+        const style = win.getComputedStyle(el);
+        value = resolveCssVars(value, (name) => style.getPropertyValue(name));
+      }
+    }
+    const m = /url\((['"]?)(.*?)\1\)/.exec(value);
     if (!m) return null;
     try {
       const abs = new URL(m[2], found.baseHref ?? this.document.baseURI).href;
