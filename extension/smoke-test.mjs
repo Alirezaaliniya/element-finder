@@ -22,8 +22,22 @@ const dim = toDimensions('5px', '20px', '5px', '20px');
 check(dim.top === '5' && dim.right === '20' && dim.isLinked === false, 'dimensions');
 check(toDimensions('0px', '0px', '0px', '0px') === null, 'all-zero dims -> null');
 
+// units are preserved
+const dimEm = toDimensions('2em', '1rem', '0', '0');
+check(dimEm.unit === 'em', 'dimensions em unit: ' + dimEm.unit);
+check(dimEm.top === '2', 'dimensions em top');
+
+const dimPct = toDimensions('5%', '10%', '5%', '10%');
+check(dimPct.unit === '%', 'dimensions % unit: ' + dimPct.unit);
+
 const sh = parseBoxShadow('rgba(0, 0, 0, 0.25) 0px 4px 12px 0px');
 check(sh.vertical === 4 && sh.blur === 12, 'box-shadow');
+
+const shInset = parseBoxShadow('inset rgba(0, 0, 0, 0.5) 0px 2px 8px 0px');
+check(shInset.inset === 'yes' && shInset.vertical === 2, 'box-shadow inset');
+
+const shInsetMid = parseBoxShadow('0px 4px 12px 0px inset rgba(0,0,0,0.3)');
+check(shInsetMid.inset === 'yes', 'box-shadow inset mid');
 
 const g = extractGradient('linear-gradient(135deg, rgb(124,92,255) 0%, rgb(74,52,184) 100%)');
 check(g.angle === 135 && g.colorA === '#7C5CFF', 'gradient');
