@@ -40,14 +40,25 @@ export function toSlider(value) {
 
 /** Elementor "dimensions" control from 4 side values. Returns null when all zero. */
 export function toDimensions(top, right, bottom, left) {
-  const vals = [top, right, bottom, left].map((v) => cssNumber(v) ?? 0);
+  const raw = [top, right, bottom, left];
+  const vals = raw.map((v) => cssNumber(v) ?? 0);
   if (vals.every((v) => v === 0)) return null;
   const [t, r, b, l] = vals.map((v) => String(round2(v)));
+  // Preserve the original CSS unit (em, rem, %, vw, vh) instead of always
+  // defaulting to px, which would silently break relative-unit layouts.
+  const unit = detectUnit(raw.find((v) => v && cssNumber(v) !== 0) || raw[0]);
   return {
-    unit: 'px',
+    unit,
     top: t, right: r, bottom: b, left: l,
     isLinked: t === r && r === b && b === l,
   };
+}
+
+/** Extract the CSS unit from a value string ("2em" → "em", "10px" → "px"). */
+function detectUnit(value) {
+  if (!value || typeof value !== 'string') return 'px';
+  const m = /(%|em|rem|vw|vh)$/.exec(value.trim());
+  return m ? m[1] : 'px';
 }
 
 /** Extract first url(...) from a background-image value. */
@@ -74,17 +85,21 @@ export function extractGradient(value) {
 export function parseBoxShadow(value) {
   if (!value || value === 'none') return null;
   const first = splitTopLevel(value, ',')[0];
+  const inset = /\binset\b/.test(first);
   const color = toHexColor((/rgba?\([^)]*\)|#[0-9a-f]{3,8}/i.exec(first) || [])[0] || '');
-  const nums = first.replace(/rgba?\([^)]*\)|#[0-9a-f]{3,8}/gi, '').trim()
+  const nums = first.replace(/rgba?\([^)]*\)|#[0-9a-f]{3,8}/gi, '')
+    .replace(/\binset\b/g, '').trim()
     .split(/\s+/).map(cssNumber).filter((n) => n !== null);
   if (nums.length < 2) return null;
-  return {
+  const shadow = {
     horizontal: round2(nums[0]),
     vertical: round2(nums[1]),
     blur: round2(nums[2] ?? 0),
     spread: round2(nums[3] ?? 0),
     color: color || 'rgba(0,0,0,0.5)',
   };
+  if (inset) shadow.inset = 'yes';
+  return shadow;
 }
 
 /** Split on a separator only at paren depth 0 (for shadow/gradient lists). */
