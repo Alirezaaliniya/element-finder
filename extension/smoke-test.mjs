@@ -99,6 +99,62 @@ check(w.settings.title_color === '#FFFFFF', 'color renamed to title_color: ' + J
 check(w.settings.typography_font_size_mobile?.size === 20, 'responsive _mobile suffix');
 check(w.settings.typography_font_size?.size === 30, 'desktop unsuffixed');
 
+// --- control-name resolution (widget-controls.js) -------------------------
+const { resolveSettingKey, isResponsiveKey } = await import('./src/engines/export/widget-controls.js');
+check(resolveSettingKey('padding', null) === 'padding', 'container padding');
+check(resolveSettingKey('padding', 'heading') === '_padding', 'widget padding -> _padding');
+check(resolveSettingKey('padding', 'button') === 'text_padding', 'button padding -> text_padding');
+check(resolveSettingKey('_position', null) === 'position', 'container position drops underscore');
+check(resolveSettingKey('_position', 'heading') === '_position', 'widget position keeps underscore');
+check(resolveSettingKey('_css_classes', null) === 'css_classes', 'container css_classes');
+check(resolveSettingKey('_css_classes', 'heading') === '_css_classes', 'widget _css_classes');
+check(resolveSettingKey('background_color', 'heading') === '_background_color', 'widget background -> _background_*');
+check(resolveSettingKey('background_color', 'button') === 'background_color', 'button keeps its own background group');
+check(resolveSettingKey('background_color', null) === 'background_color', 'container background');
+check(resolveSettingKey('typography_font_size', 'icon-box') === 'title_typography_font_size', 'icon-box typography group');
+check(resolveSettingKey('typography_font_size', null) === null, 'container has no typography');
+check(resolveSettingKey('color', 'testimonial') === 'content_content_color', 'testimonial text colour');
+check(resolveSettingKey('align', 'icon-box') === 'text_align', 'icon-box align -> text_align');
+check(resolveSettingKey('border_radius', 'image') === 'image_border_radius', 'image radius');
+check(resolveSettingKey('border_radius', 'heading') === '_border_radius', 'widget radius -> _border_radius');
+check(resolveSettingKey('min_height', 'heading') === null, 'min_height is container-only');
+check(isResponsiveKey('color') === false && isResponsiveKey('padding') === true, 'responsive key table');
+
+// --- export uses resolved names ------------------------------------------
+const ib = createNode({
+  tag: 'div', role: 'widget', attrs: { id: 'features' },
+  customClasses: ['my-card'],
+  content: { composite: { title: 'Fast', description: 'Really fast' } },
+  mapping: { elType: 'widget', widgetType: 'icon-box', confidence: 1, source: 'rule', alternatives: [] },
+});
+ib.settings.desktop = {
+  color: '#111111', align: 'center', padding: { unit: 'px', top: '8', right: '8', bottom: '8', left: '8', isLinked: true },
+  background_color: '#EEEEEE', background_background: 'classic',
+  typography_typography: 'custom', typography_font_size: { unit: 'px', size: 24, sizes: [] },
+};
+ib.settings.tablet = { color: '#222222', typography_font_size: { unit: 'px', size: 18, sizes: [] } };
+cont.children.push(ib);
+cont.customClasses = ['hero-row'];
+cont.tag = 'section';
+const tpl3 = exportElementorTemplate(snap);
+const ibOut = tpl3.content[0].elements.find((e) => e.widgetType === 'icon-box').settings;
+check(ibOut.title_color === '#111111', 'icon-box colour -> title_color');
+check(ibOut.text_align === 'center', 'icon-box align -> text_align');
+check(ibOut._padding?.top === '8', 'icon-box padding -> _padding');
+check(ibOut._background_color === '#EEEEEE', 'icon-box background -> _background_color');
+check(ibOut.title_typography_font_size?.size === 24, 'icon-box typography group applied');
+check(ibOut.title_typography_font_size_tablet?.size === 18, 'responsive typography suffix');
+check(ibOut.title_color_tablet === undefined, 'non-responsive colour has no _tablet twin');
+check(ibOut._css_classes === 'my-card', 'widget custom classes');
+check(ibOut._element_id === 'features', 'widget element id preserved');
+const contOut = tpl3.content[0].settings;
+check(contOut.css_classes === 'hero-row', 'container classes use css_classes: ' + JSON.stringify(contOut.css_classes));
+check(contOut._css_classes === undefined, 'container does not use _css_classes');
+check(contOut.html_tag === 'section', 'container html_tag from source tag');
+cont.children.pop();
+cont.tag = 'div';
+cont.customClasses = [];
+
 // hidden nodes are dropped
 h.hidden = true;
 const tpl2 = exportElementorTemplate(snap);

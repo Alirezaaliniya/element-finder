@@ -70,7 +70,26 @@ the node-id → Element map):
 | **Visual Reconstruction** (`engines/reconstruction`) | IR → standalone preview document (iframe `srcdoc`, sandboxed `allow-scripts` only): per-widget renderers, generated per-node CSS incl. media queries, two-way selection sync via `postMessage` |
 | **Validation** (`engines/validation`) | declarative node rules + snapshot rules → errors/warnings/info with optional one-click `fix` closures; export is blocked on errors (override available); AI fix-suggestion hook |
 | **Project Storage** (`engines/storage`) | IndexedDB: working projects + immutable frozen versions; structural snapshot diff (added/removed/re-mapped/edited) |
-| **Export** (`engines/export`) | format strategy registry: Elementor template JSON (v0.4 with `_tablet`/`_mobile` suffixes and per-widget setting renames), Structure JSON, Raw JSON, HTML snapshot, Assets ZIP (dependency-free STORE ZipWriter with CRC-32, failure manifest) |
+| **Export** (`engines/export`) | format strategy registry: Elementor template JSON (v0.4, control names resolved per element type by `widget-controls.js`, `_tablet`/`_mobile` suffixes only where Elementor registers a responsive control), Structure JSON, Raw JSON, HTML snapshot, Assets ZIP (dependency-free STORE ZipWriter with CRC-32, failure manifest) |
+
+## Control-name resolution
+
+Elementor has no single name per visual property. `padding` is `padding` on a
+container but `_padding` on a widget; text colour is `title_color` on a
+heading, `text_color` on a text editor, `content_content_color` on a
+testimonial; background is `background_*` on a container but `_background_*`
+on a widget's Advanced tab; custom classes are `css_classes` on a container and
+`_css_classes` on a widget. A setting written under the wrong name imports
+without error and is then never rendered — the style is silently lost.
+
+`export/widget-controls.js` is the map that prevents that. It holds, per widget
+type, the group name of its primary typography, its text-colour / alignment /
+padding controls and any box-styling groups it owns, plus the set of canonical
+keys whose control is *not* responsive (colours, typography switches, font
+family/weight, `_position`, `css_classes`). `resolveSettingKey(key, widgetType)`
+returns the real control name or `null` to drop the setting; the exporter never
+writes a key it could not resolve. Every entry is transcribed from the
+Elementor / Elementor Pro plugin source rather than inferred.
 
 ## Widget mapping in depth
 

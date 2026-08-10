@@ -2,20 +2,23 @@
  * IR -> Elementor template JSON (the `version: "0.4"` page/section format
  * produced by Elementor's own export, validated against real exports).
  *
- * Generic interpreted settings (canonical names from the CSS engine) are
- * renamed per widget by SETTING_ADAPTERS — e.g. `color` becomes
- * `title_color` on a heading but `button_text_color` on a button — and
- * responsive variants get `_tablet` / `_mobile` suffixes.
+ * Content settings come from SETTING_ADAPTERS (one per widget type); style
+ * settings come from the CSS engine under canonical names and are translated
+ * to real control names by widget-controls.js — `color` becomes `title_color`
+ * on a heading, `button_text_color` on a button, `_background_color` on any
+ * widget's Advanced tab — with `_tablet` / `_mobile` suffixes added only for
+ * controls Elementor actually registers as responsive.
  */
 
 import { BREAKPOINTS, DEVICE_SUFFIX, EL_TYPES, MAPPING_SOURCES } from '../../common/constants.js';
 import { compactObject, escapeHtml } from '../../common/utils.js';
 import { elementorId } from '../../common/utils.js';
+import { isResponsiveKey, resolveSettingKey } from './widget-controls.js';
 
 /* ------------------------------------------------------------------ *
  * Widget setting adapters
  * Each receives (node) and returns widget-specific *content* settings.
- * Style settings flow through styleSettingsFor() + renames.
+ * Style settings flow through styleSettings() + widget-controls.js.
  * ------------------------------------------------------------------ */
 
 const SETTING_ADAPTERS = {
@@ -284,24 +287,14 @@ function parseCounterText(text) {
   };
 }
 
-/** Renames from canonical style-setting names to widget-specific ones. */
-const STYLE_RENAMES = {
-  heading: { color: 'title_color' },
-  'text-editor': { color: 'text_color' },
-  button: { color: 'button_text_color', padding: 'text_padding' },
-  icon: { color: 'primary_color' },
-  'icon-list': { color: 'icon_color' },
-  divider: { color: 'color' },
-};
-
-/** Style keys that make no sense on widgets and must stay container-only. */
+/** Flex/grid layout keys a widget cannot carry — they stay container-only. */
 const CONTAINER_ONLY_KEYS = new Set([
   'flex_direction', 'flex_wrap', 'flex_justify_content', 'flex_align_items',
-  'flex_gap', 'min_height',
+  'flex_align_content', 'flex_gap',
 ]);
 
-/** On widgets, generic box styles move to the Advanced tab (underscore-prefixed). */
-const WIDGET_ADVANCED_PREFIX = new Set(['margin', 'padding', 'z_index', 'position']);
+/** Source tags a container can reproduce via its `html_tag` control. */
+const CONTAINER_HTML_TAGS = new Set(['header', 'footer', 'main', 'article', 'section', 'aside', 'nav']);
 
 /* ------------------------------------------------------------------ *
  * Tree conversion
@@ -367,9 +360,9 @@ function convertNode(node, ctx, isInner) {
   // menu layout, swiper options) are authoritative — overlay them last.
   const settings = withCommon(node, {
     ...contentSettings,
-    ...widgetStyleSettings(node, widgetType),
+    ...styleSettings(node, widgetType),
     ...nativeSettings(node),
-  });
+  }, widgetType);
   // Native skin variants (e.g. loop-carousel.product) export Elementor-style.
   if (node.semantic.elementorNative?.skin) settings._skin = node.semantic.elementorNative.skin;
 
@@ -412,7 +405,7 @@ function nativeChildContainers(node) {
 function asContainer(node, ctx, isInner) {
   return {
     id: node.id,
-    settings: compactObject(withCommon(node, { ...containerSettings(node), ...nativeSettings(node) })),
+    settings: compactObject(withCommon(node, { ...containerSettings(node), ...nativeSettings(node) }, null)),
     elements: visibleChildren(node).map((c) => convertNode(c, ctx, true)).filter(Boolean),
     isInner,
     elType: 'container',
@@ -424,10 +417,20 @@ function nativeSettings(node) {
   return node.semantic.elementorNative?.settings ?? {};
 }
 
-/** Settings every element type shares: preserved custom CSS classes. */
-function withCommon(node, settings) {
+/**
+ * Settings shared by every element type: custom CSS classes and the source
+ * element id. The class control is `css_classes` on a container but
+ * `_css_classes` on a widget (container.php vs common-base.php), so it has to
+ * be resolved like any other key — writing the wrong one loses the classes and
+ * with them the page-level custom CSS this exporter also emits.
+ */
+function withCommon(node, settings, widgetType = null) {
   const classes = (node.customClasses ?? []).join(' ').trim();
-  if (classes && !settings._css_classes) settings._css_classes = classes;
+  const classKey = resolveSettingKey('_css_classes', widgetType);
+  if (classes && classKey && !settings[classKey]) settings[classKey] = classes;
+  // Keep in-page anchors (`#pricing`) working after import.
+  const id = node.attrs?.id;
+  if (id && !settings._element_id && /^[A-Za-z][\w:.-]*$/.test(id)) settings._element_id = id;
   return settings;
 }
 
@@ -444,41 +447,39 @@ function isNestedWidget(widgetType) {
 }
 
 function containerSettings(node) {
+  const out = styleSettings(node, null);
+  // Containers sized by the source page: preserve percentage-ish widths.
+  const w = node.styles.desktop?.width;
+  if (w && w.endsWith('%')) out.width = { unit: '%', size: parseFloat(w), sizes: [] };
+  // A <header>/<nav>/<footer> section keeps its landmark tag on import.
+  if (CONTAINER_HTML_TAGS.has(node.tag)) out.html_tag = node.tag;
+  return compactObject(out);
+}
+
+/**
+ * Canonical interpreted settings -> the control names this element actually
+ * exposes, per device. Keys with no counterpart on the target are dropped
+ * rather than exported under a name Elementor stores but never renders.
+ */
+function styleSettings(node, widgetType) {
   const out = {};
   for (const device of [BREAKPOINTS.DESKTOP, BREAKPOINTS.TABLET, BREAKPOINTS.MOBILE]) {
     const suffix = DEVICE_SUFFIX[device];
     const src = node.settings[device] ?? {};
     for (const [key, value] of Object.entries(src)) {
-      if (key === 'color' || key === 'align' || key.startsWith('typography_')) continue; // text styles belong to widgets
-      out[suffixKey(key, suffix)] = value;
-    }
-  }
-  // Containers sized by the source page: preserve percentage-ish widths.
-  const w = node.styles.desktop?.width;
-  if (w && w.endsWith('%')) out.width = { unit: '%', size: parseFloat(w), sizes: [] };
-  return compactObject(out);
-}
-
-function widgetStyleSettings(node, widgetType) {
-  const renames = STYLE_RENAMES[widgetType] ?? {};
-  const out = {};
-  for (const device of [BREAKPOINTS.DESKTOP, BREAKPOINTS.TABLET, BREAKPOINTS.MOBILE]) {
-    const suffix = DEVICE_SUFFIX[device];
-    const src = node.settings[device] ?? {};
-    for (let [key, value] of Object.entries(src)) {
-      // A wrapper div that becomes a widget had its width interpreted as a
+      // A wrapper div that became a widget had its width interpreted as a
       // container width; on a widget that is the element-width control.
-      if (key === 'width' && value?.unit === '%') {
+      if (widgetType && key === 'width') {
         out[suffixKey('_element_width', suffix)] = 'initial';
         out[suffixKey('_element_custom_width', suffix)] = value;
         continue;
       }
-      if (key === 'content_width') continue; // container-only
-      if (CONTAINER_ONLY_KEYS.has(key)) continue;
-      if (renames[key]) key = renames[key];
-      else if (key === 'color') key = widgetType === 'button' ? 'button_text_color' : 'color';
-      else if (WIDGET_ADVANCED_PREFIX.has(key.replace(/^_/, ''))) key = key.startsWith('_') ? key : `_${key}`;
-      out[suffixKey(key, suffix)] = value;
+      if (widgetType && CONTAINER_ONLY_KEYS.has(key)) continue;
+      // Non-responsive controls have no `_tablet` / `_mobile` twin.
+      if (suffix && !isResponsiveKey(key)) continue;
+      const resolved = resolveSettingKey(key, widgetType);
+      if (!resolved) continue;
+      out[suffixKey(resolved, suffix)] = value;
     }
   }
   return out;
