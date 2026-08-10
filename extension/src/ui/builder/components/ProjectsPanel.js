@@ -5,6 +5,7 @@
  */
 
 import { escapeHtml } from '../../../common/utils.js';
+import { getLang, t } from '../../../common/i18n.js';
 import { ProjectStorageEngine } from '../../../engines/storage/ProjectStorageEngine.js';
 
 export class ProjectsPanel {
@@ -24,11 +25,11 @@ export class ProjectsPanel {
   async open() {
     const projects = await this.storage.listProjects();
     this.dialog.innerHTML = `
-      <div class="dialog-head"><span>Projects</span><button data-close>✕</button></div>
+      <div class="dialog-head"><span>${t('projects.title')}</span><button data-close>✕</button></div>
       <div class="dialog-body" data-list>
-        ${projects.length ? '' : '<p style="color:var(--muted)">No saved projects yet. Use 💾 Save in the toolbar.</p>'}
+        ${projects.length ? '' : `<p style="color:var(--muted)">${t('projects.none')}</p>`}
       </div>
-      <div class="dialog-foot"><button data-close>Close</button></div>`;
+      <div class="dialog-foot"><button data-close>${t('projects.close')}</button></div>`;
 
     const list = this.dialog.querySelector('[data-list]');
     for (const p of projects) list.appendChild(this.#projectRow(p));
@@ -44,26 +45,30 @@ export class ProjectsPanel {
     row.innerHTML = `
       <div class="grow">
         <strong>${escapeHtml(p.name)}</strong>
-        <small>${escapeHtml(shortUrl(p.sourceUrl))} · ${p.elementCount} elements · updated ${new Date(p.updatedAt).toLocaleString()}</small>
+        <small>${escapeHtml(t('projects.meta', {
+          host: shortUrl(p.sourceUrl),
+          count: p.elementCount,
+          date: new Date(p.updatedAt).toLocaleString(getLang() === 'fa' ? 'fa-IR' : undefined),
+        }))}</small>
         <div class="version-list" data-versions></div>
       </div>
-      <button data-open>Open</button>
-      <button data-history title="Show saved versions">🏷</button>
+      <button data-open>${t('projects.open')}</button>
+      <button data-history title="${escapeHtml(t('projects.historyTitle'))}">🏷</button>
       <button class="danger" data-delete>🗑</button>`;
 
     row.querySelector('[data-open]').addEventListener('click', async () => {
       const full = await this.storage.getProject(p.id);
-      if (!full) { this.toast('Project not found.', 'error'); return; }
+      if (!full) { this.toast(t('projects.notFound'), 'error'); return; }
       this.store.loadProject(full);
       this.dialog.close();
-      this.toast(`Opened "${full.name}".`);
+      this.toast(t('projects.opened', { name: full.name }));
     });
 
     row.querySelector('[data-delete]').addEventListener('click', async () => {
-      if (!confirm(`Delete project "${p.name}" and all its versions?`)) return;
+      if (!confirm(t('projects.deleteConfirm', { name: p.name }))) return;
       await this.storage.deleteProject(p.id);
       row.remove();
-      this.toast('Project deleted.');
+      this.toast(t('projects.deleted'));
     });
 
     row.querySelector('[data-history]').addEventListener('click', async () => {
@@ -76,14 +81,14 @@ export class ProjectsPanel {
 
   async #renderVersions(holder, projectId) {
     const versions = await this.storage.listVersions(projectId);
-    holder.innerHTML = versions.length ? '' : '<div class="version-row">No frozen versions.</div>';
+    holder.innerHTML = versions.length ? '' : `<div class="version-row">${t('projects.noVersions')}</div>`;
     for (const v of versions) {
       const vr = document.createElement('div');
       vr.className = 'version-row';
       vr.innerHTML = `
-        <span>${escapeHtml(v.label)} · ${v.elementCount} elements</span>
-        <button data-restore>Restore</button>
-        <button data-compare>Compare to current</button>
+        <span>${escapeHtml(t('projects.versionMeta', { label: v.label, count: v.elementCount }))}</span>
+        <button data-restore>${t('projects.restore')}</button>
+        <button data-compare>${t('projects.compare')}</button>
         <span class="diff-summary" data-diff></span>`;
 
       vr.querySelector('[data-restore]').addEventListener('click', async () => {
@@ -93,7 +98,7 @@ export class ProjectsPanel {
         project.snapshot = full.snapshot;
         this.store.loadProject(project);
         this.dialog.close();
-        this.toast(`Restored "${v.label}". Save to keep it.`);
+        this.toast(t('projects.restored', { label: v.label }));
       });
 
       vr.querySelector('[data-compare]').addEventListener('click', async () => {

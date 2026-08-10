@@ -7,6 +7,7 @@
 
 import { DEVICE_ORDER, EL_TYPES } from '../../../common/constants.js';
 import { escapeHtml } from '../../../common/utils.js';
+import { getLang, t, WIDGET_SYNONYMS_FA } from '../../../common/i18n.js';
 import { widgetOptionsByCategory, widgetInfo } from '../../../engines/mapping/widget-catalog.js';
 
 export class Inspector {
@@ -26,7 +27,7 @@ export class Inspector {
     const node = this.store.selectedNode();
     this.root.textContent = '';
     if (!node) {
-      this.root.innerHTML = '<p class="empty">Select an element in the tree or preview.</p>';
+      this.root.innerHTML = `<p class="empty">${escapeHtml(t('insp.selectPrompt'))}</p>`;
       return;
     }
 
@@ -53,14 +54,14 @@ export class Inspector {
       dl.appendChild(el('dt', '', k));
       dl.appendChild(el('dd', '', v ?? '—'));
     };
-    kv('Label', node.label);
-    kv('Tag', `<${node.tag}>`);
-    kv('Id', node.id);
-    if (node.semantic.kind) kv('Semantic', node.semantic.kind);
-    if (node.semantic.isRepeated) kv('Pattern', node.semantic.patternKey);
-    if (node.semantic.elementorNative) kv('Source', `Elementor ${node.semantic.elementorNative.widgetType ?? node.semantic.elementorNative.elType}`);
-    if (node.rect) kv('Size', `${node.rect.width}×${node.rect.height}px`);
-    return this.#section('Element', dl);
+    kv(t('insp.label'), node.label);
+    kv(t('insp.tag'), `<${node.tag}>`);
+    kv(t('insp.id'), node.id);
+    if (node.semantic.kind) kv(t('insp.semantic'), node.semantic.kind);
+    if (node.semantic.isRepeated) kv(t('insp.pattern'), node.semantic.patternKey);
+    if (node.semantic.elementorNative) kv(t('insp.source'), `Elementor ${node.semantic.elementorNative.widgetType ?? node.semantic.elementorNative.elType}`);
+    if (node.rect) kv(t('insp.size'), `${node.rect.width}×${node.rect.height}px`);
+    return this.#section(t('insp.element'), dl);
   }
 
   #mappingSection(node) {
@@ -72,46 +73,25 @@ export class Inspector {
     bar.appendChild(fill);
 
     const meta = el('div', 'insp-row');
-    meta.innerHTML = `<label>Mapped by ${escapeHtml(m?.source ?? 'n/a')}${m?.ruleId ? ` · rule “${escapeHtml(m.ruleId)}”` : ''} · confidence ${(conf * 100) | 0}%</label>`;
-
-    const select = document.createElement('select');
-    select.appendChild(new Option('Container (layout)', '@container', false, m?.elType === EL_TYPES.CONTAINER));
-    for (const [category, options] of Object.entries(widgetOptionsByCategory())) {
-      const group = document.createElement('optgroup');
-      group.label = category;
-      for (const opt of options) {
-        const o = new Option(
-          `${opt.label}${opt.tier !== 'free' ? ` (${opt.tier})` : ''}`,
-          opt.type,
-          false,
-          m?.elType === EL_TYPES.WIDGET && m?.widgetType === opt.type,
-        );
-        group.appendChild(o);
-      }
-      select.appendChild(group);
-    }
-    // Unknown third-party widget — keep it selectable.
-    if (m?.widgetType && !widgetInfo(m.widgetType)) {
-      select.appendChild(new Option(`${m.widgetType} (third-party)`, m.widgetType, false, true));
-    }
-    select.addEventListener('change', () => {
-      const v = select.value;
-      this.store.changeMapping(node.id, v === '@container'
-        ? { elType: EL_TYPES.CONTAINER, widgetType: null }
-        : { elType: EL_TYPES.WIDGET, widgetType: v });
+    const metaLabel = document.createElement('label');
+    metaLabel.textContent = t('insp.mappedBy', {
+      source: m?.source ?? 'n/a',
+      rule: m?.ruleId ? t('insp.ruleSuffix', { rule: m.ruleId }) : '',
+      confidence: (conf * 100) | 0,
     });
+    meta.appendChild(metaLabel);
 
     const row = el('div', 'insp-row');
-    row.append(label('Widget mapping'), select);
+    row.append(label(t('insp.widgetMapping')), this.#widgetPicker(node));
 
-    const sec = this.#section('Mapping', row, bar, meta);
+    const sec = this.#section(t('insp.mapping'), row, bar, meta);
 
     if (m?.alternatives?.length) {
       const alts = el('div', 'insp-row');
-      alts.appendChild(label('Alternatives'));
+      alts.appendChild(label(t('insp.alternatives')));
       for (const alt of m.alternatives.slice(0, 3)) {
         const btn = document.createElement('button');
-        btn.textContent = `${alt.widgetType ?? 'container'} (${((alt.confidence ?? 0) * 100) | 0}%)`;
+        btn.textContent = `${alt.widgetType ?? t('tree.container')} (${((alt.confidence ?? 0) * 100) | 0}%)`;
         btn.addEventListener('click', () => this.store.changeMapping(node.id, {
           elType: alt.elType, widgetType: alt.widgetType,
         }));
@@ -120,6 +100,99 @@ export class Inspector {
       sec.appendChild(alts);
     }
     return sec;
+  }
+
+  /**
+   * Searchable widget picker: a search input over the full catalog (plus the
+   * container option and any third-party current value), grouped by category.
+   * In Persian, widget types also match their فارسی synonyms.
+   */
+  #widgetPicker(node) {
+    const m = node.mapping;
+    const currentValue = m?.elType === EL_TYPES.CONTAINER ? '@container' : (m?.widgetType ?? '');
+    const fa = getLang() === 'fa';
+
+    const options = [{
+      value: '@container', label: t('insp.containerOption'), tier: 'free', category: 'layout',
+      haystack: `container layout ${t('insp.containerOption')} ${fa ? 'کانتینر چیدمان' : ''}`.toLowerCase(),
+    }];
+    for (const [category, opts] of Object.entries(widgetOptionsByCategory())) {
+      for (const opt of opts) {
+        options.push({
+          value: opt.type, label: opt.label, tier: opt.tier, category,
+          haystack: `${opt.label} ${opt.type} ${category} ${fa ? WIDGET_SYNONYMS_FA[opt.type] ?? '' : ''}`.toLowerCase(),
+        });
+      }
+    }
+    if (m?.widgetType && !widgetInfo(m.widgetType)) {
+      options.push({
+        value: m.widgetType, label: `${m.widgetType} (${t('insp.thirdParty')})`,
+        tier: 'free', category: t('insp.thirdParty'), haystack: m.widgetType.toLowerCase(),
+      });
+    }
+    const currentLabel = options.find((o) => o.value === currentValue)?.label ?? currentValue;
+
+    const wrap = el('div', 'widget-picker');
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'widget-picker-input';
+    input.placeholder = t('insp.searchWidget');
+    input.value = currentLabel;
+    input.setAttribute('spellcheck', 'false');
+    const list = el('div', 'widget-picker-list hidden');
+    wrap.append(input, list);
+
+    const pick = (opt) => {
+      list.classList.add('hidden');
+      input.value = opt.label;
+      this.store.changeMapping(node.id, opt.value === '@container'
+        ? { elType: EL_TYPES.CONTAINER, widgetType: null }
+        : { elType: EL_TYPES.WIDGET, widgetType: opt.value });
+    };
+
+    const renderList = (query) => {
+      const q = query.trim().toLowerCase();
+      const visible = q ? options.filter((o) => o.haystack.includes(q)) : options;
+      list.textContent = '';
+      if (!visible.length) {
+        list.appendChild(el('div', 'widget-picker-empty', t('insp.noResults')));
+        return visible;
+      }
+      let lastCategory = null;
+      for (const opt of visible) {
+        if (opt.category !== lastCategory) {
+          lastCategory = opt.category;
+          list.appendChild(el('div', 'widget-picker-group', opt.category));
+        }
+        const item = el('div', `widget-picker-item${opt.value === currentValue ? ' current' : ''}`);
+        item.appendChild(el('span', '', opt.label));
+        if (opt.tier !== 'free') item.appendChild(el('small', 'tier', opt.tier));
+        // mousedown fires before the input's blur, so the pick always lands.
+        item.addEventListener('mousedown', (e) => { e.preventDefault(); pick(opt); });
+        list.appendChild(item);
+      }
+      return visible;
+    };
+
+    let lastVisible = options;
+    input.addEventListener('focus', () => {
+      input.select();
+      lastVisible = renderList('');
+      list.classList.remove('hidden');
+    });
+    input.addEventListener('input', () => {
+      lastVisible = renderList(input.value);
+      list.classList.remove('hidden');
+    });
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && lastVisible.length) { e.preventDefault(); pick(lastVisible[0]); input.blur(); }
+      if (e.key === 'Escape') { input.value = currentLabel; list.classList.add('hidden'); input.blur(); }
+    });
+    input.addEventListener('blur', () => {
+      // Let a mousedown pick land first; then restore the label if nothing chosen.
+      setTimeout(() => { list.classList.add('hidden'); if (document.activeElement !== input) input.value = currentLabel; }, 120);
+    });
+    return wrap;
   }
 
   #contentSections(node) {
@@ -131,7 +204,7 @@ export class Inspector {
       ta.rows = 3;
       ta.value = c.text ?? '';
       ta.addEventListener('change', () => this.store.updateText(node.id, ta.value));
-      sections.push(this.#section('Text', wrapRow('Editable text', ta)));
+      sections.push(this.#section(t('insp.text'), wrapRow(t('insp.editableText'), ta)));
     }
 
     if (node.tag === 'a' || c.href !== undefined || node.mapping?.widgetType === 'button') {
@@ -140,7 +213,7 @@ export class Inspector {
       input.placeholder = 'https://…';
       input.value = c.href ?? '';
       input.addEventListener('change', () => this.store.updateLink(node.id, input.value));
-      sections.push(this.#section('Link', wrapRow('Destination URL', input)));
+      sections.push(this.#section(t('insp.link'), wrapRow(t('insp.destinationUrl'), input)));
     }
 
     if (node.mapping?.widgetType === 'image' || c.src) {
@@ -154,24 +227,24 @@ export class Inspector {
       }
       const input = document.createElement('input');
       input.type = 'url';
-      input.placeholder = 'Replace image URL…';
+      input.placeholder = 'https://…';
       input.value = c.src ?? '';
       input.addEventListener('change', () => this.store.replaceImage(node.id, input.value));
-      sections.push(this.#section('Image', fig, wrapRow('Image URL', input)));
+      sections.push(this.#section(t('insp.image'), fig, wrapRow(t('insp.imageUrl'), input)));
     }
 
     if (c.fields?.length) {
       const list = el('div', 'insp-row');
-      list.innerHTML = `<label>${c.fields.length} form field(s)</label>` +
-        c.fields.slice(0, 8).map((f) => `<div>· ${escapeHtml(f.label || f.name || f.type)} <small>(${escapeHtml(f.type)}${f.required ? ', required' : ''})</small></div>`).join('');
-      sections.push(this.#section('Form', list));
+      list.innerHTML = `<label>${escapeHtml(t('insp.formFields', { count: c.fields.length }))}</label>` +
+        c.fields.slice(0, 8).map((f) => `<div>· ${escapeHtml(f.label || f.name || f.type)} <small>(${escapeHtml(f.type)}${f.required ? `, ${escapeHtml(t('insp.required'))}` : ''})</small></div>`).join('');
+      sections.push(this.#section(t('insp.form'), list));
     }
 
     if (c.menu?.length) {
       const list = el('div', 'insp-row');
-      list.innerHTML = `<label>Menu items</label>` +
-        c.menu.slice(0, 10).map((m) => `<div>· ${escapeHtml(m.text)}${m.children?.length ? ` <small>(+${m.children.length} sub)</small>` : ''}</div>`).join('');
-      sections.push(this.#section('Menu', list));
+      list.innerHTML = `<label>${escapeHtml(t('insp.menuItems'))}</label>` +
+        c.menu.slice(0, 10).map((m) => `<div>· ${escapeHtml(m.text)}${m.children?.length ? ` <small>(${escapeHtml(t('insp.subItems', { count: m.children.length }))})</small>` : ''}</div>`).join('');
+      sections.push(this.#section(t('insp.menu'), list));
     }
     return sections;
   }
@@ -185,7 +258,7 @@ export class Inspector {
       const details = document.createElement('details');
       if (device === 'desktop') details.open = true;
       const summary = document.createElement('summary');
-      summary.textContent = `${device} (${keys.length} settings)`;
+      summary.textContent = t('insp.deviceSettings', { device, count: keys.length });
       details.appendChild(summary);
       const pre = document.createElement('pre');
       pre.style.cssText = 'font-size:10.5px;overflow:auto;max-height:160px;background:var(--bg-2);padding:8px;border-radius:6px';
@@ -193,26 +266,26 @@ export class Inspector {
       details.appendChild(pre);
       wrap.appendChild(details);
     }
-    if (!wrap.children.length) wrap.appendChild(el('div', '', 'No interpreted settings.'));
-    return this.#section('Elementor settings', wrap);
+    if (!wrap.children.length) wrap.appendChild(el('div', '', t('insp.noSettings')));
+    return this.#section(t('insp.settings'), wrap);
   }
 
   #warningsSection(node) {
     const wrap = el('div', 'insp-row');
     for (const w of node.warnings) wrap.appendChild(el('div', 'insp-warning', w));
-    return this.#section('Warnings', wrap);
+    return this.#section(t('insp.warnings'), wrap);
   }
 
   #actionsSection(node) {
     const actions = el('div', 'insp-actions');
     const removeBtn = document.createElement('button');
     removeBtn.className = node.hidden ? '' : 'danger';
-    removeBtn.textContent = node.hidden ? '↩ Restore element' : '🗑 Remove from output';
+    removeBtn.textContent = node.hidden ? t('insp.restore') : t('insp.remove');
     removeBtn.addEventListener('click', () => {
       if (node.hidden) this.store.restoreNode(node.id); else this.store.removeNode(node.id);
     });
     actions.appendChild(removeBtn);
-    return this.#section('Actions', actions);
+    return this.#section(t('insp.actions'), actions);
   }
 }
 

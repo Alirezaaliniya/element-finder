@@ -4,6 +4,7 @@
  * the produced artifacts.
  */
 
+import { t } from '../../../common/i18n.js';
 import { exportableElementCount } from '../../../engines/export/ExportEngine.js';
 
 export class ExportDialog {
@@ -28,7 +29,7 @@ export class ExportDialog {
 
     this.dialog.innerHTML = `
       <div class="dialog-head">
-        <span>Export — ${count} elements</span>
+        <span>${t('export.title', { count })}</span>
         <button data-close>✕</button>
       </div>
       <div class="dialog-body">
@@ -44,10 +45,10 @@ export class ExportDialog {
       </div>
       <div class="dialog-foot">
         <label style="margin-inline-end:auto;display:flex;gap:6px;align-items:center;font-size:12px;color:var(--muted)">
-          <input type="checkbox" data-skip-validation style="width:auto"> Skip validation errors
+          <input type="checkbox" data-skip-validation style="width:auto"> ${t('export.skipValidation')}
         </label>
-        <button data-close>Cancel</button>
-        <button class="primary" data-run>Export selected</button>
+        <button data-close>${t('export.cancel')}</button>
+        <button class="primary" data-run>${t('export.run')}</button>
       </div>`;
 
     for (const btn of this.dialog.querySelectorAll('[data-close]')) {
@@ -59,7 +60,7 @@ export class ExportDialog {
 
   async #run() {
     const checked = [...this.dialog.querySelectorAll('.export-format input:checked')].map((i) => i.value);
-    if (!checked.length) { this.toast('Pick at least one format.', 'error'); return; }
+    if (!checked.length) { this.toast(t('export.pickFormat'), 'error'); return; }
     const skipValidation = this.dialog.querySelector('[data-skip-validation]').checked;
     const progressEl = this.dialog.querySelector('[data-progress]');
     const runBtn = this.dialog.querySelector('[data-run]');
@@ -70,28 +71,28 @@ export class ExportDialog {
       if (!skipValidation) {
         const report = this.validationPanel.runValidation();
         if (!report.ok) {
-          progressEl.textContent = `Blocked: ${report.counts.error} validation error(s). Fix them below or tick "Skip validation errors".`;
+          progressEl.textContent = t('export.blocked', { count: report.counts.error });
           runBtn.disabled = false;
           return;
         }
       }
 
       for (const formatId of checked) {
-        progressEl.textContent = `Building ${formatId}…`;
+        progressEl.textContent = t('export.building', { format: formatId });
         const { artifacts } = await this.exportEngine.export(formatId, this.store.snapshot, {
           title: this.store.project?.name,
           skipValidation: true, // already validated above
           onProgress: ({ current, total, asset }) => {
-            progressEl.textContent = `Packaging assets ${current}/${total} — ${asset}`;
+            progressEl.textContent = t('export.packaging', { current, total, asset });
           },
         });
         for (const { filename, blob } of artifacts) downloadBlob(filename, blob);
       }
-      progressEl.textContent = 'Done — check your downloads.';
-      this.toast(`Exported ${checked.length} format(s).`);
+      progressEl.textContent = t('export.done');
+      this.toast(t('export.exported', { count: checked.length }));
     } catch (err) {
       progressEl.textContent = String(err?.message || err);
-      this.toast('Export failed — see dialog for details.', 'error');
+      this.toast(t('export.failed'), 'error');
     } finally {
       runBtn.disabled = false;
     }

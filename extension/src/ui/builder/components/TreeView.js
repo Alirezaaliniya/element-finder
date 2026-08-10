@@ -6,6 +6,7 @@
 
 import { EL_TYPES } from '../../../common/constants.js';
 import { escapeHtml } from '../../../common/utils.js';
+import { t } from '../../../common/i18n.js';
 import { isProWidget } from '../../../engines/mapping/widget-catalog.js';
 
 const ICONS = {
@@ -43,7 +44,7 @@ export class TreeView {
     this.root.appendChild(this.#renderNode(tree, 0));
     this.#syncSelection();
     const countEl = document.getElementById('tree-count');
-    if (countEl) countEl.textContent = `${this.store.visibleCount()} elements`;
+    if (countEl) countEl.textContent = t('tree.elements', { count: this.store.visibleCount() });
   }
 
   #renderNode(node, depth) {
@@ -83,8 +84,8 @@ export class TreeView {
     chip.className = 'tree-widget'
       + (widgetType && isProWidget(widgetType) ? ' pro' : '')
       + (conf < 0.5 && node.mapping?.elType === EL_TYPES.WIDGET ? ' low' : '');
-    chip.textContent = node.mapping?.elType === EL_TYPES.CONTAINER ? 'container' : (widgetType ?? '?');
-    chip.title = `confidence ${(conf * 100) | 0}% · source: ${node.mapping?.source ?? 'n/a'}`;
+    chip.textContent = node.mapping?.elType === EL_TYPES.CONTAINER ? t('tree.container') : (widgetType ?? '?');
+    chip.title = t('tree.chipTitle', { confidence: (conf * 100) | 0, source: node.mapping?.source ?? 'n/a' });
     row.appendChild(chip);
 
     row.addEventListener('click', () => this.store.select(node.id));

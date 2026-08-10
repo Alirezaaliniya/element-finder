@@ -4,6 +4,8 @@
  * with one click and trigger re-validation.
  */
 
+import { t } from '../../../common/i18n.js';
+
 export class ValidationPanel {
   /**
    * @param {HTMLElement} root
@@ -31,11 +33,13 @@ export class ValidationPanel {
     const head = document.createElement('div');
     head.className = 'validation-head';
     const title = document.createElement('strong');
-    title.textContent = report.ok ? '✓ Export-ready' : '✗ Issues found';
+    title.textContent = report.ok ? t('validation.ready') : t('validation.issues');
     title.style.color = report.ok ? 'var(--ok)' : 'var(--danger)';
     const counts = document.createElement('span');
     counts.className = 'vp-count';
-    counts.textContent = `${report.counts.error} errors · ${report.counts.warning} warnings · ${report.counts.info} notes`;
+    counts.textContent = t('validation.counts', {
+      errors: report.counts.error, warnings: report.counts.warning, info: report.counts.info,
+    });
     const close = document.createElement('button');
     close.className = 'close';
     close.textContent = '✕';
@@ -67,7 +71,7 @@ export class ValidationPanel {
     if (issue.fix) {
       const fixBtn = document.createElement('button');
       fixBtn.className = 'vp-fix';
-      fixBtn.textContent = `Fix: ${issue.fix.label}`;
+      fixBtn.textContent = t('validation.fix', { label: issue.fix.label });
       fixBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         // Route through the store so the fix is undoable and re-renders.

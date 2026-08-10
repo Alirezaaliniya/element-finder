@@ -1,6 +1,9 @@
 /** Popup controller — injects the content module and triggers extraction. */
 
 import { MSG, STORAGE_KEYS } from '../../common/constants.js';
+import { getLang, initI18n, setLang, t } from '../../common/i18n.js';
+
+await initI18n(document);
 
 const statusEl = document.getElementById('status');
 const buttons = {
@@ -8,6 +11,13 @@ const buttons = {
   pick: document.getElementById('pick-element'),
   builder: document.getElementById('open-builder'),
 };
+
+const langToggle = document.getElementById('lang-toggle');
+langToggle.textContent = getLang() === 'fa' ? 'EN' : 'فا';
+langToggle.addEventListener('click', async () => {
+  await setLang(getLang() === 'fa' ? 'en' : 'fa');
+  location.reload();
+});
 
 function setStatus(text, kind = 'idle') {
   statusEl.textContent = text;
@@ -34,13 +44,13 @@ async function ensureContentScript(tabId) {
     } catch { /* module still loading */ }
     await new Promise((r) => setTimeout(r, 100));
   }
-  throw new Error('Could not initialize on this page (restricted URL?)');
+  throw new Error(t('popup.initFailed'));
 }
 
 async function runCommand(commandType, pendingLabel) {
   const tab = await activeTab();
   if (!tab?.id || /^(chrome|edge|about|chrome-extension):/.test(tab.url ?? '')) {
-    setStatus('This page cannot be extracted (browser-internal URL).', 'error');
+    setStatus(t('popup.cannotExtract'), 'error');
     return;
   }
   setBusy(true);
@@ -48,9 +58,9 @@ async function runCommand(commandType, pendingLabel) {
   try {
     await ensureContentScript(tab.id);
     const res = await chrome.tabs.sendMessage(tab.id, { type: commandType });
-    if (res?.cancelled) { setStatus('Selection cancelled.', 'idle'); return; }
-    if (!res?.ok) throw new Error(res?.error || 'Extraction failed');
-    setStatus(`Extracted ${res.stats.nodesExtracted} elements — opening builder…`, 'ok');
+    if (res?.cancelled) { setStatus(t('popup.cancelled'), 'idle'); return; }
+    if (!res?.ok) throw new Error(res?.error || t('popup.extractFailed'));
+    setStatus(t('popup.extracted', { count: res.stats.nodesExtracted }), 'ok');
     window.close();
   } catch (err) {
     setStatus(String(err?.message || err), 'error');
@@ -59,7 +69,7 @@ async function runCommand(commandType, pendingLabel) {
   }
 }
 
-buttons.extract.addEventListener('click', () => runCommand(MSG.EXTRACT_PAGE, 'Analyzing page…'));
+buttons.extract.addEventListener('click', () => runCommand(MSG.EXTRACT_PAGE, t('popup.analyzing')));
 buttons.pick.addEventListener('click', async () => {
   // Close the popup so the user can interact with the page; the content
   // script keeps running and the background opens the builder when done.
@@ -82,8 +92,8 @@ buttons.builder.addEventListener('click', () => {
 chrome.storage.local.get(STORAGE_KEYS.LAST_STATUS).then((data) => {
   const s = data[STORAGE_KEYS.LAST_STATUS];
   if (!s || Date.now() - s.at > 5 * 60_000) return;
-  if (s.state === 'complete') setStatus(`Last run: ${s.nodes} elements from ${shortUrl(s.url)}`, 'ok');
-  if (s.state === 'failed') setStatus(`Last run failed: ${s.error}`, 'error');
+  if (s.state === 'complete') setStatus(t('popup.lastRun', { count: s.nodes, host: shortUrl(s.url) }), 'ok');
+  if (s.state === 'failed') setStatus(t('popup.lastRunFailed', { error: s.error }), 'error');
 });
 
 function shortUrl(url) {

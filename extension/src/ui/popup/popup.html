@@ -10,38 +10,39 @@
     <div class="logo">⚡</div>
     <div>
       <h1>Element Finder Studio</h1>
-      <p class="tagline">Web → Elementor extraction platform</p>
+      <p class="tagline" data-i18n="popup.tagline">Web → Elementor extraction platform</p>
     </div>
+    <button id="lang-toggle" class="lang-toggle" data-i18n-title="builder.langToggleTitle" title="Switch language / تغییر زبان">فا</button>
   </header>
 
   <main>
     <button id="extract-page" class="action primary">
       <span class="icon">⤓</span>
       <span>
-        <strong>Extract full page</strong>
-        <small>Analyze the whole page and open the builder</small>
+        <strong data-i18n="popup.extractFull">Extract full page</strong>
+        <small data-i18n="popup.extractFullSub">Analyze the whole page and open the builder</small>
       </span>
     </button>
 
     <button id="pick-element" class="action">
       <span class="icon">⌖</span>
       <span>
-        <strong>Pick an element</strong>
-        <small>Click any section on the page to extract just it</small>
+        <strong data-i18n="popup.pick">Pick an element</strong>
+        <small data-i18n="popup.pickSub">Click any section on the page to extract just it</small>
       </span>
     </button>
 
     <button id="open-builder" class="action">
       <span class="icon">▦</span>
       <span>
-        <strong>Open builder</strong>
-        <small>Projects, preview, validation &amp; export</small>
+        <strong data-i18n="popup.openBuilder">Open builder</strong>
+        <small data-i18n="popup.openBuilderSub">Projects, preview, validation &amp; export</small>
       </span>
     </button>
   </main>
 
   <footer>
-    <div id="status" class="status idle">Ready</div>
+    <div id="status" class="status idle" data-i18n="popup.ready">Ready</div>
   </footer>
 
   <script type="module" src="popup.js"></script>

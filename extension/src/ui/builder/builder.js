@@ -9,7 +9,11 @@
  */
 
 import { STORAGE_KEYS } from '../../common/constants.js';
+import { getLang, initI18n, setLang, t } from '../../common/i18n.js';
 import { aiAssist } from '../../ai/AiAssistService.js';
+
+// Localize BEFORE any component renders (top-level await, ESM).
+await initI18n(document);
 import { ValidationEngine } from '../../engines/validation/ValidationEngine.js';
 import { ExportEngine } from '../../engines/export/ExportEngine.js';
 import { ProjectStorageEngine } from '../../engines/storage/ProjectStorageEngine.js';
@@ -50,25 +54,35 @@ const $ = (id) => document.getElementById(id);
 
 $('btn-validate').addEventListener('click', () => {
   const report = validationPanel.runValidation();
-  toast(report.ok ? 'Validation passed — export-ready.' : `${report.counts.error} error(s), ${report.counts.warning} warning(s).`, report.ok ? '' : 'error');
+  toast(report.ok ? t('builder.validationPassed') : t('builder.validationIssues', {
+    errors: report.counts.error, warnings: report.counts.warning,
+  }), report.ok ? '' : 'error');
 });
 
 $('btn-save').addEventListener('click', saveProject);
 $('btn-version').addEventListener('click', async () => {
-  if (!store.project) { toast('Nothing to version yet.', 'error'); return; }
+  if (!store.project) { toast(t('builder.nothingToVersion'), 'error'); return; }
   await saveProject();
-  const label = prompt('Version label:', `v${new Date().toLocaleDateString()}`);
+  const label = prompt(t('builder.versionLabelPrompt'), `v${new Date().toLocaleDateString()}`);
   if (label === null) return;
   await storage.saveVersion(store.project.id, store.snapshot, label);
-  toast(`Version "${label}" frozen.`);
+  toast(t('builder.versionFrozen', { label }));
 });
 $('btn-projects').addEventListener('click', () => projectsPanel.open());
 $('btn-export').addEventListener('click', () => {
-  if (!store.snapshot) { toast('Nothing to export.', 'error'); return; }
+  if (!store.snapshot) { toast(t('builder.nothingToExport'), 'error'); return; }
   exportDialog.open();
 });
 $('btn-undo').addEventListener('click', () => store.undo());
 $('btn-redo').addEventListener('click', () => store.redo());
+
+$('btn-lang').textContent = getLang() === 'fa' ? 'EN' : 'فا';
+$('btn-lang').addEventListener('click', async () => {
+  await setLang(getLang() === 'fa' ? 'en' : 'fa');
+  // Full reload re-renders every component in the new language; the
+  // beforeunload guard still protects unsaved work.
+  location.reload();
+});
 
 for (const btn of document.querySelectorAll('.device-switch button')) {
   btn.addEventListener('click', () => {
@@ -78,9 +92,10 @@ for (const btn of document.querySelectorAll('.device-switch button')) {
   });
 }
 
+$('project-name').placeholder = t('builder.untitled');
 $('project-name').addEventListener('change', (e) => {
   if (store.project) {
-    store.project.name = e.target.value || 'Untitled project';
+    store.project.name = e.target.value || t('builder.untitled');
     store.dirty = true;
   }
 });
@@ -103,12 +118,16 @@ function refreshChrome() {
   $('project-name').value = store.project?.name ?? '';
   const meta = store.snapshot?.meta;
   $('project-meta').textContent = meta
-    ? `${meta.url} · extracted ${new Date(meta.extractedAt).toLocaleString()} · ${store.visibleCount()} elements`
+    ? t('builder.metaLine', {
+        url: meta.url,
+        date: new Date(meta.extractedAt).toLocaleString(getLang() === 'fa' ? 'fa-IR' : undefined),
+        count: store.visibleCount(),
+      })
     : '';
 }
 
 async function saveProject() {
-  if (!store.snapshot) { toast('Nothing to save.', 'error'); return; }
+  if (!store.snapshot) { toast(t('builder.nothingToSave'), 'error'); return; }
   if (!store.project?.id) {
     store.project = await storage.createProject($('project-name').value, store.snapshot);
   } else {
@@ -117,7 +136,7 @@ async function saveProject() {
     await storage.saveProject(store.project);
   }
   store.dirty = false;
-  toast('Project saved.');
+  toast(t('builder.projectSaved'));
   refreshChrome();
 }
 
@@ -138,7 +157,7 @@ async function boot() {
       await chrome.storage.local.remove(STORAGE_KEYS.LAST_SNAPSHOT);
       const project = await storage.createProject(snapshot.meta?.title, snapshot);
       store.loadProject(project);
-      toast(`Imported ${snapshot.stats?.nodesExtracted ?? '?'} elements from ${hostOf(snapshot.meta?.url)}.`);
+      toast(t('builder.imported', { count: snapshot.stats?.nodesExtracted ?? '?', host: hostOf(snapshot.meta?.url) }));
       // Surface extraction quality immediately.
       validationPanel.runValidation();
       return;

@@ -85,3 +85,16 @@ footer { padding: 10px 16px 14px; }
 .status.working { border-color: var(--accent); color: var(--text); }
 .status.ok { border-color: var(--ok); }
 .status.error { border-color: var(--danger); color: var(--danger); }
+
+/* ---- language toggle ---- */
+.lang-toggle {
+  margin-inline-start: auto;
+  font: 12px/1 system-ui, sans-serif;
+  color: var(--muted);
+  background: var(--panel);
+  border: 1px solid var(--accent-soft);
+  border-radius: 6px;
+  padding: 5px 9px;
+  cursor: pointer;
+}
+.lang-toggle:hover { color: var(--text); border-color: var(--accent); }

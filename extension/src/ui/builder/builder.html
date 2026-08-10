@@ -13,27 +13,29 @@
       <span id="project-meta" class="project-meta"></span>
     </div>
     <div class="toolbar">
-      <button id="btn-undo" title="Undo (Ctrl+Z)" disabled>↶</button>
-      <button id="btn-redo" title="Redo (Ctrl+Y)" disabled>↷</button>
+      <button id="btn-undo" data-i18n-title="builder.undoTitle" title="Undo (Ctrl+Z)" disabled>↶</button>
+      <button id="btn-redo" data-i18n-title="builder.redoTitle" title="Redo (Ctrl+Y)" disabled>↷</button>
       <span class="sep"></span>
       <div class="device-switch" role="group" aria-label="Preview device">
-        <button data-device="desktop" class="active" title="Desktop">🖥</button>
-        <button data-device="tablet" title="Tablet ≤1024px">📱</button>
-        <button data-device="mobile" title="Mobile ≤767px">📲</button>
+        <button data-device="desktop" class="active" data-i18n-title="builder.desktop" title="Desktop">🖥</button>
+        <button data-device="tablet" data-i18n-title="builder.tablet" title="Tablet ≤1024px">📱</button>
+        <button data-device="mobile" data-i18n-title="builder.mobile" title="Mobile ≤767px">📲</button>
       </div>
       <span class="sep"></span>
-      <button id="btn-validate">✓ Validate</button>
-      <button id="btn-save">💾 Save</button>
-      <button id="btn-version" title="Freeze current state as a version">🏷 Version</button>
-      <button id="btn-projects">📁 Projects</button>
-      <button id="btn-export" class="primary">⤓ Export</button>
+      <button id="btn-validate" data-i18n="builder.validate">✓ Validate</button>
+      <button id="btn-save" data-i18n="builder.save">💾 Save</button>
+      <button id="btn-version" data-i18n="builder.version" data-i18n-title="builder.versionTitle" title="Freeze current state as a version">🏷 Version</button>
+      <button id="btn-projects" data-i18n="builder.projects">📁 Projects</button>
+      <button id="btn-export" class="primary" data-i18n="builder.export">⤓ Export</button>
+      <span class="sep"></span>
+      <button id="btn-lang" data-i18n-title="builder.langToggleTitle" title="Switch language / تغییر زبان">فا</button>
     </div>
   </header>
 
   <main class="workspace">
     <aside class="pane pane-tree">
       <div class="pane-head">
-        <span>Structure</span>
+        <span data-i18n="builder.structure">Structure</span>
         <span id="tree-count" class="badge"></span>
       </div>
       <div id="tree" class="tree" tabindex="0"></div>
@@ -41,7 +43,7 @@
 
     <section class="pane pane-preview">
       <div class="pane-head">
-        <span>Preview</span>
+        <span data-i18n="builder.preview">Preview</span>
         <span id="preview-size" class="badge"></span>
       </div>
       <div class="preview-stage">
@@ -51,9 +53,9 @@
     </section>
 
     <aside class="pane pane-inspector">
-      <div class="pane-head"><span>Inspector</span></div>
+      <div class="pane-head"><span data-i18n="builder.inspector">Inspector</span></div>
       <div id="inspector" class="inspector">
-        <p class="empty">Select an element in the tree or preview.</p>
+        <p class="empty" data-i18n="insp.selectPrompt">Select an element in the tree or preview.</p>
       </div>
     </aside>
   </main>
