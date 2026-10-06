@@ -13,6 +13,7 @@
 import { BREAKPOINTS, DEVICE_SUFFIX, EL_TYPES, MAPPING_SOURCES } from '../../common/constants.js';
 import { compactObject, escapeHtml } from '../../common/utils.js';
 import { elementorId } from '../../common/utils.js';
+import { classicEquivalent } from '../mapping/widget-catalog.js';
 import { isResponsiveKey, resolveSettingKey } from './widget-controls.js';
 
 /* ------------------------------------------------------------------ *
@@ -302,12 +303,24 @@ const CONTAINER_HTML_TAGS = new Set(['header', 'footer', 'main', 'article', 'sec
 
 /**
  * @param {object} snapshot IR snapshot
- * @param {object} [options] { title, type: 'page'|'section'|'container' }
+ * @param {object} [options]
+ * @param {string} [options.title]
+ * @param {'page'|'section'|'container'} [options.type]
+ * @param {boolean} [options.keepGlobals=false] keep kit global references
+ *        (`__globals__`) next to the resolved values. Only useful when the
+ *        template is imported into the SAME site: a missing global makes
+ *        Elementor skip the style entirely.
+ * @param {'keep'|'classic'} [options.atomic='keep'] export atomic (V4)
+ *        elements as atomic JSON, or convert them to classic widgets for
+ *        sites without Elementor 4.
  * @returns {object} Elementor template JSON (importable .json file content)
  */
 export function exportElementorTemplate(snapshot, options = {}) {
   const ctx = {
     assetsById: new Map((snapshot.assets ?? []).map((a) => [a.id, a])),
+    keepGlobals: !!options.keepGlobals,
+    atomic: options.atomic === 'classic' ? 'classic' : 'keep',
+    usedGlobalClassIds: new Set(),
   };
   // Full-page scope: <body> is just a host, its children become the
   // template's top-level containers. Element scope: the picked element IS
@@ -315,27 +328,68 @@ export function exportElementorTemplate(snapshot, options = {}) {
   // exports as the single root container — matching how Elementor exports a
   // section/container template (type "container").
   const isElementScope = snapshot.meta?.scope === 'element';
-  const rootChildren = visibleChildren(snapshot.tree);
+  // On an Elementor page the template is the Elementor documents' content
+  // (header + page + footer elements); theme chrome between <body> and the
+  // documents (wrappers, notices, plugin overlays) is not part of it.
+  const nativeTop = !isElementScope && snapshot.meta?.elementor ? shallowestNative(snapshot.tree) : [];
+  const rootChildren = nativeTop.length ? nativeTop : visibleChildren(snapshot.tree);
   const content = (isElementScope || !rootChildren.length)
     ? [convertNode(snapshot.tree, ctx, false)].filter(Boolean)
     : rootChildren.map((n) => convertNode(n, ctx, false)).filter(Boolean);
 
-  return {
+  const template = {
     content,
     page_settings: buildPageSettings(snapshot),
     version: '0.4',
     title: options.title || snapshot.meta.title || 'Imported page',
     type: options.type || (isElementScope ? 'container' : 'page'),
   };
+  // Atomic global classes travel as a snapshot Elementor merges on import
+  // (modules/global-classes/utils/template-library-global-classes.php).
+  const globalClasses = globalClassesSnapshot(snapshot, ctx.usedGlobalClassIds);
+  if (globalClasses) template.global_classes = globalClasses;
+  return template;
+}
+
+function globalClassesSnapshot(snapshot, usedIds) {
+  if (!usedIds.size) return null;
+  const items = {};
+  const order = [];
+  for (const def of Object.values(snapshot.globals?.atomicClasses ?? {})) {
+    if (!usedIds.has(def.id)) continue;
+    items[def.id] = def;
+    order.push(def.id);
+  }
+  return order.length ? { items, order } : null;
 }
 
 function visibleChildren(node) {
   return (node?.children ?? []).filter((c) => !c.hidden);
 }
 
+/** Top-most native Elementor elements, in document order. */
+function shallowestNative(root) {
+  const out = [];
+  (function walk(node) {
+    for (const child of visibleChildren(node)) {
+      if (child.semantic?.elementorNative) out.push(child);
+      else walk(child);
+    }
+  })(root);
+  return out;
+}
+
 function convertNode(node, ctx, isInner) {
   if (!node || node.hidden || !node.mapping) return null;
-  const { elType, widgetType } = node.mapping;
+  const { elType } = node.mapping;
+  let { widgetType } = node.mapping;
+  const native = node.semantic?.elementorNative;
+
+  if (native?.atomic && node.mapping.source === MAPPING_SOURCES.ELEMENTOR_NATIVE) {
+    if (ctx.atomic === 'keep') return asAtomic(node, ctx, isInner);
+    // Classic conversion: the generic adapters + computed settings path.
+    if (elType === EL_TYPES.WIDGET) widgetType = classicEquivalent(widgetType) ?? 'html';
+  }
 
   if (elType === EL_TYPES.CONTAINER) return asContainer(node, ctx, isInner);
 
@@ -355,14 +409,22 @@ function convertNode(node, ctx, isInner) {
     return asContainer(node, ctx, isInner);
   }
 
-  const contentSettings = adapter ? adapter(node, ctx) : defaultWidgetContent(node);
+  // Native widgets read back through their render template carry exact
+  // content; the generic adapters would only add guessed defaults.
+  const exactContent = nativeContent(node, widgetType);
+  const contentSettings = Object.keys(exactContent).length
+    ? exactContent
+    : adapter ? adapter(node, ctx) : defaultWidgetContent(node);
+  // Style: the exact settings recovered from Elementor's generated CSS when
+  // available (native, not re-mapped), else the computed-style translation.
   // Native data-settings (JS-driven config: background_background, _position,
   // menu layout, swiper options) are authoritative — overlay them last.
   const settings = withCommon(node, {
     ...contentSettings,
-    ...styleSettings(node, widgetType),
+    ...(exactSettings(node, widgetType, ctx) ?? styleSettings(node, widgetType)),
     ...nativeSettings(node),
   }, widgetType);
+  applyRepeaterStyles(node, settings);
   // Native skin variants (e.g. loop-carousel.product) export Elementor-style.
   if (node.semantic.elementorNative?.skin) settings._skin = node.semantic.elementorNative.skin;
 
@@ -379,12 +441,48 @@ function convertNode(node, ctx, isInner) {
   // containers. The DOM nests slides under swiper/viewport wrappers — flatten
   // to the native Elementor containers, which is what Elementor's own export
   // stores as the nested widget's elements.
-  if (children.length && isNestedWidget(widgetType)) {
+  if (isNestedWidget(widgetType)) {
     const slides = nativeChildContainers(node);
-    element.elements = (slides.length ? slides : children)
-      .map((c) => convertNode(c, ctx, true)).filter(Boolean);
+    element.elements = alignNestedItems(
+      widgetType,
+      element.settings,
+      (slides.length ? slides : children).map((c) => ({ node: c, el: convertNode(c, ctx, true) })).filter((x) => x.el),
+    );
   }
   return element;
+}
+
+/** Repeater that a nested widget's child containers correspond to, 1:1. */
+const NESTED_ITEMS_KEY = {
+  'nested-tabs': 'tabs',
+  'nested-accordion': 'items',
+  'nested-carousel': 'carousel_items',
+  'mega-menu': 'menu_items',
+};
+
+/**
+ * Elementor requires one child container per repeater item. Items whose panel
+ * is not rendered (a mega-menu item without dropdown content) still own an
+ * empty container; rendered panels carry their 1-based `data-tab-index`.
+ */
+function alignNestedItems(widgetType, settings, converted) {
+  const items = settings[NESTED_ITEMS_KEY[widgetType]];
+  if (!Array.isArray(items) || items.length <= converted.length) return converted.map((x) => x.el);
+  const slots = new Array(items.length).fill(null);
+  const unplaced = [];
+  for (const x of converted) {
+    const index = Number(x.node.attrs?.['data-tab-index']) - 1;
+    if (Number.isInteger(index) && index >= 0 && index < slots.length && !slots[index]) slots[index] = x.el;
+    else unplaced.push(x.el);
+  }
+  for (let i = 0; i < slots.length; i++) {
+    if (!slots[i]) slots[i] = unplaced.shift() ?? emptyContainer();
+  }
+  return slots;
+}
+
+function emptyContainer() {
+  return { id: elementorId(), settings: {}, elements: [], isInner: true, elType: 'container' };
 }
 
 /** Shallowest native Elementor containers below a node (without descending into them). */
@@ -403,9 +501,11 @@ function nativeChildContainers(node) {
 }
 
 function asContainer(node, ctx, isInner) {
+  const exact = exactSettings(node, null, ctx);
+  const base = exact ? { ...exact, ...containerTag(node) } : containerSettings(node);
   return {
     id: node.id,
-    settings: compactObject(withCommon(node, { ...containerSettings(node), ...nativeSettings(node) }, null)),
+    settings: compactObject(withCommon(node, { ...base, ...nativeSettings(node) }, null)),
     elements: visibleChildren(node).map((c) => convertNode(c, ctx, true)).filter(Boolean),
     isInner,
     elType: 'container',
@@ -414,7 +514,94 @@ function asContainer(node, ctx, isInner) {
 
 /** Original Elementor data-settings for native elements (sparse, frontend-only). */
 function nativeSettings(node) {
-  return node.semantic.elementorNative?.settings ?? {};
+  const native = node.semantic.elementorNative;
+  if (!native?.settings || native.atomic) return {};
+  return native.settings;
+}
+
+/** Content read back through the native widget's render template. */
+function nativeContent(node, widgetType) {
+  const native = node.semantic?.elementorNative;
+  if (!native?.content || native.atomic || node.mapping?.source !== MAPPING_SOURCES.ELEMENTOR_NATIVE) return {};
+  if (widgetType !== native.widgetType) return {};
+  return native.content;
+}
+
+/**
+ * Settings recovered from the source page's generated CSS by the Elementor
+ * Native Engine — exact control names and values, per breakpoint. Used only
+ * while the node keeps its native mapping: a user re-map invalidates them.
+ */
+function exactSettings(node, widgetType, ctx) {
+  const native = node.semantic?.elementorNative;
+  const exact = native?.exact;
+  if (!exact || native.atomic || node.mapping?.source !== MAPPING_SOURCES.ELEMENTOR_NATIVE) return null;
+  if (widgetType && widgetType !== native.widgetType) return null;
+  // A widget type the controls map does not know (third-party, newer plugin)
+  // has no reversed settings; the computed-style path is better than nothing.
+  if (!exact.controlsKnown && !exact.customCss) return null;
+  const out = exact.controlsKnown ? { ...exact.settings } : styleSettings(node, widgetType);
+  if (ctx.keepGlobals && Object.keys(exact.globals ?? {}).length) out.__globals__ = { ...exact.globals };
+  if (exact.customCss) out.custom_css = exact.customCss;
+  return out;
+}
+
+/**
+ * Repeater item styles (`{{CURRENT_ITEM}}` selectors) belong to the item with
+ * the same `_id`; adapters keep source item ids where the DOM exposes them.
+ */
+function applyRepeaterStyles(node, settings) {
+  const repeaters = node.semantic?.elementorNative?.exact?.repeaters;
+  if (!repeaters) return;
+  for (const [name, byItem] of Object.entries(repeaters)) {
+    const items = settings[name];
+    if (!Array.isArray(items)) continue;
+    for (const item of items) {
+      if (item?._id && byItem[item._id]) Object.assign(item, byItem[item._id]);
+    }
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Atomic (V4) elements
+ * ------------------------------------------------------------------ */
+
+function asAtomic(node, ctx, isInner) {
+  const native = node.semantic.elementorNative;
+  const data = native.atomicData ?? { settings: {}, styles: {}, classIds: [] };
+  const { __svgMarkup: svgMarkup, ...settings } = data.settings ?? {};
+
+  // e-svg's file URL is not recoverable from the page; keep the drawing.
+  if (native.widgetType === 'e-svg') {
+    return {
+      id: node.id,
+      settings: compactObject({ html: svgMarkup ?? node.content.svgMarkup ?? '' }),
+      elements: [],
+      isInner: false,
+      widgetType: 'html',
+      elType: 'widget',
+    };
+  }
+
+  if (data.classIds?.length) {
+    settings.classes = { $$type: 'classes', value: [...data.classIds] };
+    for (const id of data.classIds) if (id.startsWith('g-')) ctx.usedGlobalClassIds.add(id);
+  }
+
+  const isWidget = native.elType === 'widget';
+  const element = {
+    id: node.id,
+    elType: isWidget ? 'widget' : native.elType,
+    settings,
+    styles: data.styles ?? {},
+    editor_settings: [],
+    version: '0.0',
+    isLocked: false,
+    elements: isWidget ? [] : visibleChildren(node).map((c) => convertNode(c, ctx, true)).filter(Boolean),
+    isInner: isWidget ? false : isInner,
+  };
+  if (isWidget) element.widgetType = native.widgetType;
+  return element;
 }
 
 /**
@@ -425,6 +612,8 @@ function nativeSettings(node) {
  * with them the page-level custom CSS this exporter also emits.
  */
 function withCommon(node, settings, widgetType = null) {
+  // Hidden on desktop at extraction time (Elementor responsive visibility).
+  if (node.hiddenOn?.includes('desktop') && !settings.hide_desktop) settings.hide_desktop = 'hidden-desktop';
   const classes = (node.customClasses ?? []).join(' ').trim();
   const classKey = resolveSettingKey('_css_classes', widgetType);
   if (classes && classKey && !settings[classKey]) settings[classKey] = classes;
@@ -443,7 +632,7 @@ function firstAssetUrl(node, ctx, types) {
 }
 
 function isNestedWidget(widgetType) {
-  return ['nested-tabs', 'nested-accordion', 'nested-carousel'].includes(widgetType);
+  return ['nested-tabs', 'nested-accordion', 'nested-carousel', 'mega-menu', 'off-canvas'].includes(widgetType);
 }
 
 function containerSettings(node) {
@@ -451,9 +640,13 @@ function containerSettings(node) {
   // Containers sized by the source page: preserve percentage-ish widths.
   const w = node.styles.desktop?.width;
   if (w && w.endsWith('%')) out.width = { unit: '%', size: parseFloat(w), sizes: [] };
-  // A <header>/<nav>/<footer> section keeps its landmark tag on import.
-  if (CONTAINER_HTML_TAGS.has(node.tag)) out.html_tag = node.tag;
+  Object.assign(out, containerTag(node));
   return compactObject(out);
+}
+
+/** A <header>/<nav>/<footer> section keeps its landmark tag on import. */
+function containerTag(node) {
+  return CONTAINER_HTML_TAGS.has(node.tag) ? { html_tag: node.tag } : {};
 }
 
 /**

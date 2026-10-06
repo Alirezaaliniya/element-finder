@@ -202,6 +202,88 @@ snapB.tree.children[0].children[0].content.text = 'Changed';
 const diff = ProjectStorageEngine.compareSnapshots(snap, snapB);
 check(diff.contentChanged.length >= 1 && diff.added.length === 0, 'version diff: ' + diff.summary);
 
+// --- Elementor: raw CSS parser + Pro custom-CSS regions --------------------------------
+const { parseCss, parseCssWithRegions } = await import('./src/engines/elementor/css-text.js');
+const postCss = '.elementor-9 .elementor-element.elementor-element-ab12cd3 .elementor-heading-title{color:var( --e-global-color-accent );font-size:40px;}'
+  + '@media(max-width:767px){.elementor-9 .elementor-element.elementor-element-ab12cd3 .elementor-heading-title{font-size:26px;}}'
+  + '/* Start custom CSS for heading, class: .elementor-element-ab12cd3 */.elementor-9 .elementor-element.elementor-element-ab12cd3 .elementor-heading-title{ letter-spacing: 2px; }/* End custom CSS */'
+  + '.x{background:url("data:image/svg+xml;utf8,<svg a=\'1;2\'/>")}';
+const parsed = parseCssWithRegions(postCss);
+check(parsed.rules.length === 4, 'css parser rule count: ' + parsed.rules.length);
+check(parsed.rules[1].media === '(max-width:767px)', 'css parser media');
+check(parsed.rules[2].region?.elementId === 'ab12cd3', 'css parser element region');
+check(parsed.regions[0]?.text.includes('letter-spacing: 2px'), 'css region text verbatim');
+check(parseCss('.x{background:url("data:a;b")}')[0].decls[0].value === 'url("data:a;b")', 'css parser keeps ; inside strings');
+
+// --- Elementor: reverse CSS through the real controls map -------------------------------
+const { readFileSync } = await import('node:fs');
+const controlsMap = JSON.parse(readFileSync(new URL('./src/engines/elementor/data/controls-map.json', import.meta.url), 'utf8'));
+const { ControlsIndex } = await import('./src/engines/elementor/controls-index.js');
+const { reverseElement, deviceForMedia } = await import('./src/engines/elementor/css-reverse.js');
+const cindex = new ControlsIndex(controlsMap);
+const headingStack = cindex.stackFor('widget', 'heading');
+const rulesFor = (css, id) => parseCss(css).flatMap((rule) => rule.selectors.filter((s) => s.includes(`elementor-element-${id}`)).map((selector) => ({ selector, rule })));
+const rev = reverseElement({
+  stack: headingStack, elementId: 'ab12cd3', rules: rulesFor(postCss, 'ab12cd3'),
+  breakpoints: controlsMap.breakpoints, varLookup: (n) => (n === '--e-global-color-accent' ? '#61CE70' : ''),
+});
+check(rev.settings.typography_font_size?.size === 40, 'reverse: font size');
+check(rev.settings.typography_font_size_mobile?.size === 26, 'reverse: mobile font size');
+check(rev.settings.typography_typography === 'custom', 'reverse: typography switch from condition');
+check(rev.settings.title_color === '#61CE70' && rev.globals.title_color === 'globals/colors?id=accent', 'reverse: global colour');
+check(!rev.leftoverCss, 'reverse: nothing left over (region excluded): ' + rev.leftoverCss);
+check(deviceForMedia('(min-width:768px)', controlsMap.breakpoints) === 'desktop', 'device: min-width above mobile is desktop');
+check(deviceForMedia('(max-width:1024px) and (min-width:768px)', controlsMap.breakpoints) === 'tablet', 'device: ranged tablet');
+
+const containerStack = cindex.stackFor('container');
+const crev = reverseElement({
+  stack: containerStack, elementId: 'c0ffee1',
+  rules: rulesFor('.elementor-9 .elementor-element.elementor-element-c0ffee1{--display:flex;--flex-direction:row;--container-widget-width:calc( ( 1 - var( --container-widget-flex-grow ) ) * 100% );--container-widget-height:100%;--container-widget-flex-grow:1;--container-widget-align-self:stretch;--flex-wrap-mobile:wrap;--align-items:center;--gap:5px 5px;--row-gap:5px;--column-gap:5px;}'
+    + '.elementor-9 .elementor-element.elementor-element-c0ffee1.e-con{--order:-99999 /* order start hack */;}', 'c0ffee1'),
+  breakpoints: controlsMap.breakpoints, classes: ['e-con-full'],
+});
+check(crev.settings.flex_direction === 'row', 'reverse container: flex_direction despite overridden widget-width');
+check(crev.settings.flex_align_items === 'center', 'reverse container: align items');
+check(crev.settings.flex_gap?.row === '5', 'reverse container: gap');
+check(crev.settings._flex_order === 'start', 'reverse container: dictionary value with comment');
+check(crev.settings.content_width === 'full', 'reverse container: prefix_class');
+
+// --- Elementor atomic: CSS -> typed style props ------------------------------------------
+const { declsToAtomicProps } = await import('./src/engines/elementor/atomic.js');
+const atomicSchema = controlsMap.atomicStyleSchema;
+const ap = declsToAtomicProps([
+  { prop: 'color', value: '#F47421' }, { prop: 'font-size', value: '34px' }, { prop: 'font-weight', value: '800' },
+  { prop: 'padding-block-start', value: '10px' }, { prop: 'padding-block-end', value: '10px' },
+  { prop: 'padding-inline-start', value: '24px' }, { prop: 'padding-inline-end', value: '24px' },
+  { prop: 'background-color', value: '#222' }, { prop: 'text-align', value: 'left' }, { prop: 'cursor', value: 'grab' },
+], atomicSchema);
+check(ap.props.color?.$$type === 'color' && ap.props['font-size']?.value.size === 34, 'atomic: color + size');
+check(ap.props.padding?.$$type === 'dimensions' && ap.props.padding.value['inline-start'].value.size === 24, 'atomic: logical padding');
+check(ap.props.background?.value.color.value === '#222', 'atomic: background colour');
+check(!ap.props['text-align'] && ap.rest.some((d) => d.prop === 'text-align'), 'atomic: enum violation goes to custom css');
+
+// --- Elementor atomic export ---------------------------------------------------------------
+const atomicSnap = {
+  meta: { title: 'A', scope: 'element', url: 'https://x.test/' },
+  assets: [],
+  globals: { atomicClasses: { card: { id: 'g-1234567', label: 'card', type: 'class', variants: [] } } },
+  tree: {
+    id: 'f1e2d3c', tag: 'section', role: 'container', children: [
+      { id: 'a1b2c3d', tag: 'h3', role: 'widget', children: [], content: {}, settings: { desktop: {} }, styles: { desktop: {} }, attrs: {}, customClasses: [],
+        semantic: { elementorNative: { elType: 'widget', widgetType: 'e-heading', atomic: true, atomicData: { settings: { tag: { $$type: 'string', value: 'h3' } }, styles: {}, classIds: ['e-a1b2c3d-1111111'] } } },
+        mapping: { elType: 'widget', widgetType: 'e-heading', source: 'elementor-native' } },
+    ],
+    content: {}, settings: { desktop: {} }, styles: { desktop: {} }, attrs: {}, customClasses: [],
+    semantic: { elementorNative: { elType: 'e-flexbox', atomic: true, atomicData: { settings: {}, styles: {}, classIds: ['g-1234567'] } } },
+    mapping: { elType: 'container', widgetType: null, source: 'elementor-native' },
+  },
+};
+const atomicTpl = exportElementorTemplate(atomicSnap);
+check(atomicTpl.content[0].elType === 'e-flexbox' && atomicTpl.content[0].elements[0].widgetType === 'e-heading', 'atomic export structure');
+check(atomicTpl.global_classes?.order?.[0] === 'g-1234567', 'atomic export global classes snapshot');
+const classicTpl = exportElementorTemplate(atomicSnap, { atomic: 'classic' });
+check(classicTpl.content[0].elType === 'container' && classicTpl.content[0].elements[0].widgetType === 'heading', 'atomic -> classic conversion');
+
 if (failures) {
   console.error(`\n${failures} CHECK(S) FAILED`);
   process.exit(1);

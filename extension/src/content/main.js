@@ -7,12 +7,7 @@
 import { MSG } from '../common/constants.js';
 import { rootLogger } from '../common/Logger.js';
 import { ExtractionPipeline } from '../core/ExtractionPipeline.js';
-import { DomAnalysisEngine } from '../engines/dom/DomAnalysisEngine.js';
-import { ContentExtractionEngine } from '../engines/content/ContentExtractionEngine.js';
-import { CssInterpretationEngine } from '../engines/css/CssInterpretationEngine.js';
-import { ResponsiveAnalysisEngine } from '../engines/responsive/ResponsiveAnalysisEngine.js';
-import { AssetCollectionEngine } from '../engines/assets/AssetCollectionEngine.js';
-import { WidgetMappingEngine } from '../engines/mapping/WidgetMappingEngine.js';
+import { buildPhases } from '../core/phases.js';
 import { aiAssist } from '../ai/AiAssistService.js';
 import { ElementPicker } from './ElementPicker.js';
 
@@ -21,14 +16,7 @@ const picker = new ElementPicker();
 let running = false;
 
 function buildPipeline() {
-  return new ExtractionPipeline([
-    { name: DomAnalysisEngine.phaseName, engine: new DomAnalysisEngine() },
-    { name: ContentExtractionEngine.phaseName, engine: new ContentExtractionEngine() },
-    { name: CssInterpretationEngine.phaseName, engine: new CssInterpretationEngine() },
-    { name: ResponsiveAnalysisEngine.phaseName, engine: new ResponsiveAnalysisEngine() },
-    { name: AssetCollectionEngine.phaseName, engine: new AssetCollectionEngine() },
-    { name: WidgetMappingEngine.phaseName, engine: new WidgetMappingEngine({ aiAssist }) },
-  ]);
+  return new ExtractionPipeline(buildPhases({ aiAssist }));
 }
 
 async function extract(rootElement) {

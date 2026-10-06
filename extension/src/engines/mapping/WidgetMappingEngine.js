@@ -93,6 +93,13 @@ export class WidgetMappingEngine {
   mapNode(node) {
     // 1) Elementor-native passthrough -------------------------------------
     const native = node.semantic.elementorNative;
+    if (native?.atomic) {
+      // Atomic containers (e-flexbox / e-div-block / e-tabs…) are containers;
+      // the atomic type travels in semantic.elementorNative for the exporter.
+      return native.elType === 'widget'
+        ? decision(EL_TYPES.WIDGET, native.widgetType, widgetInfo(native.widgetType) ? 1 : 0.8, MAPPING_SOURCES.ELEMENTOR_NATIVE)
+        : decision(EL_TYPES.CONTAINER, null, 1, MAPPING_SOURCES.ELEMENTOR_NATIVE);
+    }
     if (native) {
       if (native.widgetType && widgetInfo(native.widgetType)) {
         return decision(EL_TYPES.WIDGET, native.widgetType, 1, MAPPING_SOURCES.ELEMENTOR_NATIVE);

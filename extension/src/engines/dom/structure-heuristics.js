@@ -5,10 +5,11 @@
  */
 
 import { NODE_ROLES } from '../../common/constants.js';
+import { detectAtomic } from '../elementor/atomic.js';
 
 const IGNORED_TAGS = new Set([
   'script', 'style', 'noscript', 'template', 'meta', 'link', 'base', 'title',
-  'head', 'param', 'track',
+  'head', 'param', 'track', 'br', 'wbr',
 ]);
 
 const WIDGETISH_TAGS = new Set([
@@ -41,18 +42,51 @@ export function shouldSkipElement(el, style) {
   if (isIgnoredTag(tag)) return true;
   if (el.id && NOISE_IDS.has(el.id)) return true;
   if (el.hasAttribute('data-ef-picker')) return true;
+  // PHP notices printed into the page by Xdebug.
+  if (el.classList.contains('xdebug-error')) return true;
   // Accessibility-only elements (visually clipped off-screen).
   const cl = el.classList;
   if (cl.contains('screen-reader-text') || cl.contains('sr-only') ||
       cl.contains('visually-hidden') || cl.contains('skip-link') ||
       cl.contains('elementor-screen-only')) return true;
-  if (style.display === 'none' || style.visibility === 'hidden') return true;
+  if (style.display === 'none') {
+    // Elementor responsive visibility: an element hidden only on desktop is
+    // the tablet/mobile variant of a section (mobile header, mobile menu) and
+    // must be kept — it exports with `hide_desktop`. Closed panels of nested
+    // widgets (mega-menu dropdowns, inactive tabs, carousel slides) are
+    // hidden by interaction state and are part of the design too.
+    return !isResponsivelyHidden(el) && !isNestedPanel(el);
+  }
+  // Entrance animations keep content `visibility:hidden` until it scrolls
+  // into view (Elementor's .elementor-invisible, WOW/AOS, animation plugins).
+  // That is a transient state, not a design decision.
+  if (style.visibility === 'hidden' && !isAnimationPending(el)) return true;
   // Decorative/measurement helpers that render nothing.
   const rect = el.getBoundingClientRect();
   if (rect.width === 0 && rect.height === 0 && !el.childElementCount && !el.textContent?.trim()) {
     return true;
   }
   return false;
+}
+
+const ANIMATION_PENDING_SELECTOR =
+  '.elementor-invisible, .wow, [data-aos], [data-animentor], .animentor-el, [data-sal], [data-scroll], .animate__animated';
+
+/** Hidden only until a scroll/entrance animation runs (self or an ancestor). */
+function isAnimationPending(el) {
+  // Elementor-native elements are never hidden by design via visibility.
+  if (el.hasAttribute('data-element_type')) return true;
+  return !!el.closest?.(ANIMATION_PENDING_SELECTOR);
+}
+
+/** A native container living inside a (nested) Elementor widget. */
+function isNestedPanel(el) {
+  return el.getAttribute('data-element_type') === 'container' && !!el.parentElement?.closest('[data-widget_type]');
+}
+
+/** Hidden on the current (desktop) viewport by Elementor's responsive classes only. */
+export function isResponsivelyHidden(el) {
+  return el.classList.contains('elementor-hidden-desktop') && el.hasAttribute('data-element_type');
 }
 
 /**
@@ -62,6 +96,13 @@ export function shouldSkipElement(el, style) {
  */
 export function classifyRole(el, style) {
   const tag = el.tagName.toLowerCase();
+
+  // Elementor structure is authoritative: a native container stays a
+  // container even when its children happen to look like rich text.
+  const elType = el.getAttribute('data-element_type');
+  if (elType && elType !== 'widget' && (el.classList.contains('e-con') || /^(container|section|column|e-)/.test(elType))) {
+    return NODE_ROLES.CONTAINER;
+  }
 
   if (WIDGETISH_TAGS.has(tag)) return NODE_ROLES.WIDGET;
   if (tag === 'a') {
@@ -171,6 +212,8 @@ const FRAMEWORK_CLASS = [
   /^page-/, /^post-\d/, /^attachment-/, /^size-/, /^align(none|left|right|center)$/,
   /^current[-_]/, /^sub-menu$/, /^children$/, /^lazyload(ed|ing)?$/,
   /^(row|col|col-\d|d-flex|d-block|container|container-fluid)$/,
+  // Added at render time by animation plugins, not authored.
+  /^animentor-/, /^aos-/, /^wow$/, /^sal-/,
 ];
 
 export function customClassTokens(el) {
@@ -233,7 +276,9 @@ export function readLayout(style) {
 /** Detect Elementor source markup for high-fidelity passthrough mapping. */
 export function detectElementorNative(el) {
   const elType = el.getAttribute('data-element_type');
-  if (!elType) return null;
+  // Atomic (V4) elements render `data-element_type="e-flexbox"`; atomic
+  // widgets render no wrapper at all and are recognised by base classes.
+  if (!elType || /^e-/.test(elType)) return detectAtomic(el);
   const native = { elType };
   const widgetType = el.getAttribute('data-widget_type');
   if (widgetType) {

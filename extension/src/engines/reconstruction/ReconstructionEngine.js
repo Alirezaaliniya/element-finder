@@ -14,6 +14,7 @@
 import { BREAKPOINT_MAX_WIDTH, BREAKPOINTS, EL_TYPES } from '../../common/constants.js';
 import { escapeHtml, findNode } from '../../common/utils.js';
 import { CONTAINERISH_WIDGETS, placeholder, WIDGET_RENDERERS } from './widget-renderers.js';
+import { classicEquivalent } from '../mapping/widget-catalog.js';
 
 /** Raw style properties replayed onto preview elements (fidelity allowlist). */
 const PREVIEW_PROPS = [
@@ -111,7 +112,8 @@ ${bodyHtml}
       return `<div class="${cls('ef-container')}" data-ef-id="${node.id}">${helpers.renderChildren(node)}</div>`;
     }
 
-    const renderer = WIDGET_RENDERERS[mapping.widgetType];
+    // Atomic (V4) widgets preview through their classic equivalent.
+    const renderer = WIDGET_RENDERERS[mapping.widgetType] ?? WIDGET_RENDERERS[classicEquivalent(mapping.widgetType)];
     let inner;
     if (renderer) {
       try { inner = renderer(node, helpers); } catch { inner = placeholder(mapping.widgetType, 'render error'); }
@@ -172,7 +174,8 @@ const STYLE_SOURCE_PICKERS = {
 
 /** Shallowest descendant matching the widget's style-source picker. */
 function findStyleSource(node) {
-  const picker = STYLE_SOURCE_PICKERS[node.mapping?.widgetType];
+  const type = node.mapping?.widgetType;
+  const picker = STYLE_SOURCE_PICKERS[type] ?? STYLE_SOURCE_PICKERS[classicEquivalent(type)];
   if (!picker) return null;
   const queue = [...(node.children ?? [])];
   while (queue.length) {

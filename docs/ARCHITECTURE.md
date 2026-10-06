@@ -61,7 +61,11 @@ the node-id → Element map):
 | 3 | **CSS Interpretation** (`engines/css`) | curated computed-style capture (allowlist of ~60 props) → Elementor settings: spacing, typography, sizing, borders, radius, shadows, backgrounds (color/image/gradient), positioning, flex container/item settings; page palette + font tokens |
 | 4 | **Responsive Analysis** (`engines/responsive`) | StylesheetIndex buckets media-query rules into Elementor breakpoints (tablet ≤1024, mobile ≤767); per-node override resolution through the *same* converter as desktop; diffed against baseline; visibility → `hide_tablet`/`hide_mobile` |
 | 5 | **Asset Collection** (`engines/assets`) | deduplicated catalog: `<img>`+srcset, inline SVG, icon-font glyphs, video+poster, embeds, CSS backgrounds per device, `@font-face` fonts, favicon |
-| 6 | **Widget Mapping** (`engines/mapping`) | decision per node: native passthrough → custom rules → default rules → AI hook → fallback chain (container / text-editor / html) |
+| 6 | **Elementor Native** (`engines/elementor`) | Elementor-built pages only: exact control settings reversed from the generated post CSS, wrapper-class settings, Pro custom CSS (verbatim), native widget content from render templates, atomic (V4) elements, styles and global classes (see below) |
+| 7 | **Widget Mapping** (`engines/mapping`) | decision per node: native passthrough → custom rules → default rules → AI hook → fallback chain (container / text-editor / html) |
+
+The phase list lives in `core/phases.js`, shared by the content script and
+the e2e harnesses so they always run the same pipeline.
 
 ## Builder domain engines
 
@@ -71,6 +75,86 @@ the node-id → Element map):
 | **Validation** (`engines/validation`) | declarative node rules + snapshot rules → errors/warnings/info with optional one-click `fix` closures; export is blocked on errors (override available); AI fix-suggestion hook |
 | **Project Storage** (`engines/storage`) | IndexedDB: working projects + immutable frozen versions; structural snapshot diff (added/removed/re-mapped/edited) |
 | **Export** (`engines/export`) | format strategy registry: Elementor template JSON (v0.4, control names resolved per element type by `widget-controls.js`, `_tablet`/`_mobile` suffixes only where Elementor registers a responsive control), Structure JSON, Raw JSON, HTML snapshot, Assets ZIP (dependency-free STORE ZipWriter with CRC-32, failure manifest) |
+
+## Elementor-built pages: reversing Elementor's own rendering
+
+Computed style is a lossy view of what Elementor saved: inherited values,
+kit defaults, `var()` globals and hover/responsive variants all collapse into
+one resolved number. On a page built with Elementor the exact settings are
+recoverable, because Elementor writes every style control into post CSS
+through that control's `selectors` template
+(`core/files/css/base.php::add_control_rules`):
+
+```
+title_color  {{WRAPPER}} .elementor-heading-title  =>  color: {{VALUE}};
+                     ↓ rendered as
+.elementor-15 .elementor-element.elementor-element-7168490 .elementor-heading-title{color:#F47421;}
+```
+
+`engines/elementor` runs that in reverse:
+
+| Module | Role |
+|--------|------|
+| `data/controls-map.json` | Every element's style controls, dumped from the installed plugins by `tools/elementor-dump/dump-controls.php`: selectors, dictionaries, unit dictionaries, group/responsive info, `prefix_class`, conditions, defaults and options. It also holds the atomic Style_Schema with enums. Regenerate it whenever Elementor, Pro or a third-party widget plugin changes. |
+| `css-text.js` | Raw stylesheet text from inline `<style>` and fetched sheets (through the service worker when the page's CORS blocks the content script), plus a small parser. It reads raw text rather than CSSOM, because CSSOM rewrites hex to `rgb()`, collapses shorthands and drops comments. Pro marks per-element custom CSS only with `/* Start custom CSS for <widget>, class: .elementor-element-<id> */` comments, and each region's text is kept verbatim. Link-level media (`local-…-tablet.css` loaded with `media=(max-width:1024px)`) is folded into each rule. |
+| `controls-index.js` | Compiles the map per element type into matchers keyed by normalized selector. Placeholders (`{{VALUE}}`, `{{SIZE}}{{UNIT}}`, `{{TOP}}…`, external `{{other.VALUE}}`) become capture regexes. Dictionary and unit-dictionary values expand into variants, and shorthands also match their CSSOM longhands. |
+| `css-reverse.js` | Groups an element's rules by selector, breakpoint and repeater item, then matches them to controls. It builds typed values (slider, dimensions, gaps, colour, media, box/text shadow, font…) and recognises kit globals: `var( --e-global-color-x )` becomes a `__globals__` reference plus the resolved value. It also reverses wrapper classes written through `prefix_class`, satisfies control conditions (including per-device and repeater-item ones) and drops defaults. Anything no control explains is returned as `custom_css`, with the wrapper rewritten to `selector`. |
+| `native-content.js` | Reads content back through each widget's render template: heading tag and link, button text, size and icon, icons (`e-fas-user` → `fas fa-user`), icon and image boxes, icon lists, social icons with their repeater `_id`s, counters, HTML, logos and hover animations. |
+| `atomic.js` | Handles V4 elements. Atomic containers render `data-element_type="e-flexbox"`; atomic widgets render no wrapper and are recognised by their `<type>-base` class. It reads typed settings from the DOM and converts CSS to typed style props that are valid under Style_Schema (logical box sides, enums checked). Anything else goes to the variant's `custom_css`. |
+| `ElementorNativeEngine.js` | The pipeline phase that ties these together. It reads the site's real breakpoints from `elementorFrontendConfig`. |
+
+Results live on `node.semantic.elementorNative` (`exact`, `content`,
+`atomicData`). The exporter uses them while the node keeps its native mapping;
+if the user re-maps a node, it falls back to the generic computed-style path.
+
+Export options (builder → Export, shown for Elementor-source pages only):
+
+- **Keep global references**: also exports `__globals__`. Use it only when
+  importing into the same site, because Elementor skips a style whose global
+  is missing. By default the export carries resolved values only, which keeps
+  it portable.
+- **Atomic elements**: keep them as V4 JSON (typed settings, `styles`, and a
+  template `global_classes` snapshot that Elementor merges on import), or
+  convert them to classic widgets for sites without Elementor 4.
+
+Other Elementor-specific handling:
+
+- Elements hidden only on desktop (`elementor-hidden-desktop`) are kept.
+- Closed nested-widget panels (mega-menu dropdowns, inactive tabs) are kept.
+- Content hidden by an entrance animation (`visibility:hidden`) is no longer dropped.
+- Elementor's structural wrappers (`.e-con-inner`, `.elementor-widget-wrap`,
+  document wrappers) are flattened.
+- Nested widgets get one child container per repeater item, placed by
+  `data-tab-index`.
+- Full-page exports contain only the Elementor documents' elements.
+
+Some things cannot be recovered from a rendered page. These are flagged
+rather than guessed:
+
+- uploaded SVG icons, which Elementor inlines from the attachment by id;
+- WordPress menu ids;
+- dynamic tags;
+- values Elementor saved but never renders, such as an icon size on an icon
+  box that has no icon.
+
+### Verifying fidelity
+
+`tools/e2e/fidelity.mjs <url>` runs the real pipeline in headless Chrome and
+scores the export element by element against the documents' saved
+`_elementor_data` (read through `tools/e2e/elementor-data.php`):
+
+```
+node tools/e2e/fidelity.mjs http://localhost/saipa/ --verbose
+```
+
+The other tools:
+
+- `tools/e2e/extension-run.mjs <url>` runs the same extraction through the
+  real unpacked extension: service worker → content script → builder.
+- `tools/e2e/reverse-debug.mjs <post.css> --id <id> --type <widget>` reverses
+  a single element offline.
+- `tools/elementor-dump/make-atomic-fixture.php` builds a test page with
+  atomic elements, local styles, a global class and Pro custom CSS.
 
 ## Control-name resolution
 

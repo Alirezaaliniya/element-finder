@@ -191,6 +191,16 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--a
 .export-format input { width: auto; margin-top: 3px; }
 .export-format strong { display: block; }
 .export-format small { color: var(--muted); }
+.export-elementor {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin: 8px 0;
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+}
+.export-elementor label { display: flex; gap: 6px; align-items: center; }
 .export-progress { font-size: 12px; color: var(--muted); margin-top: 8px; min-height: 18px; }
 
 .project-row {

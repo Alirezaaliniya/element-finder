@@ -67,7 +67,11 @@ export class ExportEngine {
       extension: 'json',
       requiresValidSnapshot: true,
       run: async (snapshot, opts) => {
-        const template = exportElementorTemplate(snapshot, { title: opts.title });
+        const template = exportElementorTemplate(snapshot, {
+          title: opts.title,
+          keepGlobals: opts.keepGlobals,
+          atomic: opts.atomic,
+        });
         return [jsonArtifact(`elementor-${baseName(snapshot, opts)}.json`, template)];
       },
     });

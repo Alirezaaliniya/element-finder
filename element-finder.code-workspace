@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../saipa/wp-content/plugins/elementor"
+		},
+		{
+			"path": "../../saipa/wp-content/plugins/elementor-pro"
+		}
+	],
+	"settings": {}
+}

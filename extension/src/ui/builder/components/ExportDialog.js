@@ -41,6 +41,7 @@ export class ExportDialog {
               <small>${f.description}</small>
             </span>
           </label>`).join('')}
+        ${elementorOptionsHtml(this.store.snapshot)}
         <div class="export-progress" data-progress></div>
       </div>
       <div class="dialog-foot">
@@ -81,6 +82,8 @@ export class ExportDialog {
         progressEl.textContent = t('export.building', { format: formatId });
         const { artifacts } = await this.exportEngine.export(formatId, this.store.snapshot, {
           title: this.store.project?.name,
+          keepGlobals: !!this.dialog.querySelector('[data-keep-globals]')?.checked,
+          atomic: this.dialog.querySelector('[data-atomic-mode]')?.value ?? 'keep',
           skipValidation: true, // already validated above
           onProgress: ({ current, total, asset }) => {
             progressEl.textContent = t('export.packaging', { current, total, asset });
@@ -97,6 +100,29 @@ export class ExportDialog {
       runBtn.disabled = false;
     }
   }
+}
+
+/** Options that only matter for snapshots taken from an Elementor-built page. */
+function elementorOptionsHtml(snapshot) {
+  if (!snapshot?.meta?.elementor) return '';
+  let hasAtomic = false;
+  (function walk(n) {
+    if (!n || hasAtomic) return;
+    if (n.semantic?.elementorNative?.atomic) { hasAtomic = true; return; }
+    for (const c of n.children ?? []) walk(c);
+  })(snapshot.tree);
+  return `
+    <fieldset class="export-elementor">
+      <legend>${t('export.elementorOptions')}</legend>
+      <label><input type="checkbox" data-keep-globals style="width:auto"> ${t('export.keepGlobals')}</label>
+      ${hasAtomic ? `
+      <label>${t('export.atomicMode')}
+        <select data-atomic-mode>
+          <option value="keep">${t('export.atomicKeep')}</option>
+          <option value="classic">${t('export.atomicClassic')}</option>
+        </select>
+      </label>` : ''}
+    </fieldset>`;
 }
 
 function downloadBlob(filename, blob) {

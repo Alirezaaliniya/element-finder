@@ -63,21 +63,8 @@ const result = await page.evaluate(async (port) => {
   const logs = [];
   try {
     const { ExtractionPipeline } = await import(`${base}/core/ExtractionPipeline.js`);
-    const { DomAnalysisEngine } = await import(`${base}/engines/dom/DomAnalysisEngine.js`);
-    const { ContentExtractionEngine } = await import(`${base}/engines/content/ContentExtractionEngine.js`);
-    const { CssInterpretationEngine } = await import(`${base}/engines/css/CssInterpretationEngine.js`);
-    const { ResponsiveAnalysisEngine } = await import(`${base}/engines/responsive/ResponsiveAnalysisEngine.js`);
-    const { AssetCollectionEngine } = await import(`${base}/engines/assets/AssetCollectionEngine.js`);
-    const { WidgetMappingEngine } = await import(`${base}/engines/mapping/WidgetMappingEngine.js`);
-
-    const pipeline = new ExtractionPipeline([
-      { name: 'dom-analysis', engine: new DomAnalysisEngine() },
-      { name: 'content-extraction', engine: new ContentExtractionEngine() },
-      { name: 'css-interpretation', engine: new CssInterpretationEngine() },
-      { name: 'responsive-analysis', engine: new ResponsiveAnalysisEngine() },
-      { name: 'asset-collection', engine: new AssetCollectionEngine() },
-      { name: 'widget-mapping', engine: new WidgetMappingEngine() },
-    ]);
+    const { buildPhases } = await import(`${base}/core/phases.js`);
+    const pipeline = new ExtractionPipeline(buildPhases());
     const snapshot = await pipeline.run(document, document.body);
     // Fidelity baseline: VISIBLE Elementor elements the source page declares,
     // excluding loop-template internals — Elementor's own template export

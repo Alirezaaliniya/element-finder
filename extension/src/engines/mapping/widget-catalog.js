@@ -5,7 +5,7 @@
  * "change mapping" dropdown is generated from this catalog.
  */
 
-export const TIERS = { FREE: 'free', PRO: 'pro', THEME: 'theme-builder', WOO: 'woocommerce' };
+export const TIERS = { FREE: 'free', PRO: 'pro', THEME: 'theme-builder', WOO: 'woocommerce', ATOMIC: 'atomic' };
 
 export const WIDGETS = {
   // --- Free / core -------------------------------------------------------
@@ -121,6 +121,18 @@ export const WIDGETS = {
   'woocommerce-cart':            { tier: TIERS.WOO, label: 'Cart', category: 'woocommerce' },
   'woocommerce-checkout-page':   { tier: TIERS.WOO, label: 'Checkout', category: 'woocommerce' },
   'woocommerce-my-account':      { tier: TIERS.WOO, label: 'My Account', category: 'woocommerce' },
+
+  // --- Atomic (Elementor 4 "V4" elements) ---------------------------------------
+  // Exported as atomic JSON (typed settings + style classes), or converted to
+  // the `classic` equivalent when the export targets a site without V4.
+  'e-heading':          { tier: TIERS.ATOMIC, label: 'Heading (V4)', category: 'atomic', classic: 'heading' },
+  'e-paragraph':        { tier: TIERS.ATOMIC, label: 'Paragraph (V4)', category: 'atomic', classic: 'text-editor' },
+  'e-button':           { tier: TIERS.ATOMIC, label: 'Button (V4)', category: 'atomic', classic: 'button' },
+  'e-image':            { tier: TIERS.ATOMIC, label: 'Image (V4)', category: 'atomic', classic: 'image' },
+  'e-svg':              { tier: TIERS.ATOMIC, label: 'SVG (V4)', category: 'atomic', classic: 'icon' },
+  'e-divider':          { tier: TIERS.ATOMIC, label: 'Divider (V4)', category: 'atomic', classic: 'divider' },
+  'e-youtube':          { tier: TIERS.ATOMIC, label: 'YouTube (V4)', category: 'atomic', classic: 'video' },
+  'e-self-hosted-video': { tier: TIERS.ATOMIC, label: 'Video (V4)', category: 'atomic', classic: 'video' },
 };
 
 export function widgetInfo(widgetType) {
@@ -129,7 +141,12 @@ export function widgetInfo(widgetType) {
 
 export function isProWidget(widgetType) {
   const info = WIDGETS[widgetType];
-  return !!info && info.tier !== TIERS.FREE;
+  return !!info && info.tier !== TIERS.FREE && info.tier !== TIERS.ATOMIC;
+}
+
+/** Classic widget equivalent of an atomic widget (e-heading -> heading). */
+export function classicEquivalent(widgetType) {
+  return WIDGETS[widgetType]?.classic ?? null;
 }
 
 /** Grouped options for the builder's mapping dropdown. */

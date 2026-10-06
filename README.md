@@ -19,8 +19,28 @@ extension/            The Chrome extension (Manifest V3, ES modules, no build st
     ├── background/   service worker (message routing, snapshot hand-off)
     └── ui/           popup + visual builder (tree, preview, inspector, dialogs)
 docs/ARCHITECTURE.md  Engine-by-engine architecture reference
+tools/elementor-dump/ PHP tools run against a WordPress + Elementor install:
+                      dump-controls.php (controls map), make-atomic-fixture.php
+tools/e2e/            Puppeteer harnesses: fidelity.mjs (score vs saved data),
+                      extension-run.mjs (through the real extension)
 elementor-*.json      Real Elementor template export used as format ground truth
 ```
+
+## Elementor-built pages
+
+On pages built with Elementor the extension does not approximate styles from
+computed CSS. It reverses Elementor's generated CSS through a map of every
+control in the installed Elementor and Elementor Pro (including third-party
+widgets). That recovers the exact saved settings, kit globals, per-element
+custom CSS, and atomic (V4) elements with their style classes. The map is
+generated from a live install:
+
+```
+php -d memory_limit=2G tools/elementor-dump/dump-controls.php C:/path/to/wordpress
+```
+
+Regenerate it after updating Elementor or adding widget plugins. See
+`docs/ARCHITECTURE.md` → "Elementor-built pages".
 
 ## Install (development)
 

@@ -27,6 +27,15 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
       void setStatus({ state: 'failed', error: msg.error });
       return false;
 
+    case MSG.FETCH_TEXT:
+      // Content scripts are bound by the page's CORS policy; stylesheet text
+      // (needed to reverse Elementor's generated CSS) is fetched here, where
+      // the extension's host permissions apply. Only http(s) and only from a
+      // content script of this extension.
+      if (!sender.tab || !/^https?:\/\//i.test(msg.url ?? '')) { sendResponse({ ok: false }); return false; }
+      fetchText(msg.url).then(sendResponse);
+      return true;
+
     case MSG.OPEN_BUILDER:
       void openBuilder(msg.query ?? '');
       sendResponse({ ok: true });
@@ -50,6 +59,16 @@ async function handleExtractionComplete(snapshot) {
   } catch (err) {
     console.error('[ef:bg] failed to store snapshot', err);
     await setStatus({ state: 'failed', error: String(err?.message || err) });
+  }
+}
+
+async function fetchText(url) {
+  try {
+    const res = await fetch(url, { credentials: 'omit' });
+    if (!res.ok) return { ok: false, status: res.status };
+    return { ok: true, text: await res.text() };
+  } catch (err) {
+    return { ok: false, error: String(err?.message || err) };
   }
 }
 

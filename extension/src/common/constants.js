@@ -54,6 +54,8 @@ export const MSG = {
   STATUS_UPDATE: 'EF_STATUS_UPDATE',
   // builder -> background
   OPEN_BUILDER: 'EF_OPEN_BUILDER',
+  // content -> background: stylesheet text the page's CORS policy hides
+  FETCH_TEXT: 'EF_FETCH_TEXT',
 };
 
 /** chrome.storage.local keys. */

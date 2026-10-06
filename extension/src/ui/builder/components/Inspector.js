@@ -251,20 +251,39 @@ export class Inspector {
 
   #settingsSection(node) {
     const wrap = el('div', 'insp-row');
+    const block = (title, value, open = false) => {
+      const details = document.createElement('details');
+      details.open = open;
+      const summary = document.createElement('summary');
+      summary.textContent = title;
+      details.appendChild(summary);
+      const pre = document.createElement('pre');
+      pre.style.cssText = 'font-size:10.5px;overflow:auto;max-height:160px;background:var(--bg-2);padding:8px;border-radius:6px';
+      pre.textContent = typeof value === 'string' ? value : JSON.stringify(value, null, 1);
+      details.appendChild(pre);
+      wrap.appendChild(details);
+    };
+
+    // Elementor-built source: the settings recovered from its generated CSS
+    // are what the export uses while the node keeps its native mapping.
+    const native = node.semantic.elementorNative;
+    const nativeMapped = node.mapping?.source === 'elementor-native';
+    if (native?.exact?.controlsKnown && nativeMapped) {
+      const exact = { ...(native.content ?? {}), ...native.exact.settings };
+      block(t('insp.exactSettings', { count: Object.keys(exact).length }), exact, true);
+      if (Object.keys(native.exact.globals ?? {}).length) block(t('insp.globalRefs'), native.exact.globals);
+      if (native.exact.customCss) block(t('insp.customCss'), native.exact.customCss);
+    }
+    if (native?.atomicData && nativeMapped) {
+      block(t('insp.atomicSettings'), native.atomicData.settings, true);
+      if (Object.keys(native.atomicData.styles ?? {}).length) block(t('insp.atomicStyles'), native.atomicData.styles);
+    }
+
     for (const device of DEVICE_ORDER) {
       const settings = node.settings[device];
       const keys = Object.keys(settings ?? {});
       if (!keys.length) continue;
-      const details = document.createElement('details');
-      if (device === 'desktop') details.open = true;
-      const summary = document.createElement('summary');
-      summary.textContent = t('insp.deviceSettings', { device, count: keys.length });
-      details.appendChild(summary);
-      const pre = document.createElement('pre');
-      pre.style.cssText = 'font-size:10.5px;overflow:auto;max-height:160px;background:var(--bg-2);padding:8px;border-radius:6px';
-      pre.textContent = JSON.stringify(settings, null, 1);
-      details.appendChild(pre);
-      wrap.appendChild(details);
+      block(t('insp.deviceSettings', { device, count: keys.length }), settings, device === 'desktop' && !wrap.children.length);
     }
     if (!wrap.children.length) wrap.appendChild(el('div', '', t('insp.noSettings')));
     return this.#section(t('insp.settings'), wrap);
