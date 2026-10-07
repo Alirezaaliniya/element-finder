@@ -51,6 +51,12 @@ await rm(TEST_EXT, { recursive: true, force: true });
 await cp(BUILD, TEST_EXT, { recursive: true });
 const sw = join(TEST_EXT, 'src/background/service-worker.js');
 await writeFile(sw, (await readFile(sw, 'utf8')) + HOOK);
+// Host access is optional (granted from the popup banner); automation cannot
+// answer a permission prompt, so the test copy pre-grants it.
+const manifestPath = join(TEST_EXT, 'manifest.json');
+const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
+manifest.host_permissions = ['<all_urls>'];
+await writeFile(manifestPath, JSON.stringify(manifest, null, 2));
 
 const browser = await puppeteer.launch({
   browser: 'firefox',

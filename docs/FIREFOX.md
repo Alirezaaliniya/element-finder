@@ -33,14 +33,16 @@ You can also install it by hand: open `about:debugging` → This Firefox → Loa
 
 Expected lint result: 0 errors, 0 warnings, 0 notices.
 
-## Host access in Firefox
+## Host access (Chrome and Firefox)
 
-Firefox lets users withhold or revoke MV3 host permissions. Without "access to all websites", the extension can still extract the current tab after the popup is clicked (`activeTab`). What it can no longer do is read:
+The only required site access is `activeTab`: clicking the toolbar button lets the extension extract the current tab. "Access to all websites" (`<all_urls>`) is declared in `optional_host_permissions` and is requested only when the user clicks **Allow access** in the popup. The banner is shown whenever that access is missing.
 
-- cross-origin stylesheets and fonts;
+Without it, extraction still works. What the extension cannot do is read:
+
+- stylesheets, fonts and images hosted on other domains (CDNs);
 - the source site's media library (used to recover uploaded SVG icons).
 
-When the permission is missing, the popup shows an **Allow access** banner, which calls `permissions.request`.
+Pages that serve their own files (most Elementor sites) give identical results either way; `tools/e2e/extension-run.mjs <url> --access page` tests that case. Keeping broad access optional also avoids the Chrome Web Store's "broad host permissions" in-depth review.
 
 ## Submission checklist
 
@@ -65,7 +67,7 @@ When the permission is missing, the popup shows an **Allow access** banner, whic
 > Element Finder Studio converts the page in the active tab into an Elementor (WordPress page builder) template, which the user edits in a local builder page and downloads.
 >
 > - **No data collection or remote servers.** The extension sends nothing anywhere. All processing happens locally. Projects are stored in IndexedDB / storage.local; exports are downloaded files.
-> - **`<all_urls>` host permission:** used only on pages the user explicitly extracts. It lets the extension read that page's stylesheets, fonts and images, which are often hosted on other domains (CDNs), and the site's public WordPress media endpoint (`/wp-json/wp/v2/media`) to recover the original files of inlined SVG icons. Requests go only to the extracted site and its asset hosts.
+> - **Optional `<all_urls>` host permission** (requested at runtime only when the user clicks "Allow access"; not granted at install). Used only on pages the user explicitly extracts. It lets the extension read that page's stylesheets, fonts and images, which are often hosted on other domains (CDNs), and the site's public WordPress media endpoint (`/wp-json/wp/v2/media`) to recover the original files of inlined SVG icons. Requests go only to the extracted site and its asset hosts.
 > - **`scripting` + `activeTab`:** the content script is injected on demand when the user clicks "Extract" or "Pick an element". There are no persistent content scripts.
 > - **`downloads`, `unlimitedStorage`:** for export files and for saved projects (large page snapshots).
 > - **HTML insertion:** nothing assigns `innerHTML`. All markup — UI templates (dynamic values escaped), the bundled SVG icon set, and page-derived HTML for the preview — goes through `src/common/safe-html.js`, which parses it in an inert `DOMParser` document, removes script-like elements, `on*` attributes and `javascript:`/`vbscript:`/`data:text/html` URLs, and only then imports the nodes. The extension CSP blocks inline scripts as a further layer.

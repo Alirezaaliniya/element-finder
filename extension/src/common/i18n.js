@@ -26,7 +26,7 @@ const DICTS = {
     'popup.openBuilder': 'Open builder',
     'popup.openBuilderSub': 'Projects, preview, validation & export',
     'popup.ready': 'Ready',
-    'popup.hostAccess': 'Allow access to all websites so stylesheets, fonts and Elementor data from other domains can be read. Without it, extraction is limited.',
+    'popup.hostAccess': 'Optional: allow access to all websites for full results. Stylesheets, fonts and images on other domains (CDNs) can then be read, and uploaded SVG icons recovered. Without it, only the current page’s own files are used.',
     'popup.grantAccess': 'Allow access',
     'popup.analyzing': 'Analyzing page…',
     // ---- about ----
@@ -180,7 +180,7 @@ const DICTS = {
     'popup.openBuilder': 'باز کردن بیلدر',
     'popup.openBuilderSub': 'پروژه‌ها، پیش‌نمایش، اعتبارسنجی و خروجی',
     'popup.ready': 'آماده',
-    'popup.hostAccess': 'برای خواندن استایل‌ها، فونت‌ها و داده‌های المنتور از دامنه‌های دیگر، اجازهٔ دسترسی به همهٔ سایت‌ها را بدهید. بدون آن، استخراج ناقص می‌شود.',
+    'popup.hostAccess': 'اختیاری: برای نتیجهٔ کامل، اجازهٔ دسترسی به همهٔ سایت‌ها را بدهید تا استایل‌ها، فونت‌ها و تصاویرِ روی دامنه‌های دیگر (CDN) خوانده شوند و آیکون‌های SVG آپلودی پیدا شوند. بدون آن فقط فایل‌های خود صفحه استفاده می‌شود.',
     'popup.grantAccess': 'اجازه دادن',
     'popup.analyzing': 'در حال تحلیل صفحه…',
     // ---- about ----

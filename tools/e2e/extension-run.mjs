@@ -4,14 +4,33 @@
  * popup does, triggers EXTRACT_PAGE and reads the snapshot the service worker
  * parks in chrome.storage.local.
  *
- *   node tools/e2e/extension-run.mjs <url>
+ *   node tools/e2e/extension-run.mjs <url> [screenshot.png] [--access all|page]
+ *
+ * Host access is optional in the manifest (granted by the user from the
+ * popup), and automation cannot click a permission prompt. The test therefore
+ * loads a COPY of extension/ whose manifest pre-grants:
+ *   --access all   <all_urls> (the user clicked "Allow access")      [default]
+ *   --access page  only the page's own origin — what activeTab gives after
+ *                  the toolbar click (no CDN stylesheets, no media library)
  */
-import { resolve } from 'node:path';
+import { cp, readFile, rm, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join, resolve } from 'node:path';
 import puppeteer from 'puppeteer-core';
 
-const url = process.argv[2] ?? 'http://localhost/saipa/';
-const EXT = resolve(import.meta.dirname, '../../extension');
+const args = process.argv.slice(2);
+const accessAt = args.indexOf('--access');
+const access = accessAt === -1 ? 'all' : args.splice(accessAt, 2)[1];
+const url = args[0] ?? 'http://localhost/saipa/';
 const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
+
+const EXT = join(tmpdir(), `ef-chrome-e2e-${process.pid}`);
+await rm(EXT, { recursive: true, force: true });
+await cp(resolve(import.meta.dirname, '../../extension'), EXT, { recursive: true });
+const manifestPath = join(EXT, 'manifest.json');
+const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
+manifest.host_permissions = access === 'page' ? [`${new URL(url).origin}/*`] : ['<all_urls>'];
+await writeFile(manifestPath, JSON.stringify(manifest, null, 2));
 
 const browser = await puppeteer.launch({
   executablePath: CHROME,
@@ -78,7 +97,7 @@ try {
     builder.on('pageerror', (e) => errors.push(String(e)));
     await builder.setViewport({ width: 1440, height: 900 });
     await new Promise((r) => setTimeout(r, 2500));
-    const shot = process.argv[3];
+    const shot = args[1];
     // Select the first native widget in the structure tree.
     const picked = await builder.evaluate(() => {
       const row = [...document.querySelectorAll('[data-node-id], [data-id]')].find((r) => /⚡|e-/.test(r.textContent));
@@ -95,4 +114,5 @@ try {
   }
 } finally {
   await browser.close();
+  await rm(EXT, { recursive: true, force: true });
 }
