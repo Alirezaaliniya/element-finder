@@ -3,7 +3,7 @@
   "name": "Element Finder Studio — Web to Elementor",
   "short_name": "Element Finder",
   "version": "0.2.0",
-  "description": "Professional extraction & reconstruction platform: analyze any page, map it to Elementor widgets, refine it in a visual builder, and export Elementor-ready JSON with assets.",
+  "description": "Turn any web page into an Elementor template: extract it, refine it in a visual builder, and export Elementor JSON with all assets.",
   "minimum_chrome_version": "110",
   "permissions": [
     "activeTab",

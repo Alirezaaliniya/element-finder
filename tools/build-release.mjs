@@ -39,6 +39,13 @@ const EXCLUDE_NAMES = new Set(['smoke-test.mjs', 'node_modules', '.DS_Store', 'T
 const sourceManifest = JSON.parse(await readFile(join(SRC, 'manifest.json'), 'utf8'));
 const version = sourceManifest.version;
 
+// Store limits: Chrome Web Store rejects a description over 132 characters
+// and a name over 75 (AMO allows more; the stricter limit applies to both).
+for (const [key, max] of [['description', 132], ['name', 75]]) {
+  const len = (sourceManifest[key] ?? '').length;
+  if (len > max) throw new Error(`manifest.${key} is ${len} characters; the limit is ${max}`);
+}
+
 const TARGETS = {
   chrome: (m) => m,
   firefox: (m) => {
