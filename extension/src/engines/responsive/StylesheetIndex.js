@@ -133,6 +133,15 @@ export class StylesheetIndex {
       }
       // Expand shorthands that the captured-prop list reads longhand.
       expandShorthands(style, out);
+      // Elementor containers change layout per breakpoint only through
+      // custom properties (`--flex-direction:column` in a media rule), read
+      // by the inner box via var(); map them to the real properties.
+      for (const [name, targets] of ELEMENTOR_LAYOUT_VARS) {
+        const v = style.getPropertyValue(name).trim();
+        if (!v) continue;
+        const parts = targets.length > 1 ? v.split(/\s+/) : [v];
+        targets.forEach((t, i) => { if (props.includes(t)) out[t] = parts[i] ?? parts[0]; });
+      }
     }
     return out;
   }
@@ -165,6 +174,16 @@ function matchPx(text, re) {
 function safeSplitSelectors(selectorText) {
   return (selectorText || '').split(',').map((s) => s.trim()).filter(Boolean);
 }
+
+const ELEMENTOR_LAYOUT_VARS = [
+  ['--flex-direction', ['flex-direction']],
+  ['--flex-wrap', ['flex-wrap']],
+  ['--justify-content', ['justify-content']],
+  ['--align-items', ['align-items']],
+  ['--gap', ['row-gap', 'column-gap']],
+  ['--row-gap', ['row-gap']],
+  ['--column-gap', ['column-gap']],
+];
 
 const SHORTHAND_EXPANSIONS = {
   margin: ['margin-top', 'margin-right', 'margin-bottom', 'margin-left'],

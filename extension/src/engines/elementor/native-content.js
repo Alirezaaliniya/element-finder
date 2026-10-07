@@ -33,9 +33,15 @@ export function extractNativeContent(el, widgetType, baseUrl) {
 
 const HOVER_ANIMATED = new Set(['image', 'button', 'icon', 'icon-box', 'image-box', 'social-icons', 'theme-site-logo']);
 
-/** Icon values whose uploaded SVG file cannot be recovered from the markup. */
-export function hasUnrecoverableSvgIcon(content) {
-  return JSON.stringify(content ?? {}).includes('"library":"svg"');
+/** Every uploaded-SVG icon value inside a content object (nested repeaters too). */
+export function uploadedSvgIcons(content) {
+  const out = [];
+  (function walk(v) {
+    if (!v || typeof v !== 'object') return;
+    if (v.library === 'svg' && typeof v.__svg === 'string') { out.push(v); return; }
+    for (const x of Array.isArray(v) ? v : Object.values(v)) walk(x);
+  })(content);
+  return out;
 }
 
 const READERS = {
@@ -235,7 +241,9 @@ export function iconOf(container) {
     if (eicon) return { value: eicon, library: 'eicons' };
     return { value: cls, library: '' };
   }
-  if (svg) return { value: { url: '', id: '' }, library: 'svg' };
+  // Uploaded SVG: the file URL is recovered later (svg-resolver.js) from the
+  // inline drawing carried here under a temporary key.
+  if (svg) return { value: { url: '', id: '' }, library: 'svg', __svg: svg.outerHTML };
   return { value: '', library: '' };
 }
 

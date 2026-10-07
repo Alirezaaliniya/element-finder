@@ -57,13 +57,15 @@ await new Promise((r) => server.listen(PORT, r));
 const browser = await puppeteer.launch({
   executablePath: CHROME,
   headless: 'new',
-  args: ['--no-sandbox', '--window-size=1440,900'],
+  // Remote HTTPS pages must be allowed to import the modules from localhost.
+  args: ['--no-sandbox', '--window-size=1440,900', '--disable-features=BlockInsecurePrivateNetworkRequests,PrivateNetworkAccessSendPreflights,PrivateNetworkAccessRespectPreflightResults,LocalNetworkAccessChecks'],
   defaultViewport: { width: 1440, height: 900 },
 });
 const page = await browser.newPage();
+await page.setBypassCSP(true);
 page.on('console', (m) => { if (VERBOSE || m.type() === 'error') console.log('[page]', m.text().slice(0, 300)); });
 page.on('pageerror', (e) => VERBOSE && console.log('[pageerror]', String(e).slice(0, 200)));
-await page.goto(url, { waitUntil: 'networkidle2', timeout: 90_000 }).catch((e) => console.log('goto warning:', e.message));
+await page.goto(url, { waitUntil: 'load', timeout: 90_000 }).catch((e) => console.log('goto warning:', e.message));
 await new Promise((r) => setTimeout(r, 1200));
 
 const result = await page.evaluate(async (port) => {
@@ -80,6 +82,24 @@ const result = await page.evaluate(async (port) => {
     return { ok: false, error: String(err?.stack || err) };
   }
 }, PORT);
+
+// --preview <png>: render the builder's reconstruction of the snapshot and
+// screenshot it next to the source page (--shot <png>) for visual diffing.
+const PREVIEW = opt('preview', null);
+const SHOT = opt('shot', null);
+if (result.ok && (PREVIEW || SHOT)) {
+  if (SHOT) await page.screenshot({ path: SHOT, fullPage: true });
+  if (PREVIEW) {
+    const html = await page.evaluate(async (port, snap) => {
+      const { ReconstructionEngine } = await import(`http://localhost:${port}/extension/src/engines/reconstruction/ReconstructionEngine.js`);
+      return new ReconstructionEngine().buildPreviewDocument(snap);
+    }, PORT, result.snapshot);
+    const preview = await browser.newPage();
+    await preview.setContent(html, { waitUntil: 'networkidle2', timeout: 90_000 }).catch(() => {});
+    await new Promise((r) => setTimeout(r, 800));
+    await preview.screenshot({ path: PREVIEW, fullPage: true });
+  }
+}
 
 await browser.close();
 server.close();
@@ -100,6 +120,12 @@ await writeFile(join(OUT, `${OUT_NAME}-snapshot.json`), JSON.stringify(snapshot,
 await writeFile(join(OUT, `${OUT_NAME}-export.json`), JSON.stringify(tpl, null, 1));
 
 /* ---------------- ground truth ---------------- */
+
+// Remote sites: no database to compare against — extraction/export only.
+if (opt('no-truth', false)) {
+  console.log(`extracted ${snapshot.stats.nodesExtracted} nodes; phases: ${Object.entries(snapshot.stats.enginePhases).map(([k, v]) => `${k}:${v.ok ? 'ok' : 'FAIL'}`).join(' ')}`);
+  process.exit(0);
+}
 
 const truth = JSON.parse(execFileSync(PHP, [join(ROOT, 'tools/e2e/elementor-data.php'), WP_ROOT, ...postIds], {
   encoding: 'utf8', maxBuffer: 256 * 1024 * 1024,

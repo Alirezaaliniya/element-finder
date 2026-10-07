@@ -1,0 +1,3037 @@
+{
+ "content": [
+  {
+   "id": "72d6b7d8",
+   "settings": {
+    "flex_direction": "column",
+    "width": {
+     "unit": "px",
+     "size": 1000,
+     "sizes": []
+    },
+    "min_height": {
+     "unit": "px",
+     "size": 1000,
+     "sizes": []
+    },
+    "border_radius": {
+     "unit": "%",
+     "top": "50",
+     "right": "50",
+     "bottom": "50",
+     "left": "50",
+     "isLinked": true
+    },
+    "position": "absolute",
+    "_offset_y": {
+     "unit": "px",
+     "size": -535,
+     "sizes": []
+    },
+    "z_index": 0,
+    "background_color": "#F1F3F7",
+    "_offset_x": {
+     "unit": "px",
+     "size": -519,
+     "sizes": []
+    },
+    "content_width": "full",
+    "hide_tablet": "hidden-tablet",
+    "hide_mobile": "hidden-mobile",
+    "background_background": "classic"
+   },
+   "elements": [],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "25d07638",
+   "settings": {
+    "flex_direction": "row",
+    "flex_align_items": "center",
+    "width": {
+     "unit": "px",
+     "size": 1200,
+     "sizes": []
+    },
+    "min_height": {
+     "unit": "px",
+     "size": 513,
+     "sizes": []
+    },
+    "flex_justify_content": "space-around",
+    "overflow": "hidden",
+    "flex_direction_tablet": "column",
+    "min_height_tablet": {
+     "unit": "px",
+     "size": 768,
+     "sizes": []
+    },
+    "flex_justify_content_tablet": "flex-end",
+    "content_width": "full"
+   },
+   "elements": [
+    {
+     "id": "365733b3",
+     "settings": {
+      "image": {
+       "url": "https://nias.ir/wp-content/uploads/2025/12/image24.avif",
+       "id": "",
+       "alt": "image24",
+       "source": "library",
+       "size": ""
+      },
+      "motion_fx_transform_x_anchor_point": "center",
+      "motion_fx_transform_y_anchor_point": "center",
+      "_element_width_tablet": "inherit",
+      "_offset_y_tablet": {
+       "unit": "%",
+       "size": 0,
+       "sizes": []
+      },
+      "_flex_align_self_tablet": "center",
+      "width_tablet": {
+       "unit": "px",
+       "size": 296,
+       "sizes": []
+      },
+      "_offset_y_mobile": {
+       "unit": "px",
+       "size": 38,
+       "sizes": []
+      },
+      "width_mobile": {
+       "unit": "px",
+       "size": 243,
+       "sizes": []
+      },
+      "_position": "absolute",
+      "motion_fx_motion_fx_scrolling": "yes",
+      "motion_fx_translateX_effect": "yes",
+      "motion_fx_translateX_speed": {
+       "unit": "px",
+       "size": 0.7,
+       "sizes": []
+      },
+      "motion_fx_scale_effect": "yes",
+      "motion_fx_scale_speed": {
+       "unit": "px",
+       "size": 1,
+       "sizes": []
+      },
+      "motion_fx_translateX_affectedRange": {
+       "unit": "%",
+       "size": "",
+       "sizes": {
+        "start": 0,
+        "end": 100
+       }
+      },
+      "motion_fx_scale_direction": "out-in",
+      "motion_fx_scale_range": {
+       "unit": "%",
+       "size": "",
+       "sizes": {
+        "start": 20,
+        "end": 80
+       }
+      },
+      "motion_fx_devices": [
+       "desktop",
+       "tablet",
+       "mobile"
+      ],
+      "_css_classes": "nias-pop-animation"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "image",
+     "elType": "widget"
+    },
+    {
+     "id": "1152c591",
+     "settings": {
+      "flex_direction": "row",
+      "flex_align_items": "center",
+      "width": {
+       "unit": "px",
+       "size": 400,
+       "sizes": []
+      },
+      "flex_wrap": "wrap",
+      "margin_mobile": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "50",
+       "left": "0",
+       "isLinked": false
+      },
+      "flex_gap_mobile": {
+       "column": "5",
+       "row": "5",
+       "isLinked": true,
+       "unit": "px",
+       "size": 5
+      },
+      "content_width": "full",
+      "motion_fx_motion_fx_scrolling": "yes",
+      "motion_fx_translateY_effect": "yes",
+      "motion_fx_translateY_direction": "negative",
+      "motion_fx_devices": [
+       "desktop"
+      ],
+      "motion_fx_translateY_speed": {
+       "unit": "px",
+       "size": 4,
+       "sizes": []
+      },
+      "motion_fx_translateY_affectedRange": {
+       "unit": "%",
+       "size": "",
+       "sizes": {
+        "start": 0,
+        "end": 100
+       }
+      }
+     },
+     "elements": [
+      {
+       "id": "790b5803",
+       "settings": {
+        "title": "یادگیری طراحی سایت در",
+        "header_size": "span",
+        "_element_width": "inherit",
+        "align": "center",
+        "typography_font_size": {
+         "unit": "px",
+         "size": 32,
+         "sizes": []
+        },
+        "title_color": "#20242E",
+        "typography_font_size_tablet": {
+         "unit": "px",
+         "size": 35,
+         "sizes": []
+        },
+        "align_mobile": "center",
+        "typography_font_size_mobile": {
+         "unit": "px",
+         "size": 24,
+         "sizes": []
+        },
+        "typography_typography": "custom",
+        "custom_css": "@media (max-width:767px){selector{margin:0px 0px calc(var(--kit-widget-spacing, 0px) + 0px) 100px;}}"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "heading",
+       "elType": "widget"
+      },
+      {
+       "id": "77d45e35",
+       "settings": {
+        "title": "آکادمی نیاس",
+        "header_size": "h1",
+        "_element_width": "inherit",
+        "align": "center",
+        "typography_font_size": {
+         "unit": "px",
+         "size": 66,
+         "sizes": []
+        },
+        "typography_font_weight": "bold",
+        "typography_line_height": {
+         "unit": "px",
+         "size": 75,
+         "sizes": []
+        },
+        "title_color": "#20242E",
+        "typography_font_size_tablet": {
+         "unit": "px",
+         "size": 75,
+         "sizes": []
+        },
+        "typography_font_size_mobile": {
+         "unit": "px",
+         "size": 49,
+         "sizes": []
+        },
+        "typography_typography": "custom",
+        "custom_css": "@media (max-width:767px){selector{margin:0px 0px calc(var(--kit-widget-spacing, 0px) + 10px) 0px;}}"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "heading",
+       "elType": "widget"
+      },
+      {
+       "id": "5977dca0",
+       "settings": {
+        "text": "شرکت در دوره",
+        "link": {
+         "url": "https://nias.ir/product/nias-elementor-course/",
+         "is_external": "",
+         "nofollow": "",
+         "custom_attributes": ""
+        },
+        "size": "sm",
+        "background_color": "#2F5CCD",
+        "border_radius": {
+         "unit": "px",
+         "top": "30",
+         "right": "30",
+         "bottom": "30",
+         "left": "30",
+         "isLinked": true
+        },
+        "text_padding": {
+         "unit": "px",
+         "top": "15",
+         "right": "25",
+         "bottom": "15",
+         "left": "25",
+         "isLinked": false
+        },
+        "_element_custom_width": {
+         "unit": "%",
+         "size": 47,
+         "sizes": []
+        },
+        "_element_custom_width_tablet": {
+         "unit": "%",
+         "size": 45,
+         "sizes": []
+        },
+        "align": "left",
+        "_element_width": "initial",
+        "_element_width_tablet": "initial",
+        "_css_classes": "ns-button"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "button",
+       "elType": "widget"
+      },
+      {
+       "id": "ab13aee",
+       "settings": {
+        "image": {
+         "url": "https://nias.ir/wp-content/uploads/2025/07/group36885.webp",
+         "id": "",
+         "alt": "group36885",
+         "source": "library",
+         "size": ""
+        },
+        "image_size": "medium",
+        "_element_custom_width": {
+         "unit": "%",
+         "size": 47,
+         "sizes": []
+        },
+        "align": "start",
+        "_element_custom_width_tablet": {
+         "unit": "%",
+         "size": 40,
+         "sizes": []
+        },
+        "_element_width": "initial",
+        "_element_width_tablet": "initial",
+        "_css_classes": "perfmatters-lazy entered pmloaded"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "image",
+       "elType": "widget"
+      },
+      {
+       "id": "668b937",
+       "settings": {
+        "title": "با بروز ترین متد های نوین و کلی پروژه و مینی پروژه کارآمد و خلاقانه با آموزش های ( نیاس ) استاد شو",
+        "header_size": "span",
+        "align": "center",
+        "title_color": "#94969A",
+        "custom_css": "@media (max-width:767px){selector{margin:10px 0px calc(var(--kit-widget-spacing, 0px) + 0px) 0px;}}"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "heading",
+       "elType": "widget"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    },
+    {
+     "id": "60e6890e",
+     "settings": {
+      "image": {
+       "url": "https://nias.ir/wp-content/uploads/2024/03/Frame-57-1.webp",
+       "id": "",
+       "alt": "Frame 57 1",
+       "source": "library",
+       "size": ""
+      },
+      "image_size": "large",
+      "_offset_x_end": {
+       "unit": "px",
+       "size": 80,
+       "sizes": []
+      },
+      "_position": "absolute",
+      "hide_tablet": "hidden-tablet",
+      "hide_mobile": "hidden-mobile",
+      "_offset_orientation_h": "end",
+      "motion_fx_motion_fx_scrolling": "yes",
+      "motion_fx_translateX_effect": "yes",
+      "motion_fx_translateX_direction": "negative",
+      "motion_fx_translateX_speed": {
+       "unit": "px",
+       "size": 1,
+       "sizes": []
+      },
+      "motion_fx_devices": [
+       "desktop"
+      ],
+      "motion_fx_translateX_affectedRange": {
+       "unit": "%",
+       "size": "",
+       "sizes": {
+        "start": 0,
+        "end": 100
+       }
+      },
+      "_css_classes": "perfmatters-lazy entered pmloaded"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "image",
+     "elType": "widget"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "52b2333f",
+   "settings": {
+    "flex_direction": "column"
+   },
+   "elements": [
+    {
+     "id": "2cbaa2be",
+     "settings": {
+      "flex_direction": "row",
+      "padding": {
+       "unit": "px",
+       "top": "40",
+       "right": "40",
+       "bottom": "40",
+       "left": "40",
+       "isLinked": true
+      },
+      "flex_gap": {
+       "column": "0",
+       "row": "0",
+       "isLinked": true,
+       "unit": "px",
+       "size": 0
+      },
+      "flex_align_items": "center",
+      "min_height": {
+       "unit": "px",
+       "size": 180,
+       "sizes": []
+      },
+      "flex_justify_content": "space-between",
+      "overflow": "hidden",
+      "border_radius": {
+       "unit": "px",
+       "top": "30",
+       "right": "30",
+       "bottom": "30",
+       "left": "30",
+       "isLinked": true
+      },
+      "background_color": "#2F5CCD",
+      "flex_direction_tablet": "row",
+      "min_height_tablet": {
+       "unit": "px",
+       "size": 580,
+       "sizes": []
+      },
+      "flex_justify_content_tablet": "center",
+      "flex_wrap_tablet": "wrap",
+      "flex_gap_mobile": {
+       "column": "15",
+       "row": "15",
+       "isLinked": true,
+       "unit": "px",
+       "size": 15
+      },
+      "flex_align_items_mobile": "flex-start",
+      "flex_justify_content_mobile": "center",
+      "background_background": "classic",
+      "custom_css": "@media only screen and (max-width:1024px){\nselector .elementor-icon-box-wrapper {\n    display: flex;\n    flex-direction: column!important;\n    align-items: center!important;\n    justify-content: center;\n}\n}"
+     },
+     "elements": [
+      {
+       "id": "b201bc6",
+       "settings": {
+        "title": "با منتورینگ قوی و آموزشی قــوی آمــاده بــازار کـار شــو !",
+        "header_size": "span",
+        "_element_custom_width": {
+         "unit": "px",
+         "size": 273,
+         "sizes": []
+        },
+        "_z_index": 1,
+        "typography_font_size": {
+         "unit": "px",
+         "size": 24,
+         "sizes": []
+        },
+        "typography_line_height": {
+         "unit": "px",
+         "size": 39,
+         "sizes": []
+        },
+        "title_color": "#FFFFFF",
+        "_element_width_tablet": "inherit",
+        "align_tablet": "center",
+        "_element_width": "initial",
+        "typography_typography": "custom"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "heading",
+       "elType": "widget"
+      },
+      {
+       "id": "2c4d58b6",
+       "settings": {
+        "position": "absolute",
+        "_offset_y": {
+         "unit": "px",
+         "size": 56,
+         "sizes": []
+        },
+        "_transform_rotateZ_effect": {
+         "unit": "px",
+         "size": 60,
+         "sizes": []
+        },
+        "_offset_x": {
+         "unit": "px",
+         "size": 223,
+         "sizes": []
+        },
+        "_offset_x_tablet": {
+         "unit": "px",
+         "size": -146,
+         "sizes": []
+        },
+        "_offset_y_tablet": {
+         "unit": "px",
+         "size": -70,
+         "sizes": []
+        },
+        "_transform_rotateZ_effect_mobile": {
+         "unit": "deg",
+         "size": 184,
+         "sizes": []
+        },
+        "_transform_flipX_effect": "transform",
+        "_transform_rotate_popover": "yes",
+        "_transform_rotateZ_effect_tablet": {
+         "unit": "deg",
+         "size": "",
+         "sizes": []
+        },
+        "css_classes": "ns-bluebox"
+       },
+       "elements": [],
+       "isInner": true,
+       "elType": "container"
+      },
+      {
+       "id": "31af232",
+       "settings": {
+        "position": "absolute",
+        "_offset_y": {
+         "unit": "px",
+         "size": -201,
+         "sizes": []
+        },
+        "_transform_rotateZ_effect": {
+         "unit": "px",
+         "size": 120,
+         "sizes": []
+        },
+        "_offset_x": {
+         "unit": "px",
+         "size": 625,
+         "sizes": []
+        },
+        "_transform_flipX_effect": "transform",
+        "_transform_rotate_popover": "yes",
+        "_transform_rotateZ_effect_tablet": {
+         "unit": "deg",
+         "size": "",
+         "sizes": []
+        },
+        "_transform_rotateZ_effect_mobile": {
+         "unit": "deg",
+         "size": "",
+         "sizes": []
+        },
+        "css_classes": "ns-bluebox"
+       },
+       "elements": [],
+       "isInner": true,
+       "elType": "container"
+      },
+      {
+       "id": "779d81d4",
+       "settings": {
+        "position": "absolute",
+        "_offset_y_end": {
+         "unit": "px",
+         "size": -436,
+         "sizes": []
+        },
+        "_transform_rotateZ_effect": {
+         "unit": "px",
+         "size": 24,
+         "sizes": []
+        },
+        "_offset_x_end": {
+         "unit": "px",
+         "size": -548,
+         "sizes": []
+        },
+        "_offset_x_end_tablet": {
+         "unit": "px",
+         "size": -556,
+         "sizes": []
+        },
+        "_offset_y_end_tablet": {
+         "unit": "px",
+         "size": -320,
+         "sizes": []
+        },
+        "_offset_x_end_mobile": {
+         "unit": "px",
+         "size": -658,
+         "sizes": []
+        },
+        "_offset_y_end_mobile": {
+         "unit": "px",
+         "size": -61,
+         "sizes": []
+        },
+        "_transform_flipX_effect": "transform",
+        "_offset_orientation_v": "end",
+        "_offset_orientation_h": "end",
+        "_transform_rotate_popover": "yes",
+        "_transform_rotateZ_effect_tablet": {
+         "unit": "deg",
+         "size": "",
+         "sizes": []
+        },
+        "_transform_rotateZ_effect_mobile": {
+         "unit": "deg",
+         "size": "",
+         "sizes": []
+        },
+        "css_classes": "ns-bluebox big"
+       },
+       "elements": [],
+       "isInner": true,
+       "elType": "container"
+      },
+      {
+       "id": "21c1192c",
+       "settings": {
+        "selected_icon": {
+         "value": {
+          "url": "https://nias.ir/wp-content/uploads/2024/03/Frame-58.svg",
+          "id": ""
+         },
+         "library": "svg"
+        },
+        "title_text": "آپدیت مادام العمر",
+        "title_size": "span",
+        "_element_custom_width": {
+         "unit": "px",
+         "size": 100,
+         "sizes": []
+        },
+        "text_align": "start",
+        "icon_space": {
+         "unit": "px",
+         "size": 0,
+         "sizes": []
+        },
+        "icon_size": {
+         "unit": "px",
+         "size": 23,
+         "sizes": []
+        },
+        "title_color": "#FFFFFF",
+        "_element_custom_width_tablet": {
+         "unit": "%",
+         "size": 46,
+         "sizes": []
+        },
+        "content_vertical_alignment_tablet": "middle",
+        "text_align_tablet": "center",
+        "text_align_mobile": "center",
+        "_element_width": "initial",
+        "position_tablet": "inline-end",
+        "_element_width_tablet": "initial"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "icon-box",
+       "elType": "widget"
+      },
+      {
+       "id": "7d9fd58",
+       "settings": {
+        "selected_icon": {
+         "value": {
+          "url": "https://nias.ir/wp-content/uploads/2024/03/Frame-59.svg",
+          "id": ""
+         },
+         "library": "svg"
+        },
+        "title_text": "تضمین کیفیت آموزش ها",
+        "title_size": "span",
+        "_element_custom_width": {
+         "unit": "px",
+         "size": 100,
+         "sizes": []
+        },
+        "text_align": "start",
+        "icon_space": {
+         "unit": "px",
+         "size": 0,
+         "sizes": []
+        },
+        "icon_size": {
+         "unit": "px",
+         "size": 23,
+         "sizes": []
+        },
+        "title_color": "#FFFFFF",
+        "_element_custom_width_tablet": {
+         "unit": "%",
+         "size": 46,
+         "sizes": []
+        },
+        "content_vertical_alignment_tablet": "middle",
+        "text_align_tablet": "center",
+        "_element_width": "initial",
+        "position_tablet": "inline-end",
+        "_element_width_tablet": "initial"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "icon-box",
+       "elType": "widget"
+      },
+      {
+       "id": "3fc1fe7d",
+       "settings": {
+        "selected_icon": {
+         "value": {
+          "url": "https://nias.ir/wp-content/uploads/2024/03/Frame-60.svg",
+          "id": ""
+         },
+         "library": "svg"
+        },
+        "title_text": "ارتباط مستقیم با مدرس دوره",
+        "title_size": "span",
+        "_element_custom_width": {
+         "unit": "px",
+         "size": 100,
+         "sizes": []
+        },
+        "text_align": "start",
+        "icon_space": {
+         "unit": "px",
+         "size": 0,
+         "sizes": []
+        },
+        "icon_size": {
+         "unit": "px",
+         "size": 23,
+         "sizes": []
+        },
+        "title_color": "#FFFFFF",
+        "_element_custom_width_tablet": {
+         "unit": "%",
+         "size": 46,
+         "sizes": []
+        },
+        "content_vertical_alignment_tablet": "middle",
+        "text_align_tablet": "center",
+        "_element_width": "initial",
+        "position_tablet": "inline-end",
+        "_element_width_tablet": "initial"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "icon-box",
+       "elType": "widget"
+      },
+      {
+       "id": "5bc6c1a5",
+       "settings": {
+        "selected_icon": {
+         "value": {
+          "url": "https://nias.ir/wp-content/uploads/2024/03/Frame-61-1.svg",
+          "id": ""
+         },
+         "library": "svg"
+        },
+        "title_text": "ویژه بازار کار برای هر سطح",
+        "title_size": "span",
+        "_element_custom_width": {
+         "unit": "px",
+         "size": 100,
+         "sizes": []
+        },
+        "text_align": "start",
+        "icon_space": {
+         "unit": "px",
+         "size": 0,
+         "sizes": []
+        },
+        "icon_size": {
+         "unit": "px",
+         "size": 23,
+         "sizes": []
+        },
+        "title_color": "#FFFFFF",
+        "_element_custom_width_tablet": {
+         "unit": "%",
+         "size": 46,
+         "sizes": []
+        },
+        "content_vertical_alignment_tablet": "middle",
+        "text_align_tablet": "center",
+        "_element_width": "initial",
+        "position_tablet": "inline-end",
+        "_element_width_tablet": "initial"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "icon-box",
+       "elType": "widget"
+      },
+      {
+       "id": "4814fe9d",
+       "settings": {
+        "selected_icon": {
+         "value": {
+          "url": "https://nias.ir/wp-content/uploads/2024/03/Frame-62.svg",
+          "id": ""
+         },
+         "library": "svg"
+        },
+        "title_text": "آموزش های کوتاه و با کیفیت",
+        "title_size": "span",
+        "_element_custom_width": {
+         "unit": "px",
+         "size": 100,
+         "sizes": []
+        },
+        "text_align": "start",
+        "icon_space": {
+         "unit": "px",
+         "size": 0,
+         "sizes": []
+        },
+        "icon_size": {
+         "unit": "px",
+         "size": 23,
+         "sizes": []
+        },
+        "title_color": "#FFFFFF",
+        "_element_custom_width_tablet": {
+         "unit": "%",
+         "size": 46,
+         "sizes": []
+        },
+        "content_vertical_alignment_tablet": "middle",
+        "text_align_tablet": "center",
+        "_element_width": "initial",
+        "position_tablet": "inline-end",
+        "_element_width_tablet": "initial"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "icon-box",
+       "elType": "widget"
+      },
+      {
+       "id": "4c939851",
+       "settings": {
+        "text": "شرکت در دوره",
+        "link": {
+         "url": "https://nias.ir/product/nias-elementor-course/",
+         "is_external": "",
+         "nofollow": "",
+         "custom_attributes": ""
+        },
+        "size": "sm",
+        "button_text_color": "#2F5CCD",
+        "background_color": "#FFFFFF",
+        "border_radius": {
+         "unit": "px",
+         "top": "50",
+         "right": "50",
+         "bottom": "50",
+         "left": "50",
+         "isLinked": true
+        },
+        "text_padding": {
+         "unit": "px",
+         "top": "15",
+         "right": "25",
+         "bottom": "15",
+         "left": "25",
+         "isLinked": false
+        },
+        "_element_custom_width": {
+         "unit": "px",
+         "size": 144,
+         "sizes": []
+        },
+        "_element_width_tablet": "inherit",
+        "align": "left",
+        "_element_width": "initial",
+        "align_tablet": "center"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "button",
+       "elType": "widget"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "28596ad6",
+   "settings": {
+    "flex_direction": "column",
+    "margin": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "flex_align_items": "center",
+    "overflow": "hidden"
+   },
+   "elements": [
+    {
+     "id": "3a224245",
+     "settings": {
+      "flex_align_items": "center",
+      "width": {
+       "unit": "px",
+       "size": 1032,
+       "sizes": []
+      },
+      "content_width": "full"
+     },
+     "elements": [
+      {
+       "id": "5a09ec5",
+       "settings": {
+        "selected_icon": {
+         "value": {
+          "url": "https://nias.ir/wp-content/uploads/2024/03/Ellipse-4.svg",
+          "id": ""
+         },
+         "library": "svg"
+        },
+        "_offset_x_end": {
+         "unit": "px",
+         "size": 246,
+         "sizes": []
+        },
+        "size": {
+         "unit": "px",
+         "size": 34,
+         "sizes": []
+        },
+        "_position": "absolute",
+        "_offset_orientation_h": "end",
+        "_css_classes": "fadeIn"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "icon",
+       "elType": "widget"
+      },
+      {
+       "id": "743120d6",
+       "settings": {
+        "selected_icon": {
+         "value": {
+          "url": "https://nias.ir/wp-content/uploads/2024/03/Vector-1.svg",
+          "id": ""
+         },
+         "library": "svg"
+        },
+        "_offset_x_end": {
+         "unit": "px",
+         "size": 134,
+         "sizes": []
+        },
+        "size": {
+         "unit": "px",
+         "size": 74,
+         "sizes": []
+        },
+        "_position": "absolute",
+        "_offset_orientation_h": "end",
+        "_offset_orientation_v": "end"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "icon",
+       "elType": "widget"
+      },
+      {
+       "id": "11d14d62",
+       "settings": {
+        "selected_icon": {
+         "value": {
+          "url": "https://nias.ir/wp-content/uploads/2024/03/Frame-67.svg",
+          "id": ""
+         },
+         "library": "svg"
+        },
+        "_offset_x": {
+         "unit": "px",
+         "size": 134,
+         "sizes": []
+        },
+        "_offset_y_end": {
+         "unit": "px",
+         "size": 34,
+         "sizes": []
+        },
+        "size": {
+         "unit": "px",
+         "size": 45,
+         "sizes": []
+        },
+        "_position": "absolute",
+        "_offset_orientation_v": "end"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "icon",
+       "elType": "widget"
+      },
+      {
+       "id": "6fd740e2",
+       "settings": {
+        "selected_icon": {
+         "value": {
+          "url": "https://nias.ir/wp-content/uploads/2024/03/Star-1.svg",
+          "id": ""
+         },
+         "library": "svg"
+        },
+        "_offset_x": {
+         "unit": "px",
+         "size": 212,
+         "sizes": []
+        },
+        "_offset_y": {
+         "unit": "px",
+         "size": -11,
+         "sizes": []
+        },
+        "motion_fx_transform_x_anchor_point": "center",
+        "motion_fx_transform_y_anchor_point": "center",
+        "size": {
+         "unit": "px",
+         "size": 45,
+         "sizes": []
+        },
+        "_offset_y_mobile": {
+         "unit": "px",
+         "size": 17,
+         "sizes": []
+        },
+        "_position": "absolute",
+        "motion_fx_motion_fx_scrolling": "yes",
+        "motion_fx_rotateZ_effect": "yes",
+        "motion_fx_rotateZ_direction": "negative",
+        "motion_fx_rotateZ_speed": {
+         "unit": "px",
+         "size": 1,
+         "sizes": []
+        },
+        "motion_fx_rotateZ_affectedRange": {
+         "unit": "%",
+         "size": "",
+         "sizes": {
+          "start": 0,
+          "end": 100
+         }
+        },
+        "motion_fx_devices": [
+         "desktop",
+         "tablet",
+         "mobile"
+        ]
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "icon",
+       "elType": "widget"
+      },
+      {
+       "id": "7e701c4a",
+       "settings": {
+        "title": "<span style=\"color: #2F5CCD\">آماده‌ای سایتتو حرفه ای کنی؟</span> \n<span style=\"color: #20242e\"><strong>با پلاگینای نیاس</strong></span> \n<span style=\"color: #94969a\">سایتتو ارتقا بده</span>",
+        "header_size": "div",
+        "_element_custom_width": {
+         "unit": "px",
+         "size": 700,
+         "sizes": []
+        },
+        "align": "center",
+        "typography_font_size": {
+         "unit": "px",
+         "size": 48,
+         "sizes": []
+        },
+        "typography_line_height": {
+         "unit": "px",
+         "size": 68,
+         "sizes": []
+        },
+        "typography_font_size_mobile": {
+         "unit": "px",
+         "size": 25,
+         "sizes": []
+        },
+        "typography_line_height_mobile": {
+         "unit": "em",
+         "size": 1.6,
+         "sizes": []
+        },
+        "_element_width": "initial",
+        "typography_typography": "custom",
+        "custom_css": "selector{margin:100px 0px calc(var(--kit-widget-spacing, 0px) + 100px) 0px;}"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "heading",
+       "elType": "widget"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "a6b0246",
+   "settings": {
+    "boxed_width": {
+     "unit": "px",
+     "size": 1032,
+     "sizes": []
+    }
+   },
+   "elements": [
+    {
+     "id": "d5cc80e",
+     "settings": {
+      "template_id": "7528",
+      "_skin": "post",
+      "columns": "3",
+      "columns_tablet": "2",
+      "columns_mobile": "1",
+      "edit_handle_selector": "[data-elementor-type=\"loop-item\"]",
+      "row_gap": {
+       "unit": "px",
+       "size": "",
+       "sizes": []
+      },
+      "row_gap_tablet": {
+       "unit": "px",
+       "size": "",
+       "sizes": []
+      },
+      "row_gap_mobile": {
+       "unit": "px",
+       "size": "",
+       "sizes": []
+      }
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "loop-grid",
+     "elType": "widget"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "6e020e0",
+   "settings": {
+    "flex_direction": "column",
+    "margin": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "flex_align_items": "center",
+    "overflow": "hidden",
+    "margin_mobile": {
+     "unit": "px",
+     "top": "100",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": false
+    }
+   },
+   "elements": [
+    {
+     "id": "e6dd468",
+     "settings": {
+      "flex_align_items": "center",
+      "width": {
+       "unit": "px",
+       "size": 1032,
+       "sizes": []
+      },
+      "content_width": "full"
+     },
+     "elements": [
+      {
+       "id": "1a6062b",
+       "settings": {
+        "selected_icon": {
+         "value": {
+          "url": "https://nias.ir/wp-content/uploads/2024/03/Ellipse-4.svg",
+          "id": ""
+         },
+         "library": "svg"
+        },
+        "_offset_x": {
+         "unit": "px",
+         "size": 246,
+         "sizes": []
+        },
+        "size": {
+         "unit": "px",
+         "size": 34,
+         "sizes": []
+        },
+        "_position": "absolute",
+        "_animation": "fadeIn"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "icon",
+       "elType": "widget"
+      },
+      {
+       "id": "d3b15a4",
+       "settings": {
+        "selected_icon": {
+         "value": {
+          "url": "https://nias.ir/wp-content/uploads/2024/03/Vector-1.svg",
+          "id": ""
+         },
+         "library": "svg"
+        },
+        "_offset_x": {
+         "unit": "px",
+         "size": 134,
+         "sizes": []
+        },
+        "size": {
+         "unit": "px",
+         "size": 74,
+         "sizes": []
+        },
+        "_offset_x_mobile": {
+         "unit": "px",
+         "size": 0,
+         "sizes": []
+        },
+        "_position": "absolute",
+        "_offset_orientation_v": "end"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "icon",
+       "elType": "widget"
+      },
+      {
+       "id": "e371727",
+       "settings": {
+        "selected_icon": {
+         "value": {
+          "url": "https://nias.ir/wp-content/uploads/2024/03/Frame-67.svg",
+          "id": ""
+         },
+         "library": "svg"
+        },
+        "_offset_x_end": {
+         "unit": "px",
+         "size": 134,
+         "sizes": []
+        },
+        "_offset_y_end": {
+         "unit": "px",
+         "size": 34,
+         "sizes": []
+        },
+        "size": {
+         "unit": "px",
+         "size": 45,
+         "sizes": []
+        },
+        "_offset_x_end_mobile": {
+         "unit": "px",
+         "size": 0,
+         "sizes": []
+        },
+        "_position": "absolute",
+        "_offset_orientation_h": "end",
+        "_offset_orientation_v": "end"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "icon",
+       "elType": "widget"
+      },
+      {
+       "id": "e24fffe",
+       "settings": {
+        "selected_icon": {
+         "value": {
+          "url": "https://nias.ir/wp-content/uploads/2024/03/Star-1.svg",
+          "id": ""
+         },
+         "library": "svg"
+        },
+        "_offset_x_end": {
+         "unit": "px",
+         "size": 212,
+         "sizes": []
+        },
+        "_offset_y": {
+         "unit": "px",
+         "size": -11,
+         "sizes": []
+        },
+        "motion_fx_transform_x_anchor_point": "center",
+        "motion_fx_transform_y_anchor_point": "center",
+        "size": {
+         "unit": "px",
+         "size": 45,
+         "sizes": []
+        },
+        "_offset_y_mobile": {
+         "unit": "px",
+         "size": 17,
+         "sizes": []
+        },
+        "_position": "absolute",
+        "_offset_orientation_h": "end",
+        "motion_fx_motion_fx_scrolling": "yes",
+        "motion_fx_rotateZ_effect": "yes",
+        "motion_fx_rotateZ_direction": "negative",
+        "motion_fx_rotateZ_speed": {
+         "unit": "px",
+         "size": 1,
+         "sizes": []
+        },
+        "motion_fx_rotateZ_affectedRange": {
+         "unit": "%",
+         "size": "",
+         "sizes": {
+          "start": 0,
+          "end": 100
+         }
+        },
+        "motion_fx_devices": [
+         "desktop",
+         "tablet",
+         "mobile"
+        ]
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "icon",
+       "elType": "widget"
+      },
+      {
+       "id": "d3c7da8",
+       "settings": {
+        "title": "<span style=\"color: #f39946\">می‌خوای متفاوت باشی؟</span> <span style=\"color: #20242e\"><strong> با سایت آماده خلاقانه نیاس</strong></span> <span style=\"color: #94969a\">شروعی خاص بساز</span>",
+        "header_size": "div",
+        "_element_custom_width": {
+         "unit": "px",
+         "size": 700,
+         "sizes": []
+        },
+        "align": "center",
+        "typography_font_size": {
+         "unit": "px",
+         "size": 48,
+         "sizes": []
+        },
+        "typography_line_height": {
+         "unit": "px",
+         "size": 68,
+         "sizes": []
+        },
+        "typography_font_size_mobile": {
+         "unit": "px",
+         "size": 25,
+         "sizes": []
+        },
+        "typography_line_height_mobile": {
+         "unit": "em",
+         "size": 1.6,
+         "sizes": []
+        },
+        "_element_width": "initial",
+        "typography_typography": "custom",
+        "custom_css": "selector{margin:100px 0px calc(var(--kit-widget-spacing, 0px) + 100px) 0px;}"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "heading",
+       "elType": "widget"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "3839e976",
+   "settings": {
+    "boxed_width": {
+     "unit": "px",
+     "size": 1032,
+     "sizes": []
+    }
+   },
+   "elements": [
+    {
+     "id": "2bb5bb4",
+     "settings": {
+      "template_id": "7528",
+      "_skin": "post",
+      "columns": "3",
+      "columns_tablet": "2",
+      "columns_mobile": "1",
+      "edit_handle_selector": "[data-elementor-type=\"loop-item\"]",
+      "row_gap": {
+       "unit": "px",
+       "size": "",
+       "sizes": []
+      },
+      "row_gap_tablet": {
+       "unit": "px",
+       "size": "",
+       "sizes": []
+      },
+      "row_gap_mobile": {
+       "unit": "px",
+       "size": "",
+       "sizes": []
+      }
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "loop-grid",
+     "elType": "widget"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "0168a60",
+   "settings": {
+    "flex_direction": "column"
+   },
+   "elements": [
+    {
+     "id": "e325d09",
+     "settings": {
+      "text": "مشاهده همه سایت های آماده",
+      "link": {
+       "url": "https://nias.ir/product-category/template/",
+       "is_external": "",
+       "nofollow": "",
+       "custom_attributes": ""
+      },
+      "size": "sm",
+      "selected_icon": {
+       "value": {
+        "url": "https://nias.ir/wp-content/uploads/2024/03/svgexport-18-1.svg",
+        "id": ""
+       },
+       "library": "svg"
+      },
+      "background_color": "#2F5CCD",
+      "border_radius": {
+       "unit": "px",
+       "top": "30",
+       "right": "30",
+       "bottom": "30",
+       "left": "30",
+       "isLinked": true
+      },
+      "text_padding": {
+       "unit": "px",
+       "top": "15",
+       "right": "25",
+       "bottom": "15",
+       "left": "25",
+       "isLinked": false
+      },
+      "_flex_align_self": "center",
+      "align": "left",
+      "_css_classes": "ns-button"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "button",
+     "elType": "widget"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "5817b316",
+   "settings": {
+    "flex_direction": "column",
+    "margin": {
+     "unit": "px",
+     "top": "100",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": false
+    },
+    "boxed_width": {
+     "unit": "px",
+     "size": 881,
+     "sizes": []
+    }
+   },
+   "elements": [
+    {
+     "id": "1ee221d5",
+     "settings": {
+      "title": "برای یادگیری",
+      "header_size": "span",
+      "typography_font_size": {
+       "unit": "px",
+       "size": 35,
+       "sizes": []
+      },
+      "typography_font_weight": "bold",
+      "title_color": "#2F5CCD",
+      "align_mobile": "start",
+      "typography_font_size_mobile": {
+       "unit": "px",
+       "size": 15,
+       "sizes": []
+      },
+      "typography_typography": "custom",
+      "custom_css": "selector{padding:0px 75px 0px 0px;}\n@media (max-width:767px){selector{padding:0px 0px 0px 0px;}}"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "heading",
+     "elType": "widget"
+    },
+    {
+     "id": "260b6d7c",
+     "settings": {
+      "title": "آمـــــــــــاده&nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;هــسـتــی ؟",
+      "header_size": "span",
+      "align": "justify",
+      "typography_font_size": {
+       "unit": "px",
+       "size": 96,
+       "sizes": []
+      },
+      "typography_font_weight": "bold",
+      "title_color": "#20242E",
+      "align_tablet": "center",
+      "typography_font_size_tablet": {
+       "unit": "px",
+       "size": 75,
+       "sizes": []
+      },
+      "typography_font_size_mobile": {
+       "unit": "px",
+       "size": 34,
+       "sizes": []
+      },
+      "typography_typography": "custom"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "heading",
+     "elType": "widget"
+    },
+    {
+     "id": "118c364e",
+     "settings": {
+      "selected_icon": {
+       "value": {
+        "url": "https://nias.ir/wp-content/uploads/2024/03/Ellipse-8.svg",
+        "id": ""
+       },
+       "library": "svg"
+      },
+      "_offset_x_end": {
+       "unit": "%",
+       "size": 40,
+       "sizes": []
+      },
+      "_offset_y": {
+       "unit": "px",
+       "size": -39,
+       "sizes": []
+      },
+      "size": {
+       "unit": "px",
+       "size": 85,
+       "sizes": []
+      },
+      "_offset_x_end_mobile": {
+       "unit": "%",
+       "size": 8,
+       "sizes": []
+      },
+      "_position": "absolute",
+      "_offset_orientation_h": "end"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "icon",
+     "elType": "widget"
+    },
+    {
+     "id": "55e88d26",
+     "settings": {
+      "selected_icon": {
+       "value": {
+        "url": "https://nias.ir/wp-content/uploads/2024/03/Ellipse-9.svg",
+        "id": ""
+       },
+       "library": "svg"
+      },
+      "_offset_x": {
+       "unit": "%",
+       "size": 35,
+       "sizes": []
+      },
+      "size": {
+       "unit": "px",
+       "size": 58,
+       "sizes": []
+      },
+      "_offset_x_mobile": {
+       "unit": "%",
+       "size": 10,
+       "sizes": []
+      },
+      "_position": "absolute",
+      "_offset_orientation_v": "end"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "icon",
+     "elType": "widget"
+    },
+    {
+     "id": "7810b56",
+     "settings": {
+      "image": {
+       "url": "https://nias.ir/wp-content/uploads/2024/03/Group-59441.webp",
+       "id": "",
+       "alt": "Group 59441",
+       "source": "library",
+       "size": ""
+      },
+      "image_size": "large",
+      "_flex_align_self": "center",
+      "width_tablet": {
+       "unit": "px",
+       "size": 116,
+       "sizes": []
+      },
+      "width_mobile": {
+       "unit": "px",
+       "size": 73,
+       "sizes": []
+      },
+      "_position": "absolute",
+      "custom_css": "selector{margin:0px 50px calc(var(--kit-widget-spacing, 0px) + 0px) 0px;}\n@media (max-width:767px){selector{margin:0px 0px calc(var(--kit-widget-spacing, 0px) + 0px) 0px;}}",
+      "motion_fx_motion_fx_scrolling": "yes",
+      "motion_fx_translateY_effect": "yes",
+      "motion_fx_translateY_speed": {
+       "unit": "px",
+       "size": 2,
+       "sizes": []
+      },
+      "motion_fx_translateX_effect": "yes",
+      "motion_fx_translateX_direction": "negative",
+      "motion_fx_translateX_speed": {
+       "unit": "px",
+       "size": 2,
+       "sizes": []
+      },
+      "motion_fx_translateY_affectedRange": {
+       "unit": "%",
+       "size": "",
+       "sizes": {
+        "start": 0,
+        "end": 100
+       }
+      },
+      "motion_fx_translateX_affectedRange": {
+       "unit": "%",
+       "size": "",
+       "sizes": {
+        "start": 0,
+        "end": 100
+       }
+      },
+      "motion_fx_devices": [
+       "desktop",
+       "tablet",
+       "mobile"
+      ],
+      "_css_classes": "ns-rocket perfmatters-lazy"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "image",
+     "elType": "widget"
+    },
+    {
+     "id": "27e4f522",
+     "settings": {
+      "title": "با آموزش های نیاس غول المنتور شو",
+      "header_size": "h3",
+      "align": "end",
+      "typography_font_size": {
+       "unit": "px",
+       "size": 20,
+       "sizes": []
+      },
+      "typography_font_weight": "bold",
+      "typography_line_height": {
+       "unit": "px",
+       "size": 27,
+       "sizes": []
+      },
+      "title_color": "#8F92A1",
+      "typography_font_size_mobile": {
+       "unit": "px",
+       "size": 10,
+       "sizes": []
+      },
+      "typography_typography": "custom"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "heading",
+     "elType": "widget"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "30655c0f",
+   "settings": {
+    "flex_direction": "column",
+    "margin": {
+     "unit": "px",
+     "top": "50",
+     "right": "0",
+     "bottom": "100",
+     "left": "0",
+     "isLinked": false
+    },
+    "flex_align_items": "center",
+    "min_height": {
+     "unit": "px",
+     "size": 193,
+     "sizes": []
+    },
+    "flex_justify_content": "center",
+    "margin_mobile": {
+     "unit": "px",
+     "top": "20",
+     "right": "0",
+     "bottom": "100",
+     "left": "0",
+     "isLinked": false
+    }
+   },
+   "elements": [
+    {
+     "id": "30f4ebb0",
+     "settings": {
+      "text": "شرکت در دوره",
+      "link": {
+       "url": "https://nias.ir/product/nias-elementor-course/",
+       "is_external": "",
+       "nofollow": "",
+       "custom_attributes": ""
+      },
+      "size": "sm",
+      "background_color": "#2F5CCD",
+      "border_radius": {
+       "unit": "px",
+       "top": "30",
+       "right": "30",
+       "bottom": "30",
+       "left": "30",
+       "isLinked": true
+      },
+      "text_padding": {
+       "unit": "px",
+       "top": "15",
+       "right": "25",
+       "bottom": "15",
+       "left": "25",
+       "isLinked": false
+      },
+      "_flex_align_self": "center",
+      "align": "left",
+      "_css_classes": "ns-button"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "button",
+     "elType": "widget"
+    },
+    {
+     "id": "1f4c7991",
+     "settings": {
+      "editor": "<p>دوره طراحی وب سایت با استفاده از المنتور، به شما کمک می کند تا مهارت های پیشرفته طراحی وب سایت با المنتور را بیاموزید.این دوره شامل 2 بخش پیشرفته و جامع است که با پشتیبانی و آپدیت دائمی در اختیار شما قرار میگیرد</p>",
+      "_element_custom_width": {
+       "unit": "px",
+       "size": 788,
+       "sizes": []
+      },
+      "align": "center",
+      "text_color": "#94969A",
+      "_element_width": "initial"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "text-editor",
+     "elType": "widget"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "7d4c2ae",
+   "settings": {
+    "flex_direction": "column"
+   },
+   "elements": [
+    {
+     "id": "d8fe95c",
+     "settings": {
+      "padding": {
+       "unit": "px",
+       "top": "50",
+       "right": "50",
+       "bottom": "50",
+       "left": "50",
+       "isLinked": true
+      },
+      "flex_align_items": "center",
+      "overflow": "hidden",
+      "border_radius": {
+       "unit": "px",
+       "top": "30",
+       "right": "30",
+       "bottom": "30",
+       "left": "30",
+       "isLinked": true
+      },
+      "background_color": "#E9ECF3",
+      "padding_tablet": {
+       "unit": "px",
+       "top": "30",
+       "right": "30",
+       "bottom": "30",
+       "left": "30",
+       "isLinked": true
+      },
+      "padding_mobile": {
+       "unit": "px",
+       "top": "30",
+       "right": "10",
+       "bottom": "50",
+       "left": "10",
+       "isLinked": false
+      },
+      "background_background": "classic"
+     },
+     "elements": [
+      {
+       "id": "185b2e8",
+       "settings": {
+        "title": "<span style=\"color: #2f5ccd\">نمونه </span><span style=\"color: #20242e\">آموزش های دوره پیشرفته</span> <span style=\"color: #2f5ccd\">المنتور</span>",
+        "header_size": "h2",
+        "_z_index": 1,
+        "align": "center",
+        "typography_font_size": {
+         "unit": "px",
+         "size": 32,
+         "sizes": []
+        },
+        "typography_font_weight": "bold",
+        "typography_line_height": {
+         "unit": "px",
+         "size": 40,
+         "sizes": []
+        },
+        "typography_font_size_mobile": {
+         "unit": "px",
+         "size": 20,
+         "sizes": []
+        },
+        "typography_line_height_mobile": {
+         "unit": "em",
+         "size": 1.6,
+         "sizes": []
+        },
+        "typography_typography": "custom"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "heading",
+       "elType": "widget"
+      },
+      {
+       "id": "5c99e84",
+       "settings": {
+        "title": "این آموزش های خاص را در هیچ جایی غیر از نیاس پیدا نمیکنید!",
+        "header_size": "span",
+        "_element_custom_width": {
+         "unit": "px",
+         "size": 578,
+         "sizes": []
+        },
+        "_z_index": 1,
+        "align": "center",
+        "title_color": "#94969A",
+        "_element_width": "initial"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "heading",
+       "elType": "widget"
+      },
+      {
+       "id": "7f2c5f3",
+       "settings": {
+        "template_id": "6898",
+        "_skin": "post",
+        "columns": "3",
+        "columns_tablet": "2",
+        "columns_mobile": "1",
+        "edit_handle_selector": "[data-elementor-type=\"loop-item\"]",
+        "row_gap": {
+         "unit": "px",
+         "size": "",
+         "sizes": []
+        },
+        "row_gap_tablet": {
+         "unit": "px",
+         "size": "",
+         "sizes": []
+        },
+        "row_gap_mobile": {
+         "unit": "px",
+         "size": "",
+         "sizes": []
+        },
+        "_z_index": 1
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "loop-grid",
+       "elType": "widget"
+      },
+      {
+       "id": "9f63987",
+       "settings": {
+        "text": "آموزش های رایگان",
+        "link": {
+         "url": "https://nias.ir/minicourses/",
+         "is_external": "",
+         "nofollow": "",
+         "custom_attributes": ""
+        },
+        "size": "sm",
+        "background_color": "#2F5CCD",
+        "border_radius": {
+         "unit": "px",
+         "top": "30",
+         "right": "30",
+         "bottom": "30",
+         "left": "30",
+         "isLinked": true
+        },
+        "text_padding": {
+         "unit": "px",
+         "top": "15",
+         "right": "25",
+         "bottom": "15",
+         "left": "25",
+         "isLinked": false
+        },
+        "_flex_align_self": "center",
+        "_z_index": 1,
+        "align": "left",
+        "_css_classes": "ns-button"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "button",
+       "elType": "widget"
+      },
+      {
+       "id": "9619fc9",
+       "settings": {
+        "width": {
+         "unit": "px",
+         "size": 900,
+         "sizes": []
+        },
+        "min_height": {
+         "unit": "px",
+         "size": 900,
+         "sizes": []
+        },
+        "border_radius": {
+         "unit": "%",
+         "top": "50",
+         "right": "50",
+         "bottom": "50",
+         "left": "50",
+         "isLinked": true
+        },
+        "position": "absolute",
+        "_offset_y": {
+         "unit": "px",
+         "size": -508,
+         "sizes": []
+        },
+        "z_index": 0,
+        "background_color": "#C7D3EF59",
+        "_offset_x_end": {
+         "unit": "px",
+         "size": -361,
+         "sizes": []
+        },
+        "content_width": "full",
+        "background_background": "classic",
+        "_offset_orientation_h": "end",
+        "css_classes": "ns-boxcirclenemone"
+       },
+       "elements": [],
+       "isInner": true,
+       "elType": "container"
+      },
+      {
+       "id": "b331a69",
+       "settings": {
+        "width": {
+         "unit": "px",
+         "size": 900,
+         "sizes": []
+        },
+        "min_height": {
+         "unit": "px",
+         "size": 900,
+         "sizes": []
+        },
+        "border_radius": {
+         "unit": "%",
+         "top": "50",
+         "right": "50",
+         "bottom": "50",
+         "left": "50",
+         "isLinked": true
+        },
+        "position": "absolute",
+        "_offset_y_end": {
+         "unit": "px",
+         "size": -467,
+         "sizes": []
+        },
+        "z_index": 0,
+        "background_color": "#C7D3EF59",
+        "_offset_x": {
+         "unit": "px",
+         "size": -339,
+         "sizes": []
+        },
+        "content_width": "full",
+        "_offset_orientation_v": "end",
+        "background_background": "classic",
+        "css_classes": "ns-boxcirclenemone"
+       },
+       "elements": [],
+       "isInner": true,
+       "elType": "container"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "455dada",
+   "settings": {
+    "flex_direction": "column",
+    "margin": {
+     "unit": "px",
+     "top": "100",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": false
+    }
+   },
+   "elements": [
+    {
+     "id": "8d25674",
+     "settings": {
+      "padding": {
+       "unit": "px",
+       "top": "50",
+       "right": "50",
+       "bottom": "50",
+       "left": "50",
+       "isLinked": true
+      },
+      "flex_align_items": "center",
+      "overflow": "hidden",
+      "border_radius": {
+       "unit": "px",
+       "top": "30",
+       "right": "30",
+       "bottom": "30",
+       "left": "30",
+       "isLinked": true
+      },
+      "background_color": "#E9F3EA",
+      "padding_tablet": {
+       "unit": "px",
+       "top": "30",
+       "right": "30",
+       "bottom": "30",
+       "left": "30",
+       "isLinked": true
+      },
+      "padding_mobile": {
+       "unit": "px",
+       "top": "30",
+       "right": "10",
+       "bottom": "50",
+       "left": "10",
+       "isLinked": false
+      },
+      "background_background": "classic"
+     },
+     "elements": [
+      {
+       "id": "9fb7333",
+       "settings": {
+        "title": "آموزش <span style=\"color:#05d270\">رایگان </span><span style=\"color: #20242e\">جت انجین</span> <span style=\"color:#05d270\">پروژه محور</span>",
+        "header_size": "h2",
+        "_z_index": 1,
+        "align": "center",
+        "typography_font_size": {
+         "unit": "px",
+         "size": 32,
+         "sizes": []
+        },
+        "typography_font_weight": "bold",
+        "typography_line_height": {
+         "unit": "px",
+         "size": 40,
+         "sizes": []
+        },
+        "typography_font_size_mobile": {
+         "unit": "px",
+         "size": 20,
+         "sizes": []
+        },
+        "typography_line_height_mobile": {
+         "unit": "em",
+         "size": 1.6,
+         "sizes": []
+        },
+        "typography_typography": "custom"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "heading",
+       "elType": "widget"
+      },
+      {
+       "id": "23eddde",
+       "settings": {
+        "title": "پیاده سازی سایت املاک 0 تا 100 مطابق طرح فیگما",
+        "header_size": "span",
+        "_element_custom_width": {
+         "unit": "px",
+         "size": 578,
+         "sizes": []
+        },
+        "_z_index": 1,
+        "align": "center",
+        "title_color": "#94969A",
+        "_element_width": "initial"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "heading",
+       "elType": "widget"
+      },
+      {
+       "id": "8cc6ee2",
+       "settings": {
+        "template_id": "6898",
+        "_skin": "post",
+        "columns": "3",
+        "columns_tablet": "2",
+        "columns_mobile": "1",
+        "edit_handle_selector": "[data-elementor-type=\"loop-item\"]",
+        "row_gap": {
+         "unit": "px",
+         "size": "",
+         "sizes": []
+        },
+        "row_gap_tablet": {
+         "unit": "px",
+         "size": "",
+         "sizes": []
+        },
+        "row_gap_mobile": {
+         "unit": "px",
+         "size": "",
+         "sizes": []
+        },
+        "_z_index": 1
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "loop-grid",
+       "elType": "widget"
+      },
+      {
+       "id": "1b98ce8",
+       "settings": {
+        "text": "مشاهده همه",
+        "link": {
+         "url": "https://nias.ir/minicourse-category/jetengine/",
+         "is_external": "",
+         "nofollow": "",
+         "custom_attributes": ""
+        },
+        "size": "sm",
+        "background_color": "#05D172",
+        "button_box_shadow_box_shadow": {
+         "horizontal": 0,
+         "vertical": 10,
+         "blur": 10,
+         "spread": 0,
+         "color": "rgba(0, 255, 80.38043478260866, 0.27)"
+        },
+        "border_radius": {
+         "unit": "px",
+         "top": "50",
+         "right": "50",
+         "bottom": "50",
+         "left": "50",
+         "isLinked": true
+        },
+        "text_padding": {
+         "unit": "px",
+         "top": "15",
+         "right": "25",
+         "bottom": "15",
+         "left": "25",
+         "isLinked": false
+        },
+        "_flex_align_self_mobile": "center",
+        "align": "left",
+        "align_tablet": "center",
+        "button_box_shadow_box_shadow_type": "yes",
+        "custom_css": "selector{margin:20px 0px calc(var(--kit-widget-spacing, 0px) + 0px) 0px;}\n@media (max-width:767px){selector{margin:50px 0px calc(var(--kit-widget-spacing, 0px) + 0px) 0px;}}"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "button",
+       "elType": "widget"
+      },
+      {
+       "id": "23b3174",
+       "settings": {
+        "width": {
+         "unit": "px",
+         "size": 900,
+         "sizes": []
+        },
+        "min_height": {
+         "unit": "px",
+         "size": 900,
+         "sizes": []
+        },
+        "border_radius": {
+         "unit": "%",
+         "top": "50",
+         "right": "50",
+         "bottom": "50",
+         "left": "50",
+         "isLinked": true
+        },
+        "position": "absolute",
+        "_offset_y": {
+         "unit": "px",
+         "size": -508,
+         "sizes": []
+        },
+        "z_index": 0,
+        "background_color": "#8DF0AE66",
+        "_offset_x_end": {
+         "unit": "px",
+         "size": -361,
+         "sizes": []
+        },
+        "content_width": "full",
+        "background_background": "classic",
+        "_offset_orientation_h": "end",
+        "css_classes": "ns-boxcirclenemone"
+       },
+       "elements": [],
+       "isInner": true,
+       "elType": "container"
+      },
+      {
+       "id": "025dd5f",
+       "settings": {
+        "width": {
+         "unit": "px",
+         "size": 900,
+         "sizes": []
+        },
+        "min_height": {
+         "unit": "px",
+         "size": 900,
+         "sizes": []
+        },
+        "border_radius": {
+         "unit": "%",
+         "top": "50",
+         "right": "50",
+         "bottom": "50",
+         "left": "50",
+         "isLinked": true
+        },
+        "position": "absolute",
+        "_offset_y_end": {
+         "unit": "px",
+         "size": -467,
+         "sizes": []
+        },
+        "z_index": 0,
+        "background_color": "#8DF0AE66",
+        "_offset_x": {
+         "unit": "px",
+         "size": -339,
+         "sizes": []
+        },
+        "content_width": "full",
+        "_offset_orientation_v": "end",
+        "background_background": "classic",
+        "css_classes": "ns-boxcirclenemone"
+       },
+       "elements": [],
+       "isInner": true,
+       "elType": "container"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "211b016d",
+   "settings": {
+    "flex_direction": "column",
+    "margin": {
+     "unit": "px",
+     "top": "100",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": false
+    },
+    "flex_align_items": "center",
+    "boxed_width": {
+     "unit": "px",
+     "size": 1032,
+     "sizes": []
+    }
+   },
+   "elements": [
+    {
+     "id": "74af360f",
+     "settings": {
+      "title": "با مقالات نیاس همیشه بروز باش !",
+      "header_size": "span",
+      "_element_custom_width": {
+       "unit": "px",
+       "size": 434,
+       "sizes": []
+      },
+      "align": "end",
+      "typography_font_size": {
+       "unit": "px",
+       "size": 20,
+       "sizes": []
+      },
+      "typography_font_weight": "bold",
+      "title_color": "#8F92A1",
+      "typography_font_size_mobile": {
+       "unit": "px",
+       "size": 12,
+       "sizes": []
+      },
+      "_element_width": "initial",
+      "typography_typography": "custom",
+      "custom_css": "selector{margin:0px 0px calc(var(--kit-widget-spacing, 0px) + -8px) -140px;}\n@media (max-width:767px){selector{margin:0px 0px calc(var(--kit-widget-spacing, 0px) + 0px) 0px;}}"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "heading",
+     "elType": "widget"
+    },
+    {
+     "id": "772191d3",
+     "settings": {
+      "title": "مــــقـــالات &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp; آمـوزشـــــی",
+      "header_size": "h3",
+      "align": "justify",
+      "typography_font_size": {
+       "unit": "px",
+       "size": 96,
+       "sizes": []
+      },
+      "typography_font_weight": "bold",
+      "typography_line_height": {
+       "unit": "px",
+       "size": 100,
+       "sizes": []
+      },
+      "title_color": "#20242E",
+      "typography_font_size_tablet": {
+       "unit": "px",
+       "size": 72,
+       "sizes": []
+      },
+      "typography_font_size_mobile": {
+       "unit": "px",
+       "size": 31,
+       "sizes": []
+      },
+      "typography_typography": "custom"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "heading",
+     "elType": "widget"
+    },
+    {
+     "id": "5ccaf702",
+     "settings": {
+      "image": {
+       "url": "https://nias.ir/wp-content/uploads/2024/03/image-15.webp",
+       "id": "",
+       "alt": "image 15",
+       "source": "library",
+       "size": ""
+      },
+      "image_size": "large",
+      "_element_width": "inherit",
+      "_offset_y": {
+       "unit": "px",
+       "size": 20,
+       "sizes": []
+      },
+      "_flex_align_self": "center",
+      "_offset_x_end": {
+       "unit": "%",
+       "size": 0,
+       "sizes": []
+      },
+      "width": {
+       "unit": "px",
+       "size": 135,
+       "sizes": []
+      },
+      "_offset_y_tablet": {
+       "unit": "px",
+       "size": 0,
+       "sizes": []
+      },
+      "width_tablet": {
+       "unit": "px",
+       "size": 118,
+       "sizes": []
+      },
+      "_offset_y_mobile": {
+       "unit": "px",
+       "size": 77,
+       "sizes": []
+      },
+      "width_mobile": {
+       "unit": "px",
+       "size": 56,
+       "sizes": []
+      },
+      "_position": "absolute",
+      "_offset_orientation_h": "end",
+      "_css_classes": "perfmatters-lazy"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "image",
+     "elType": "widget"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "1652665a",
+   "settings": {
+    "margin": {
+     "unit": "px",
+     "top": "30",
+     "right": "0",
+     "bottom": "100",
+     "left": "0",
+     "isLinked": false
+    },
+    "margin_mobile": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "100",
+     "left": "0",
+     "isLinked": false
+    }
+   },
+   "elements": [
+    {
+     "id": "4aec6c1",
+     "settings": {
+      "template_id": "4965",
+      "_skin": "post",
+      "columns": "3",
+      "columns_tablet": "2",
+      "columns_mobile": "1",
+      "edit_handle_selector": "[data-elementor-type=\"loop-item\"]",
+      "row_gap": {
+       "unit": "px",
+       "size": "",
+       "sizes": []
+      },
+      "row_gap_tablet": {
+       "unit": "px",
+       "size": "",
+       "sizes": []
+      },
+      "row_gap_mobile": {
+       "unit": "px",
+       "size": "",
+       "sizes": []
+      }
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "loop-grid",
+     "elType": "widget"
+    },
+    {
+     "id": "5dc3d0b0",
+     "settings": {
+      "text": "مقالات بیشتر",
+      "link": {
+       "url": "https://nias.ir/blog/",
+       "is_external": "",
+       "nofollow": "",
+       "custom_attributes": ""
+      },
+      "size": "sm",
+      "background_color": "#2F5CCD",
+      "border_radius": {
+       "unit": "px",
+       "top": "30",
+       "right": "30",
+       "bottom": "30",
+       "left": "30",
+       "isLinked": true
+      },
+      "text_padding": {
+       "unit": "px",
+       "top": "15",
+       "right": "25",
+       "bottom": "15",
+       "left": "25",
+       "isLinked": false
+      },
+      "_flex_align_self": "flex-end",
+      "_flex_align_self_mobile": "center",
+      "align": "left",
+      "custom_css": "selector{margin:30px 0px calc(var(--kit-widget-spacing, 0px) + 0px) 0px;}",
+      "_css_classes": "ns-button"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "button",
+     "elType": "widget"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "504eea9a",
+   "settings": {
+    "flex_direction": "column"
+   },
+   "elements": [
+    {
+     "id": "51647bc7",
+     "settings": {
+      "flex_direction": "row",
+      "flex_gap": {
+       "column": "10",
+       "row": "10",
+       "isLinked": true,
+       "unit": "px",
+       "size": 10
+      },
+      "flex_align_items": "center",
+      "min_height": {
+       "unit": "px",
+       "size": 400,
+       "sizes": []
+      },
+      "flex_justify_content": "center",
+      "overflow": "hidden",
+      "border_radius": {
+       "unit": "px",
+       "top": "30",
+       "right": "30",
+       "bottom": "30",
+       "left": "30",
+       "isLinked": true
+      },
+      "background_color": "#7A44EB",
+      "background_background": "classic"
+     },
+     "elements": [
+      {
+       "id": "59ecee07",
+       "settings": {
+        "flex_direction": "row",
+        "flex_align_items": "center",
+        "flex_justify_content": "center",
+        "flex_direction_tablet": "row"
+       },
+       "elements": [
+        {
+         "id": "6f189f7d",
+         "settings": {
+          "selected_icon": {
+           "value": {
+            "url": "https://nias.ir/wp-content/uploads/2024/03/Fill-177.svg",
+            "id": ""
+           },
+           "library": "svg"
+          },
+          "_z_index": 1,
+          "hide_mobile": "hidden-mobile"
+         },
+         "elements": [],
+         "isInner": false,
+         "widgetType": "icon",
+         "elType": "widget"
+        },
+        {
+         "id": "37c36f6a",
+         "settings": {
+          "selected_icon": {
+           "value": {
+            "url": "https://nias.ir/wp-content/uploads/2024/03/Fill-177.svg",
+            "id": ""
+           },
+           "library": "svg"
+          },
+          "_z_index": 1,
+          "hide_mobile": "hidden-mobile"
+         },
+         "elements": [],
+         "isInner": false,
+         "widgetType": "icon",
+         "elType": "widget"
+        },
+        {
+         "id": "38786822",
+         "settings": {
+          "title": "<span style=\"color: #29007e\">ما رو</span> <span style=\"color: #ffffff\">فالوو داری !؟</span>",
+          "header_size": "div",
+          "_z_index": 1,
+          "align": "center",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 60,
+           "sizes": []
+          },
+          "typography_font_weight": "bold",
+          "typography_font_size_tablet": {
+           "unit": "px",
+           "size": 39,
+           "sizes": []
+          },
+          "typography_font_size_mobile": {
+           "unit": "px",
+           "size": 34,
+           "sizes": []
+          },
+          "typography_typography": "custom",
+          "custom_css": "selector{padding:20px 20px 20px 20px;}\n@media (max-width:767px){selector{margin:0px 0px calc(var(--kit-widget-spacing, 0px) + 99px) 0px;}}"
+         },
+         "elements": [],
+         "isInner": false,
+         "widgetType": "heading",
+         "elType": "widget"
+        },
+        {
+         "id": "cbcaef7",
+         "settings": {
+          "weight": {
+           "unit": "px",
+           "size": 0,
+           "sizes": []
+          },
+          "_element_width_mobile": "inherit",
+          "gap_mobile": {
+           "unit": "px",
+           "size": 0,
+           "sizes": []
+          },
+          "hide_desktop": "hidden-desktop",
+          "hide_tablet": "hidden-tablet"
+         },
+         "elements": [],
+         "isInner": false,
+         "widgetType": "divider",
+         "elType": "widget"
+        },
+        {
+         "id": "7175dbfb",
+         "settings": {
+          "text": "یوتیوب",
+          "link": {
+           "url": "https://www.youtube.com/@niasir",
+           "is_external": "on",
+           "nofollow": "",
+           "custom_attributes": ""
+          },
+          "size": "sm",
+          "button_text_color": "#7A44EB",
+          "background_color": "#FFFFFF",
+          "border_radius": {
+           "unit": "px",
+           "top": "50",
+           "right": "50",
+           "bottom": "50",
+           "left": "50",
+           "isLinked": true
+          },
+          "text_padding": {
+           "unit": "px",
+           "top": "15",
+           "right": "25",
+           "bottom": "15",
+           "left": "25",
+           "isLinked": false
+          },
+          "_z_index": 1,
+          "align": "left"
+         },
+         "elements": [],
+         "isInner": false,
+         "widgetType": "button",
+         "elType": "widget"
+        },
+        {
+         "id": "3e5a8ba7",
+         "settings": {
+          "text": "اینستاگرام",
+          "link": {
+           "url": "https://www.instagram.com/nias_ir/",
+           "is_external": "on",
+           "nofollow": "",
+           "custom_attributes": ""
+          },
+          "size": "sm",
+          "button_text_color": "#FFFFFF",
+          "background_color": "#29007E",
+          "border_radius": {
+           "unit": "px",
+           "top": "50",
+           "right": "50",
+           "bottom": "50",
+           "left": "50",
+           "isLinked": true
+          },
+          "text_padding": {
+           "unit": "px",
+           "top": "15",
+           "right": "25",
+           "bottom": "15",
+           "left": "25",
+           "isLinked": false
+          },
+          "_z_index": 1,
+          "align": "left"
+         },
+         "elements": [],
+         "isInner": false,
+         "widgetType": "button",
+         "elType": "widget"
+        },
+        {
+         "id": "31d50013",
+         "settings": {
+          "title": "بطور مرتب کلی آموزش رایگان و کاربردی تو یوتیوب و اینستاگرام داریم پس بهتره از دستشون ندی !",
+          "header_size": "span",
+          "_element_width": "inherit",
+          "_offset_y": {
+           "unit": "px",
+           "size": 113,
+           "sizes": []
+          },
+          "align": "center",
+          "title_color": "#FFFFFF",
+          "_element_width_tablet": "inherit",
+          "align_mobile": "center",
+          "_position": "absolute"
+         },
+         "elements": [],
+         "isInner": false,
+         "widgetType": "heading",
+         "elType": "widget"
+        }
+       ],
+       "isInner": true,
+       "elType": "container"
+      },
+      {
+       "id": "17e0b2ee",
+       "settings": {
+        "selected_icon": {
+         "value": {
+          "url": "https://nias.ir/wp-content/uploads/2024/03/youtube.svg",
+          "id": ""
+         },
+         "library": "svg"
+        },
+        "_offset_y": {
+         "unit": "px",
+         "size": -36,
+         "sizes": []
+        },
+        "_z_index": 0,
+        "size": {
+         "unit": "px",
+         "size": 400,
+         "sizes": []
+        },
+        "size_mobile": {
+         "unit": "px",
+         "size": 230,
+         "sizes": []
+        },
+        "_position": "absolute"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "icon",
+       "elType": "widget"
+      },
+      {
+       "id": "43a54b77",
+       "settings": {
+        "selected_icon": {
+         "value": {
+          "url": "https://nias.ir/wp-content/uploads/2024/03/Frame-75.svg",
+          "id": ""
+         },
+         "library": "svg"
+        },
+        "_offset_y_end": {
+         "unit": "px",
+         "size": -68,
+         "sizes": []
+        },
+        "_z_index": 0,
+        "size": {
+         "unit": "px",
+         "size": 400,
+         "sizes": []
+        },
+        "_offset_y_end_mobile": {
+         "unit": "px",
+         "size": -27,
+         "sizes": []
+        },
+        "size_mobile": {
+         "unit": "px",
+         "size": 170,
+         "sizes": []
+        },
+        "_position": "absolute",
+        "_offset_orientation_h": "end",
+        "_offset_orientation_v": "end"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "icon",
+       "elType": "widget"
+      },
+      {
+       "id": "7feb77fd",
+       "settings": {
+        "selected_icon": {
+         "value": {
+          "url": "https://nias.ir/wp-content/uploads/2024/03/Frame-76.svg",
+          "id": ""
+         },
+         "library": "svg"
+        },
+        "_offset_x": {
+         "unit": "%",
+         "size": 0,
+         "sizes": []
+        },
+        "_offset_y_end": {
+         "unit": "px",
+         "size": -68,
+         "sizes": []
+        },
+        "_z_index": 0,
+        "size": {
+         "unit": "px",
+         "size": 300,
+         "sizes": []
+        },
+        "_offset_y_end_mobile": {
+         "unit": "px",
+         "size": -36,
+         "sizes": []
+        },
+        "size_mobile": {
+         "unit": "px",
+         "size": 168,
+         "sizes": []
+        },
+        "_position": "absolute",
+        "_offset_orientation_v": "end"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "icon",
+       "elType": "widget"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  }
+ ],
+ "page_settings": {
+  "custom_css": ".page-header .entry-title,.site-footer .footer-inner,.site-footer:not(.dynamic-footer),.site-header .header-inner,.site-header:not(.dynamic-header),body:not([class*=elementor-page-]) .site-main{margin-inline-start:auto;margin-inline-end:auto;width:100%;}\n@media (max-width:575px){.page-header .entry-title,.site-footer .footer-inner,.site-footer:not(.dynamic-footer),.site-header .header-inner,.site-header:not(.dynamic-header),body:not([class*=elementor-page-]) .site-main{padding-inline-start:10px;padding-inline-end:10px;}}\n@media (min-width:576px){.page-header .entry-title,.site-footer .footer-inner,.site-footer:not(.dynamic-footer),.site-header .header-inner,.site-header:not(.dynamic-header),body:not([class*=elementor-page-]) .site-main{max-width:500px;}}\n@media (min-width:576px){.site-footer.footer-full-width .footer-inner,.site-header.header-full-width .header-inner{max-width:100%;}}\n@media (min-width:768px){.page-header .entry-title,.site-footer .footer-inner,.site-footer:not(.dynamic-footer),.site-header .header-inner,.site-header:not(.dynamic-header),body:not([class*=elementor-page-]) .site-main{max-width:600px;}}\n@media (min-width:768px){.site-footer.footer-full-width,.site-header.header-full-width{max-width:100%;}}\n@media (min-width:992px){.page-header .entry-title,.site-footer .footer-inner,.site-footer:not(.dynamic-footer),.site-header .header-inner,.site-header:not(.dynamic-header),body:not([class*=elementor-page-]) .site-main{max-width:800px;}}\n@media (min-width:992px){.site-footer.footer-full-width,.site-header.header-full-width{max-width:100%;}}\n@media (min-width:1200px){.page-header .entry-title,.site-footer .footer-inner,.site-footer:not(.dynamic-footer),.site-header .header-inner,.site-header:not(.dynamic-header),body:not([class*=elementor-page-]) .site-main{max-width:1140px;}}\n@media (min-width:1200px){.site-footer.footer-full-width,.site-header.header-full-width{max-width:100%;}}\n.site-header+.elementor{min-height:calc(100vh - 320px);}\n.site-header{display:flex;flex-wrap:wrap;justify-content:space-between;padding-block-start:1rem;padding-block-end:1rem;position:relative;}\n.site-header .site-navigation{justify-content:flex-end;}\n.site-header .site-branding{display:flex;flex-direction:column;justify-content:center;}\n.site-header .header-inner{display:flex;flex-wrap:wrap;justify-content:space-between;}\n.site-header .header-inner .custom-logo-link{display:block;}\n.site-header .header-inner .site-branding .site-description,.site-header .header-inner .site-branding .site-title{margin:0;}\n.site-header .header-inner .site-branding.show-logo .site-title,.site-header .header-inner .site-branding.show-title .site-logo{display:none !important;}\n.site-header:not(.header-stacked) .header-inner .site-branding{max-width:30%;}\n.site-header:not(.header-stacked) .header-inner .site-navigation{max-width:70%;}\n.site-header.header-inverted .header-inner{flex-direction:row-reverse;}\n.site-header.header-inverted .header-inner .site-branding{text-align:right;}\n.site-header.header-inverted .header-inner .site-navigation{justify-content:start;}\n.site-header.header-stacked .header-inner{align-items:center;flex-direction:column;text-align:center;}\n@media (max-width:576px){.site-header .header-inner:not(.header-stacked) .site-branding{max-width:80%;}}\n.site-footer{padding-block-start:1rem;padding-block-end:1rem;position:relative;}\n.site-footer .footer-inner{display:flex;flex-wrap:wrap;justify-content:space-between;}\n.site-footer .footer-inner .custom-logo-link{display:block;}\n.site-footer .footer-inner .site-navigation{justify-content:flex-end;}\n.site-footer .footer-inner .site-branding{display:flex;flex-direction:column;justify-content:center;}\n.site-footer .footer-inner .site-branding .site-description,.site-footer .footer-inner .site-branding .site-title{margin:0;}\n.site-footer .footer-inner .site-branding.show-logo .site-title,.site-footer .footer-inner .site-branding.show-title .site-logo{display:none !important;}\n.site-footer .footer-inner .copyright{align-items:center;display:flex;justify-content:flex-end;}\n.site-footer .footer-inner .copyright p{margin:0;}\n.site-footer.footer-inverted .footer-inner{flex-direction:row-reverse;}\n.site-footer.footer-inverted .footer-inner .site-branding{text-align:right;}\n.site-footer.footer-inverted .footer-inner .site-navigation{justify-content:flex-start;}\n.site-footer.footer-has-copyright .footer-inner .site-navigation{justify-content:center;}\n.site-footer.footer-stacked .footer-inner{align-items:center;flex-direction:column;text-align:center;}\n.site-footer.footer-stacked .footer-inner .site-branding h4.site-title{text-align:center;}\n.site-footer.footer-stacked .footer-inner .site-navigation .menu{padding:0;}\n.site-footer:not(.footer-stacked) .footer-inner .site-branding{max-width:20%;}\n.site-footer:not(.footer-stacked) .footer-inner .site-navigation{max-width:60%;}\n.site-footer:not(.footer-stacked) .footer-inner .copyright{max-width:20%;}\n@media (max-width:576px){.site-footer:not(.footer-stacked) .footer-inner .copyright,.site-footer:not(.footer-stacked) .footer-inner .site-branding,.site-footer:not(.footer-stacked) .footer-inner .site-navigation{display:block;text-align:center;width:100%;max-width:none;}}\n@media (max-width:576px){.site-footer .footer-inner .site-navigation ul.menu{justify-content:center;}}\n@media (max-width:576px){.site-footer .footer-inner .site-navigation ul.menu li{display:inline-block;}}\n.site-header.header-inverted .site-navigation-toggle-holder{justify-content:flex-start;}\n.site-header.header-stacked .site-navigation-toggle-holder{justify-content:center;max-width:100%;}\n.site-header.menu-layout-dropdown .site-navigation{display:none;}\n@media (max-width:576px){.site-header.menu-dropdown-mobile:not(.menu-layout-dropdown) .site-navigation{display:none !important;}}\n@media (min-width:768px){.site-header.menu-dropdown-mobile:not(.menu-layout-dropdown) .site-navigation-toggle-holder{display:none !important;}}\n@media (min-width:576px) and (max-width:767px){.site-header.menu-dropdown-mobile:not(.menu-layout-dropdown) .site-navigation{display:none !important;}}\n@media (min-width:992px){.site-header.menu-dropdown-tablet:not(.menu-layout-dropdown) .site-navigation-toggle-holder{display:none !important;}}\n@media (max-width:992px){.site-header.menu-dropdown-tablet:not(.menu-layout-dropdown) .site-navigation{display:none !important;}}\n.site-header.menu-dropdown-none:not(.menu-layout-dropdown) .site-navigation-toggle-holder{display:none !important;}\n.nias-theme-header,.nias-theme-footer{--nt-container:1400px;--nt-bg:#ffffff;--nt-ink:#0B1C3D;--nt-ink-2:#1B2C4D;--nt-text:#33415C;--nt-muted:#8593AC;--nt-line:#E6ECF6;--nt-surf:#F1F5FB;--nt-surf-2:#E5ECF7;--nt-blue:#0A66FF;--nt-blue-strong:#0850d6;--nt-soft:#EAF2FF;direction:rtl;-webkit-font-smoothing:antialiased;}\n.nias-theme-header *,.nias-theme-footer *{box-sizing:border-box;}\n.nias-theme-header a,.nias-theme-footer a{text-decoration:none;}\nbody .nias-theme-header.site-header,body .nias-theme-footer.site-footer{display:block;padding:0;width:auto;max-width:none;}\n.nias-theme-header{position:sticky;top:0;z-index:40;background:rgb(255 255 255 / .86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--nt-line);}\n.nias-theme-header .nias-theme-header__inner{max-width:var(--nt-container);margin:0 auto;padding:0 10px;height:68px;display:flex;align-items:center;gap:20px;}\n.nias-theme-header .nias-theme-header__branding{flex-shrink:0;}\n.nias-theme-header .nias-theme-header__brand{display:flex;align-items:center;gap:10px;color:var(--nt-ink);}\n.nias-theme-header .nias-theme-header__logo,.nias-theme-header .nias-theme-header__brand .custom-logo{width:38px;height:38px;object-fit:contain;display:block;}\n.nias-theme-header .nias-theme-header__brand-name{font-weight:800;font-size:22px;letter-spacing:-.5px;color:var(--nt-ink);}\n.nias-theme-header .nias-theme-header__nav{display:flex;align-items:center;margin-inline-start:8px;}\n.nias-theme-header .nias-theme-header__menu{display:flex;align-items:center;gap:4px;list-style:none;margin:0;padding:0;}\n.nias-theme-header .nias-theme-header__menu>li{margin:0;}\n.nias-theme-header .nias-theme-header__menu>li>a{display:block;padding:9px 14px;border-radius:10px;font-size:14.5px;font-weight:500;color:var(--nt-text);transition:background .16s,color .16s;}\n.nias-theme-header .nias-theme-header__menu>li>a:hover,.nias-theme-header .nias-theme-header__menu>li.current-menu-item>a{background:#F0F4FB;color:var(--nt-blue);}\n.nias-theme-header .nias-theme-header__menu>li{position:relative;}\n.nias-theme-header .nias-theme-header__menu>li.menu-item-has-children>a::after{content:\"\";display:inline-block;width:6px;height:6px;margin-inline-start:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px);opacity:.55;vertical-align:middle;}\n.nias-theme-header .nias-theme-header__menu .sub-menu{position:absolute;top:calc(100% + 8px);right:0;z-index:60;min-width:210px;list-style:none;margin:0;padding:8px;background:#fff;border:1px solid var(--nt-line);border-radius:14px;box-shadow:0 18px 50px -16px rgb(13 40 90 / .32);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .16s,transform .16s,visibility .16s;}\n.nias-theme-header .nias-theme-header__menu>li:hover>.sub-menu,.nias-theme-header .nias-theme-header__menu>li:focus-within>.sub-menu{opacity:1;visibility:visible;transform:none;}\n.nias-theme-header .nias-theme-header__menu .sub-menu li{margin:0;}\n.nias-theme-header .nias-theme-header__menu .sub-menu a{display:block;padding:9px 12px;border-radius:9px;font-size:14px;font-weight:500;color:var(--nt-text);white-space:nowrap;transition:background .15s,color .15s;}\n.nias-theme-header .nias-theme-header__menu .sub-menu a:hover{background:#F0F4FB;color:var(--nt-blue);}\n.nias-theme-header .nias-theme-header__search{position:relative;flex:1;max-width:340px;margin-inline-start:auto;}\n.nias-theme-header .nias-theme-header__search-box{display:flex;align-items:center;gap:9px;height:42px;padding:0 14px;margin:0;background:var(--nt-surf);border:1.5px solid #E2E8F2;border-radius:13px;transition:border-color .18s;}\n.nias-theme-header .nias-theme-header__search.is-open .nias-theme-header__search-box,.nias-theme-header .nias-theme-header__search-box:focus-within{border-color:var(--nt-blue);}\n.nias-theme-header .nias-theme-header__search-icon{display:flex;flex-shrink:0;color:#7E8AA3;line-height:0;}\n.nias-theme-header .nias-theme-header__search-box input[type=\"search\"]{flex:1;min-width:0;border:0;background:none;outline:none;box-shadow:none;color:var(--nt-ink);padding:0;margin:0;height:100%;}\n.nias-theme-header .nias-theme-header__search-box input::placeholder{color:var(--nt-muted);opacity:1;}\n.nias-theme-header .nias-theme-header__search-kbd{margin-inline-start:auto;flex-shrink:0;color:#9AA6BD;background:#fff;border:1px solid #E2E8F2;border-radius:6px;padding:2px 6px;}\n.nias-theme-header .nias-theme-header__search-pop{position:absolute;top:52px;right:0;left:0;background:#fff;border:1px solid var(--nt-line);border-radius:16px;box-shadow:0 18px 50px -16px rgb(13 40 90 / .32);padding:16px;z-index:60;display:none;}\n.nias-theme-header .nias-theme-header__search.is-open .nias-theme-header__search-pop{display:block;animation:niasDrop .18s ease;}\n.nias-theme-header .nias-theme-header__actions{display:flex;align-items:center;gap:8px;flex-shrink:0;}\n.nias-theme-header .nias-theme-header__cart-wrap{position:relative;}\n.nias-theme-header .nias-theme-header__cart,.nias-theme-header__icon-btn{position:relative;width:42px;height:42px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--nt-surf);color:var(--nt-text);padding:5px;border:none;cursor:pointer;transition:background .16s;}\n.nias-theme-header .nias-theme-header__cart:hover,.nias-theme-header__icon-btn:hover{background:var(--nt-surf-2);}\n.nias-theme-header .nias-theme-header__cart.is-static,.nias-theme-header__icon-btn.is-static{cursor:default;}\n.nias-theme-header .nias-theme-header__cart.is-static:hover,.nias-theme-header__icon-btn.is-static:hover{background:var(--nt-surf);}\n.nias-theme-header .nias-theme-header__cart-count{position:absolute;top:-5px;inset-inline-start:-5px;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:#E8493B;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;}\n.nias-theme-header .nias-theme-header__login{display:flex;align-items:center;gap:7px;height:42px;padding:0 18px;border-radius:12px;background:var(--nt-blue);color:#fff;font-size:14px;font-weight:600;box-shadow:0 8px 18px -8px rgb(10 102 255 / .7);transition:background .16s;}\n.nias-theme-header .nias-theme-header__login:hover{background:var(--nt-blue-strong);color:#fff;}\n.nias-theme-header .nias-theme-header__cart-pop{position:absolute;top:52px;inset-inline-start:0;width:300px;background:#fff;border:1px solid var(--nt-line);border-radius:16px;box-shadow:0 18px 50px -16px rgb(13 40 90 / .32);padding:22px;z-index:60;display:none;}\n.nias-theme-header .nias-theme-header__cart-wrap.is-open .nias-theme-header__cart-pop{display:block;animation:niasDrop .18s ease;}\n.nias-theme-header .nias-theme-header__mobile{display:none;align-items:center;gap:6px;margin-inline-start:auto;}\n.nias-theme-header .nias-theme-header__menu-btn{display:none;flex-shrink:0;}\n.nias-theme-header__drawer-head .nias-theme-header__brand{color:#0B1C3D;}\n.nias-theme-header__drawer-head .nias-theme-header__logo{width:32px;height:32px;}\n.nias-theme-header__drawer-nav .nias-theme-header__menu{flex-direction:column;align-items:stretch;gap:2px;}\n.nias-theme-header__drawer-nav .nias-theme-header__menu>li>a{padding:14px;border-radius:12px;font-size:15px;font-weight:600;color:#1B2C4D;}\n.nias-theme-header__drawer-nav .nias-theme-header__menu>li>a:hover{background:#F4F7FC;color:#1B2C4D;}\n.nias-theme-header__drawer-nav .nias-theme-header__menu>li.menu-item-has-children{position:relative;}\n.nias-theme-header__drawer-nav .nias-theme-header__menu>li.menu-item-has-children>a::after{content:none;}\n.nias-theme-header__search-modal .nias-theme-header__search-box{flex:1;display:flex;align-items:center;gap:9px;height:48px;padding:0 14px;margin:0;background:var(--nt-surf);border:1.5px solid var(--nt-blue);border-radius:13px;}\n.nias-theme-header__search-modal .nias-theme-header__search-icon{display:flex;flex-shrink:0;color:#7E8AA3;line-height:0;}\n.nias-theme-header__search-modal .nias-theme-header__search-box input[type=\"search\"]{flex:1;min-width:0;height:100%;margin:0;padding:0;border:0;background:none;outline:none;box-shadow:none;font:14.5px;color:var(--nt-ink);}\n.nias-theme-header__search-modal .nias-theme-header__search-box input::placeholder{color:var(--nt-muted);opacity:1;}\n@media (max-width:1000px){.nias-theme-header .nias-theme-header__nav,.nias-theme-header .nias-theme-header__search,.nias-theme-header .nias-theme-header__actions{display:none;}}\n@media (max-width:1000px){.nias-theme-header .nias-theme-header__mobile{display:flex;}}\n@media (max-width:1000px){.nias-theme-header .nias-theme-header__menu-btn{display:flex;}}\n@media (max-width:600px){.nias-theme-header .nias-theme-header__inner{padding:0 16px;}}\n.nias-theme-footer{background:var(--nt-ink);color:#fff;margin-top:20px;}\n.nias-theme-footer .nias-theme-footer__inner{max-width:var(--nt-container);margin:0 auto;padding:44px 28px 0;}\n.nias-theme-footer .nias-theme-footer__news{display:flex;align-items:center;gap:30px;background:linear-gradient(110deg,var(--nt-blue),var(--nt-blue-strong));border-radius:20px;padding:26px 30px;margin-bottom:42px;}\n.nias-theme-footer .nias-theme-footer__news-text{flex:1;}\n.nias-theme-footer .nias-theme-footer__news-title{font-size:19px;font-weight:800;margin-bottom:5px;color:#fff;}\n.nias-theme-footer .nias-theme-footer__news-sub{font-size:13.5px;color:rgb(255 255 255 / .82);}\n.nias-theme-footer .nias-theme-footer__news-form{display:flex;gap:9px;flex-shrink:0;margin:0;}\n.nias-theme-footer .nias-theme-footer__news-form input{height:48px;width:230px;max-width:54vw;border-radius:13px;border:none;padding:0 16px;font:14px;color:var(--nt-ink);background:#fff;outline:none;}\n.nias-theme-footer .nias-theme-footer__news-form button{height:48px;padding:0 22px;border-radius:13px;border:none;cursor:pointer;background:var(--nt-ink);color:#fff;font:700 14px;white-space:nowrap;transition:background .15s;}\n.nias-theme-footer .nias-theme-footer__news-form button:hover{background:#08152e;}\n.nias-theme-footer .nias-theme-footer__grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:30px;padding-bottom:38px;}\n.nias-theme-footer .nias-theme-footer__brand{display:flex;align-items:center;gap:10px;margin-bottom:14px;color:#fff;}\n.nias-theme-footer .nias-theme-footer__logo,.nias-theme-footer .nias-theme-footer__brand .custom-logo{width:36px;height:36px;object-fit:contain;background:#fff;border-radius:9px;padding:3px;display:block;}\n.nias-theme-footer .nias-theme-footer__brand-name{font-weight:800;font-size:21px;color:#fff;}\n.nias-theme-footer .nias-theme-footer__about{font-size:13px;line-height:2;color:rgb(255 255 255 / .62);margin:0 0 16px;max-width:300px;}\n.nias-theme-footer .nias-theme-footer__social{display:flex;gap:9px;}\n.nias-theme-footer .nias-theme-footer__social-link{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;background:rgb(255 255 255 / .08);color:#fff;transition:background .16s;}\n.nias-theme-footer .nias-theme-footer__social-link:hover{background:var(--nt-blue);color:#fff;}\n.nias-theme-footer .nias-theme-footer__col-title{font-size:14px;font-weight:700;margin-bottom:15px;color:#fff;}\n.nias-theme-footer .nias-theme-footer__col-links{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;}\n.nias-theme-footer .nias-theme-footer__col-links a{font-size:13px;color:rgb(255 255 255 / .62);transition:color .15s;}\n.nias-theme-footer .nias-theme-footer__col-links a:hover{color:#fff;}\n.nias-theme-footer .nias-theme-footer__trust-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:22px 0;border-top:1px solid rgb(255 255 255 / .1);}\n.nias-theme-footer .nias-theme-footer__trust-badge{display:flex;align-items:center;gap:9px;background:rgb(255 255 255 / .06);border:1px solid rgb(255 255 255 / .1);border-radius:13px;padding:9px;}\n.nias-theme-footer .nias-theme-footer__trust-icon{width:30px;height:30px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:rgb(255 255 255 / .1);color:#5BA8FF;}\n.nias-theme-footer .nias-theme-footer__trust-text{display:flex;flex-direction:column;font-size:12px;font-weight:600;color:#fff;line-height:1.5;}\n.nias-theme-footer .nias-theme-footer__trust-text b{font-size:10.5px;font-weight:400;color:rgb(255 255 255 / .5);}\n.nias-theme-footer .nias-theme-footer__gateways{margin-inline-start:auto;display:flex;align-items:center;gap:9px;}\n.nias-theme-footer .nias-theme-footer__gateways-label{font-size:12px;color:rgb(255 255 255 / .55);}\n.nias-theme-footer .nias-theme-footer__gateway{background:#fff;font-size:12px;font-weight:800;display:flex;padding:6px;border-radius:9px;align-items:center;justify-content:center;}\n.nias-theme-footer .nias-theme-footer__gateway--digipay{color:#E8493B;}\n.nias-theme-footer .nias-theme-footer__gateway--snapppay{color:#1AA053;}\n.nias-theme-footer .nias-theme-footer__copy{text-align:center;padding:20px 0;border-top:1px solid rgb(255 255 255 / .1);font-size:12.5px;color:rgb(255 255 255 / .5);}\n@media (max-width:880px){.nias-theme-footer .nias-theme-footer__grid{grid-template-columns:1fr 1fr;gap:26px;}}\n@media (max-width:880px){.nias-theme-footer .nias-theme-footer__brand-col{grid-column:1 / -1;}}\n@media (max-width:600px){.nias-theme-footer .nias-theme-footer__inner{padding:32px 16px 0;}}\n@media (max-width:600px){.nias-theme-footer .nias-theme-footer__news{flex-direction:column;align-items:stretch;gap:18px;padding:22px 18px;}}\n@media (max-width:600px){.nias-theme-footer .nias-theme-footer__news-form input{width:auto;max-width:none;flex:1;}}\n@media (max-width:600px){.nias-theme-footer .nias-theme-footer__grid{grid-template-columns:1fr;}}\n@media (max-width:600px){.nias-theme-footer .nias-theme-footer__trust-row{flex-direction:column;align-items:flex-start;}}\n@media (max-width:600px){.nias-theme-footer .nias-theme-footer__gateways{margin-inline-start:0;}}\n.nias-first-off .nias-discount-loop{background-color:rgb(255 110 140 / .2);color:#FF204E;padding:5px 10px;border-radius:8px;}\n.nias-discount-loop{background-color:#043CCC;padding:10px;border-radius:10px;color:#fff;text-wrap:nowrap;min-width:max-content;}\nbody[data-elementor-device-mode=desktop] .nias-notif-downloadbox{position:absolute;right:0;padding:10px;bottom:-55px;background-color:#fff;transition:0.3s cubic-bezier(.67,.77,.43,.92);z-index:1;}\nbody[data-elementor-device-mode=desktop] .nias-downloadbox-loop:hover .nias-notif-downloadbox{bottom:0;}\nbody[data-elementor-device-mode=desktop] .nias-notif-downloadbox:before,body[data-elementor-device-mode=desktop] .nias-notif-downloadbox:after{content:\"\";background-color:#fff0;box-shadow:0 20px 0 0 #fff;width:40px;height:40px;position:absolute;top:-40px;}\n.nias-notif-downloadbox:before{border-bottom-left-radius:15px;left:0;}\n.nias-notif-downloadbox:after{border-bottom-right-radius:15px;right:0;}\n.nias-doenload-title-loop a{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;}\n.site-header{padding-inline-end:0px;padding-inline-start:0px;}\n.ns-fx-cursor{position:fixed;inset:0;z-index:2147483000;pointer-events:none;opacity:1;transition:opacity 0.25s ease;}\n.ns-fx-cursor.is-hidden{opacity:0;}\n.ns-fx-cursor[data-blend]{mix-blend-mode:difference;}\n.ns-fx-ring{position:fixed;top:0;left:0;width:36px;height:36px;border:1.5px solid #004cff;border-radius:50%;transition:opacity 0.25s ease,background-color 0.25s ease;will-change:transform;}\n.ns-fx-cursor.is-hover .ns-fx-ring{background-color:color-mix(in srgb,#004cff 12%,transparent);}\n.ns-fx-cursor[data-style=\"dot\"] .ns-fx-dot{width:calc(36px * 0.45);height:calc(36px * 0.45);opacity:.85;}\n.ns-fx-cursor[data-style=\"glow\"] .ns-fx-ring{border:0;background:radial-gradient(circle,#004cff 0%,transparent 70%);filter:blur(6px);opacity:.6;}\n.ns-fx-cursor[data-style=\"glow\"].is-hover .ns-fx-ring{opacity:.9;}\n@media (pointer:coarse){.ns-fx-cursor{display:none;}}\nvideo.entered.nias-theme-sp__preview-video{aspect-ratio:16/9 !important;object-fit:cover;max-width:100%;}",
+  "_ef_source_direction": "rtl",
+  "_ef_source_url": "https://nias.ir/"
+ },
+ "version": "0.4",
+ "title": "fidelity",
+ "type": "page"
+}

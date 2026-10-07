@@ -131,6 +131,11 @@ ${bodyHtml}
 
   #emitCss(node, cssRules) {
     this.#emitCssFor(`[data-ef-id="${node.id}"]`, node.styles, cssRules);
+    // Elementor responsive visibility: kept for tablet/mobile, but hidden on
+    // desktop widths exactly like `elementor-hidden-desktop` on the source.
+    if (node.hiddenOn?.includes('desktop')) {
+      cssRules.push(`@media (min-width:${BREAKPOINT_MAX_WIDTH[BREAKPOINTS.TABLET] + 1}px){[data-ef-id="${node.id}"]{display:none!important}}`);
+    }
   }
 
   /**

@@ -57,6 +57,12 @@ const INHERITED_PROPS = new Set([
   '--width', '--content-width', '--min-height',
 ]);
 
+/** Properties read from a container's layout box (see DomAnalysis flattening). */
+const LAYOUT_PROPS = new Set([
+  'display', 'flex-direction', 'flex-wrap', 'justify-content', 'align-items',
+  'row-gap', 'column-gap', 'grid-template-columns',
+]);
+
 export class CssInterpretationEngine {
   static phaseName = 'css-interpretation';
 
@@ -79,11 +85,16 @@ export class CssInterpretationEngine {
     // page-level variable (Elementor kit globals live on body.elementor-kit-N).
     const rootStyle = win.getComputedStyle(ctx.document.body ?? ctx.document.documentElement);
     const rootLookup = (name) => rootStyle.getPropertyValue(name);
+    const layoutElements = ctx.scratch.get('layoutElementsByNodeId');
 
     walkTree(snapshot.tree, (node, parentNode) => {
       const el = elements.get(node.id);
       if (!el) return;
       const style = win.getComputedStyle(el);
+      // Flex/grid layout of a boxed Elementor container lives on its
+      // (flattened) inner box, not on the outer element.
+      const layoutEl = layoutElements?.get(node.id);
+      const layoutStyle = layoutEl ? win.getComputedStyle(layoutEl) : null;
       const varLookup = (name) => style.getPropertyValue(name) || rootLookup(name);
 
       // Inherited-prop filtering must compare against the IR parent, not the
@@ -97,7 +108,7 @@ export class CssInterpretationEngine {
       const parentStyle = parentEl ? win.getComputedStyle(parentEl) : null;
       const raw = {};
       for (const prop of CAPTURED_PROPS) {
-        let v = style.getPropertyValue(prop);
+        let v = (layoutStyle && LAYOUT_PROPS.has(prop) ? layoutStyle : style).getPropertyValue(prop);
         if (!v) continue;
         if (parentStyle && INHERITED_PROPS.has(prop) && parentStyle.getPropertyValue(prop) === v) continue;
         // Computed longhands are var-free, but captured custom properties
@@ -130,6 +141,10 @@ export class CssInterpretationEngine {
       // px values in computed style. Elementor centers boxed containers
       // itself, so exporting these adds phantom outer margins — drop them.
       stripAutoMargins(el, win, raw);
+
+      // Hidden only on desktop (Elementor responsive visibility): `none` is
+      // the desktop state, not the element's display on tablet/mobile.
+      if (node.hiddenOn?.includes('desktop') && raw.display === 'none') delete raw.display;
 
       node.styles.desktop = raw;
 

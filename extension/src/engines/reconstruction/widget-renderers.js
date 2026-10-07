@@ -10,8 +10,11 @@ import { escapeHtml } from '../../common/utils.js';
 
 export const WIDGET_RENDERERS = {
   heading(node) {
-    const tag = node.content.headerSize || 'h2';
-    return `<${tag} class="ef-w-heading">${escapeHtml(node.content.text || 'Heading')}</${tag}>`;
+    const native = node.semantic?.elementorNative?.content;
+    const tag = safeTag(native?.header_size || node.content.headerSize || 'h2');
+    // Elementor titles keep inline markup (multi-colour <span style> runs).
+    const inner = native?.title ? inlineHtml(native.title) : escapeHtml(node.content.text || 'Heading');
+    return `<${tag} class="ef-w-heading">${inner}</${tag}>`;
   },
 
   'text-editor'(node) {
@@ -26,12 +29,20 @@ export const WIDGET_RENDERERS = {
   },
 
   button(node) {
-    return `<a class="ef-w-button" href="javascript:void(0)">${escapeHtml(node.content.text || 'Click here')}</a>`;
+    const text = node.semantic?.elementorNative?.content?.text || node.content.text || 'Click here';
+    return `<a class="ef-w-button" href="javascript:void(0)">${escapeHtml(text)}</a>`;
   },
 
   icon(node, { inlineAsset }) {
     const svg = node.content.svgMarkup || inlineAsset(node.assets[0]);
-    if (svg && svg.startsWith('<svg')) return `<span class="ef-w-icon">${svg}</span>`;
+    if (svg && svg.startsWith('<svg')) {
+      // Elementor sizes icons through font-size (svg: 1em); the markup's own
+      // width/height attributes are the file's, not the design's.
+      const box = svgBox(node);
+      const style = box ? ` style="display:inline-block;width:${box.width}px;height:${box.height}px"` : '';
+      const sized = box ? fillSvg(svg) : svg;
+      return `<span class="ef-w-icon"${style}>${sized}</span>`;
+    }
     return `<span class="ef-w-icon ef-icon-fallback">★</span>`;
   },
 
@@ -111,6 +122,39 @@ export const CONTAINERISH_WIDGETS = new Set([
   'image-gallery', 'image-carousel', 'call-to-action', 'flip-box', 'slides',
   'woocommerce-products', 'wc-archive-products', 'posts', 'portfolio',
 ]);
+
+/** Rendered size of the icon's <svg> (IR rect of the svg descendant or the node). */
+function svgBox(node) {
+  const queue = [node];
+  while (queue.length) {
+    const n = queue.shift();
+    if (n.tag === 'svg' && n.rect?.width) return { width: n.rect.width, height: n.rect.height };
+    queue.push(...(n.children ?? []));
+  }
+  return node.rect?.width ? { width: node.rect.width, height: node.rect.height } : null;
+}
+
+const SAFE_TAGS = new Set(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'p']);
+function safeTag(tag) {
+  return SAFE_TAGS.has(tag) ? tag : 'h2';
+}
+
+/** Inline markup only: drops scripts, event handlers and block structure. */
+function inlineHtml(html) {
+  return String(html)
+    .replace(/<(script|style|iframe|object)\b[\s\S]*?<\/\1\s*>/gi, '')
+    .replace(/\son\w+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, '')
+    .replace(/<(?!\/?(span|strong|b|em|i|u|a|br|sup|sub|mark|small)\b)[^>]*>/gi, '');
+}
+
+/** Make the root <svg> fill its box (drop the file's own width/height). */
+function fillSvg(svg) {
+  const end = svg.indexOf('>');
+  if (end === -1) return svg;
+  const head = svg.slice(0, end).replace(/\s(width|height)="[^"]*"/g, '');
+  // Inline style: beats the preview's generic `.ef-w-icon svg` sizing rule.
+  return `${head} width="100%" height="100%" style="width:100%;height:100%;font-size:inherit"${svg.slice(end)}`;
+}
 
 export function placeholder(label, note) {
   return `<div class="ef-placeholder"><strong>${escapeHtml(label)}</strong>${note ? `<small>${escapeHtml(note)}</small>` : ''}</div>`;

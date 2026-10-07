@@ -80,6 +80,11 @@ export async function collectCssRules(document, opts = {}) {
   return { rules, regions, sheets: sheets.length, failed };
 }
 
+/** Text of a URL: direct fetch, then the service worker (CORS-free). */
+export async function fetchText(url) {
+  return defaultFetchText(url);
+}
+
 async function defaultFetchText(url) {
   try {
     const res = await fetch(url, { credentials: 'same-origin' });

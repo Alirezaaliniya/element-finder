@@ -22,10 +22,11 @@
 import { walkTree } from '../../common/utils.js';
 import { classTokens } from '../dom/structure-heuristics.js';
 import { resolveCssVars, containsVar } from '../css/var-resolver.js';
-import { collectCssRules, declsToText } from './css-text.js';
+import { collectCssRules, declsToText, fetchText } from './css-text.js';
 import { CompiledStack, loadControlsIndex } from './controls-index.js';
 import { deviceForMedia, reverseElement } from './css-reverse.js';
-import { extractNativeContent, hasUnrecoverableSvgIcon } from './native-content.js';
+import { extractNativeContent, uploadedSvgIcons } from './native-content.js';
+import { resolveUploadedSvgIcons } from './svg-resolver.js';
 import {
   atomicSettingsFromDom, base64Utf8, buildStyleDefinition, candidateGlobalClasses, stateFromSuffix,
 } from './atomic.js';
@@ -98,6 +99,7 @@ export class ElementorNativeEngine {
     let reversed = 0;
     let atomicCount = 0;
     let unknownWidgets = 0;
+    const svgIcons = [];
 
     for (const node of nativeNodes) {
       const el = elements.get(node.id);
@@ -128,9 +130,7 @@ export class ElementorNativeEngine {
       });
       if (native.elType === 'widget' && native.widgetType) {
         native.content = extractNativeContent(el, native.widgetType, snapshot.meta.url);
-        if (hasUnrecoverableSvgIcon(native.content)) {
-          node.warnings.push('Uses an uploaded SVG icon: Elementor inlines the file by attachment id, so it cannot be recovered from the page. Re-select the icon after import (the SVG is in the assets package).');
-        }
+        for (const icon of uploadedSvgIcons(native.content)) svgIcons.push({ node, icon });
       }
       native.exact = {
         settings: result.settings,
@@ -141,6 +141,23 @@ export class ElementorNativeEngine {
         controlsKnown: stack !== EMPTY_STACK,
       };
       reversed++;
+    }
+
+    // Uploaded SVG icons: find each file in the source site's media library
+    // so Elementor's import can download it; the inline drawing alone cannot
+    // be imported as an icon.
+    let svgStats = null;
+    if (svgIcons.length) {
+      svgStats = await resolveUploadedSvgIcons(
+        svgIcons.map(({ icon }) => ({ markup: icon.__svg, apply: (url) => { icon.value = { url, id: '' }; } })),
+        { document, fetchText: ctx.options?.fetchText ?? fetchText },
+      ).catch(() => null);
+      for (const { node, icon } of svgIcons) {
+        delete icon.__svg;
+        if (!icon.value?.url) {
+          node.warnings.push('Uploaded SVG icon not found in the source site\'s media library; re-select it after import (the drawing is in the assets package).');
+        }
+      }
     }
 
     if (globalClasses.size) {
@@ -175,7 +192,7 @@ export class ElementorNativeEngine {
     }
     if (failed.length) snapshot.tree.warnings.push(`${failed.length} stylesheet(s) could not be read; some Elementor styles may be missing.`);
 
-    log.info(`elementor: ${reversed} classic element(s) reversed from ${rules.length} rules, ${atomicCount} atomic, ${globalClasses.size} global class(es), ${unknownWidgets} unknown widget type(s)`);
+    log.info(`elementor: ${reversed} classic element(s) reversed from ${rules.length} rules, ${atomicCount} atomic, ${globalClasses.size} global class(es), ${unknownWidgets} unknown widget type(s)${svgStats ? `, svg icons ${svgStats.resolved}/${svgStats.total} recovered (${svgStats.scanned} files scanned)` : ''}`);
   }
 }
 
