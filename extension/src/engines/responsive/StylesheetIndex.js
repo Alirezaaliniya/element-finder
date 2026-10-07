@@ -183,6 +183,9 @@ const ELEMENTOR_LAYOUT_VARS = [
   ['--gap', ['row-gap', 'column-gap']],
   ['--row-gap', ['row-gap']],
   ['--column-gap', ['column-gap']],
+  // Container size controls are variables too (min_height_tablet -> --min-height).
+  ['--min-height', ['min-height']],
+  ['--width', ['width']],
 ];
 
 const SHORTHAND_EXPANSIONS = {

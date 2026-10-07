@@ -57,16 +57,39 @@ async function runCommand(commandType, pendingLabel) {
   setStatus(pendingLabel, 'working');
   try {
     await ensureContentScript(tab.id);
+    const startedAt = Date.now();
     const res = await chrome.tabs.sendMessage(tab.id, { type: commandType });
-    if (res?.cancelled) { setStatus(t('popup.cancelled'), 'idle'); return; }
     if (!res?.ok) throw new Error(res?.error || t('popup.extractFailed'));
-    setStatus(t('popup.extracted', { count: res.stats.nodesExtracted }), 'ok');
-    window.close();
+    // The run continues in the page; follow it through the stored status.
+    // Closing the popup is safe — the builder opens when extraction ends.
+    await followExtraction(startedAt);
   } catch (err) {
     setStatus(String(err?.message || err), 'error');
   } finally {
     setBusy(false);
   }
+}
+
+/** Resolve when the stored status reports the end of a run started after `since`. */
+function followExtraction(since) {
+  return new Promise((resolve, reject) => {
+    const onChange = (changes, area) => {
+      const s = area === 'local' ? changes[STORAGE_KEYS.LAST_STATUS]?.newValue : null;
+      if (!s || s.at < since) return;
+      if (s.state === 'extracting') {
+        setStatus(t('popup.progress', { index: (s.index ?? 0) + 1, total: s.total ?? '?', phase: s.phase ?? '' }), 'working');
+      } else if (s.state === 'complete') {
+        chrome.storage.onChanged.removeListener(onChange);
+        setStatus(t('popup.extracted', { count: s.nodes }), 'ok');
+        resolve();
+        setTimeout(() => window.close(), 600);
+      } else if (s.state === 'failed') {
+        chrome.storage.onChanged.removeListener(onChange);
+        reject(new Error(s.error || t('popup.extractFailed')));
+      }
+    };
+    chrome.storage.onChanged.addListener(onChange);
+  });
 }
 
 buttons.extract.addEventListener('click', () => runCommand(MSG.EXTRACT_PAGE, t('popup.analyzing')));

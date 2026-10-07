@@ -52,16 +52,20 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
       sendResponse({ ok: true });
       return false;
 
+    // Extraction can take a while on large pages (stylesheet fetches, media
+    // library lookups), longer than the popup's message channel lives. Reply
+    // at once; progress and the result travel through the service worker
+    // (EXTRACTION_PROGRESS / COMPLETE / FAILED -> stored status).
     case MSG.EXTRACT_PAGE:
-      extract(document.body).then(sendResponse);
-      return true; // async response
+      if (running) { sendResponse({ ok: false, error: 'Extraction already in progress' }); return false; }
+      void extract(document.body);
+      sendResponse({ ok: true, started: true });
+      return false;
 
     case MSG.PICK_ELEMENT:
-      picker.pick().then((el) => {
-        if (!el) { sendResponse({ ok: false, cancelled: true }); return; }
-        extract(el).then(sendResponse);
-      });
-      return true;
+      sendResponse({ ok: true, started: true });
+      picker.pick().then((el) => { if (el) void extract(el); });
+      return false;
 
     case MSG.CANCEL_PICK:
       picker.cancel();

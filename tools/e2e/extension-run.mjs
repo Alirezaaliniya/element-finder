@@ -29,11 +29,11 @@ try {
 
   const page = await browser.newPage();
   page.on('console', (m) => { if (m.type() === 'error') console.log('[page]', m.text().slice(0, 300)); });
-  await page.goto(url, { waitUntil: 'networkidle2', timeout: 90_000 });
+  await page.goto(url, { waitUntil: 'load', timeout: 120_000 });
   await page.bringToFront();
 
   const result = await sw.evaluate(async (pageUrl) => {
-    const [tab] = await chrome.tabs.query({ url: pageUrl.replace(/\/$/, '') + '*' });
+    const tab = (await chrome.tabs.query({})).find((t) => (t.url ?? '').startsWith(pageUrl.replace(/\/$/, '')));
     if (!tab) return { ok: false, error: 'tab not found' };
     await chrome.storage.local.remove('ef:lastSnapshot');
     await chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ['src/content/bootstrap.js'] });
@@ -42,9 +42,17 @@ try {
       try { const pong = await chrome.tabs.sendMessage(tab.id, { type: 'EF_PING' }); if (pong?.ok) break; } catch { /* not ready */ }
       await new Promise((r) => setTimeout(r, 200));
     }
+    const startedAt = Date.now();
     const reply = await chrome.tabs.sendMessage(tab.id, { type: 'EF_EXTRACT_PAGE' });
-    const stored = await chrome.storage.local.get('ef:lastSnapshot');
-    const snap = stored['ef:lastSnapshot'];
+    // Extraction runs on in the page; completion lands in storage.
+    let snap = null;
+    for (let i = 0; i < 300 && !snap; i++) {
+      await new Promise((r) => setTimeout(r, 500));
+      const { 'ef:lastStatus': status, 'ef:lastSnapshot': stored } = await chrome.storage.local.get(['ef:lastStatus', 'ef:lastSnapshot']);
+      if (status?.state === 'failed' && status.at >= startedAt) return { ok: false, reply, error: status.error };
+      if (stored) snap = stored;
+    }
+    const elapsedMs = Date.now() - startedAt;
     if (!snap) return { ok: false, reply };
     let native = 0; let exact = 0; let atomic = 0; let customCss = 0;
     (function walk(n) {
@@ -55,7 +63,7 @@ try {
       if (nat?.exact?.customCss) customCss++;
       for (const c of n.children ?? []) walk(c);
     })(snap.tree);
-    return { ok: true, reply, phases: snap.stats.enginePhases, elementor: snap.meta.elementor, native, exact, atomic, customCss, nodes: snap.stats.nodesExtracted };
+    return { ok: true, reply, elapsedMs, phases: snap.stats.enginePhases, elementor: snap.meta.elementor, native, exact, atomic, customCss, nodes: snap.stats.nodesExtracted };
   }, url);
 
   console.log(JSON.stringify(result, null, 1).slice(0, 2500));

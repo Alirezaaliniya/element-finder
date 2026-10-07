@@ -21,6 +21,10 @@ const MAX_MEDIA_PAGES = 30;          // 3000 SVG attachments
 const MAX_FILE_FETCHES = 120;
 const MAX_CANDIDATES_PER_ICON = 12;
 const CONCURRENCY = 3;
+const PAGE_CONCURRENCY = 4;
+const REQUEST_TIMEOUT_MS = 20_000;
+/** Total time the lookup may add to an extraction. */
+const TIME_BUDGET_MS = 40_000;
 
 /**
  * @param {Array<{markup: string, apply: (url: string) => void}>} icons
@@ -41,9 +45,10 @@ export async function resolveUploadedSvgIcons(icons, { document, fetchText }) {
   const total = icons.length;
   if (!groups.size) return { resolved: 0, total, scanned: 0 };
 
+  const deadline = Date.now() + TIME_BUDGET_MS;
   const restRoot = findRestRoot(document);
-  const media = restRoot ? await listSvgMedia(restRoot, fetchText) : [];
-  if (!media.length) return { resolved: 0, total, scanned: 0 };
+  const media = restRoot ? await listSvgMedia(restRoot, fetchText, deadline) : [];
+  if (!media.length) return { resolved: 0, total, scanned: 0, timedOut: Date.now() >= deadline };
 
   // Fetch queue: per drawing, same-dimension attachments closest in size first.
   const queue = [];
@@ -60,7 +65,7 @@ export async function resolveUploadedSvgIcons(icons, { document, fetchText }) {
   let scanned = 0;
   let next = 0;
   const worker = async () => {
-    while (next < queue.length && scanned < MAX_FILE_FETCHES) {
+    while (next < queue.length && scanned < MAX_FILE_FETCHES && Date.now() < deadline) {
       const { group, url } = queue[next++];
       if (group.done) continue;
       let sig = fileSignatures.get(url);
@@ -76,7 +81,7 @@ export async function resolveUploadedSvgIcons(icons, { document, fetchText }) {
     }
   };
   await Promise.all(Array.from({ length: CONCURRENCY }, worker));
-  return { resolved, total, scanned };
+  return { resolved, total, scanned, timedOut: Date.now() >= deadline };
 }
 
 /** WordPress REST root from <link rel="https://api.w.org/">, else /wp-json/. */
@@ -86,29 +91,18 @@ function findRestRoot(document) {
   try { return new URL('/wp-json/', document.baseURI).href; } catch { return null; }
 }
 
-/** All SVG attachments with Elementor's stored dimensions. */
-async function listSvgMedia(restRoot, fetchText) {
+/**
+ * All SVG attachments with Elementor's stored dimensions. Page 1 reveals the
+ * page count (X-WP-TotalPages), the rest is fetched in parallel; everything
+ * stops at the time budget so a slow media endpoint cannot stall extraction.
+ */
+async function listSvgMedia(restRoot, fetchText, deadline) {
   const out = [];
   const sep = restRoot.includes('?') ? '&' : '?';
-  let failures = 0;
-  for (let page = 1; page <= MAX_MEDIA_PAGES; page++) {
-    // Some sites ignore the mime filter (security/media plugins) and return
-    // every attachment; SVGs are picked out below either way.
-    const url = `${restRoot}wp/v2/media${sep}mime_type=image/svg%2Bxml&per_page=100&page=${page}&_fields=source_url,mime_type,media_details`;
-    let list;
-    for (let attempt = 0; attempt < 2 && list === undefined; attempt++) {
-      try {
-        const text = await fetchText(url);
-        if (text) list = JSON.parse(text);
-      } catch { /* truncated / timed out: retry */ }
-    }
-    if (list === undefined) {
-      // A page that keeps failing is skipped, not the end of the library.
-      if (++failures >= 3) break;
-      continue;
-    }
-    // Past the last page WordPress answers with an error object.
-    if (!Array.isArray(list) || !list.length) break;
+  // Some sites ignore the mime filter (security/media plugins) and return
+  // every attachment; SVGs are picked out below either way.
+  const pageUrl = (page) => `${restRoot}wp/v2/media${sep}mime_type=image/svg%2Bxml&per_page=100&page=${page}&_fields=source_url,mime_type,media_details`;
+  const collect = (list) => {
     for (const m of list) {
       if (!m?.source_url) continue;
       if (m.mime_type ? m.mime_type !== 'image/svg+xml' : !/\.svg(\?|$)/i.test(m.source_url)) continue;
@@ -119,10 +113,62 @@ async function listSvgMedia(restRoot, fetchText) {
         filesize: Number(m.media_details?.filesize) || 0,
       });
     }
-    // No "short page = last page" shortcut: WordPress drops items the
-    // visitor may not see after paginating, so full pages can hold < 100.
+  };
+
+  const first = await fetchPage(pageUrl(1), fetchText, deadline);
+  if (!Array.isArray(first.list)) return out;
+  collect(first.list);
+
+  if (first.totalPages) {
+    const pages = [];
+    for (let p = 2; p <= Math.min(first.totalPages, MAX_MEDIA_PAGES); p++) pages.push(p);
+    let next = 0;
+    const worker = async () => {
+      while (next < pages.length && Date.now() < deadline) {
+        const { list } = await fetchPage(pageUrl(pages[next++]), fetchText, deadline);
+        if (Array.isArray(list)) collect(list);
+      }
+    };
+    await Promise.all(Array.from({ length: PAGE_CONCURRENCY }, worker));
+    return out;
+  }
+
+  // Page count unknown (header hidden): walk until WordPress's error object.
+  // No "short page = last page" shortcut — full pages can hold < 100 items
+  // when some attachments are not visible to the visitor.
+  let failures = 0;
+  for (let page = 2; page <= MAX_MEDIA_PAGES && Date.now() < deadline; page++) {
+    const { list } = await fetchPage(pageUrl(page), fetchText, deadline);
+    if (list === undefined) { if (++failures >= 2) break; continue; }
+    if (!Array.isArray(list) || !list.length) break;
+    collect(list);
   }
   return out;
+}
+
+/**
+ * One media page: direct fetch (exposes X-WP-TotalPages), falling back to
+ * `fetchText` (service worker) when the page's CORS blocks it. One retry.
+ * @returns {Promise<{list?: any, totalPages?: number}>} list undefined = failed
+ */
+async function fetchPage(url, fetchText, deadline) {
+  for (let attempt = 0; attempt < 2 && Date.now() < deadline; attempt++) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), Math.max(1000, Math.min(REQUEST_TIMEOUT_MS, deadline - Date.now())));
+    try {
+      const res = await fetch(url, { credentials: 'same-origin', signal: controller.signal });
+      // Past the last page WordPress answers 400 rest_post_invalid_page_number.
+      if (res.status === 400) return { list: null };
+      if (res.ok) return { list: await res.json(), totalPages: Number(res.headers.get('x-wp-totalpages')) || null };
+    } catch { /* CORS, timeout or truncated body */ } finally {
+      clearTimeout(timer);
+    }
+    try {
+      const text = await fetchText(url);
+      if (text) return { list: JSON.parse(text) };
+    } catch { /* retry */ }
+  }
+  return {};
 }
 
 const GEOMETRY_ATTRS = ['d', 'points', 'cx', 'cy', 'r', 'rx', 'ry', 'x', 'y', 'x1', 'y1', 'x2', 'y2', 'width', 'height', 'transform'];

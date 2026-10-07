@@ -140,7 +140,9 @@ export class CssInterpretationEngine {
       // Auto-centering margins (`margin: 0 auto`) resolve to large symmetric
       // px values in computed style. Elementor centers boxed containers
       // itself, so exporting these adds phantom outer margins — drop them.
-      stripAutoMargins(el, win, raw);
+      // Elementor centres containers itself, so auto margins are not
+      // exported; the preview still needs to centre the box.
+      if (stripAutoMargins(el, win, raw)) node.autoCentered = true;
 
       // Hidden only on desktop (Elementor responsive visibility): `none` is
       // the desktop state, not the element's display on tablet/mobile.
@@ -200,7 +202,9 @@ function stripAutoMargins(el, win, raw) {
   if (parentContent > 0 && Math.abs(marginBox - parentContent) <= 4) {
     delete raw['margin-left'];
     delete raw['margin-right'];
+    return true;
   }
+  return false;
 }
 
 function collectToken(map, value) {
