@@ -1,3 +1,4 @@
+import { setSafeHTML } from '../../../common/safe-html.js';
 /**
  * ValidationPanel — renders the Validation Engine report under the preview.
  * Issues link to their node (click selects it); rule-provided fixes apply
@@ -34,7 +35,7 @@ export class ValidationPanel {
     const head = document.createElement('div');
     head.className = 'validation-head';
     const title = document.createElement('strong');
-    title.innerHTML = `${icon(report.ok ? 'ok' : 'error', { size: 16 })}<span>${report.ok ? t('validation.ready') : t('validation.issues')}</span>`;
+    setSafeHTML(title, `${icon(report.ok ? 'ok' : 'error', { size: 16 })}<span>${report.ok ? t('validation.ready') : t('validation.issues')}</span>`);
     title.style.color = report.ok ? 'var(--ok)' : 'var(--danger)';
     const counts = document.createElement('span');
     counts.className = 'vp-count';
@@ -43,7 +44,7 @@ export class ValidationPanel {
     });
     const close = document.createElement('button');
     close.className = 'close';
-    close.innerHTML = icon('close', { size: 16 });
+    setSafeHTML(close, icon('close', { size: 16 }));
     close.title = t('export.cancel');
     close.addEventListener('click', () => this.root.classList.add('hidden'));
     head.append(title, counts, close);

@@ -3,6 +3,8 @@
  * Do not edit by hand: add the name to the generator and re-run it.
  */
 
+import { setSafeHTML } from '../../common/safe-html.js';
+
 const PATHS = {
   "brand": "<path d=\"M9.31993 13.28H12.4099V20.48C12.4099 21.54 13.7299 22.04 14.4299 21.24L21.9999 12.64C22.6599 11.89 22.1299 10.72 21.1299 10.72H18.0399V3.51997C18.0399 2.45997 16.7199 1.95997 16.0199 2.75997L8.44994 11.36C7.79994 12.11 8.32993 13.28 9.31993 13.28Z\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M8.5 4H1.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M7.5 20H1.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M4.5 12H1.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>",
   "undo": "<path d=\"M7.12988 18.3101H15.1299C17.8899 18.3101 20.1299 16.0701 20.1299 13.3101C20.1299 10.5501 17.8899 8.31006 15.1299 8.31006H4.12988\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M6.43012 10.8099L3.87012 8.24994L6.43012 5.68994\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>",
@@ -61,7 +63,7 @@ export function icon(name, { size = 18, className = '' } = {}) {
 export function hydrateIcons(root = document) {
   for (const el of root.querySelectorAll('[data-icon]')) {
     const size = Number(el.getAttribute('data-icon-size')) || undefined;
-    el.innerHTML = icon(el.getAttribute('data-icon'), { size });
+    setSafeHTML(el, icon(el.getAttribute('data-icon'), { size }));
   }
 }
 

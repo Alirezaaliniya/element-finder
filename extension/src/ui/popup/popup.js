@@ -1,3 +1,4 @@
+import { setSafeHTML } from '../../common/safe-html.js';
 /** Popup controller — injects the content module and triggers extraction. */
 
 import { MSG, STORAGE_KEYS } from '../../common/constants.js';
@@ -111,7 +112,7 @@ buttons.pick.addEventListener('click', async () => {
 });
 const aboutPanel = document.getElementById('about-panel');
 document.getElementById('about-toggle').addEventListener('click', () => {
-  aboutPanel.querySelector('[data-about]').innerHTML = aboutHtml();
+  setSafeHTML(aboutPanel.querySelector('[data-about]'), aboutHtml());
   aboutPanel.showModal();
 });
 aboutPanel.querySelector('[data-close]').addEventListener('click', () => aboutPanel.close());

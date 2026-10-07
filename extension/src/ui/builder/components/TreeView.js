@@ -1,3 +1,4 @@
+import { setSafeHTML } from '../../../common/safe-html.js';
 /**
  * TreeView — structure panel. Expand/collapse, selection (synced with
  * preview + inspector), HTML5 drag & drop (reorder / reparent into
@@ -57,7 +58,7 @@ export class TreeView {
 
     const toggle = document.createElement('span');
     toggle.className = `tree-toggle ${hasChildren ? (isOpen ? 'open' : '') : 'leaf'}`;
-    toggle.innerHTML = svgIcon('chevron', { size: 12 });
+    setSafeHTML(toggle, svgIcon('chevron', { size: 12 }));
     toggle.addEventListener('click', (e) => {
       e.stopPropagation();
       if (isOpen) this.collapsed.add(node.id); else this.collapsed.delete(node.id);
@@ -70,14 +71,14 @@ export class TreeView {
     icon.className = 'tree-icon';
     const typeIcon = TREE_ICONS.has(widgetType) ? widgetType
       : TREE_ICONS.has(classicEquivalent(widgetType)) ? classicEquivalent(widgetType) : 'widget';
-    icon.innerHTML = svgIcon(node.mapping?.elType === EL_TYPES.CONTAINER ? 'container' : typeIcon, { size: 14 });
+    setSafeHTML(icon, svgIcon(node.mapping?.elType === EL_TYPES.CONTAINER ? 'container' : typeIcon, { size: 14 }));
     row.appendChild(icon);
     // Elementor-native source element (exact settings recovered).
     if (node.semantic?.elementorNative) {
       const native = document.createElement('span');
       native.className = 'tree-native';
       native.title = 'Elementor';
-      native.innerHTML = svgIcon('native', { size: 12 });
+      setSafeHTML(native, svgIcon('native', { size: 12 }));
       row.appendChild(native);
     }
 

@@ -1,3 +1,4 @@
+import { setSafeHTML } from '../../../common/safe-html.js';
 /**
  * Inspector — detail panel for the selected node: identity, mapping decision
  * (with confidence and re-mapping dropdown from the widget catalog), text
@@ -28,7 +29,7 @@ export class Inspector {
     const node = this.store.selectedNode();
     this.root.textContent = '';
     if (!node) {
-      this.root.innerHTML = `<p class="empty">${escapeHtml(t('insp.selectPrompt'))}</p>`;
+      setSafeHTML(this.root, `<p class="empty">${escapeHtml(t('insp.selectPrompt'))}</p>`);
       return;
     }
 
@@ -236,15 +237,15 @@ export class Inspector {
 
     if (c.fields?.length) {
       const list = el('div', 'insp-row');
-      list.innerHTML = `<label>${escapeHtml(t('insp.formFields', { count: c.fields.length }))}</label>` +
-        c.fields.slice(0, 8).map((f) => `<div>· ${escapeHtml(f.label || f.name || f.type)} <small>(${escapeHtml(f.type)}${f.required ? `, ${escapeHtml(t('insp.required'))}` : ''})</small></div>`).join('');
+      setSafeHTML(list, `<label>${escapeHtml(t('insp.formFields', { count: c.fields.length }))}</label>` +
+        c.fields.slice(0, 8).map((f) => `<div>· ${escapeHtml(f.label || f.name || f.type)} <small>(${escapeHtml(f.type)}${f.required ? `, ${escapeHtml(t('insp.required'))}` : ''})</small></div>`).join(''));
       sections.push(this.#section(t('insp.form'), list));
     }
 
     if (c.menu?.length) {
       const list = el('div', 'insp-row');
-      list.innerHTML = `<label>${escapeHtml(t('insp.menuItems'))}</label>` +
-        c.menu.slice(0, 10).map((m) => `<div>· ${escapeHtml(m.text)}${m.children?.length ? ` <small>(${escapeHtml(t('insp.subItems', { count: m.children.length }))})</small>` : ''}</div>`).join('');
+      setSafeHTML(list, `<label>${escapeHtml(t('insp.menuItems'))}</label>` +
+        c.menu.slice(0, 10).map((m) => `<div>· ${escapeHtml(m.text)}${m.children?.length ? ` <small>(${escapeHtml(t('insp.subItems', { count: m.children.length }))})</small>` : ''}</div>`).join(''));
       sections.push(this.#section(t('insp.menu'), list));
     }
     return sections;
@@ -300,7 +301,7 @@ export class Inspector {
     const actions = el('div', 'insp-actions');
     const removeBtn = document.createElement('button');
     removeBtn.className = node.hidden ? '' : 'danger';
-    removeBtn.innerHTML = `${icon(node.hidden ? 'restore' : 'trash', { size: 16 })}<span>${escapeHtml(node.hidden ? t('insp.restore') : t('insp.remove'))}</span>`;
+    setSafeHTML(removeBtn, `${icon(node.hidden ? 'restore' : 'trash', { size: 16 })}<span>${escapeHtml(node.hidden ? t('insp.restore') : t('insp.remove'))}</span>`);
     removeBtn.addEventListener('click', () => {
       if (node.hidden) this.store.restoreNode(node.id); else this.store.removeNode(node.id);
     });

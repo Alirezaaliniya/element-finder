@@ -1,3 +1,4 @@
+import { setSafeHTML } from '../../../common/safe-html.js';
 /**
  * ProjectsPanel — saved-projects dialog: open, delete, list frozen versions,
  * restore a version into the working copy, and compare a version against
@@ -25,12 +26,12 @@ export class ProjectsPanel {
 
   async open() {
     const projects = await this.storage.listProjects();
-    this.dialog.innerHTML = `
+    setSafeHTML(this.dialog, `
       <div class="dialog-head"><span>${t('projects.title')}</span><button data-close title="${escapeHtml(t('export.cancel'))}">${icon('close', { size: 16 })}</button></div>
       <div class="dialog-body" data-list>
         ${projects.length ? '' : `<p style="color:var(--muted)">${t('projects.none')}</p>`}
       </div>
-      <div class="dialog-foot"><button data-close>${t('projects.close')}</button></div>`;
+      <div class="dialog-foot"><button data-close>${t('projects.close')}</button></div>`);
 
     const list = this.dialog.querySelector('[data-list]');
     for (const p of projects) list.appendChild(this.#projectRow(p));
@@ -43,7 +44,7 @@ export class ProjectsPanel {
   #projectRow(p) {
     const row = document.createElement('div');
     row.className = 'project-row';
-    row.innerHTML = `
+    setSafeHTML(row, `
       <div class="grow">
         <strong>${escapeHtml(p.name)}</strong>
         <small>${escapeHtml(t('projects.meta', {
@@ -55,7 +56,7 @@ export class ProjectsPanel {
       </div>
       <button data-open>${t('projects.open')}</button>
       <button data-history title="${escapeHtml(t('projects.historyTitle'))}">${icon('version', { size: 16 })}</button>
-      <button class="danger" data-delete>${icon('trash', { size: 16 })}</button>`;
+      <button class="danger" data-delete>${icon('trash', { size: 16 })}</button>`);
 
     row.querySelector('[data-open]').addEventListener('click', async () => {
       const full = await this.storage.getProject(p.id);
@@ -82,15 +83,15 @@ export class ProjectsPanel {
 
   async #renderVersions(holder, projectId) {
     const versions = await this.storage.listVersions(projectId);
-    holder.innerHTML = versions.length ? '' : `<div class="version-row">${t('projects.noVersions')}</div>`;
+    setSafeHTML(holder, versions.length ? '' : `<div class="version-row">${t('projects.noVersions')}</div>`);
     for (const v of versions) {
       const vr = document.createElement('div');
       vr.className = 'version-row';
-      vr.innerHTML = `
+      setSafeHTML(vr, `
         <span>${escapeHtml(t('projects.versionMeta', { label: v.label, count: v.elementCount }))}</span>
         <button data-restore>${t('projects.restore')}</button>
         <button data-compare>${t('projects.compare')}</button>
-        <span class="diff-summary" data-diff></span>`;
+        <span class="diff-summary" data-diff></span>`);
 
       vr.querySelector('[data-restore]').addEventListener('click', async () => {
         const full = await this.storage.getVersion(v.id);

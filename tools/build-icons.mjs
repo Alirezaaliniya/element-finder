@@ -77,6 +77,8 @@ writeFileSync(OUT, `/**
  * Do not edit by hand: add the name to the generator and re-run it.
  */
 
+import { setSafeHTML } from '../../common/safe-html.js';
+
 const PATHS = {
 ${entries.join('\n')}
 };
@@ -95,7 +97,7 @@ export function icon(name, { size = 18, className = '' } = {}) {
 export function hydrateIcons(root = document) {
   for (const el of root.querySelectorAll('[data-icon]')) {
     const size = Number(el.getAttribute('data-icon-size')) || undefined;
-    el.innerHTML = icon(el.getAttribute('data-icon'), { size });
+    setSafeHTML(el, icon(el.getAttribute('data-icon'), { size }));
   }
 }
 

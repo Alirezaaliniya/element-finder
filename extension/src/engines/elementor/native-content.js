@@ -9,6 +9,8 @@
  * per-item CSS `.elementor-repeater-item-<id>` refers to) — can be read back.
  */
 
+import { parseInert } from '../../common/safe-html.js';
+
 /** @returns {object|null} content settings, or null for an unhandled widget */
 export function extractNativeContent(el, widgetType, baseUrl) {
   const root = el.querySelector(':scope > .elementor-widget-container') ?? el;
@@ -300,13 +302,9 @@ function textHtml(el) {
 
 /** Editor HTML minus anything executable. */
 function cleanHtml(html) {
-  const tpl = document.createElement('template');
-  tpl.innerHTML = html;
-  for (const n of tpl.content.querySelectorAll('script, style, noscript')) n.remove();
-  for (const n of tpl.content.querySelectorAll('*')) {
-    for (const a of [...n.attributes]) if (/^on/i.test(a.name)) n.removeAttribute(a.name);
-  }
-  return tpl.innerHTML.trim();
+  const root = parseInert(html); // scripts, handlers, javascript: URLs removed
+  for (const n of root.querySelectorAll('style')) n.remove();
+  return root.innerHTML.trim();
 }
 
 function randomId() {

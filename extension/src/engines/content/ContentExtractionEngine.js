@@ -13,6 +13,7 @@ import { LIMITS, NODE_ROLES } from '../../common/constants.js';
 import { resolveUrl, truncate, walkTree } from '../../common/utils.js';
 import { bestImageUrl } from '../assets/image-utils.js';
 import { isRichTextBlock } from '../dom/structure-heuristics.js';
+import { parseInert } from '../../common/safe-html.js';
 
 const HEADING_TAGS = new Set(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']);
 const DYNAMIC_PATTERNS = [
@@ -129,8 +130,7 @@ function cleanText(text) {
 
 /** Keep semantic inline markup, strip everything risky or styling-only. */
 function sanitizeRichHtml(html) {
-  const tpl = document.createElement('template');
-  tpl.innerHTML = html;
+  const root = parseInert(html);
   const ALLOWED = new Set(['P', 'BR', 'B', 'STRONG', 'I', 'EM', 'U', 'S', 'A', 'SPAN', 'UL', 'OL', 'LI', 'SUB', 'SUP', 'MARK', 'SMALL', 'CODE']);
   const walk = (parent) => {
     for (const child of [...parent.children]) {
@@ -145,8 +145,8 @@ function sanitizeRichHtml(html) {
       }
     }
   };
-  walk(tpl.content);
-  return tpl.innerHTML.trim();
+  walk(root);
+  return root.innerHTML.trim();
 }
 
 function isButtonLike(el, style) {

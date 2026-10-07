@@ -1,3 +1,4 @@
+import { setSafeHTML } from '../../common/safe-html.js';
 /**
  * Builder application entry — composes the store, the builder-side engines
  * (validation, export, storage, reconstruction) and the UI components.
@@ -74,9 +75,9 @@ $('btn-version').addEventListener('click', async () => {
 $('btn-projects').addEventListener('click', () => projectsPanel.open());
 $('btn-about').addEventListener('click', () => {
   const dialog = $('about-dialog');
-  dialog.innerHTML = `
+  setSafeHTML(dialog, `
     <div class="dialog-head"><span>${t('about.title')}</span><button data-close title="${t('export.cancel')}">${icon('close', { size: 16 })}</button></div>
-    <div class="dialog-body">${aboutHtml()}</div>`;
+    <div class="dialog-body">${aboutHtml()}</div>`);
   dialog.querySelector('[data-close]').addEventListener('click', () => dialog.close());
   dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
   dialog.showModal();

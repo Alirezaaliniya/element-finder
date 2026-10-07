@@ -1,3 +1,4 @@
+import { setSafeHTML } from '../../../common/safe-html.js';
 /**
  * ExportDialog — format picker driven by the Export Engine registry,
  * runs validation first, streams asset-package progress, and downloads
@@ -28,7 +29,7 @@ export class ExportDialog {
     const formats = this.exportEngine.formats();
     const count = exportableElementCount(this.store.snapshot);
 
-    this.dialog.innerHTML = `
+    setSafeHTML(this.dialog, `
       <div class="dialog-head">
         <span>${t('export.title', { count })}</span>
         <button data-close title="${t('export.cancel')}">${icon('close', { size: 16 })}</button>
@@ -51,7 +52,7 @@ export class ExportDialog {
         </label>
         <button data-close>${t('export.cancel')}</button>
         <button class="primary" data-run>${t('export.run')}</button>
-      </div>`;
+      </div>`);
 
     for (const btn of this.dialog.querySelectorAll('[data-close]')) {
       btn.addEventListener('click', () => this.dialog.close());
