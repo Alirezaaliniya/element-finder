@@ -26,6 +26,8 @@ const DICTS = {
     'popup.openBuilder': 'Open builder',
     'popup.openBuilderSub': 'Projects, preview, validation & export',
     'popup.ready': 'Ready',
+    'popup.hostAccess': 'Allow access to all websites so stylesheets, fonts and Elementor data from other domains can be read. Without it, extraction is limited.',
+    'popup.grantAccess': 'Allow access',
     'popup.analyzing': 'Analyzing page…',
     // ---- about ----
     'about.title': 'About',
@@ -178,6 +180,8 @@ const DICTS = {
     'popup.openBuilder': 'باز کردن بیلدر',
     'popup.openBuilderSub': 'پروژه‌ها، پیش‌نمایش، اعتبارسنجی و خروجی',
     'popup.ready': 'آماده',
+    'popup.hostAccess': 'برای خواندن استایل‌ها، فونت‌ها و داده‌های المنتور از دامنه‌های دیگر، اجازهٔ دسترسی به همهٔ سایت‌ها را بدهید. بدون آن، استخراج ناقص می‌شود.',
+    'popup.grantAccess': 'اجازه دادن',
     'popup.analyzing': 'در حال تحلیل صفحه…',
     // ---- about ----
     'about.title': 'درباره ما',

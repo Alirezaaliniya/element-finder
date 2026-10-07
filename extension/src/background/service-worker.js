@@ -75,7 +75,9 @@ async function fetchText(url) {
 async function openBuilder(query = '') {
   const url = BUILDER_URL + query;
   // Reuse an existing builder tab when possible.
-  const tabs = await chrome.tabs.query({ url: BUILDER_URL + '*' });
+  // Filter instead of a `url` match pattern: Firefox rejects extension URLs
+  // (moz-extension://) as tabs.query patterns.
+  const tabs = (await chrome.tabs.query({})).filter((tab) => (tab.url ?? '').startsWith(BUILDER_URL));
   if (tabs.length) {
     await chrome.tabs.update(tabs[0].id, { active: true, url });
     await chrome.windows.update(tabs[0].windowId, { focused: true });

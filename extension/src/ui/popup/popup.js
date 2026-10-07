@@ -121,6 +121,17 @@ buttons.builder.addEventListener('click', () => {
   window.close();
 });
 
+// Host access: Chrome grants <all_urls> at install; Firefox lets the user
+// withhold or revoke it. Without it cross-origin stylesheets, fonts and the
+// media library cannot be read, so offer to grant it.
+const ALL_SITES = { origins: ['<all_urls>'] };
+const hostAccess = document.getElementById('host-access');
+chrome.permissions.contains(ALL_SITES).then((granted) => { hostAccess.hidden = granted; }).catch(() => {});
+document.getElementById('grant-access').addEventListener('click', () => {
+  // Must be called directly from the click (user gesture), before any await.
+  chrome.permissions.request(ALL_SITES).then((granted) => { hostAccess.hidden = granted; }).catch(() => {});
+});
+
 // Restore last status on open.
 chrome.storage.local.get(STORAGE_KEYS.LAST_STATUS).then((data) => {
   const s = data[STORAGE_KEYS.LAST_STATUS];

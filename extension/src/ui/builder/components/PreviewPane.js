@@ -70,7 +70,9 @@ export class PreviewPane {
     doc.documentElement.lang = lang;
     doc.getElementById('ef-base').textContent = baseCss;
     doc.getElementById('ef-page').textContent = pageCss;
-    doc.body.innerHTML = bodyHtml; // generated/sanitized markup; scripts never execute via innerHTML
+    // The reconstruction carries HTML/SVG taken from the scanned site; strip
+    // anything active before it enters this (privileged) extension page.
+    doc.body.replaceChildren(sanitizeMarkup(doc, bodyHtml));
     this.#applyDevice(this.store.device);
     this.#highlight(this.store.selectedId);
     void this.#injectFonts(snapshot);
@@ -130,4 +132,31 @@ export class PreviewPane {
       el.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     }
   }
+}
+
+const DROP_ELEMENTS = 'script, noscript, object, embed, applet, base, meta, link, frame, frameset, portal';
+const URL_ATTRS = ['href', 'src', 'xlink:href', 'action', 'formaction', 'data', 'poster', 'srcset'];
+
+/**
+ * Parse markup in an inert <template> and remove executable parts: script-ish
+ * elements, inline event handlers and javascript:/vbscript:/data:text/html URLs.
+ * @returns {DocumentFragment}
+ */
+export function sanitizeMarkup(doc, html) {
+  const tpl = doc.createElement('template');
+  tpl.innerHTML = html;
+  const root = tpl.content;
+  for (const el of root.querySelectorAll(DROP_ELEMENTS)) el.remove();
+  for (const el of root.querySelectorAll('*')) {
+    for (const attr of [...el.attributes]) {
+      const name = attr.name.toLowerCase();
+      if (name.startsWith('on')) { el.removeAttribute(attr.name); continue; }
+      if (URL_ATTRS.includes(name) && /^\s*(javascript|vbscript|data:text\/html)/i.test(attr.value)) {
+        el.removeAttribute(attr.name);
+      }
+    }
+    // SVG animation can set href/on* attributes after the fact.
+    if (/^(set|animate)$/i.test(el.localName) && /^(on|href|xlink:href)/i.test(el.getAttribute('attributeName') || '')) el.remove();
+  }
+  return root;
 }

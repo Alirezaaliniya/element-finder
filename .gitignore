@@ -5,3 +5,6 @@ Thumbs.db
 
 # Claude Code local settings
 .claude/
+
+# Build output (tools/build-release.mjs)
+dist/

@@ -52,6 +52,17 @@ Regenerate it after updating Elementor or adding widget plugins. See
 
 No build tooling is required — the codebase is plain ES modules loaded natively.
 
+## Firefox
+
+```
+node tools/build-release.mjs firefox   # → releases/…-firefox.zip + dist/firefox/
+npx web-ext run --source-dir dist/firefox
+```
+
+The Firefox manifest is generated from the Chrome one at build time. Build
+details, the AMO submission checklist and ready-to-paste reviewer notes are in
+`docs/FIREFOX.md`.
+
 ## Usage
 
 1. Open any page (great first test: a site built with Elementor — the extractor
@@ -122,6 +133,15 @@ php -d memory_limit=2G tools/elementor-dump/dump-controls.php C:/path/to/wordpre
 3. افزونهٔ «Element Finder Studio» را به نوار ابزار سنجاق کنید.
 
 هیچ مرحلهٔ build لازم نیست؛ کد به‌صورت ES Module مستقیم در مرورگر اجرا می‌شود.
+
+### فایرفاکس
+
+```
+node tools/build-release.mjs firefox   # خروجی: releases/…-firefox.zip و پوشهٔ dist/firefox
+npx web-ext run --source-dir dist/firefox
+```
+
+manifest فایرفاکس موقع build از manifest کروم ساخته می‌شود. مراحل انتشار در فروشگاه فایرفاکس (AMO) و متن آماده برای بازبین‌ها در `docs/FIREFOX.md` است.
 
 ### نحوهٔ استفاده
 
