@@ -35,7 +35,7 @@ export const CAPTURED_PROPS = [
   'flex-direction', 'flex-wrap', 'justify-content', 'align-items',
   'align-self', 'order', 'flex-grow', 'row-gap', 'column-gap',
   'grid-template-columns',
-  'object-fit', 'aspect-ratio',
+  'object-fit', 'aspect-ratio', 'transform',
   // Elementor custom properties preserve authored (unresolved) values that
   // computed longhands lose — e.g. `--width: 47%` becomes px in `width`.
   '--width', '--content-width', '--min-height', '--e-con-grid-template-columns',
@@ -140,6 +140,35 @@ export class CssInterpretationEngine {
       // Auto-centering margins (`margin: 0 auto`) resolve to large symmetric
       // px values in computed style. Elementor centers boxed containers
       // itself, so exporting these adds phantom outer margins — drop them.
+      // Positioned decorations: computed offsets are the px they resolved to
+      // at extraction width. Prefer authored relative values (`left: 50%`,
+      // calc(), vw) so the element lands in the same place at other widths,
+      // and drop the opposite computed side the author never set.
+      if (raw.position === 'absolute' || raw.position === 'fixed') applyAuthoredOffsets(el, raw, sheetIndex, varLookup, !!node.semantic?.elementorNative);
+      keepAuthoredTransform(el, raw);
+
+      // Computed `width` is the layout result at extraction width; replayed
+      // in px it stops boxes from shrinking at any other width. Keep it only
+      // where it is design: authored in CSS/inline, replaced elements, and
+      // positioned boxes (which have no flow size).
+      if (raw.width && !raw.width.endsWith('%') && raw.position !== 'absolute' && raw.position !== 'fixed') {
+        const declaredWidth = el.style?.getPropertyValue('width') || sheetIndex.declaredOffsetsFor(el).width;
+        // `width: var(--width)` (Elementor containers) -> the variable's value.
+        const authored = declaredWidth && containsVar(declaredWidth) ? resolveCssVars(declaredWidth, varLookup) : declaredWidth;
+        if (authored && RELATIVE_VALUE.test(authored) && !containsVar(authored)) raw.width = authored;
+        // Replaced elements keep their intrinsic/computed size otherwise.
+        else if (!authored && !REPLACED_TAGS.has(node.tag)) delete raw.width;
+      }
+
+      // Grid tracks: computed style freezes `repeat(3, 1fr)` into px columns
+      // that cannot shrink; keep the authored template.
+      if ((raw.display || '').includes('grid')) {
+        const tracks = sheetIndex.declaredOffsetsFor(layoutEl ?? el)['grid-template-columns'];
+        if (tracks && /fr|%|repeat\(|minmax\(|var\(/.test(tracks)) {
+          raw['grid-template-columns'] = containsVar(tracks) ? resolveCssVars(tracks, (n) => (layoutStyle ?? style).getPropertyValue(n) || rootLookup(n)) : tracks;
+        }
+      }
+
       // Elementor centres containers itself, so auto margins are not
       // exported; the preview still needs to centre the box.
       if (stripAutoMargins(el, win, raw)) node.autoCentered = true;
@@ -205,6 +234,59 @@ function stripAutoMargins(el, win, raw) {
     return true;
   }
   return false;
+}
+
+const REPLACED_TAGS = new Set(['img', 'picture', 'svg', 'video', 'iframe', 'canvas', 'input', 'select', 'textarea', 'hr']);
+
+const RELATIVE_VALUE = /%|calc\(|vw|vh|vmin|vmax|var\(/;
+
+function applyAuthoredOffsets(el, raw, sheetIndex, varLookup, isNative) {
+  const declared = { ...sheetIndex.declaredOffsetsFor(el), ...inlineOffsets(el) };
+  for (const prop of ['top', 'right', 'bottom', 'left', 'width']) {
+    const v = declared[prop];
+    if (!v || !RELATIVE_VALUE.test(v)) continue;
+    raw[prop] = containsVar(v) ? resolveCssVars(v, varLookup) : v;
+  }
+  for (const [a, b] of [['left', 'right'], ['top', 'bottom']]) {
+    if (!declared[a] && !declared[b]) {
+      // No offset authored on this axis: the box sits at its static
+      // position; computed px for both sides would pin it at this width.
+      // Native Elementor elements export their exact offsets anyway; other
+      // sites keep the computed px as the best export approximation.
+      if (!isNative) continue;
+      delete raw[a];
+      delete raw[b];
+    } else if (declared[a] && !declared[b]) {
+      // One authored side per axis: the computed opposite is its mirror.
+      delete raw[b];
+    } else if (declared[b] && !declared[a]) {
+      delete raw[a];
+    }
+  }
+}
+
+function inlineOffsets(el) {
+  const out = {};
+  for (const prop of ['top', 'right', 'bottom', 'left', 'width']) {
+    const v = el.style?.getPropertyValue(prop);
+    if (v) out[prop] = v;
+  }
+  return out;
+}
+
+/**
+ * Computed transforms are sometimes runtime state: Elementor motion effects
+ * and entrance/scroll animations write them per scroll position (inline
+ * style or animation classes). Those are dropped; transforms authored in
+ * stylesheets — including Elementor's transform controls, which go through
+ * --e-transform-* variables — are design and kept.
+ */
+function keepAuthoredTransform(el, raw) {
+  if (!raw.transform || raw.transform === 'none') return;
+  const animated = el.matches?.('.elementor-motion-effects-element, .animated, [data-animentor], .animentor-el, .elementor-invisible')
+    || /motion_fx_motion_fx_scrolling|motion_fx_motion_fx_mouse|_animation"/.test(el.getAttribute?.('data-settings') || '')
+    || !!el.style?.transform;
+  if (animated) delete raw.transform;
 }
 
 function collectToken(map, value) {

@@ -74,6 +74,9 @@ No build tooling is required — the codebase is plain ES modules loaded nativel
 4. **⤓ Export** — any combination of:
    - **Elementor Template JSON** (`version: 0.4`; import via Elementor →
      Templates → Saved Templates → Import)
+   - **Elementor MCP Prompt** (`.md`: a complete brief for an AI agent with an
+     Elementor MCP server — exact element data, outline, requirements, build
+     procedure and verification)
    - **Structure JSON** (lightweight hierarchy for integrations)
    - **Raw Data JSON** (lossless snapshot backup)
    - **HTML Snapshot** (standalone reconstruction document)
@@ -134,6 +137,7 @@ php -d memory_limit=2G tools/elementor-dump/dump-controls.php C:/path/to/wordpre
    - **💾 Save / 🏷 Version / 📁 Projects**: ذخیرهٔ محلی پروژه، نسخه‌های ثابت، بازگردانی و مقایسه.
 4. **⤓ Export**: هر ترکیبی از این خروجی‌ها:
    - **Elementor Template JSON** برای ایمپورت از مسیر المنتور ← Templates ← Saved Templates ← Import؛
+   - **Elementor MCP Prompt**: فایل `.md` کامل برای دادن به هوش مصنوعی‌ای که به MCP المنتور وصل است؛ شامل دادهٔ دقیق المان‌ها، ساختار، پیش‌نیازها، مراحل ساخت و بررسی نهایی؛
    - **Structure JSON**: ساختار سبک برای یکپارچه‌سازی؛
    - **Raw Data JSON**: پشتیبان کامل و بدون افت؛
    - **HTML Snapshot**: سند HTML مستقل از بازسازی؛

@@ -16,6 +16,7 @@
 import { slugify, walkTree } from '../../common/utils.js';
 import { ReconstructionEngine } from '../reconstruction/ReconstructionEngine.js';
 import { exportElementorTemplate } from './elementor-exporter.js';
+import { buildMcpPrompt } from './mcp-prompt.js';
 import { ZipWriter } from './ZipWriter.js';
 
 export class ExportEngine {
@@ -73,6 +74,22 @@ export class ExportEngine {
           atomic: opts.atomic,
         });
         return [jsonArtifact(`elementor-${baseName(snapshot, opts)}.json`, template)];
+      },
+    });
+
+    this.registerFormat({
+      id: 'mcp-prompt',
+      label: 'Elementor MCP Prompt',
+      description: 'A complete brief for an AI agent connected to an Elementor MCP server: exact element data, outline, requirements, build procedure and verification.',
+      extension: 'md',
+      requiresValidSnapshot: true,
+      run: async (snapshot, opts) => {
+        const prompt = buildMcpPrompt(snapshot, {
+          title: opts.title,
+          keepGlobals: opts.keepGlobals,
+          atomic: opts.atomic,
+        });
+        return [{ filename: `elementor-mcp-prompt-${baseName(snapshot, opts)}.md`, blob: new Blob([prompt], { type: 'text/markdown;charset=utf-8' }) }];
       },
     });
 

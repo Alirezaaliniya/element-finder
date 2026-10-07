@@ -21,7 +21,7 @@ const PREVIEW_PROPS = [
   'display', 'position', 'top', 'right', 'bottom', 'left', 'z-index',
   'flex-direction', 'flex-wrap', 'justify-content', 'align-items',
   'align-self', 'order', 'flex-grow', 'row-gap', 'column-gap',
-  'grid-template-columns',
+  'grid-template-columns', 'transform',
   'width', 'max-width', 'min-height', 'aspect-ratio', 'overflow',
   'margin-top', 'margin-right', 'margin-bottom', 'margin-left',
   'padding-top', 'padding-right', 'padding-bottom', 'padding-left',
@@ -114,6 +114,7 @@ ${bodyHtml}
 
     // Atomic (V4) widgets preview through their classic equivalent.
     const renderer = WIDGET_RENDERERS[mapping.widgetType] ?? WIDGET_RENDERERS[classicEquivalent(mapping.widgetType)];
+    const isNative = !!node.semantic?.elementorNative && mapping.source === 'elementor-native';
     let inner;
     if (renderer) {
       try { inner = renderer(node, helpers); } catch { inner = placeholder(mapping.widgetType, 'render error'); }
@@ -121,8 +122,23 @@ ${bodyHtml}
       // (h2/a/p under the wrapper) whose markup the renderer replaced —
       // replay that node's styles onto the rendered inner element.
       this.#emitHoistedCss(node, cssRules);
-    } else if (CONTAINERISH_WIDGETS.has(mapping.widgetType)) {
+    } else if (CONTAINERISH_WIDGETS.has(mapping.widgetType) && !isNative) {
+      // Heuristically composed widget: framed and tagged so the user can
+      // see what the extractor grouped. Native widgets render as the source.
       inner = `<div class="ef-composite"><span class="ef-composite-tag">${escapeHtml(mapping.widgetType)}</span>${helpers.renderChildren(node)}</div>`;
+    } else if (node.children?.some((c) => !c.hidden)) {
+      // No dedicated renderer (theme-builder, WooCommerce, third-party
+      // widgets): the extracted subtree IS the rendered widget — show it
+      // rather than a placeholder box.
+      inner = `<div class="ef-native-render">${helpers.renderChildren(node)}</div>`;
+    } else if (node.content?.src) {
+      inner = `<img class="ef-w-image" src="${escapeHtml(node.content.src)}" alt="${escapeHtml(node.content.alt || '')}">`;
+    } else if (node.content?.html || node.content?.text) {
+      inner = `<div class="ef-w-text">${node.content.html ?? escapeHtml(node.content.text)}</div>`;
+    } else if (isNative) {
+      // A native widget with no content renders nothing on the source page
+      // either (an empty shortcode, a hidden notice) — keep it invisible.
+      inner = '';
     } else {
       inner = placeholder(mapping.widgetType || 'widget', node.label);
     }
@@ -225,6 +241,13 @@ function declBlock(raw, skip) {
     if (skip?.has(prop)) continue;
     const v = raw[prop];
     if (v === undefined || v === '' || isNoise(prop, v)) continue;
+    // `1fr` tracks floor at their content's min-content width (a 386px
+    // image), so a narrower preview overflows; let tracks shrink like the
+    // source's do at its own widths.
+    if (prop === 'grid-template-columns' && !v.includes('minmax')) {
+      parts.push(`${prop}:${v.replace(/(\d*\.?\d+)fr/g, 'minmax(0,$1fr)')}`);
+      continue;
+    }
     parts.push(`${prop}:${v}`);
   }
   // Out-of-flow boxes have no content-driven height in the rebuilt document —

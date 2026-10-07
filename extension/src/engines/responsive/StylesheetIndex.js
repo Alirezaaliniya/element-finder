@@ -22,6 +22,17 @@ export class StylesheetIndex {
      * @type {Array<{selector: string, value: string, baseHref: string|null}>}
      */
     this.backgroundRules = [];
+    /**
+     * Desktop-scope rules declaring box offsets/size/transform. Computed
+     * style turns `left: 50%` into the px it resolved to at extraction
+     * width; positioned decorations need the authored value to land in the
+     * same place at other widths.
+     * @type {Array<{selector: string, style: CSSStyleDeclaration}>}
+     */
+    this.offsetRules = [];
+    /** offsetRules bucketed by the rightmost compound's id/class/tag. */
+    this.offsetBuckets = new Map();
+    this.offsetOrder = 0;
     this.inaccessibleSheets = 0;
     this.inaccessibleHrefs = []; // cross-origin sheets; fonts recoverable via fetch
     this.fontFaces = [];   // { family, src, weight, style, baseHref }
@@ -65,6 +76,15 @@ export class StylesheetIndex {
             this.deviceRules.push({ device, selector, style: rule.style });
           }
         } else {
+          if (OFFSET_PROPS.some((p) => rule.style.getPropertyValue(p))) {
+            for (const selector of safeSplitSelectors(rule.selectorText)) {
+              const entry = { selector, style: rule.style, order: this.offsetOrder++ };
+              this.offsetRules.push(entry);
+              const key = bucketKey(selector);
+              if (!this.offsetBuckets.has(key)) this.offsetBuckets.set(key, []);
+              this.offsetBuckets.get(key).push(entry);
+            }
+          }
           const bg = rule.style.getPropertyValue('background-image') || rule.style.getPropertyValue('background');
           // Accept var() references too — declaredBackgroundFor resolves them
           // per element before extracting the url.
@@ -79,6 +99,39 @@ export class StylesheetIndex {
         try { this.#walkRules(rule.cssRules, device, baseHref); } catch { /* ignore */ }
       }
     }
+  }
+
+  /**
+   * Authored offset/size/transform declarations matching `el` (desktop
+   * scope, later rules win; `!important` beats normal).
+   * @returns {Record<string, string>}
+   */
+  declaredOffsetsFor(el) {
+    const out = {};
+    const important = {};
+    // Only rules whose rightmost compound could match this element, kept in
+    // cascade (source) order.
+    const candidates = [];
+    const add = (key) => { const list = this.offsetBuckets.get(key); if (list) candidates.push(...list); };
+    add('*');
+    add(`tag:${el.tagName.toLowerCase()}`);
+    if (el.id) add(`id:${el.id}`);
+    for (const c of el.classList) add(`cls:${c}`);
+    candidates.sort((a, b) => a.order - b.order);
+    for (const { selector, style } of candidates) {
+      let matches = false;
+      try { matches = el.matches(selector); } catch { continue; }
+      if (!matches) continue;
+      for (const prop of OFFSET_PROPS) {
+        const v = style.getPropertyValue(prop);
+        if (!v) continue;
+        const imp = style.getPropertyPriority(prop) === 'important';
+        if (important[prop] && !imp) continue;
+        out[prop] = v.trim();
+        if (imp) important[prop] = true;
+      }
+    }
+    return out;
   }
 
   /**
@@ -174,6 +227,19 @@ function matchPx(text, re) {
 function safeSplitSelectors(selectorText) {
   return (selectorText || '').split(',').map((s) => s.trim()).filter(Boolean);
 }
+
+/** Bucket key of a selector: its rightmost compound's id, else first class, else tag. */
+function bucketKey(selector) {
+  const last = selector.replace(/::?[\w-]+(\([^)]*\))?/g, '').trim().split(/[\s>+~]+/).pop() || '';
+  const id = /#([\w-]+)/.exec(last);
+  if (id) return `id:${id[1]}`;
+  const cls = /\.([\w-]+)/.exec(last);
+  if (cls) return `cls:${cls[1]}`;
+  const tag = /^([a-z][\w-]*)/i.exec(last);
+  return tag ? `tag:${tag[1].toLowerCase()}` : '*';
+}
+
+const OFFSET_PROPS = ['top', 'right', 'bottom', 'left', 'width', 'transform', 'grid-template-columns'];
 
 const ELEMENTOR_LAYOUT_VARS = [
   ['--flex-direction', ['flex-direction']],

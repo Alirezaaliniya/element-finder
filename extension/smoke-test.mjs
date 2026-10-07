@@ -284,6 +284,16 @@ check(atomicTpl.global_classes?.order?.[0] === 'g-1234567', 'atomic export globa
 const classicTpl = exportElementorTemplate(atomicSnap, { atomic: 'classic' });
 check(classicTpl.content[0].elType === 'container' && classicTpl.content[0].elements[0].widgetType === 'heading', 'atomic -> classic conversion');
 
+// --- Elementor MCP prompt export ------------------------------------------------------------
+const { buildMcpPrompt } = await import('./src/engines/export/mcp-prompt.js');
+const prompt = buildMcpPrompt(atomicSnap);
+const promptJson = JSON.parse(prompt.slice(prompt.indexOf('```json\n') + 8, prompt.lastIndexOf('\n```')));
+check(promptJson.content[0].elType === 'e-flexbox' && promptJson.global_classes?.order?.[0] === 'g-1234567', 'mcp prompt embeds the exact template JSON');
+check(/## Procedure/.test(prompt) && /## Verification/.test(prompt) && /\*\*2\*\* elements in total/.test(prompt), 'mcp prompt sections + element count');
+check(/e-heading/.test(prompt.slice(0, prompt.indexOf('## Elementor data'))), 'mcp prompt outline lists atomic widgets');
+const { ExportEngine } = await import('./src/engines/export/ExportEngine.js');
+check(new ExportEngine().formats().some((f) => f.id === 'mcp-prompt' && f.extension === 'md'), 'mcp prompt format registered');
+
 if (failures) {
   console.error(`\n${failures} CHECK(S) FAILED`);
   process.exit(1);
