@@ -3,6 +3,7 @@
 import { MSG, STORAGE_KEYS } from '../../common/constants.js';
 import { getLang, initI18n, setLang, t } from '../../common/i18n.js';
 import { hydrateIcons } from '../shared/icons.js';
+import { aboutHtml } from '../shared/about.js';
 
 await initI18n(document);
 hydrateIcons(document);
@@ -108,6 +109,13 @@ buttons.pick.addEventListener('click', async () => {
     setStatus(String(err?.message || err), 'error');
   }
 });
+const aboutPanel = document.getElementById('about-panel');
+document.getElementById('about-toggle').addEventListener('click', () => {
+  aboutPanel.querySelector('[data-about]').innerHTML = aboutHtml();
+  aboutPanel.showModal();
+});
+aboutPanel.querySelector('[data-close]').addEventListener('click', () => aboutPanel.close());
+
 buttons.builder.addEventListener('click', () => {
   void chrome.runtime.sendMessage({ type: MSG.OPEN_BUILDER });
   window.close();

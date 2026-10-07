@@ -10,7 +10,8 @@
 
 import { STORAGE_KEYS } from '../../common/constants.js';
 import { getLang, initI18n, setLang, t } from '../../common/i18n.js';
-import { hydrateIcons } from '../shared/icons.js';
+import { hydrateIcons, icon } from '../shared/icons.js';
+import { aboutHtml } from '../shared/about.js';
 import { aiAssist } from '../../ai/AiAssistService.js';
 
 // Localize BEFORE any component renders (top-level await, ESM).
@@ -71,6 +72,15 @@ $('btn-version').addEventListener('click', async () => {
   toast(t('builder.versionFrozen', { label }));
 });
 $('btn-projects').addEventListener('click', () => projectsPanel.open());
+$('btn-about').addEventListener('click', () => {
+  const dialog = $('about-dialog');
+  dialog.innerHTML = `
+    <div class="dialog-head"><span>${t('about.title')}</span><button data-close title="${t('export.cancel')}">${icon('close', { size: 16 })}</button></div>
+    <div class="dialog-body">${aboutHtml()}</div>`;
+  dialog.querySelector('[data-close]').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+  dialog.showModal();
+});
 $('btn-export').addEventListener('click', () => {
   if (!store.snapshot) { toast(t('builder.nothingToExport'), 'error'); return; }
   exportDialog.open();

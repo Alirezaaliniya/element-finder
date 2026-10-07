@@ -4,15 +4,17 @@
   <meta charset="utf-8">
   <title>Element Finder Studio</title>
   <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="../shared/about.css">
 </head>
 <body>
   <header>
-    <div class="logo" data-icon="brand" data-icon-size="22"></div>
+    <img class="logo" src="../../../icon.png" alt="">
     <div>
       <h1>Element Finder Studio</h1>
       <p class="tagline" data-i18n="popup.tagline">Web → Elementor extraction platform</p>
     </div>
     <button id="lang-toggle" class="lang-toggle" data-i18n-title="builder.langToggleTitle" title="Switch language / تغییر زبان">فا</button>
+    <button id="about-toggle" class="lang-toggle icon-toggle" data-i18n-title="about.title" title="About"><span data-icon="about" data-icon-size="16"></span></button>
   </header>
 
   <main>
@@ -44,6 +46,14 @@
   <footer>
     <div id="status" class="status idle" data-i18n="popup.ready">Ready</div>
   </footer>
+
+  <dialog id="about-panel" class="about-panel">
+    <div class="about-panel-head">
+      <strong data-i18n="about.title">About</strong>
+      <button class="lang-toggle icon-toggle" data-close data-i18n-title="export.cancel" title="Close"><span data-icon="close" data-icon-size="16"></span></button>
+    </div>
+    <div data-about></div>
+  </dialog>
 
   <script type="module" src="popup.js"></script>
 </body>

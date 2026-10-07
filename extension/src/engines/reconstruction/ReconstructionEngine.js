@@ -282,12 +282,12 @@ img,video,iframe{max-width:100%}
    real position values, so forcing one on every box would hijack the
    containing block and misplace every absolutely-positioned element. */
 .ef-container{min-height:4px}
-.ef-selected{outline:2px solid #7c5cff!important;outline-offset:-2px}
-[data-ef-id]:hover{outline:1px dashed rgba(124,92,255,.55);outline-offset:-1px;cursor:pointer}
-.ef-placeholder{border:1px dashed #b6a8ff;background:#f4f1ff;color:#5a4bb5;border-radius:6px;
+.ef-selected{outline:2px solid #0677FE!important;outline-offset:-2px}
+[data-ef-id]:hover{outline:1px dashed rgba(6,119,254,.55);outline-offset:-1px;cursor:pointer}
+.ef-placeholder{border:1px dashed #9CC6FF;background:#EEF5FF;color:#0A55C7;border-radius:6px;
   padding:10px 14px;font-size:12px;display:flex;flex-direction:column;gap:2px;margin:2px 0}
-.ef-composite{border:1px dashed #cfc6ff;border-radius:6px;padding:6px;position:relative}
-.ef-composite-tag{position:absolute;top:-9px;inset-inline-start:8px;background:#7c5cff;color:#fff;
+.ef-composite{border:1px dashed #B9D7FF;border-radius:6px;padding:6px;position:relative}
+.ef-composite-tag{position:absolute;top:-9px;inset-inline-start:8px;background:#0677FE;color:#fff;
   font-size:10px;padding:1px 6px;border-radius:4px;z-index:2}
 /* Neutralize UA/user-agent typography on rendered widget internals: the real
    values sit on the widget wrapper (direct-mapped nodes) or come from the
@@ -300,12 +300,12 @@ img,video,iframe{max-width:100%}
   font:inherit;text-decoration:none;cursor:pointer}
 .ef-w-divider hr{border:none;border-top:1px solid #999;margin:8px 0}
 .ef-w-icon svg{width:1em;height:1em;font-size:24px}
-.ef-icon-fallback{font-size:22px;color:#7c5cff}
+.ef-icon-fallback{font-size:22px;color:#0677FE}
 .ef-w-icon-list{list-style:none;padding:0;margin:0}
 .ef-w-icon-list li{display:flex;gap:8px;align-items:center;padding:3px 0}
-.ef-li-bullet{font-size:8px;color:#7c5cff}
+.ef-li-bullet{font-size:8px;color:#0677FE}
 .ef-w-nav ul{list-style:none;display:flex;gap:18px;padding:0;margin:0;flex-wrap:wrap}
-.ef-w-socials{display:flex;gap:10px;font-size:22px;color:#5a4bb5}
+.ef-w-socials{display:flex;gap:10px;font-size:22px;color:#0A55C7}
 .ef-w-form{display:flex;flex-direction:column;gap:10px;max-width:480px}
 .ef-w-form label{display:flex;flex-direction:column;gap:4px;font-size:13px}
 .ef-w-form label.ef-inline{flex-direction:row;align-items:center}
@@ -313,5 +313,5 @@ img,video,iframe{max-width:100%}
 .ef-embed{position:relative;aspect-ratio:16/9}
 .ef-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .ef-w-card{border:1px solid #e3e0f0;border-radius:8px;padding:14px}
-.ef-w-blockquote{border-inline-start:3px solid #7c5cff;margin:0;padding:6px 14px;font-style:italic}
+.ef-w-blockquote{border-inline-start:3px solid #0677FE;margin:0;padding:6px 14px;font-style:italic}
 `;

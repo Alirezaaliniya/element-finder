@@ -4,10 +4,11 @@
   <meta charset="utf-8">
   <title>Element Finder Studio — Builder</title>
   <link rel="stylesheet" href="builder.css">
+  <link rel="stylesheet" href="../shared/about.css">
 </head>
 <body>
   <header class="topbar">
-    <div class="brand"><span data-icon="brand" data-icon-size="18"></span> <strong>Element Finder Studio</strong></div>
+    <div class="brand"><img class="brand-logo" src="../../../icon.png" alt=""> <strong>Element Finder Studio</strong></div>
     <div class="project-info">
       <input id="project-name" class="project-name" placeholder="Untitled project" spellcheck="false">
       <span id="project-meta" class="project-meta"></span>
@@ -28,6 +29,7 @@
       <button id="btn-projects"><span data-icon="projects"></span><span data-i18n="builder.projects">Projects</span></button>
       <button id="btn-export" class="primary"><span data-icon="export"></span><span data-i18n="builder.export">Export</span></button>
       <span class="sep"></span>
+      <button id="btn-about" data-i18n-title="about.title" title="About"><span data-icon="about"></span></button>
       <button id="btn-lang" data-i18n-title="builder.langToggleTitle" title="Switch language / تغییر زبان">فا</button>
     </div>
   </header>
@@ -62,6 +64,7 @@
 
   <dialog id="export-dialog" class="dialog"></dialog>
   <dialog id="projects-dialog" class="dialog"></dialog>
+  <dialog id="about-dialog" class="dialog dialog-about"></dialog>
 
   <div id="toast" class="toast hidden"></div>
 

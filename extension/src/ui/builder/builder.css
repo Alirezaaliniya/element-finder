@@ -8,15 +8,15 @@
 }
 
 :root {
-  --bg: #14101f;
-  --bg-2: #191427;
-  --panel: #1d1733;
-  --panel-2: #251d40;
-  --line: #312a52;
-  --accent: #7c5cff;
-  --accent-soft: rgba(124, 92, 255, 0.16);
-  --text: #efecff;
-  --muted: #9d93c4;
+  --bg: #0B1220;
+  --bg-2: #0F1729;
+  --panel: #131C31;
+  --panel-2: #1A2540;
+  --line: #263452;
+  --accent: #0677FE;
+  --accent-soft: rgba(6, 119, 254, 0.16);
+  --text: #ECF2FF;
+  --muted: #93A4C6;
   --danger: #ff6b81;
   --warn: #ffb454;
   --ok: #4cd4a3;
@@ -55,7 +55,7 @@ button {
 button:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
 button:disabled { opacity: 0.45; cursor: default; }
 button.primary { background: var(--accent); border-color: var(--accent); font-weight: 600; }
-button.primary:hover { background: #8d70ff; }
+button.primary:hover { background: #2A8BFF; }
 button.danger { border-color: var(--danger); color: var(--danger); }
 
 input, select, textarea {
@@ -79,7 +79,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--a
   border-bottom: 1px solid var(--line);
   flex: 0 0 auto;
 }
-.brand { white-space: nowrap; font-size: 14px; }
+.brand { white-space: nowrap; font-size: 14px; display: flex; align-items: center; gap: 8px; }
 .project-info { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
 .project-name {
   width: 280px; background: transparent; border-color: transparent; font-weight: 600;
@@ -127,6 +127,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--a
 .tree-toggle.open { transform: rotate(90deg); }
 [dir=rtl] .tree-toggle:not(.open) { transform: scaleX(-1); }
 .tree-toggle.leaf { visibility: hidden; }
+.brand-logo { width: 22px; height: 22px; border-radius: 6px; background: #fff; padding: 2px; object-fit: contain; vertical-align: middle; }
 .tree-icon { flex: 0 0 auto; display: inline-flex; color: var(--muted); }
 .tree-native { flex: 0 0 auto; display: inline-flex; color: var(--accent); }
 .tree-label { overflow: hidden; text-overflow: ellipsis; }
@@ -198,7 +199,8 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--a
   background: var(--panel); color: var(--text); border: 1px solid var(--line);
   border-radius: 12px; padding: 0; width: min(620px, 92vw); max-height: 84vh;
 }
-.dialog::backdrop { background: rgba(8, 5, 18, 0.72); }
+.dialog-about { width: min(440px, 92vw); }
+.dialog::backdrop { background: rgba(3, 8, 20, 0.72); }
 .dialog-head {
   display: flex; align-items: center; justify-content: space-between;
   padding: 14px 18px; border-bottom: 1px solid var(--line); font-weight: 600;

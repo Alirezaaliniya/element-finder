@@ -28,13 +28,13 @@ export class ElementPicker {
     overlay.setAttribute('data-ef-picker', '');
     Object.assign(overlay.style, {
       position: 'fixed', zIndex: '2147483646', pointerEvents: 'none',
-      border: '2px solid #7c5cff', background: 'rgba(124,92,255,0.12)',
+      border: '2px solid #0677FE', background: 'rgba(6,119,254,0.12)',
       borderRadius: '3px', transition: 'all 40ms linear', display: 'none',
     });
     const label = document.createElement('div');
     Object.assign(label.style, {
       position: 'fixed', zIndex: '2147483647', pointerEvents: 'none',
-      background: '#1d1733', color: '#fff', font: '12px/1.6 system-ui',
+      background: '#131C31', color: '#fff', font: '12px/1.6 system-ui',
       padding: '2px 8px', borderRadius: '4px', display: 'none', maxWidth: '60vw',
       overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
     });

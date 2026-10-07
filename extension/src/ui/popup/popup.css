@@ -8,12 +8,12 @@
 }
 
 :root {
-  --bg: #14101f;
-  --panel: #1d1733;
-  --accent: #7c5cff;
-  --accent-soft: rgba(124, 92, 255, 0.16);
-  --text: #efecff;
-  --muted: #9d93c4;
+  --bg: #0B1220;
+  --panel: #131C31;
+  --accent: #0677FE;
+  --accent-soft: rgba(6, 119, 254, 0.16);
+  --text: #ECF2FF;
+  --muted: #93A4C6;
   --danger: #ff6b81;
   --ok: #4cd4a3;
 }
@@ -42,11 +42,11 @@ header {
 .logo {
   width: 34px;
   height: 34px;
+  flex: 0 0 34px;
   border-radius: 9px;
-  background: linear-gradient(135deg, #7c5cff, #4a34b8);
-  display: grid;
-  place-items: center;
-  font-size: 18px;
+  background: #fff;
+  padding: 3px;
+  object-fit: contain;
 }
 
 h1 { font-size: 14px; font-weight: 650; }
@@ -112,3 +112,14 @@ footer { padding: 10px 16px 14px; }
   cursor: pointer;
 }
 .lang-toggle:hover { color: var(--text); border-color: var(--accent); }
+.lang-toggle + .icon-toggle { margin-inline-start: 0; }
+.icon-toggle { display: inline-flex; align-items: center; justify-content: center; padding: 4px 6px; }
+
+/* About panel: full-popup sheet */
+.about-panel {
+  width: 100%; max-width: none; height: 100%; max-height: none;
+  margin: 0; padding: 14px 16px; border: 0;
+  background: var(--bg); color: var(--text);
+}
+.about-panel::backdrop { background: transparent; }
+.about-panel-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }

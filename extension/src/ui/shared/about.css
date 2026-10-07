@@ -1,0 +1,38 @@
+/* About section — shared by the builder dialog and the popup panel. */
+.about { display: grid; gap: 14px; }
+.about-head { display: flex; align-items: center; gap: 12px; }
+.about-logo {
+  width: 44px; height: 44px; flex: 0 0 44px;
+  border-radius: 12px;
+  background: #fff;
+  padding: 4px;
+  object-fit: contain;
+}
+.about-name { display: block; font-size: 15px; font-weight: 700; }
+.about-version { color: var(--muted); font-size: 12px; }
+.about-desc { color: var(--muted); font-size: 12.5px; line-height: 1.8; margin: 0; }
+.about-links { display: grid; gap: 8px; }
+.about-link {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--line, rgba(6, 119, 254, 0.22));
+  border-radius: 10px;
+  background: var(--panel);
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color 120ms, background 120ms;
+}
+.about-link:hover { border-color: var(--accent); background: var(--accent-soft); }
+.about-link-icon {
+  width: 34px; height: 34px; flex: 0 0 34px;
+  display: grid; place-items: center;
+  border-radius: 9px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.about-link-text { display: grid; gap: 2px; min-width: 0; flex: 1; }
+.about-link-text strong { font-size: 13px; font-weight: 600; }
+.about-link-text small { color: var(--muted); font-size: 11.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.about-link-arrow { color: var(--muted); display: inline-flex; }
+[dir=rtl] .about-link-arrow { transform: scaleX(-1); }
+.about-foot { color: var(--muted); font-size: 11.5px; text-align: center; margin: 0; }

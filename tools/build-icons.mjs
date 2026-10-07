@@ -52,6 +52,13 @@ const ICONS = {
   chevron: 'arrow-right-3',
   'chevron-down': 'arrow-down-1',
   global: 'global',
+  // about section
+  about: 'info-circle',
+  website: 'global',
+  github: 'code-circle',
+  issue: 'message-question',
+  telegram: 'send-2',
+  'external-link': 'export',
 };
 
 const entries = Object.entries(ICONS).map(([name, file]) => {
