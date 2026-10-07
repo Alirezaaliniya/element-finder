@@ -40,11 +40,11 @@ const DICTS = {
     'builder.structure': 'Structure',
     'builder.preview': 'Preview',
     'builder.inspector': 'Inspector',
-    'builder.validate': '✓ Validate',
-    'builder.save': '💾 Save',
-    'builder.version': '🏷 Version',
-    'builder.projects': '📁 Projects',
-    'builder.export': '⤓ Export',
+    'builder.validate': 'Validate',
+    'builder.save': 'Save',
+    'builder.version': 'Version',
+    'builder.projects': 'Projects',
+    'builder.export': 'Export',
     'builder.undoTitle': 'Undo (Ctrl+Z)',
     'builder.redoTitle': 'Redo (Ctrl+Y)',
     'builder.versionTitle': 'Freeze current state as a version',
@@ -105,8 +105,8 @@ const DICTS = {
     'insp.atomicSettings': 'Atomic (V4) settings',
     'insp.atomicStyles': 'Atomic style classes',
     'insp.noSettings': 'No interpreted settings.',
-    'insp.remove': '🗑 Remove from output',
-    'insp.restore': '↩ Restore element',
+    'insp.remove': 'Remove from output',
+    'insp.restore': 'Restore element',
 
     // ---- tree ----
     'tree.elements': '{count} elements',
@@ -133,7 +133,7 @@ const DICTS = {
 
     // ---- projects dialog ----
     'projects.title': 'Projects',
-    'projects.none': 'No saved projects yet. Use 💾 Save in the toolbar.',
+    'projects.none': 'No saved projects yet. Use Save in the toolbar.',
     'projects.open': 'Open',
     'projects.close': 'Close',
     'projects.historyTitle': 'Show saved versions',
@@ -149,8 +149,8 @@ const DICTS = {
     'projects.restored': 'Restored "{label}". Save to keep it.',
 
     // ---- validation panel ----
-    'validation.ready': '✓ Export-ready',
-    'validation.issues': '✗ Issues found',
+    'validation.ready': 'Export-ready',
+    'validation.issues': 'Issues found',
     'validation.counts': '{errors} errors · {warnings} warnings · {info} notes',
     'validation.fix': 'Fix: {label}',
   },
@@ -179,11 +179,11 @@ const DICTS = {
     'builder.structure': 'ساختار',
     'builder.preview': 'پیش‌نمایش',
     'builder.inspector': 'بازرسی',
-    'builder.validate': '✓ اعتبارسنجی',
-    'builder.save': '💾 ذخیره',
-    'builder.version': '🏷 نسخه',
-    'builder.projects': '📁 پروژه‌ها',
-    'builder.export': '⤓ خروجی',
+    'builder.validate': 'اعتبارسنجی',
+    'builder.save': 'ذخیره',
+    'builder.version': 'نسخه',
+    'builder.projects': 'پروژه‌ها',
+    'builder.export': 'خروجی',
     'builder.undoTitle': 'واگرد (Ctrl+Z)',
     'builder.redoTitle': 'ازنو (Ctrl+Y)',
     'builder.versionTitle': 'ثبت وضعیت فعلی به‌عنوان یک نسخه',
@@ -244,8 +244,8 @@ const DICTS = {
     'insp.atomicSettings': 'تنظیمات اتمیک (V4)',
     'insp.atomicStyles': 'کلاس‌های استایل اتمیک',
     'insp.noSettings': 'تنظیم تفسیر‌شده‌ای وجود ندارد.',
-    'insp.remove': '🗑 حذف از خروجی',
-    'insp.restore': '↩ بازگرداندن المان',
+    'insp.remove': 'حذف از خروجی',
+    'insp.restore': 'بازگرداندن المان',
 
     // ---- tree ----
     'tree.elements': '{count} المان',
@@ -272,7 +272,7 @@ const DICTS = {
 
     // ---- projects dialog ----
     'projects.title': 'پروژه‌ها',
-    'projects.none': 'هنوز پروژه‌ای ذخیره نشده. از دکمه‌ی 💾 ذخیره استفاده کنید.',
+    'projects.none': 'هنوز پروژه‌ای ذخیره نشده. از دکمه‌ی «ذخیره» استفاده کنید.',
     'projects.open': 'باز کردن',
     'projects.close': 'بستن',
     'projects.historyTitle': 'نمایش نسخه‌های ذخیره‌شده',
@@ -288,8 +288,8 @@ const DICTS = {
     'projects.restored': '«{label}» بازگردانی شد. برای نگه داشتن، ذخیره کنید.',
 
     // ---- validation panel ----
-    'validation.ready': '✓ آماده‌ی خروجی',
-    'validation.issues': '✗ مشکلاتی پیدا شد',
+    'validation.ready': 'آماده‌ی خروجی',
+    'validation.issues': 'مشکلاتی پیدا شد',
     'validation.counts': '{errors} خطا · {warnings} هشدار · {info} نکته',
     'validation.fix': 'اصلاح: {label}',
   },

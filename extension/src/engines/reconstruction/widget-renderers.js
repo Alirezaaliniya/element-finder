@@ -7,6 +7,7 @@
  */
 
 import { escapeHtml } from '../../common/utils.js';
+import { icon as svgIcon } from '../../ui/shared/icons.js';
 
 export const WIDGET_RENDERERS = {
   heading(node) {
@@ -43,7 +44,7 @@ export const WIDGET_RENDERERS = {
       const sized = box ? fillSvg(svg) : svg;
       return `<span class="ef-w-icon"${style}>${sized}</span>`;
     }
-    return `<span class="ef-w-icon ef-icon-fallback">★</span>`;
+    return `<span class="ef-w-icon ef-icon-fallback">${svgIcon('icon', { size: 24 })}</span>`;
   },
 
   video(node) {
@@ -74,19 +75,19 @@ export const WIDGET_RENDERERS = {
 
   'icon-list'(node) {
     const items = (node.content.listItems ?? []).map((it) =>
-      `<li><span class="ef-li-bullet">●</span>${escapeHtml(it.text)}</li>`).join('');
+      `<li><span class="ef-li-bullet">${svgIcon('ok', { size: 14 })}</span>${escapeHtml(it.text)}</li>`).join('');
     return `<ul class="ef-w-icon-list">${items || '<li>List item</li>'}</ul>`;
   },
 
   'social-icons'(node) {
     const links = node.children.filter((c) => c.tag === 'a');
-    const icons = (links.length ? links : [1, 2, 3]).map(() => '<span class="ef-w-social">◉</span>').join('');
+    const icons = (links.length ? links : [1, 2, 3]).map(() => `<span class="ef-w-social">${svgIcon('global', { size: 18 })}</span>`).join('');
     return `<div class="ef-w-socials">${icons}</div>`;
   },
 
   'nav-menu'(node) {
     const items = (node.content.menu ?? []).slice(0, 10).map((it) =>
-      `<li>${escapeHtml(it.text)}${it.children?.length ? ' ▾' : ''}</li>`).join('');
+      `<li>${escapeHtml(it.text)}${it.children?.length ? svgIcon('chevron-down', { size: 12 }) : ''}</li>`).join('');
     return `<nav class="ef-w-nav"><ul>${items || '<li>Menu</li>'}</ul></nav>`;
   },
 

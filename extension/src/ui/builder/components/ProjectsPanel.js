@@ -6,6 +6,7 @@
 
 import { escapeHtml } from '../../../common/utils.js';
 import { getLang, t } from '../../../common/i18n.js';
+import { icon } from '../../shared/icons.js';
 import { ProjectStorageEngine } from '../../../engines/storage/ProjectStorageEngine.js';
 
 export class ProjectsPanel {
@@ -25,7 +26,7 @@ export class ProjectsPanel {
   async open() {
     const projects = await this.storage.listProjects();
     this.dialog.innerHTML = `
-      <div class="dialog-head"><span>${t('projects.title')}</span><button data-close>✕</button></div>
+      <div class="dialog-head"><span>${t('projects.title')}</span><button data-close title="${escapeHtml(t('export.cancel'))}">${icon('close', { size: 16 })}</button></div>
       <div class="dialog-body" data-list>
         ${projects.length ? '' : `<p style="color:var(--muted)">${t('projects.none')}</p>`}
       </div>
@@ -53,8 +54,8 @@ export class ProjectsPanel {
         <div class="version-list" data-versions></div>
       </div>
       <button data-open>${t('projects.open')}</button>
-      <button data-history title="${escapeHtml(t('projects.historyTitle'))}">🏷</button>
-      <button class="danger" data-delete>🗑</button>`;
+      <button data-history title="${escapeHtml(t('projects.historyTitle'))}">${icon('version', { size: 16 })}</button>
+      <button class="danger" data-delete>${icon('trash', { size: 16 })}</button>`;
 
     row.querySelector('[data-open]').addEventListener('click', async () => {
       const full = await this.storage.getProject(p.id);

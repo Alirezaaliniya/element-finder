@@ -5,6 +5,7 @@
  */
 
 import { t } from '../../../common/i18n.js';
+import { icon } from '../../shared/icons.js';
 import { exportableElementCount } from '../../../engines/export/ExportEngine.js';
 
 export class ExportDialog {
@@ -30,7 +31,7 @@ export class ExportDialog {
     this.dialog.innerHTML = `
       <div class="dialog-head">
         <span>${t('export.title', { count })}</span>
-        <button data-close>✕</button>
+        <button data-close title="${t('export.cancel')}">${icon('close', { size: 16 })}</button>
       </div>
       <div class="dialog-body">
         ${formats.map((f, i) => `

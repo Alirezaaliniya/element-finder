@@ -7,13 +7,11 @@
 import { EL_TYPES } from '../../../common/constants.js';
 import { escapeHtml } from '../../../common/utils.js';
 import { t } from '../../../common/i18n.js';
-import { isProWidget } from '../../../engines/mapping/widget-catalog.js';
+import { classicEquivalent, isProWidget } from '../../../engines/mapping/widget-catalog.js';
+import { icon as svgIcon } from '../../shared/icons.js';
 
-const ICONS = {
-  container: '▦', heading: 'H', 'text-editor': '¶', image: '🖼', button: '⏺',
-  video: '▶', icon: '★', form: '✉', 'nav-menu': '☰', 'icon-list': '≡',
-  default: '◻',
-};
+/** Widget type -> icon name (ui/shared/icons.js); atomic types use their classic twin. */
+const TREE_ICONS = new Set(['heading', 'text-editor', 'image', 'button', 'video', 'icon', 'form', 'nav-menu', 'icon-list']);
 
 export class TreeView {
   /**
@@ -59,7 +57,7 @@ export class TreeView {
 
     const toggle = document.createElement('span');
     toggle.className = `tree-toggle ${hasChildren ? (isOpen ? 'open' : '') : 'leaf'}`;
-    toggle.textContent = '▶';
+    toggle.innerHTML = svgIcon('chevron', { size: 12 });
     toggle.addEventListener('click', (e) => {
       e.stopPropagation();
       if (isOpen) this.collapsed.add(node.id); else this.collapsed.delete(node.id);
@@ -70,9 +68,18 @@ export class TreeView {
     const widgetType = node.mapping?.widgetType;
     const icon = document.createElement('span');
     icon.className = 'tree-icon';
-    icon.textContent = node.mapping?.elType === EL_TYPES.CONTAINER
-      ? ICONS.container : (ICONS[widgetType] ?? ICONS.default);
+    const typeIcon = TREE_ICONS.has(widgetType) ? widgetType
+      : TREE_ICONS.has(classicEquivalent(widgetType)) ? classicEquivalent(widgetType) : 'widget';
+    icon.innerHTML = svgIcon(node.mapping?.elType === EL_TYPES.CONTAINER ? 'container' : typeIcon, { size: 14 });
     row.appendChild(icon);
+    // Elementor-native source element (exact settings recovered).
+    if (node.semantic?.elementorNative) {
+      const native = document.createElement('span');
+      native.className = 'tree-native';
+      native.title = 'Elementor';
+      native.innerHTML = svgIcon('native', { size: 12 });
+      row.appendChild(native);
+    }
 
     const label = document.createElement('span');
     label.className = 'tree-label';

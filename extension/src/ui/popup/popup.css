@@ -1,3 +1,12 @@
+/* Vazirmatn (variable, 100–900) — Persian + Latin UI font, bundled locally. */
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('../shared/fonts/Vazirmatn.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg: #14101f;
   --panel: #1d1733;
@@ -15,8 +24,13 @@ body {
   width: 320px;
   background: var(--bg);
   color: var(--text);
-  font: 13px/1.45 system-ui, sans-serif;
+  font: 13px/1.6 'Vazirmatn', system-ui, sans-serif;
 }
+
+/* Iconsax icons (ui/shared/icons.js) inherit the text colour. */
+.ef-icon { display: block; flex: 0 0 auto; }
+[data-icon] { display: inline-flex; align-items: center; justify-content: center; }
+
 
 header {
   display: flex;
@@ -89,7 +103,7 @@ footer { padding: 10px 16px 14px; }
 /* ---- language toggle ---- */
 .lang-toggle {
   margin-inline-start: auto;
-  font: 12px/1 system-ui, sans-serif;
+  font: 12px/1 'Vazirmatn', system-ui, sans-serif;
   color: var(--muted);
   background: var(--panel);
   border: 1px solid var(--accent-soft);

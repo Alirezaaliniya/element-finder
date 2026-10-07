@@ -5,6 +5,7 @@
  */
 
 import { t } from '../../../common/i18n.js';
+import { icon } from '../../shared/icons.js';
 
 export class ValidationPanel {
   /**
@@ -33,7 +34,7 @@ export class ValidationPanel {
     const head = document.createElement('div');
     head.className = 'validation-head';
     const title = document.createElement('strong');
-    title.textContent = report.ok ? t('validation.ready') : t('validation.issues');
+    title.innerHTML = `${icon(report.ok ? 'ok' : 'error', { size: 16 })}<span>${report.ok ? t('validation.ready') : t('validation.issues')}</span>`;
     title.style.color = report.ok ? 'var(--ok)' : 'var(--danger)';
     const counts = document.createElement('span');
     counts.className = 'vp-count';
@@ -42,7 +43,8 @@ export class ValidationPanel {
     });
     const close = document.createElement('button');
     close.className = 'close';
-    close.textContent = '✕';
+    close.innerHTML = icon('close', { size: 16 });
+    close.title = t('export.cancel');
     close.addEventListener('click', () => this.root.classList.add('hidden'));
     head.append(title, counts, close);
     this.root.appendChild(head);

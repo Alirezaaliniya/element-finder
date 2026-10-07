@@ -2,8 +2,10 @@
 
 import { MSG, STORAGE_KEYS } from '../../common/constants.js';
 import { getLang, initI18n, setLang, t } from '../../common/i18n.js';
+import { hydrateIcons } from '../shared/icons.js';
 
 await initI18n(document);
+hydrateIcons(document);
 
 const statusEl = document.getElementById('status');
 const buttons = {

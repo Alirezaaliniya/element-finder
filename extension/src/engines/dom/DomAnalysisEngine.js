@@ -186,7 +186,8 @@ function isStyleNeutral(node) {
 
 function makeLabel(node, el) {
   const text = el.textContent?.trim();
-  if (node.semantic.elementorNative?.widgetType) return `⚡ ${node.semantic.elementorNative.widgetType}`;
+  // Native elements are badged in the tree UI; the label stays plain text.
+  if (node.semantic.elementorNative?.widgetType) return node.semantic.elementorNative.widgetType;
   if (node.semantic.kind) return `${node.semantic.kind} (${node.tag})`;
   if (/^h[1-6]$/.test(node.tag) && text) return `${node.tag}: ${truncate(text, 32)}`;
   if (node.tag === 'img') return `img: ${truncate(el.getAttribute('alt') || el.getAttribute('src')?.split('/').pop() || '', 32)}`;

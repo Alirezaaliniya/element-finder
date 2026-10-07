@@ -9,6 +9,7 @@ import { DEVICE_ORDER, EL_TYPES } from '../../../common/constants.js';
 import { escapeHtml } from '../../../common/utils.js';
 import { getLang, t, WIDGET_SYNONYMS_FA } from '../../../common/i18n.js';
 import { widgetOptionsByCategory, widgetInfo } from '../../../engines/mapping/widget-catalog.js';
+import { icon } from '../../shared/icons.js';
 
 export class Inspector {
   /**
@@ -299,7 +300,7 @@ export class Inspector {
     const actions = el('div', 'insp-actions');
     const removeBtn = document.createElement('button');
     removeBtn.className = node.hidden ? '' : 'danger';
-    removeBtn.textContent = node.hidden ? t('insp.restore') : t('insp.remove');
+    removeBtn.innerHTML = `${icon(node.hidden ? 'restore' : 'trash', { size: 16 })}<span>${escapeHtml(node.hidden ? t('insp.restore') : t('insp.remove'))}</span>`;
     removeBtn.addEventListener('click', () => {
       if (node.hidden) this.store.restoreNode(node.id); else this.store.removeNode(node.id);
     });

@@ -1,3 +1,12 @@
+/* Vazirmatn (variable, 100–900) — Persian + Latin UI font, bundled locally. */
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('../shared/fonts/Vazirmatn.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg: #14101f;
   --bg-2: #191427;
@@ -19,7 +28,7 @@ html, body { height: 100%; }
 body {
   background: var(--bg);
   color: var(--text);
-  font: 13px/1.5 system-ui, sans-serif;
+  font: 13px/1.6 'Vazirmatn', system-ui, sans-serif;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -33,7 +42,16 @@ button {
   border-radius: 7px;
   padding: 6px 11px;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
+
+/* Iconsax icons (ui/shared/icons.js) inherit the text colour. */
+.ef-icon { display: block; flex: 0 0 auto; }
+[data-icon] { display: inline-flex; align-items: center; justify-content: center; }
+
 button:hover:not(:disabled) { border-color: var(--accent); background: var(--accent-soft); }
 button:disabled { opacity: 0.45; cursor: default; }
 button.primary { background: var(--accent); border-color: var(--accent); font-weight: 600; }
@@ -107,8 +125,10 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--a
   font-size: 9px; cursor: pointer; transition: transform 100ms;
 }
 .tree-toggle.open { transform: rotate(90deg); }
+[dir=rtl] .tree-toggle:not(.open) { transform: scaleX(-1); }
 .tree-toggle.leaf { visibility: hidden; }
-.tree-icon { flex: 0 0 auto; font-size: 11px; }
+.tree-icon { flex: 0 0 auto; display: inline-flex; color: var(--muted); }
+.tree-native { flex: 0 0 auto; display: inline-flex; color: var(--accent); }
 .tree-label { overflow: hidden; text-overflow: ellipsis; }
 .tree-widget {
   margin-inline-start: auto; color: var(--muted); font-size: 10.5px;

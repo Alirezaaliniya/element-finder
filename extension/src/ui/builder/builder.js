@@ -10,10 +10,12 @@
 
 import { STORAGE_KEYS } from '../../common/constants.js';
 import { getLang, initI18n, setLang, t } from '../../common/i18n.js';
+import { hydrateIcons } from '../shared/icons.js';
 import { aiAssist } from '../../ai/AiAssistService.js';
 
 // Localize BEFORE any component renders (top-level await, ESM).
 await initI18n(document);
+hydrateIcons(document);
 import { ValidationEngine } from '../../engines/validation/ValidationEngine.js';
 import { ExportEngine } from '../../engines/export/ExportEngine.js';
 import { ProjectStorageEngine } from '../../engines/storage/ProjectStorageEngine.js';
