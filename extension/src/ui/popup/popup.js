@@ -40,7 +40,9 @@ async function activeTab() {
 
 /** Inject bootstrap (idempotent), then verify the module answers a ping. */
 async function ensureContentScript(tabId) {
-  await chrome.scripting.executeScript({ target: { tabId }, files: ['src/content/bootstrap.js'] });
+  // Start at the extension root. Firefox otherwise resolves this path against
+  // popup.html and looks for src/ui/popup/src/content/bootstrap.js.
+  await chrome.scripting.executeScript({ target: { tabId }, files: ['/src/content/bootstrap.js'] });
   for (let attempt = 0; attempt < 20; attempt++) {
     try {
       const res = await chrome.tabs.sendMessage(tabId, { type: MSG.PING });

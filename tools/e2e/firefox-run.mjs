@@ -31,7 +31,7 @@ chrome.tabs.onUpdated.addListener(async (tabId, info, tab) => {
   if (info.status !== 'complete' || !(tab.url ?? '').endsWith('#ef-e2e')) return;
   try {
     await efE2eLog('matched');
-    await chrome.scripting.executeScript({ target: { tabId }, files: ['src/content/bootstrap.js'] });
+    await chrome.scripting.executeScript({ target: { tabId }, files: ['/src/content/bootstrap.js'] });
     await efE2eLog('injected');
     for (let i = 0; i < 60; i++) {
       try { if ((await chrome.tabs.sendMessage(tabId, { type: MSG.PING }))?.ok) break; } catch { /* loading */ }

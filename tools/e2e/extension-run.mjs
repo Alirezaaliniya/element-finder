@@ -55,7 +55,7 @@ try {
     const tab = (await chrome.tabs.query({})).find((t) => (t.url ?? '').startsWith(pageUrl.replace(/\/$/, '')));
     if (!tab) return { ok: false, error: 'tab not found' };
     await chrome.storage.local.remove('ef:lastSnapshot');
-    await chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ['src/content/bootstrap.js'] });
+    await chrome.scripting.executeScript({ target: { tabId: tab.id }, files: ['/src/content/bootstrap.js'] });
     // Wait for the module graph to come up.
     for (let i = 0; i < 50; i++) {
       try { const pong = await chrome.tabs.sendMessage(tab.id, { type: 'EF_PING' }); if (pong?.ok) break; } catch { /* not ready */ }
