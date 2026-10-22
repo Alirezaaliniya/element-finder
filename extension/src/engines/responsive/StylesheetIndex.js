@@ -9,6 +9,7 @@
 
 import { BREAKPOINTS, BREAKPOINT_MAX_WIDTH } from '../../common/constants.js';
 import { containsVar, resolveCssVars } from '../css/var-resolver.js';
+import { splitTopLevel } from '../elementor/css-text.js';
 
 export class StylesheetIndex {
   constructor(document) {
@@ -224,19 +225,44 @@ function matchPx(text, re) {
   return m ? parseFloat(m[1]) : null;
 }
 
+/** Commas inside `:is(.a, .b)` / `:not()` / attribute strings do not separate
+ *  selectors — a naive split turns `#modal :is(.a, .b)` into a bare `.b`
+ *  that matches every `.b` on the page. */
 function safeSplitSelectors(selectorText) {
-  return (selectorText || '').split(',').map((s) => s.trim()).filter(Boolean);
+  return splitTopLevel(selectorText || '', ',').map((s) => s.trim()).filter(Boolean);
 }
 
 /** Bucket key of a selector: its rightmost compound's id, else first class, else tag. */
 function bucketKey(selector) {
-  const last = selector.replace(/::?[\w-]+(\([^)]*\))?/g, '').trim().split(/[\s>+~]+/).pop() || '';
+  const stripped = stripPseudos(selector);
+  // Rightmost compound made only of `:is()`/`:where()`: it matches through
+  // its arguments, so the rule has to be checked against every element.
+  if (!stripped.trim() || /[\s>+~]$/.test(stripped)) return '*';
+  const last = stripped.trim().split(/[\s>+~]+/).pop() || '';
   const id = /#([\w-]+)/.exec(last);
   if (id) return `id:${id[1]}`;
   const cls = /\.([\w-]+)/.exec(last);
   if (cls) return `cls:${cls[1]}`;
   const tag = /^([a-z][\w-]*)/i.exec(last);
   return tag ? `tag:${tag[1].toLowerCase()}` : '*';
+}
+
+/** Remove pseudo-classes/elements, including nested functional ones (`:has(:is(.a))`). */
+function stripPseudos(selector) {
+  let out = '';
+  for (let i = 0; i < selector.length; i++) {
+    if (selector[i] !== ':') { out += selector[i]; continue; }
+    if (selector[i + 1] === ':') i++;
+    while (/[\w-]/.test(selector[i + 1] ?? '')) i++;
+    if (selector[i + 1] !== '(') continue;
+    let depth = 0;
+    do {
+      i++;
+      if (selector[i] === '(') depth++;
+      else if (selector[i] === ')') depth--;
+    } while (depth > 0 && i < selector.length);
+  }
+  return out;
 }
 
 const OFFSET_PROPS = ['top', 'right', 'bottom', 'left', 'width', 'transform', 'grid-template-columns'];

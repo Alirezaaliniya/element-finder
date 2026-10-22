@@ -5,7 +5,7 @@
 
 export const APP = {
   NAME: 'Element Finder Studio',
-  VERSION: '0.2.2',
+  VERSION: '0.2.3',
   SNAPSHOT_SCHEMA_VERSION: 1,
 };
 
