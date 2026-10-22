@@ -9,8 +9,7 @@
     "activeTab",
     "scripting",
     "storage",
-    "unlimitedStorage",
-    "downloads"
+    "unlimitedStorage"
   ],
   "optional_host_permissions": ["<all_urls>"],
   "icons": {
