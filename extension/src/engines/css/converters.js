@@ -304,6 +304,18 @@ export function declarationsToSettings(raw, opts = {}) {
   if (alignSelf && alignSelf !== 'auto' && alignSelf !== 'normal' && alignSelf !== 'stretch') {
     s._flex_align_self = raw['align-self'];
   }
+  // Grow/shrink: Elementor's "Size" choice on a flex child.
+  const grow = parseFloat(raw['flex-grow']);
+  const shrink = parseFloat(raw['flex-shrink']);
+  if (grow > 0 || shrink === 0) {
+    if (grow === 1 && shrink === 0) s._flex_size = 'grow';
+    else if (grow === 0 && shrink === 0) s._flex_size = 'none';
+    else {
+      s._flex_size = 'custom';
+      s._flex_grow = grow || 0;
+      s._flex_shrink = Number.isFinite(shrink) ? shrink : 1;
+    }
+  }
 
   return compactObject(s);
 }

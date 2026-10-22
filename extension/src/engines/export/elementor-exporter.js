@@ -15,6 +15,7 @@ import { compactObject, escapeHtml } from '../../common/utils.js';
 import { elementorId } from '../../common/utils.js';
 import { classicEquivalent } from '../mapping/widget-catalog.js';
 import { isResponsiveKey, resolveSettingKey } from './widget-controls.js';
+import { sourceCssForElementor } from './source-css-export.js';
 
 /* ------------------------------------------------------------------ *
  * Widget setting adapters
@@ -63,9 +64,20 @@ const SETTING_ADAPTERS = {
   google_maps(node) {
     return { address: node.content.src ?? '' };
   },
-  icon(node) {
+  icon(node, ctx) {
     if (node.content.svgMarkup) {
       return { selected_icon: { value: { url: '', id: '' }, library: 'svg' }, _ef_inline_svg: node.content.svgMarkup };
+    }
+    // Icon-font glyph: Elementor renders an unregistered library as
+    // `<i class="VALUE">`; the exported source CSS draws the glyph.
+    const classes = ctx?.sourceCss && node.content.iconGlyph && sourceClass(node);
+    if (classes) {
+      // Elementor's default icon size is 50px; the glyph's size is its font-size.
+      const px = parseFloat(node.content.iconGlyph.fontSize ?? node.styles?.desktop?.['font-size']);
+      return compactObject({
+        selected_icon: { value: classes, library: 'ef-source' },
+        size: px ? { unit: 'px', size: px, sizes: [] } : undefined,
+      });
     }
     return { selected_icon: { value: 'fas fa-star', library: 'fa-solid' } };
   },
@@ -98,7 +110,12 @@ const SETTING_ADAPTERS = {
       })),
     };
   },
-  html(node) {
+  html(node, ctx) {
+    // The captured markup keeps its data-ef-sub hooks for the source CSS.
+    if (ctx?.sourceCss && node.source?.html) {
+      ctx.subHosts.add(node.id);
+      return { html: node.source.html };
+    }
     return { html: node.content.html ?? node.content.svgMarkup ?? (node.content.text ? `<div>${escapeHtml(node.content.text)}</div>` : '<div></div>') };
   },
   blockquote(node) {
@@ -321,6 +338,9 @@ export function exportElementorTemplate(snapshot, options = {}) {
     keepGlobals: !!options.keepGlobals,
     atomic: options.atomic === 'classic' ? 'classic' : 'keep',
     usedGlobalClassIds: new Set(),
+    // The page's own CSS rewritten for the template (non-Elementor sources).
+    sourceCss: options.sourceCss !== false && !!snapshot.sourceStyles?.css,
+    subHosts: new Set(),
   };
   // Full-page scope: <body> is just a host, its children become the
   // template's top-level containers. Element scope: the picked element IS
@@ -337,9 +357,12 @@ export function exportElementorTemplate(snapshot, options = {}) {
     ? [convertNode(snapshot.tree, ctx, false)].filter(Boolean)
     : rootChildren.map((n) => convertNode(n, ctx, false)).filter(Boolean);
 
+  const pageSettings = buildPageSettings(snapshot);
+  if (ctx.sourceCss) attachSourceCss(snapshot, ctx, content, pageSettings, isElementScope);
+
   const template = {
     content,
-    page_settings: buildPageSettings(snapshot),
+    page_settings: pageSettings,
     version: '0.4',
     title: options.title || snapshot.meta.title || 'Imported page',
     type: options.type || (isElementScope ? 'container' : 'page'),
@@ -349,6 +372,29 @@ export function exportElementorTemplate(snapshot, options = {}) {
   const globalClasses = globalClassesSnapshot(snapshot, ctx.usedGlobalClassIds);
   if (globalClasses) template.global_classes = globalClasses;
   return template;
+}
+
+/**
+ * Pro custom CSS: page settings for a page template; the root element's own
+ * custom CSS for a container template (page settings are not applied when a
+ * container template is inserted).
+ */
+function attachSourceCss(snapshot, ctx, content, pageSettings, isElementScope) {
+  const exportedIds = new Set();
+  (function collect(els) {
+    for (const el of els) { exportedIds.add(el.id); collect(el.elements ?? []); }
+  })(content);
+  const css = sourceCssForElementor(snapshot, { exportedIds, subHosts: ctx.subHosts });
+  if (!css) return;
+  // Supersedes the custom-class CSS (meta.customCss): the same inline rules
+  // are in the source CSS, resolved and scoped.
+  const host = isElementScope && content[0] ? content[0].settings : pageSettings;
+  host.custom_css = css;
+}
+
+/** The element's class attribute as captured by the Source CSS Engine. */
+function sourceClass(node) {
+  return node.source?.attrs?.find(([name]) => name.toLowerCase() === 'class')?.[1]?.trim() || null;
 }
 
 function globalClassesSnapshot(snapshot, usedIds) {
@@ -614,7 +660,11 @@ function asAtomic(node, ctx, isInner) {
 function withCommon(node, settings, widgetType = null) {
   // Hidden on desktop at extraction time (Elementor responsive visibility).
   if (node.hiddenOn?.includes('desktop') && !settings.hide_desktop) settings.hide_desktop = 'hidden-desktop';
-  const classes = (node.customClasses ?? []).join(' ').trim();
+  // An icon-font icon's classes belong on its <i>, which Elementor renders
+  // from selected_icon; on the wrapper too, the source CSS would draw the
+  // glyph twice.
+  const onIcon = settings.selected_icon?.library === 'ef-source' ? new Set(settings.selected_icon.value.split(/\s+/)) : null;
+  const classes = (node.customClasses ?? []).filter((c) => !onIcon?.has(c)).join(' ').trim();
   const classKey = resolveSettingKey('_css_classes', widgetType);
   if (classes && classKey && !settings[classKey]) settings[classKey] = classes;
   // Keep in-page anchors (`#pricing`) working after import.

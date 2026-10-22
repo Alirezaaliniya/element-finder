@@ -95,7 +95,12 @@ export class AssetCollectionEngine {
       // icon-font glyphs (<i class="fa-...">) -------------------------------
       if ((tag === 'i' || tag === 'span') && !el.childElementCount) {
         const cls = el.getAttribute('class') || '';
-        if (ICON_FONT_CLASS.test(cls)) {
+        // Theme-specific icon fonts (`rip rip-s-bars`) follow no class
+        // convention; the glyph drawn by ::before identifies them. Kept on
+        // the node so the preview can draw the same glyph with the same font.
+        const glyph = el.textContent?.trim() ? null : iconGlyph(el, ctx.window);
+        if (glyph) node.content.iconGlyph = glyph;
+        if (ICON_FONT_CLASS.test(cls) || glyph) {
           const a = register({
             type: 'icon', url: null, inline: cls,
             filename: `icon-${node.id}.txt`,
@@ -207,6 +212,23 @@ async function fetchText(url) {
     if (!res.ok || !/text\/css|text\/plain/.test(res.headers.get('content-type') ?? 'text/css')) return null;
     return await res.text();
   } catch { return null; }
+}
+
+/**
+ * The icon-font glyph an empty <i>/<span> draws through ::before: one
+ * character from a Private Use Area (where icon fonts put their glyphs) or
+ * any single character drawn in a font whose name says it is an icon font.
+ */
+function iconGlyph(el, win) {
+  const before = win?.getComputedStyle(el, '::before');
+  const m = /^"(.{1,2})"$/u.exec(before?.content || '');
+  if (!m) return null;
+  const char = m[1];
+  const cp = char.codePointAt(0);
+  const pua = (cp >= 0xe000 && cp <= 0xf8ff) || cp >= 0xf0000;
+  const family = before.fontFamily;
+  if (!pua && !/icon|awesome|glyph|symbol/i.test(family)) return null;
+  return { char, fontFamily: family, fontWeight: before.fontWeight, fontSize: before.fontSize };
 }
 
 function iconLibrary(cls) {

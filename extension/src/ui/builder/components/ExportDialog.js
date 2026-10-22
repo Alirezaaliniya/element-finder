@@ -44,6 +44,7 @@ export class ExportDialog {
             </span>
           </label>`).join('')}
         ${elementorOptionsHtml(this.store.snapshot)}
+        ${sourceCssOptionHtml(this.store.snapshot)}
         <div class="export-progress" data-progress></div>
       </div>
       <div class="dialog-foot">
@@ -86,6 +87,7 @@ export class ExportDialog {
           title: this.store.project?.name,
           keepGlobals: !!this.dialog.querySelector('[data-keep-globals]')?.checked,
           atomic: this.dialog.querySelector('[data-atomic-mode]')?.value ?? 'keep',
+          sourceCss: this.dialog.querySelector('[data-source-css]')?.checked ?? false,
           skipValidation: true, // already validated above
           onProgress: ({ current, total, asset }) => {
             progressEl.textContent = t('export.packaging', { current, total, asset });
@@ -124,6 +126,17 @@ function elementorOptionsHtml(snapshot) {
           <option value="classic">${t('export.atomicClassic')}</option>
         </select>
       </label>` : ''}
+    </fieldset>`;
+}
+
+/** Non-Elementor pages: ship the page's own CSS with the template. */
+function sourceCssOptionHtml(snapshot) {
+  if (!snapshot?.sourceStyles?.css) return '';
+  return `
+    <fieldset class="export-elementor">
+      <legend>${t('export.sourceCssLegend')}</legend>
+      <label><input type="checkbox" data-source-css checked style="width:auto"> ${t('export.sourceCss')}</label>
+      <small>${t('export.sourceCssHint')}</small>
     </fieldset>`;
 }
 

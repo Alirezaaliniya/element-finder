@@ -1,0 +1,602 @@
+{
+ "url": "http://localhost/saipa/",
+ "stats": {
+  "elements": 104,
+  "inExport": 101,
+  "typeOk": 101,
+  "styleKeys": 595,
+  "match": 553,
+  "diff": 8,
+  "miss": 34,
+  "extra": 67,
+  "globals": 88,
+  "globalsCovered": 79,
+  "contentKeys": 117,
+  "contentMatch": 70
+ },
+ "perType": {
+  "container": {
+   "n": 42,
+   "found": 41,
+   "typeOk": 41,
+   "keys": 266,
+   "match": 252
+  },
+  "image": {
+   "n": 3,
+   "found": 3,
+   "typeOk": 3,
+   "keys": 39,
+   "match": 33
+  },
+  "heading": {
+   "n": 11,
+   "found": 11,
+   "typeOk": 11,
+   "keys": 43,
+   "match": 42
+  },
+  "text-editor": {
+   "n": 5,
+   "found": 5,
+   "typeOk": 5,
+   "keys": 5,
+   "match": 5
+  },
+  "button": {
+   "n": 2,
+   "found": 2,
+   "typeOk": 2,
+   "keys": 12,
+   "match": 12
+  },
+  "nias_login_widget": {
+   "n": 1,
+   "found": 1,
+   "typeOk": 1,
+   "keys": 0,
+   "match": 0
+  },
+  "icon": {
+   "n": 4,
+   "found": 4,
+   "typeOk": 4,
+   "keys": 20,
+   "match": 20
+  },
+  "theme-site-logo": {
+   "n": 3,
+   "found": 3,
+   "typeOk": 3,
+   "keys": 8,
+   "match": 6
+  },
+  "nav-menu": {
+   "n": 3,
+   "found": 3,
+   "typeOk": 3,
+   "keys": 19,
+   "match": 18
+  },
+  "social-icons": {
+   "n": 2,
+   "found": 2,
+   "typeOk": 2,
+   "keys": 16,
+   "match": 16
+  },
+  "icon-list": {
+   "n": 10,
+   "found": 10,
+   "typeOk": 10,
+   "keys": 38,
+   "match": 37
+  },
+  "icon-box": {
+   "n": 11,
+   "found": 11,
+   "typeOk": 11,
+   "keys": 77,
+   "match": 64
+  },
+  "woocommerce-menu-cart": {
+   "n": 2,
+   "found": 2,
+   "typeOk": 2,
+   "keys": 41,
+   "match": 39
+  },
+  "mega-menu": {
+   "n": 1,
+   "found": 1,
+   "typeOk": 1,
+   "keys": 1,
+   "match": 1
+  },
+  "spacer": {
+   "n": 2,
+   "found": 0,
+   "typeOk": 0,
+   "keys": 0,
+   "match": 0
+  },
+  "html": {
+   "n": 2,
+   "found": 2,
+   "typeOk": 2,
+   "keys": 10,
+   "match": 8
+  }
+ },
+ "missKeys": {
+  "container.background_color": 2,
+  "image._offset_orientation_h": 1,
+  "image._offset_x_end": 1,
+  "image._offset_y": 1,
+  "image._offset_x": 1,
+  "image._transform_rotateZ_effect": 1,
+  "container.background_image": 2,
+  "container.box_shadow_box_shadow": 2,
+  "woocommerce-menu-cart.divider_style": 1,
+  "container.background_overlay_image": 2,
+  "container.background_overlay_position": 1,
+  "container.background_overlay_repeat": 1,
+  "container.background_overlay_size": 2,
+  "container.background_overlay_bg_width": 1,
+  "container.background_overlay_opacity": 1,
+  "icon-box.position": 3,
+  "icon-box.content_vertical_alignment": 3,
+  "icon-box.icon_size": 3,
+  "nav-menu.dropdown_top_distance": 1,
+  "html._offset_x": 1,
+  "html._offset_y": 1,
+  "heading._background_background": 1,
+  "woocommerce-menu-cart.buttons_position": 1
+ },
+ "diffSamples": [
+  {
+   "id": "fb7c583",
+   "type": "theme-site-logo",
+   "key": "image",
+   "src": {
+    "id": 72,
+    "url": "http://localhost/saipa/wp-content/uploads/2024/01/placeholder-1.png"
+   },
+   "ours": {
+    "url": "http://localhost/saipa/wp-content/uploads/2024/01/LogoMenuMini-1.webp",
+    "id": "",
+    "alt": "",
+    "source": "library",
+    "size": ""
+   }
+  },
+  {
+   "id": "441c845",
+   "type": "icon-list",
+   "key": "icon_align",
+   "src": "left",
+   "ours": "end"
+  },
+  {
+   "id": "cc92ff4",
+   "type": "icon-box",
+   "key": "position",
+   "src": "right",
+   "ours": "inline-start"
+  },
+  {
+   "id": "7bbc9bc",
+   "type": "theme-site-logo",
+   "key": "image",
+   "src": {
+    "id": 45,
+    "url": "http://localhost/saipa/wp-content/uploads/2024/01/placeholder.png"
+   },
+   "ours": {
+    "url": "http://localhost/saipa/wp-content/uploads/2024/01/LogoMenuMini-1.webp",
+    "id": "",
+    "alt": "",
+    "source": "library",
+    "size": ""
+   }
+  },
+  {
+   "id": "45aaf93",
+   "type": "icon-box",
+   "key": "position",
+   "src": "left",
+   "ours": "inline-end"
+  },
+  {
+   "id": "a8b8ae6",
+   "type": "icon-box",
+   "key": "position",
+   "src": "left",
+   "ours": "inline-end"
+  },
+  {
+   "id": "e1adfc8",
+   "type": "icon-box",
+   "key": "position",
+   "src": "left",
+   "ours": "inline-end"
+  },
+  {
+   "id": "37e2fb6a",
+   "type": "image",
+   "key": "image",
+   "src": {
+    "id": 84,
+    "url": "http://localhost/saipa/wp-content/uploads/2024/01/nias.png"
+   },
+   "ours": {
+    "url": "http://localhost/saipa/wp-content/uploads/2024/01/LogoMenuMini-1.webp",
+    "id": "",
+    "alt": "",
+    "source": "library",
+    "size": ""
+   }
+  }
+ ],
+ "contentDiffs": [
+  {
+   "id": "2b8c5ff",
+   "type": "container",
+   "key": "background_color_b",
+   "src": "#F4742100"
+  },
+  {
+   "id": "82427bd",
+   "type": "text-editor",
+   "key": "editor",
+   "src": "<p>نمایندگی سایپا لاهیجان، منبع اصلی و قابل اعتماد تامین قطعات اصلی خودروهای سایپا با گارانتی شرکتی معتبر. با اعتماد به خدمات ما، شما امکان دسترسی به قطعات اصلی و کیفیت بالا برای خودروهای خود را دارید، همچنین ما به شما اطمینان می‌دهیم که خودروهایتان با قطعات اورجینال بهترین عملکرد و کارایی را خواهند داشت</p>",
+   "ours": "<div class=\"animentor-line\" aria-hidden=\"true\" style=\"position: relative; display: block; text-align: justify;\"> <div class=\"elementor-widget-container\"> <p></p><div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">نمایندگی</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">سایپا</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">لاهیجان،</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">منبع</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">اصلی</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">و</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">قابل</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">اعتماد</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">تامین</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">قطعات</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">اصلی</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">خودروهای</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">سایپا</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">با</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">گارانتی</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">شرکتی</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">معتبر.</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">با</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">اعتماد</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">به</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">خدمات</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">ما،</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">شما</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">امکان</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">دسترسی</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">به</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">قطعات</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">اصلی</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">و</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">کیفیت</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">بالا</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">برای</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">خودروهای</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">خود</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">را</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">دارید،</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">همچنین</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">ما</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">به</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">شما</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">اطمینان</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">می‌دهیم</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">که</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">خودروهایتان</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">با</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">قطعات</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">اورجینال</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">بهترین</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">عملکرد</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">و</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">کارایی</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">را</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">خواهند</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">داشت</div><p></p> </div> </div>"
+  },
+  {
+   "id": "8f1f316",
+   "type": "nias_login_widget",
+   "key": "nias_closebutton_text",
+   "src": "بستن"
+  },
+  {
+   "id": "8f1f316",
+   "type": "nias_login_widget",
+   "key": "nias_firstform_title",
+   "src": "ورود / ثبت نام"
+  },
+  {
+   "id": "8f1f316",
+   "type": "nias_login_widget",
+   "key": "nias_firstform_subtitle",
+   "src": "در صورت روشن بودن vpn خاموش کنید تا به مشکلی نخورید"
+  },
+  {
+   "id": "8f1f316",
+   "type": "nias_login_widget",
+   "key": "nias_firstform_label",
+   "src": "شماره همراه خود را وارد کنید"
+  },
+  {
+   "id": "8f1f316",
+   "type": "nias_login_widget",
+   "key": "nias_firstform_button",
+   "src": "ارسال کد تایید"
+  },
+  {
+   "id": "8f1f316",
+   "type": "nias_login_widget",
+   "key": "nias_secondform_title",
+   "src": "تایید شماره همراه"
+  },
+  {
+   "id": "8f1f316",
+   "type": "nias_login_widget",
+   "key": "nias_secondform_button",
+   "src": "تایید کد"
+  },
+  {
+   "id": "8f1f316",
+   "type": "nias_login_widget",
+   "key": "nias_secondform_passwordtitle",
+   "src": "پسورد را وارد کنید"
+  },
+  {
+   "id": "8f1f316",
+   "type": "nias_login_widget",
+   "key": "nias_secondform_passwordsubtitle",
+   "src": "چنانچه پسوردی از قبل دارید وارد کنید"
+  },
+  {
+   "id": "8f1f316",
+   "type": "nias_login_widget",
+   "key": "nias_secondform_passwordlabel",
+   "src": "رمز عبور"
+  },
+  {
+   "id": "8f1f316",
+   "type": "nias_login_widget",
+   "key": "nias_secondform_passwordbtn",
+   "src": "فراموشی رمز / ارسال رمز"
+  },
+  {
+   "id": "8f1f316",
+   "type": "nias_login_widget",
+   "key": "nias_secondform_passwordunderbtn",
+   "src": "رمز عبور جدید برای شما ارسال خواهد شد"
+  },
+  {
+   "id": "8f1f316",
+   "type": "nias_login_widget",
+   "key": "nias_secondform_resend",
+   "src": "ارسال مجدد"
+  },
+  {
+   "id": "8f1f316",
+   "type": "nias_login_widget",
+   "key": "nias_secondform_tab_password",
+   "src": "ورود پسورد"
+  },
+  {
+   "id": "8f1f316",
+   "type": "nias_login_widget",
+   "key": "nias_secondform_tab_otp",
+   "src": "ورود با کد تایید"
+  },
+  {
+   "id": "8f1f316",
+   "type": "nias_login_widget",
+   "key": "nias_secondform_tab_codehint",
+   "src": "برای دریافت کد تایید روی این تب کلیک کنید"
+  },
+  {
+   "id": "8f1f316",
+   "type": "nias_login_widget",
+   "key": "nias_secondform_editbutton",
+   "src": "اصلاح شماره"
+  },
+  {
+   "id": "8f1f316",
+   "type": "nias_login_widget",
+   "key": "nias_manualpass_title",
+   "src": "یک رمز عبور برای حساب خود انتخاب کنید"
+  },
+  {
+   "id": "8f1f316",
+   "type": "nias_login_widget",
+   "key": "nias_manualpass_new",
+   "src": "رمز عبور جدید"
+  },
+  {
+   "id": "8f1f316",
+   "type": "nias_login_widget",
+   "key": "nias_manualpass_confirm",
+   "src": "تکرار رمز عبور"
+  },
+  {
+   "id": "8f1f316",
+   "type": "nias_login_widget",
+   "key": "nias_manualpass_strength",
+   "src": "قدرت رمز عبور"
+  },
+  {
+   "id": "8f1f316",
+   "type": "nias_login_widget",
+   "key": "nias_manualpass_hint",
+   "src": "حداقل ۸ کاراکتر، شامل حروف و اعداد"
+  },
+  {
+   "id": "8f1f316",
+   "type": "nias_login_widget",
+   "key": "nias_secondform_successtext",
+   "src": "ورود با موفقیت انجام شد "
+  },
+  {
+   "id": "8f1f316",
+   "type": "nias_login_widget",
+   "key": "nias_secondform_successloadertext",
+   "src": "صفحه مجدداً بارگذاری میشود، ممنون از صبوری شما"
+  },
+  {
+   "id": "47b3213",
+   "type": "nav-menu",
+   "key": "menu",
+   "src": "main-nias"
+  },
+  {
+   "id": "47b3213",
+   "type": "nav-menu",
+   "key": "menu_id",
+   "src": 22
+  },
+  {
+   "id": "47b3213",
+   "type": "nav-menu",
+   "key": "menu_name",
+   "src": "Menu"
+  },
+  {
+   "id": "d821866",
+   "type": "nav-menu",
+   "key": "menu",
+   "src": "product"
+  },
+  {
+   "id": "d821866",
+   "type": "nav-menu",
+   "key": "menu_id",
+   "src": 22
+  },
+  {
+   "id": "d821866",
+   "type": "nav-menu",
+   "key": "menu_name",
+   "src": "Menu"
+  },
+  {
+   "id": "441c845",
+   "type": "icon-list",
+   "key": "icon_list",
+   "src": [
+    {
+     "text": "بلاگ",
+     "selected_icon": {
+      "value": "",
+      "library": ""
+     },
+     "_id": "6e04e29",
+     "__dynamic__": {
+      "link": "[elementor-tag id=\"a109790\" name=\"internal-url\" settings=\"%7B%22type%22%3A%22post%22%2C%22post_id%22%3A%22398%22%7D\"]"
+     }
+    },
+    {
+     "text": "پیگیری سفارش",
+     "selected_icon": {
+      "value": "",
+      "library": ""
+     },
+     "_id": "a330531",
+     "__dynamic__": {
+      "link": "[elementor-tag id=\"74e88e8\" name=\"internal-url\" settings=\"%7B%22type%22%3A%22post%22%2C%22post_id%22%3A%22902%22%7D\"]"
+     }
+    },
+    {
+     "text": "نظرات",
+     "selected_icon": {
+      "value": "",
+      "library": ""
+     },
+     "_id": "37d329f"
+    }
+   ],
+   "ours": [
+    {
+     "text": "بلاگ",
+     "selected_icon": {
+      "value": "",
+      "library": ""
+     },
+     "_id": "07d59ec",
+     "link": {
+      "url": "http://localhost/saipa/blog/",
+      "is_external": "",
+      "nofollow": "",
+      "custom_attributes": ""
+     }
+    },
+    {
+     "text": "پیگیری سفارش",
+     "selected_icon": {
+      "value": "",
+      "library": ""
+     },
+     "_id": "cfb318f",
+     "link": {
+      "url": "http://localhost/saipa/tracking/",
+      "is_external": "",
+      "nofollow": "",
+      "custom_attributes": ""
+     }
+    },
+    {
+     "text": "نظرات",
+     "selected_icon": {
+      "value": "",
+      "library": ""
+     },
+     "_id": "a255208"
+    }
+   ]
+  },
+  {
+   "id": "32dd5d9",
+   "type": "woocommerce-menu-cart",
+   "key": "menu_icon_svg",
+   "src": {
+    "value": "fas fa-shopping-bag",
+    "library": "fa-solid"
+   }
+  },
+  {
+   "id": "9d1600a",
+   "type": "mega-menu",
+   "key": "menu_items",
+   "src": [
+    {
+     "item_title": "دسته بندی کالاها",
+     "_id": "cafdda0",
+     "item_dropdown_content": "yes"
+    },
+    {
+     "item_title": "آپشن بر اساس خودرو",
+     "_id": "22688a8"
+    }
+   ],
+   "ours": [
+    {
+     "item_title": "دسته بندی کالاها",
+     "_id": "cafdda0",
+     "item_dropdown_content": "yes",
+     "item_link": {
+      "url": "",
+      "is_external": "",
+      "nofollow": "",
+      "custom_attributes": ""
+     },
+     "item_icon": {
+      "value": "",
+      "library": ""
+     },
+     "item_icon_active": null,
+     "element_id": ""
+    },
+    {
+     "item_title": "آپشن بر اساس خودرو",
+     "_id": "22688a8",
+     "item_link": {
+      "url": "",
+      "is_external": "",
+      "nofollow": "",
+      "custom_attributes": ""
+     },
+     "item_dropdown_content": "no",
+     "item_icon": {
+      "value": "",
+      "library": ""
+     },
+     "item_icon_active": null,
+     "element_id": ""
+    }
+   ]
+  },
+  {
+   "id": "9d1600a",
+   "type": "mega-menu",
+   "key": "menu_name",
+   "src": "Menu"
+  },
+  {
+   "id": "ce060d5",
+   "type": "nav-menu",
+   "key": "menu",
+   "src": "main-nias"
+  },
+  {
+   "id": "ce060d5",
+   "type": "nav-menu",
+   "key": "menu_id",
+   "src": 22
+  },
+  {
+   "id": "ce060d5",
+   "type": "nav-menu",
+   "key": "animation_line",
+   "src": "drop-in"
+  },
+  {
+   "id": "ce060d5",
+   "type": "nav-menu",
+   "key": "animation_framed",
+   "src": "draw"
+  }
+ ]
+}

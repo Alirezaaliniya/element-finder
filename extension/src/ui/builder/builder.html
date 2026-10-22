@@ -46,10 +46,18 @@
     <section class="pane pane-preview">
       <div class="pane-head">
         <span data-i18n="builder.preview">Preview</span>
-        <span id="preview-size" class="badge"></span>
+        <span class="preview-head-tools">
+          <span id="preview-mode" class="preview-mode hidden" role="group">
+            <button type="button" data-mode="source" class="active" data-i18n="builder.previewSource" data-i18n-title="builder.previewSourceTip">Source styles</button>
+            <button type="button" data-mode="interpreted" data-i18n="builder.previewInterpreted" data-i18n-title="builder.previewInterpretedTip">Elementor</button>
+          </span>
+          <span id="preview-size" class="badge"></span>
+        </span>
       </div>
       <div class="preview-stage">
-        <iframe id="preview" title="Reconstruction preview" src="preview.html"></iframe>
+        <div id="preview-frame" class="preview-frame">
+          <iframe id="preview" title="Reconstruction preview" src="preview.html"></iframe>
+        </div>
       </div>
       <div id="validation-panel" class="validation-panel hidden"></div>
     </section>

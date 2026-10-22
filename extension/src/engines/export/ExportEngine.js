@@ -72,6 +72,7 @@ export class ExportEngine {
           title: opts.title,
           keepGlobals: opts.keepGlobals,
           atomic: opts.atomic,
+          sourceCss: opts.sourceCss,
         });
         return [jsonArtifact(`elementor-${baseName(snapshot, opts)}.json`, template)];
       },
@@ -88,6 +89,7 @@ export class ExportEngine {
           title: opts.title,
           keepGlobals: opts.keepGlobals,
           atomic: opts.atomic,
+          sourceCss: opts.sourceCss,
         });
         return [{ filename: `elementor-mcp-prompt-${baseName(snapshot, opts)}.md`, blob: new Blob([prompt], { type: 'text/markdown;charset=utf-8' }) }];
       },

@@ -106,6 +106,14 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--a
   background: var(--panel-2); border-radius: 10px; padding: 1px 8px;
   font-size: 10.5px; letter-spacing: 0; text-transform: none;
 }
+.preview-head-tools { display: flex; align-items: center; gap: 8px; }
+.preview-mode { display: inline-flex; background: var(--panel-2); border-radius: 10px; padding: 1px; }
+.preview-mode.hidden { display: none; }
+.preview-mode button {
+  border: 0; background: none; color: var(--muted); font: inherit; font-size: 10.5px;
+  letter-spacing: 0; text-transform: none; padding: 1px 8px; border-radius: 9px; cursor: pointer;
+}
+.preview-mode button.active { background: var(--accent); color: #fff; }
 
 /* ---------- tree ---------- */
 .tree { flex: 1; overflow: auto; padding: 6px 4px; outline: none; }
@@ -142,12 +150,15 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--a
 /* ---------- preview ---------- */
 .pane-preview { background: var(--bg-2); }
 .preview-stage { flex: 1; display: flex; justify-content: center; overflow: auto; padding: 14px; }
+/* The iframe renders at the device's real width (so the page's own media
+   queries match the device) and is scaled down to fit; the frame box takes
+   the scaled size. Sizes are set by PreviewPane. */
+.preview-frame { position: relative; flex: 0 0 auto; width: 100%; height: 100%; }
 #preview {
+  position: absolute; top: 0; left: 0; transform-origin: 0 0;
   border: 1px solid var(--line); border-radius: 8px; background: #fff;
-  width: 100%; height: 100%; transition: width 180ms;
+  width: 100%; height: 100%;
 }
-#preview.tablet { width: 1024px; max-width: 100%; }
-#preview.mobile { width: 390px; }
 
 /* ---------- validation panel ---------- */
 .validation-panel {

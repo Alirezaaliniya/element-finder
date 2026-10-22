@@ -9,6 +9,7 @@ import { CssInterpretationEngine } from '../engines/css/CssInterpretationEngine.
 import { ResponsiveAnalysisEngine } from '../engines/responsive/ResponsiveAnalysisEngine.js';
 import { AssetCollectionEngine } from '../engines/assets/AssetCollectionEngine.js';
 import { ElementorNativeEngine } from '../engines/elementor/ElementorNativeEngine.js';
+import { SourceCssEngine } from '../engines/source-css/SourceCssEngine.js';
 import { WidgetMappingEngine } from '../engines/mapping/WidgetMappingEngine.js';
 
 /**
@@ -24,6 +25,8 @@ export function buildPhases(options = {}) {
     { name: AssetCollectionEngine.phaseName, engine: new AssetCollectionEngine() },
     // Elementor-built pages only: exact settings from the generated CSS.
     { name: ElementorNativeEngine.phaseName, engine: new ElementorNativeEngine() },
+    // Other pages: the real stylesheets, resolved per node, for the preview.
+    { name: SourceCssEngine.phaseName, engine: new SourceCssEngine() },
     { name: WidgetMappingEngine.phaseName, engine: new WidgetMappingEngine({ aiAssist: options.aiAssist }) },
   ];
 }

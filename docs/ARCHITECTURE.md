@@ -62,7 +62,8 @@ the node-id → Element map):
 | 4 | **Responsive Analysis** (`engines/responsive`) | StylesheetIndex buckets media-query rules into Elementor breakpoints (tablet ≤1024, mobile ≤767); per-node override resolution through the *same* converter as desktop; diffed against baseline; visibility → `hide_tablet`/`hide_mobile` |
 | 5 | **Asset Collection** (`engines/assets`) | deduplicated catalog: `<img>`+srcset, inline SVG, icon-font glyphs, video+poster, embeds, CSS backgrounds per device, `@font-face` fonts, favicon |
 | 6 | **Elementor Native** (`engines/elementor`) | Elementor-built pages only: exact control settings reversed from the generated post CSS, wrapper-class settings, Pro custom CSS (verbatim), native widget content from render templates, atomic (V4) elements, styles and global classes (see below) |
-| 7 | **Widget Mapping** (`engines/mapping`) | decision per node: native passthrough → custom rules → default rules → AI hook → fallback chain (container / text-editor / html) |
+| 7 | **Source CSS** (`engines/source-css`) | Non-Elementor pages only: the page's real stylesheets resolved per node for the source-mode preview and the export's original-CSS option (see below) |
+| 8 | **Widget Mapping** (`engines/mapping`) | decision per node: native passthrough → custom rules → default rules → AI hook → fallback chain (container / text-editor / html) |
 
 The phase list lives in `core/phases.js`, shared by the content script and
 the e2e harnesses so they always run the same pipeline.
@@ -155,6 +156,61 @@ The other tools:
   a single element offline.
 - `tools/elementor-dump/make-atomic-fixture.php` builds a test page with
   atomic elements, local styles, a global class and Pro custom CSS.
+
+## Other pages: keeping the page's own CSS
+
+The CSS Interpretation Engine replays about 60 computed properties. That
+cannot carry `:hover`/`:focus` states, `::before`/`::after` (icon fonts draw
+their glyphs there), transitions, keyframes, `@media` variants or the UA
+defaults of the original tags. On a page not built with Elementor, the
+Source CSS Engine (`engines/source-css`) keeps the real stylesheets instead.
+
+The preview DOM is not the source DOM: wrappers are collapsed, hidden panels
+skipped, nodes removed by the user. So selectors are not replayed as
+written. Each one is resolved against the live page and rewritten to the
+nodes it matched:
+
+```
+.site-header nav ul > li > a { color:#333 }
+    ↓ matched the extracted <a> nodes 1f2e3d4 and 5a6b7c8
+:where([data-ef-id="1f2e3d4"],[data-ef-id="5a6b7c8"]) { color:#333 }
+```
+
+- `:where()` gives every emitted selector zero specificity, and the rules
+  are emitted sorted by their original specificity and source order, so
+  the cascade picks the same winner as on the source page.
+- A single-compound selector (`.btn`, `a:hover`, `*`) is kept as written:
+  the preview keeps every element's tag and attributes, so it matches the
+  same elements.
+- State pseudo-classes are re-applied on the subject or on one ancestor
+  (`li:hover > a`); pseudo-elements are re-attached.
+- What a collapsed wrapper (or, for a picked element, an ancestor) declares
+  for inheritance (fonts, colours, CSS variables) moves to the node that
+  replaced it.
+- Leaves carry their inner markup (`node.source.html`), with a
+  `data-ef-sub` key on every descendant so rules aimed at them are
+  rewritten the same way.
+- Stylesheets are fetched first; markup capture and matching then run
+  synchronously, because scripts keep replacing elements (a countdown
+  rebuilds its digits every second).
+
+The builder's preview has a **Source styles / Elementor** switch. It renders
+at the device's real width (desktop = the extraction width) scaled to fit,
+so the page's media queries match the device rather than the pane.
+
+Export (Elementor JSON, *Original CSS* option, on by default when available)
+rewrites the same CSS for the template (`export/source-css-export.js`) and
+saves it as Pro custom CSS (page settings, or the root element for a
+container template). `[data-ef-id=X]` becomes `.elementor-element-X`;
+kept-as-written rules are scoped under `selector`; bare tag and universal
+rules are dropped. Every rule gets a uniform (0,2,0) specificity, so
+element settings (0,3,0) still win and stay editable. Icon-font icons export
+as icon widgets with their original classes (`library: ef-source`, rendered
+by Elementor as `<i class="…">`), and HTML widgets carry the captured markup.
+
+`tools/e2e/source-css-fidelity.mjs` compares source and preview computed
+styles (hover states, `::before`, animation, a rebuilt countdown, a mobile
+media query) and checks the export.
 
 ## Control-name resolution
 

@@ -8,7 +8,15 @@
 
 import { debounce } from '../../../common/utils.js';
 import { safeFragment } from '../../../common/safe-html.js';
-import { ReconstructionEngine } from '../../../engines/reconstruction/ReconstructionEngine.js';
+import { previewMode, ReconstructionEngine } from '../../../engines/reconstruction/ReconstructionEngine.js';
+
+const DEVICE_WIDTH = { tablet: 1024, mobile: 390 };
+
+/** The width the page was extracted at; Elementor's desktop starts at 1025px. */
+function desktopWidth(snapshot) {
+  const w = snapshot?.meta?.viewport?.width ?? 0;
+  return w > 1024 ? w : 1440;
+}
 
 export class PreviewPane {
   /**
@@ -23,11 +31,22 @@ export class PreviewPane {
     this.pending = false;
     this.fontBlobCache = new Map(); // font url -> blob: url (or original on failure)
     this.render = debounce(() => this.#render(), 150);
+    // 'source' (the page's own CSS) or 'interpreted' (Elementor settings only).
+    this.mode = 'source';
+    this.modeSwitch = document.getElementById('preview-mode');
+    this.modeSwitch?.addEventListener('click', (e) => {
+      const mode = e.target.closest('[data-mode]')?.dataset.mode;
+      if (!mode || mode === this.mode) return;
+      this.mode = mode;
+      this.#render();
+    });
 
     store.events.on('snapshot', () => this.render());
     store.events.on('tree', () => this.render());
     store.events.on('device', (device) => this.#applyDevice(device));
     store.events.on('selection', (id) => this.#highlight(id));
+    const stage = this.iframe.parentElement?.parentElement;
+    if (stage) new ResizeObserver(() => this.#applyDevice(this.store.device)).observe(stage);
 
     this.iframe.addEventListener('load', () => {
       this.ready = true;
@@ -56,6 +75,9 @@ export class PreviewPane {
       const el = e.target.closest('[data-ef-id]');
       if (el) this.store.select(el.dataset.efId);
     }, true);
+    // Source-styled previews keep real <form>s; Enter in a field must not
+    // navigate the preview away.
+    doc.addEventListener('submit', (e) => e.preventDefault(), true);
   }
 
   #render() {
@@ -64,8 +86,11 @@ export class PreviewPane {
     if (!this.ready) { this.pending = true; return; }
 
     const doc = this.doc;
+    const mode = previewMode(snapshot, this.mode);
+    this.#syncModeSwitch(snapshot, mode);
     const { bodyHtml, pageCss, baseCss, dir, lang } = this.engine.buildPreviewParts(snapshot, {
       device: this.store.device,
+      mode,
     });
     doc.documentElement.dir = dir;
     doc.documentElement.lang = lang;
@@ -113,13 +138,38 @@ export class PreviewPane {
     return result;
   }
 
-  #applyDevice(device) {
-    this.iframe.classList.remove('tablet', 'mobile');
-    if (device !== 'desktop') this.iframe.classList.add(device);
-    const sizeEl = document.getElementById('preview-size');
-    if (sizeEl) {
-      sizeEl.textContent = device === 'desktop' ? 'responsive' : device === 'tablet' ? '≤1024px' : '≤767px';
+  /** The switch only exists for snapshots that carry source styles. */
+  #syncModeSwitch(snapshot, mode) {
+    if (!this.modeSwitch) return;
+    this.modeSwitch.classList.toggle('hidden', !snapshot.sourceStyles?.css);
+    for (const btn of this.modeSwitch.querySelectorAll('[data-mode]')) {
+      btn.classList.toggle('active', btn.dataset.mode === mode);
     }
+  }
+
+  /**
+   * Render at the device's real width and scale down to fit the pane. At
+   * the pane's own width (~800px) a site's media queries would show its
+   * tablet layout even in the desktop view.
+   */
+  #applyDevice(device) {
+    const frame = this.iframe.parentElement;
+    const stage = frame?.parentElement;
+    const target = device === 'desktop' ? desktopWidth(this.store.snapshot) : DEVICE_WIDTH[device] ?? 1024;
+    let scale = 1;
+    if (stage?.clientWidth) {
+      const cs = getComputedStyle(stage);
+      const availW = stage.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      const availH = stage.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+      scale = Math.min(1, availW / target);
+      frame.style.width = `${Math.floor(target * scale)}px`;
+      frame.style.height = `${availH}px`;
+      this.iframe.style.width = `${target}px`;
+      this.iframe.style.height = `${availH / scale}px`;
+      this.iframe.style.transform = scale < 1 ? `scale(${scale})` : '';
+    }
+    const sizeEl = document.getElementById('preview-size');
+    if (sizeEl) sizeEl.textContent = scale < 1 ? `${target}px · ${Math.round(scale * 100)}%` : `${target}px`;
   }
 
   #highlight(id) {

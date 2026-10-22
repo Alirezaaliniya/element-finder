@@ -1,0 +1,3676 @@
+{
+ "content": [
+  {
+   "id": "38790b1",
+   "settings": {
+    "flex_direction": "column",
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "flex_gap": {
+     "column": "5",
+     "row": "5",
+     "isLinked": true,
+     "unit": "px",
+     "size": 5
+    },
+    "flex_wrap": "nowrap",
+    "background_color": "#FFFFFF",
+    "padding_tablet": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "hide_desktop": "hidden-desktop",
+    "background_background": "classic",
+    "html_tag": "nav",
+    "css_classes": "frontmenu"
+   },
+   "elements": [
+    {
+     "id": "de67633",
+     "settings": {
+      "selected_icon": {
+       "value": "fas fa-times",
+       "library": "fa-solid"
+      },
+      "_flex_align_self": "flex-end",
+      "primary_color": "#FF00001C",
+      "secondary_color": "#FF0000",
+      "size": {
+       "unit": "px",
+       "size": 26,
+       "sizes": []
+      },
+      "icon_padding": {
+       "unit": "px",
+       "size": 10,
+       "sizes": []
+      },
+      "_padding_tablet": {
+       "unit": "px",
+       "top": "20",
+       "right": "20",
+       "bottom": "20",
+       "left": "20",
+       "isLinked": true
+      },
+      "align_tablet": "end",
+      "size_mobile": {
+       "unit": "px",
+       "size": 20,
+       "sizes": []
+      },
+      "view": "stacked",
+      "_css_classes": "closemenu"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "icon",
+     "elType": "widget"
+    },
+    {
+     "id": "fb7c583",
+     "settings": {
+      "image": {
+       "url": "http://localhost/saipa/wp-content/uploads/2024/01/LogoMenuMini-1.webp",
+       "id": "",
+       "alt": "",
+       "source": "library",
+       "size": ""
+      },
+      "width_tablet": {
+       "unit": "px",
+       "size": 50,
+       "sizes": []
+      }
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "theme-site-logo",
+     "elType": "widget"
+    },
+    {
+     "id": "47b3213",
+     "settings": {
+      "_ef_menu_items": [
+       {
+        "text": "خانه",
+        "href": "http://localhost/saipa/"
+       },
+       {
+        "text": "فروشگاه",
+        "href": "http://localhost/saipa/shop/"
+       },
+       {
+        "text": "تماس با ما",
+        "href": "http://localhost/saipa/contact-us/"
+       },
+       {
+        "text": "درباره ما",
+        "href": "http://localhost/saipa/about-us/"
+       },
+       {
+        "text": "حساب کاربری من",
+        "href": "http://localhost/saipa/my-account/"
+       }
+      ],
+      "layout": "dropdown",
+      "background_color_dropdown_item_hover": "#F47421",
+      "submenu_icon": {
+       "value": "<svg aria-hidden=\"true\" class=\"e-font-icon-svg e-fas-caret-down\" viewBox=\"0 0 320 512\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z\"></path></svg>",
+       "library": "fa-solid"
+      }
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "nav-menu",
+     "elType": "widget"
+    },
+    {
+     "id": "d821866",
+     "settings": {
+      "_ef_menu_items": [
+       {
+        "text": "آپشن و لوازم اسپرت",
+        "href": "http://localhost/saipa/spcategory/option-accessories/",
+        "children": [
+         {
+          "text": "آپشن موتور",
+          "href": "http://localhost/saipa/spcategory/option-accessories/engine-stoff/"
+         },
+         {
+          "text": "آینه",
+          "href": "http://localhost/saipa/spcategory/option-accessories/mirror/"
+         },
+         {
+          "text": "برچسب",
+          "href": "http://localhost/saipa/spcategory/option-accessories/label/"
+         },
+         {
+          "text": "بک سنسور دنده عقب",
+          "href": "http://localhost/saipa/spcategory/option-accessories/back-sensor/"
+         },
+         {
+          "text": "پاور آینه",
+          "href": "http://localhost/saipa/spcategory/option-accessories/mirror-power/"
+         },
+         {
+          "text": "پاور سانروف",
+          "href": "http://localhost/saipa/spcategory/option-accessories/sunroof-power/"
+         },
+         {
+          "text": "پاور شیشه",
+          "href": "http://localhost/saipa/spcategory/option-accessories/power-window/"
+         },
+         {
+          "text": "دی لایت",
+          "href": "http://localhost/saipa/spcategory/option-accessories/day-light/"
+         },
+         {
+          "text": "صندوق پران",
+          "href": "http://localhost/saipa/spcategory/option-accessories/trunk-opener/"
+         },
+         {
+          "text": "کفپوش خودرو",
+          "href": "http://localhost/saipa/spcategory/option-accessories/kafpush/"
+         },
+         {
+          "text": "کلید مالتی مدیا",
+          "href": "http://localhost/saipa/spcategory/option-accessories/multimedia-key/"
+         }
+        ]
+       },
+       {
+        "text": "باتری خودرو",
+        "href": "http://localhost/saipa/spcategory/car-battery/"
+       },
+       {
+        "text": "دزدگیر و ردیاب خودرو",
+        "href": "http://localhost/saipa/spcategory/car-alarm/"
+       },
+       {
+        "text": "سیستمهای صوتی تصویری",
+        "href": "http://localhost/saipa/spcategory/car-multimedia/"
+       },
+       {
+        "text": "لوازم یدکی",
+        "href": "http://localhost/saipa/spcategory/spare-parts/"
+       }
+      ],
+      "layout": "dropdown",
+      "background_color_dropdown_item_hover": "#F47421",
+      "submenu_icon": {
+       "value": "<svg aria-hidden=\"true\" class=\"e-font-icon-svg e-fas-caret-down\" viewBox=\"0 0 320 512\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z\"></path></svg>",
+       "library": "fa-solid"
+      }
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "nav-menu",
+     "elType": "widget"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "f8aee36",
+   "settings": {
+    "flex_direction": "row",
+    "flex_gap": {
+     "column": "0",
+     "row": "0",
+     "isLinked": true,
+     "unit": "px",
+     "size": 0
+    },
+    "background_color": "#FFFFFF",
+    "flex_justify_content_tablet": "space-between",
+    "z_index_tablet": 9,
+    "flex_wrap_mobile": "nowrap",
+    "hide_desktop": "hidden-desktop",
+    "background_background": "classic"
+   },
+   "elements": [
+    {
+     "id": "8673f2c",
+     "settings": {
+      "flex_direction": "column",
+      "width": {
+       "unit": "%",
+       "size": 25,
+       "sizes": []
+      },
+      "padding_tablet": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      },
+      "flex_align_items_tablet": "flex-start",
+      "flex_justify_content_tablet": "center",
+      "content_width": "full"
+     },
+     "elements": [
+      {
+       "id": "1111794",
+       "settings": {
+        "selected_icon": {
+         "value": "fas fa-bars",
+         "library": "fa-solid"
+        },
+        "hover_animation": "grow",
+        "primary_color": "#F474212E",
+        "secondary_color": "#F47421",
+        "size": {
+         "unit": "px",
+         "size": 20,
+         "sizes": []
+        },
+        "view": "stacked",
+        "_css_classes": "niasmenu"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "icon",
+       "elType": "widget"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    },
+    {
+     "id": "ace277a",
+     "settings": {
+      "flex_direction": "column",
+      "width": {
+       "unit": "%",
+       "size": 25,
+       "sizes": []
+      },
+      "padding_tablet": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      },
+      "flex_align_items_tablet": "center",
+      "flex_justify_content_tablet": "center",
+      "content_width": "full"
+     },
+     "elements": [
+      {
+       "id": "7d0c75d",
+       "settings": {
+        "image": {
+         "url": "http://localhost/saipa/wp-content/uploads/2024/01/LogoMenuMini-1.webp",
+         "id": "",
+         "alt": "",
+         "source": "library",
+         "size": ""
+        },
+        "width_tablet": {
+         "unit": "px",
+         "size": 47,
+         "sizes": []
+        }
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "theme-site-logo",
+       "elType": "widget"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    },
+    {
+     "id": "f6fa3fd",
+     "settings": {
+      "flex_direction": "column",
+      "width": {
+       "unit": "%",
+       "size": 25,
+       "sizes": []
+      },
+      "flex_align_items_tablet": "flex-end",
+      "flex_justify_content_tablet": "center",
+      "padding_mobile": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      },
+      "content_width": "full"
+     },
+     "elements": [
+      {
+       "id": "dd5ae3c",
+       "settings": {
+        "selected_icon": {
+         "value": "fas fa-user",
+         "library": "fa-solid"
+        },
+        "link": {
+         "url": "http://localhost/saipa/my-account/",
+         "is_external": "",
+         "nofollow": "",
+         "custom_attributes": ""
+        },
+        "hover_animation": "grow",
+        "primary_color": "#F474212E",
+        "secondary_color": "#F47421",
+        "size": {
+         "unit": "px",
+         "size": 20,
+         "sizes": []
+        },
+        "view": "stacked"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "icon",
+       "elType": "widget"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "73a9a1e",
+   "settings": {
+    "flex_direction": "row",
+    "flex_gap": {
+     "column": "0",
+     "row": "0",
+     "isLinked": true,
+     "unit": "px",
+     "size": 0
+    },
+    "min_height": {
+     "unit": "px",
+     "size": 120,
+     "sizes": []
+    },
+    "z_index": 9,
+    "hide_tablet": "hidden-tablet",
+    "hide_mobile": "hidden-mobile"
+   },
+   "elements": [
+    {
+     "id": "168ab80",
+     "settings": {
+      "flex_direction": "column",
+      "flex_align_items": "flex-start",
+      "width": {
+       "unit": "%",
+       "size": 50,
+       "sizes": []
+      },
+      "flex_justify_content": "flex-end",
+      "content_width": "full"
+     },
+     "elements": [
+      {
+       "id": "c010162",
+       "settings": {
+        "social_icon_list": [
+         {
+          "social_icon": {
+           "value": "fab fa-facebook",
+           "library": "fa-brands"
+          },
+          "_id": "c5ebe7e"
+         },
+         {
+          "social_icon": {
+           "value": "fab fa-twitter",
+           "library": "fa-brands"
+          },
+          "_id": "85d3c10"
+         },
+         {
+          "social_icon": {
+           "value": "fab fa-youtube",
+           "library": "fa-brands"
+          },
+          "_id": "816fed8"
+         }
+        ],
+        "icon_size": {
+         "unit": "px",
+         "size": 18,
+         "sizes": []
+        },
+        "icon_spacing": {
+         "unit": "px",
+         "size": 12,
+         "sizes": []
+        },
+        "icon_primary_color": "#F4742100",
+        "icon_secondary_color": "#F47421",
+        "border_radius": {
+         "unit": "px",
+         "top": "50",
+         "right": "50",
+         "bottom": "50",
+         "left": "50",
+         "isLinked": true
+        },
+        "icon_color": "custom"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "social-icons",
+       "elType": "widget"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    },
+    {
+     "id": "e934771",
+     "settings": {
+      "flex_direction": "column",
+      "flex_align_items": "flex-end",
+      "width": {
+       "unit": "%",
+       "size": 50,
+       "sizes": []
+      },
+      "flex_justify_content": "flex-end",
+      "content_width": "full"
+     },
+     "elements": [
+      {
+       "id": "441c845",
+       "settings": {
+        "icon_list": [
+         {
+          "text": "بلاگ",
+          "selected_icon": {
+           "value": "",
+           "library": ""
+          },
+          "_id": "07d59ec",
+          "link": {
+           "url": "http://localhost/saipa/blog/",
+           "is_external": "",
+           "nofollow": "",
+           "custom_attributes": ""
+          }
+         },
+         {
+          "text": "پیگیری سفارش",
+          "selected_icon": {
+           "value": "",
+           "library": ""
+          },
+          "_id": "cfb318f",
+          "link": {
+           "url": "http://localhost/saipa/tracking/",
+           "is_external": "",
+           "nofollow": "",
+           "custom_attributes": ""
+          }
+         },
+         {
+          "text": "نظرات",
+          "selected_icon": {
+           "value": "",
+           "library": ""
+          },
+          "_id": "a255208"
+         }
+        ],
+        "space_between": {
+         "unit": "px",
+         "size": 44,
+         "sizes": []
+        },
+        "divider": "yes",
+        "divider_height": {
+         "unit": "%",
+         "size": 43,
+         "sizes": []
+        },
+        "divider_color": "#F474214F",
+        "icon_color": "#7A7A7A",
+        "icon_typography_font_size": {
+         "unit": "px",
+         "size": 13,
+         "sizes": []
+        },
+        "text_color": "#F47421",
+        "view": "inline",
+        "icon_align": "end",
+        "icon_typography_typography": "custom"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "icon-list",
+       "elType": "widget"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "aec9bb2",
+   "settings": {
+    "flex_direction": "column",
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "z_index": 9,
+    "hide_tablet": "hidden-tablet",
+    "hide_mobile": "hidden-mobile",
+    "_element_id": "niastop"
+   },
+   "elements": [
+    {
+     "id": "28e62da",
+     "settings": {
+      "flex_direction": "row",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      },
+      "flex_gap": {
+       "column": "0",
+       "row": "0",
+       "isLinked": true,
+       "unit": "px",
+       "size": 0
+      },
+      "border_radius": {
+       "unit": "px",
+       "top": "50",
+       "right": "50",
+       "bottom": "50",
+       "left": "50",
+       "isLinked": true
+      },
+      "background_color": "#FFFFFF",
+      "background_background": "classic",
+      "custom_css": "@media only screen and (min-width:1024px){\nselector:before{\n        content: \"\";\n    background: url(http://localhost/saipa/wp-content/uploads/2024/02/svgexport-1-16-1.webp) no-repeat;\n    width: 280px;\n    height: 240px;\n    display: inline-block;\n    margin: auto;\n    left: 0;\n    right: 0;\n    background-size: contain;\n    top: -85px;\n    position: absolute;\n    z-index: 9\n}}"
+     },
+     "elements": [
+      {
+       "id": "108e3c4",
+       "settings": {
+        "flex_direction": "row-reverse",
+        "flex_align_items": "center",
+        "width": {
+         "unit": "%",
+         "size": 40,
+         "sizes": []
+        },
+        "flex_justify_content": "flex-end",
+        "flex_wrap": "nowrap",
+        "content_width": "full"
+       },
+       "elements": [
+        {
+         "id": "cc92ff4",
+         "settings": {
+          "selected_icon": {
+           "value": "fas fa-user",
+           "library": "fa-solid"
+          },
+          "title_text": "ورود / ثبت نام",
+          "title_size": "span",
+          "link": {
+           "url": "http://localhost/saipa/my-account/",
+           "is_external": "",
+           "nofollow": "",
+           "custom_attributes": ""
+          },
+          "_padding": {
+           "unit": "px",
+           "top": "5",
+           "right": "20",
+           "bottom": "5",
+           "left": "20",
+           "isLinked": false
+          },
+          "_background_color": "#F474212E",
+          "_border_radius": {
+           "unit": "px",
+           "top": "20",
+           "right": "20",
+           "bottom": "20",
+           "left": "20",
+           "isLinked": true
+          },
+          "content_vertical_alignment": "middle",
+          "primary_color": "#F47421",
+          "icon_size": {
+           "unit": "px",
+           "size": 20,
+           "sizes": []
+          },
+          "title_color": "#F47421",
+          "position": "inline-start",
+          "_background_background": "classic"
+         },
+         "elements": [],
+         "isInner": false,
+         "widgetType": "icon-box",
+         "elType": "widget"
+        }
+       ],
+       "isInner": true,
+       "elType": "container"
+      },
+      {
+       "id": "375d791",
+       "settings": {
+        "flex_direction": "column",
+        "width": {
+         "unit": "%",
+         "size": 20,
+         "sizes": []
+        },
+        "flex_justify_content": "center",
+        "z_index": 99,
+        "content_width": "full",
+        "custom_css": "@media only screen and (min-width:1024px){\nselector:before{\n        content: '';\n    width: 200px;\n    height: 200px;\n    background: #f5f5f5;\n    -moz-border-radius: 50%;\n    -webkit-border-radius: 50%;\n    -khtml-border-radius: 50%;\n    border-radius: 50%;\n    position: absolute;\n    right: 0;\n    left: 0;\n    bottom: 0;\n    margin: auto;\n    top: -5px;\n}}"
+       },
+       "elements": [
+        {
+         "id": "7bbc9bc",
+         "settings": {
+          "image": {
+           "url": "http://localhost/saipa/wp-content/uploads/2024/01/LogoMenuMini-1.webp",
+           "id": "",
+           "alt": "",
+           "source": "library",
+           "size": ""
+          },
+          "_element_width": "inherit",
+          "_offset_y": {
+           "unit": "px",
+           "size": -10,
+           "sizes": []
+          },
+          "width": {
+           "unit": "px",
+           "size": 82,
+           "sizes": []
+          },
+          "_position": "absolute"
+         },
+         "elements": [],
+         "isInner": false,
+         "widgetType": "theme-site-logo",
+         "elType": "widget"
+        }
+       ],
+       "isInner": true,
+       "elType": "container"
+      },
+      {
+       "id": "86b80d9",
+       "settings": {
+        "flex_direction": "row",
+        "flex_align_items": "center",
+        "width": {
+         "unit": "%",
+         "size": 40,
+         "sizes": []
+        },
+        "flex_justify_content": "flex-end",
+        "content_width": "full"
+       },
+       "elements": [
+        {
+         "id": "32dd5d9",
+         "settings": {
+          "automatically_open_cart": "yes",
+          "cart_type": "side-cart",
+          "open_cart": "click",
+          "close_cart_button_alignment": "end",
+          "divider_width": {
+           "unit": "px",
+           "size": 1,
+           "sizes": []
+          },
+          "divider_color": "#ECECEC78",
+          "_z_index": 9,
+          "alignment": "center",
+          "toggle_button_text_color": "#F47421",
+          "toggle_button_icon_color": "#F47421",
+          "toggle_button_background_color": "#F474212E",
+          "toggle_button_hover_text_color": "#FFFFFF",
+          "toggle_button_hover_icon_color": "#F47421",
+          "toggle_button_hover_background_color": "#F47421",
+          "toggle_button_hover_border_color": "#FFFFFF",
+          "toggle_button_border_width": {
+           "unit": "px",
+           "size": 0,
+           "sizes": []
+          },
+          "toggle_button_border_radius": {
+           "unit": "px",
+           "size": 28,
+           "sizes": []
+          },
+          "toggle_icon_size": {
+           "unit": "px",
+           "size": 20,
+           "sizes": []
+          },
+          "toggle_button_padding": {
+           "unit": "px",
+           "top": "5",
+           "right": "30",
+           "bottom": "5",
+           "left": "30",
+           "isLinked": false
+          },
+          "close_cart_icon_color": "#FF0032",
+          "close_cart_icon_hover_color": "#02010100",
+          "remove_item_button_color": "#FF0000",
+          "subtotal_color": "#F47421",
+          "product_variations_color": "#7A7A7A",
+          "product_price_color": "#7A7A7A",
+          "view_cart_button_text_color": "#F47421",
+          "view_cart_button_background_color": "#F474212E",
+          "view_cart_button_hover_text_color": "#F47421",
+          "view_cart_button_hover_background": "#F474212E",
+          "view_cart_button_padding": {
+           "unit": "px",
+           "top": "15",
+           "right": "10",
+           "bottom": "15",
+           "left": "10",
+           "isLinked": false
+          },
+          "checkout_button_text_color": "#FFFFFF",
+          "checkout_button_background_color": "#F47421",
+          "checkout_button_hover_text_color": "#FFFFFF",
+          "checkout_button_hover_background": "#F47421",
+          "view_checkout_button_padding": {
+           "unit": "px",
+           "top": "15",
+           "right": "10",
+           "bottom": "15",
+           "left": "10",
+           "isLinked": false
+          },
+          "subtotal_typography_font_size": {
+           "unit": "px",
+           "size": 16,
+           "sizes": []
+          },
+          "subtotal_divider_style": "dashed",
+          "product_title_color": "#54595F",
+          "product_price_typography_font_size": {
+           "unit": "px",
+           "size": 15,
+           "sizes": []
+          },
+          "product_quantity_color": "#7A7A7A",
+          "product_quantity_typography_font_weight": "bold",
+          "view_cart_button_border_radius": {
+           "unit": "px",
+           "top": "10",
+           "right": "10",
+           "bottom": "10",
+           "left": "10",
+           "isLinked": true
+          },
+          "view_checkout_button_border_radius": {
+           "unit": "px",
+           "top": "10",
+           "right": "10",
+           "bottom": "10",
+           "left": "10",
+           "isLinked": true
+          },
+          "buttons_layout_mobile": "stacked",
+          "icon": "custom",
+          "items_indicator": "none",
+          "remove_item_button_position": "middle",
+          "subtotal_typography_typography": "custom",
+          "product_price_typography_typography": "custom",
+          "product_quantity_typography_typography": "custom",
+          "_css_classes": "toggle-icon--custom nias-carticon remove-item-position--middle"
+         },
+         "elements": [],
+         "isInner": false,
+         "widgetType": "woocommerce-menu-cart",
+         "elType": "widget"
+        },
+        {
+         "id": "36222c7",
+         "settings": {
+          "selected_icon": {
+           "value": "fas fa-search",
+           "library": "fa-solid"
+          },
+          "hover_animation": "grow",
+          "primary_color": "#F474212E",
+          "secondary_color": "#F47421",
+          "size": {
+           "unit": "px",
+           "size": 20,
+           "sizes": []
+          },
+          "view": "stacked",
+          "_css_classes": "nias-search-icon"
+         },
+         "elements": [],
+         "isInner": false,
+         "widgetType": "icon",
+         "elType": "widget"
+        }
+       ],
+       "isInner": true,
+       "elType": "container"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "0b2c58a",
+   "settings": {
+    "flex_direction": "row",
+    "margin": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "200",
+     "left": "0",
+     "isLinked": false
+    },
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "flex_gap": {
+     "column": "0",
+     "row": "0",
+     "isLinked": true,
+     "unit": "px",
+     "size": 0
+    },
+    "flex_justify_content": "center",
+    "z_index": 8,
+    "hide_tablet": "hidden-tablet",
+    "hide_mobile": "hidden-mobile"
+   },
+   "elements": [
+    {
+     "id": "5f7c968",
+     "settings": {
+      "flex_direction": "row",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      },
+      "width": {
+       "unit": "%",
+       "size": 90,
+       "sizes": []
+      },
+      "flex_justify_content": "space-between",
+      "border_radius": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "50",
+       "left": "50",
+       "isLinked": false
+      },
+      "background_color": "#F47421",
+      "content_width": "full",
+      "background_background": "classic"
+     },
+     "elements": [
+      {
+       "id": "691ab7e",
+       "settings": {
+        "flex_direction": "column",
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "width": {
+         "unit": "%",
+         "size": 50,
+         "sizes": []
+        },
+        "flex_justify_content": "center",
+        "content_width": "full"
+       },
+       "elements": [
+        {
+         "id": "9d1600a",
+         "settings": {
+          "menu_items": [
+           {
+            "item_title": "دسته بندی کالاها",
+            "_id": "cafdda0",
+            "item_dropdown_content": "yes",
+            "item_link": {
+             "url": "",
+             "is_external": "",
+             "nofollow": "",
+             "custom_attributes": ""
+            },
+            "item_icon": {
+             "value": "",
+             "library": ""
+            },
+            "item_icon_active": null,
+            "element_id": ""
+           },
+           {
+            "item_title": "آپشن بر اساس خودرو",
+            "_id": "22688a8",
+            "item_link": {
+             "url": "",
+             "is_external": "",
+             "nofollow": "",
+             "custom_attributes": ""
+            },
+            "item_dropdown_content": "no",
+            "item_icon": {
+             "value": "",
+             "library": ""
+            },
+            "item_icon_active": null,
+            "element_id": ""
+           }
+          ],
+          "content_width": "full_width",
+          "item_layout": "horizontal",
+          "open_on": "hover",
+          "horizontal_scroll": "disable",
+          "breakpoint_selector": "tablet",
+          "menu_item_title_distance_from_content": {
+           "unit": "px",
+           "size": 0,
+           "sizes": []
+          },
+          "menu_item_title_distance_from_content_tablet": {
+           "unit": "px",
+           "size": "",
+           "sizes": []
+          },
+          "menu_item_title_distance_from_content_mobile": {
+           "unit": "px",
+           "size": "",
+           "sizes": []
+          },
+          "_z_index": 999,
+          "menu_item_title_text_color_normal": "#FFFFFF",
+          "menu_item_title_text_color_hover": "#FFFFFF",
+          "menu_item_title_text_color_active": "#FFFFFF"
+         },
+         "elements": [
+          {
+           "id": "b11855d",
+           "settings": {
+            "flex_direction": "row",
+            "padding": {
+             "unit": "px",
+             "top": "70",
+             "right": "20",
+             "bottom": "10",
+             "left": "20",
+             "isLinked": false
+            },
+            "flex_gap": {
+             "column": "0",
+             "row": "0",
+             "isLinked": true,
+             "unit": "px",
+             "size": 0
+            },
+            "width": {
+             "unit": "px",
+             "size": 1075,
+             "sizes": []
+            },
+            "flex_wrap": "wrap",
+            "border_radius": {
+             "unit": "px",
+             "top": "0",
+             "right": "0",
+             "bottom": "40",
+             "left": "40",
+             "isLinked": false
+            },
+            "background_image": {
+             "url": "http://localhost/saipa/wp-content/uploads/2024/01/e2e17b5b-a4a5-445c-94d0-47ee2d540ba1-1-1.webp",
+             "id": "",
+             "size": ""
+            },
+            "background_position": "center left",
+            "background_repeat": "no-repeat",
+            "background_bg_width": {
+             "unit": "px",
+             "size": 397,
+             "sizes": []
+            },
+            "_flex_align_self": "center",
+            "content_width": "full",
+            "background_background": "classic",
+            "background_size": "initial",
+            "_element_id": "e-n-menu-content-1641"
+           },
+           "elements": [
+            {
+             "id": "45aaf93",
+             "settings": {
+              "selected_icon": {
+               "value": "fas fa-angle-down",
+               "library": "fa-solid"
+              },
+              "title_text": "آپشن و لوازم اسپورت",
+              "title_size": "p",
+              "_z_index": 4,
+              "content_vertical_alignment": "middle",
+              "icon_size": {
+               "unit": "px",
+               "size": 16,
+               "sizes": []
+              },
+              "position": "inline-end",
+              "_css_classes": "nias-titlechmenu"
+             },
+             "elements": [],
+             "isInner": false,
+             "widgetType": "icon-box",
+             "elType": "widget"
+            },
+            {
+             "id": "8cdf579",
+             "settings": {
+              "selected_icon": {
+               "value": "",
+               "library": ""
+              },
+              "title_text": "دزدگیر و ردیاب خودرو",
+              "title_size": "p",
+              "_margin": {
+               "unit": "px",
+               "top": "0",
+               "right": "30",
+               "bottom": "0",
+               "left": "30",
+               "isLinked": false
+              },
+              "_z_index": 4
+             },
+             "elements": [],
+             "isInner": false,
+             "widgetType": "icon-box",
+             "elType": "widget"
+            },
+            {
+             "id": "6b35e34",
+             "settings": {
+              "selected_icon": {
+               "value": "",
+               "library": ""
+              },
+              "title_text": "سیستمهای صوتی تصویری",
+              "title_size": "p",
+              "_margin": {
+               "unit": "px",
+               "top": "0",
+               "right": "30",
+               "bottom": "0",
+               "left": "30",
+               "isLinked": false
+              },
+              "_z_index": 4
+             },
+             "elements": [],
+             "isInner": false,
+             "widgetType": "icon-box",
+             "elType": "widget"
+            },
+            {
+             "id": "396ed56",
+             "settings": {
+              "selected_icon": {
+               "value": "",
+               "library": ""
+              },
+              "title_text": "لوازم یدکی",
+              "title_size": "p",
+              "_margin": {
+               "unit": "px",
+               "top": "0",
+               "right": "30",
+               "bottom": "0",
+               "left": "30",
+               "isLinked": false
+              },
+              "_z_index": 4
+             },
+             "elements": [],
+             "isInner": false,
+             "widgetType": "icon-box",
+             "elType": "widget"
+            },
+            {
+             "id": "53341bd",
+             "settings": {
+              "flex_direction": "row",
+              "margin": {
+               "unit": "px",
+               "top": "-33",
+               "right": "0",
+               "bottom": "0",
+               "left": "0",
+               "isLinked": false
+              },
+              "padding": {
+               "unit": "px",
+               "top": "50",
+               "right": "0",
+               "bottom": "0",
+               "left": "0",
+               "isLinked": false
+              },
+              "flex_gap": {
+               "column": "5",
+               "row": "5",
+               "isLinked": true,
+               "unit": "px",
+               "size": 5
+              },
+              "flex_align_items": "flex-start",
+              "flex_justify_content": "flex-start",
+              "flex_wrap": "nowrap",
+              "z_index": 0,
+              "css_classes": "nias-contentchmenu"
+             },
+             "elements": [
+              {
+               "id": "131f969",
+               "settings": {
+                "flex_direction": "row",
+                "padding": {
+                 "unit": "px",
+                 "top": "0",
+                 "right": "0",
+                 "bottom": "0",
+                 "left": "0",
+                 "isLinked": true
+                },
+                "flex_gap": {
+                 "column": "5",
+                 "row": "5",
+                 "isLinked": true,
+                 "unit": "px",
+                 "size": 5
+                },
+                "flex_wrap": "wrap"
+               },
+               "elements": [
+                {
+                 "id": "a8b8ae6",
+                 "settings": {
+                  "selected_icon": {
+                   "value": "fas fa-angle-left",
+                   "library": "fa-solid"
+                  },
+                  "title_text": "تجهیزات داخلی خودرو",
+                  "title_size": "p",
+                  "_flex_align_self": "flex-start",
+                  "_border_border": "dashed",
+                  "_border_width": {
+                   "unit": "px",
+                   "top": "0",
+                   "right": "0",
+                   "bottom": "1",
+                   "left": "0",
+                   "isLinked": false
+                  },
+                  "_border_color": "#F47421",
+                  "content_vertical_alignment": "middle",
+                  "primary_color": "#F47421",
+                  "icon_size": {
+                   "unit": "px",
+                   "size": 16,
+                   "sizes": []
+                  },
+                  "title_color": "#F47421",
+                  "position": "inline-end"
+                 },
+                 "elements": [],
+                 "isInner": false,
+                 "widgetType": "icon-box",
+                 "elType": "widget"
+                },
+                {
+                 "id": "4b98850",
+                 "settings": {
+                  "icon_list": [
+                   {
+                    "text": "کفپوش خودرو",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "4dbff6a"
+                   },
+                   {
+                    "text": "کفی صندوق عقب",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "e83a7fb"
+                   },
+                   {
+                    "text": "روکش صندلی",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "f1cdc62"
+                   },
+                   {
+                    "text": "کروز کنترل",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "eb16b02"
+                   },
+                   {
+                    "text": "پاور ویندوز",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "0dd87a2"
+                   },
+                   {
+                    "text": "پاور سانروف",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "2e69286"
+                   },
+                   {
+                    "text": "پاور آینه",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "2ad805e"
+                   }
+                  ],
+                  "_padding": {
+                   "unit": "px",
+                   "top": "10",
+                   "right": "10",
+                   "bottom": "10",
+                   "left": "10",
+                   "isLinked": true
+                  },
+                  "icon_typography_font_size": {
+                   "unit": "px",
+                   "size": 14,
+                   "sizes": []
+                  },
+                  "text_color_hover": "#F47421",
+                  "icon_typography_typography": "custom",
+                  "_css_classes": "nias-lichild"
+                 },
+                 "elements": [],
+                 "isInner": false,
+                 "widgetType": "icon-list",
+                 "elType": "widget"
+                },
+                {
+                 "id": "b94d65c",
+                 "settings": {
+                  "icon_list": [
+                   {
+                    "text": "یخچال",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "329bc08"
+                   },
+                   {
+                    "text": "دوربین دنده عقب",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "f93ba0d"
+                   },
+                   {
+                    "text": "بک سنسور دنده عقب",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "88ca6e7"
+                   },
+                   {
+                    "text": "کنسول وسط",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "381a810"
+                   },
+                   {
+                    "text": "بک لایت",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "a6ea4a1"
+                   },
+                   {
+                    "text": "عایق درب صندوق",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "f17c0ad"
+                   },
+                   {
+                    "text": "عایق درب موتور",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "e0dc757"
+                   }
+                  ],
+                  "_padding": {
+                   "unit": "px",
+                   "top": "10",
+                   "right": "10",
+                   "bottom": "10",
+                   "left": "10",
+                   "isLinked": true
+                  },
+                  "icon_typography_font_size": {
+                   "unit": "px",
+                   "size": 14,
+                   "sizes": []
+                  },
+                  "text_color_hover": "#F47421",
+                  "icon_typography_typography": "custom",
+                  "_css_classes": "nias-lichild"
+                 },
+                 "elements": [],
+                 "isInner": false,
+                 "widgetType": "icon-list",
+                 "elType": "widget"
+                },
+                {
+                 "id": "fbc4b0b",
+                 "settings": {
+                  "icon_list": [
+                   {
+                    "text": "کفپوش یکپارچه",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "81bf123"
+                   },
+                   {
+                    "text": "روکش داشبورد",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "e36838d"
+                   },
+                   {
+                    "text": "قاب کیلومتر",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "7f21574"
+                   },
+                   {
+                    "text": "ضد سرقت",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "2db0cc3"
+                   },
+                   {
+                    "text": "قاب روی موتور",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "4e0f81d"
+                   },
+                   {
+                    "text": "کاور سوئیچ و ریموت",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "004cd18"
+                   },
+                   {
+                    "text": "کلید مالتی مدیا",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "c768fb0"
+                   }
+                  ],
+                  "_padding": {
+                   "unit": "px",
+                   "top": "10",
+                   "right": "10",
+                   "bottom": "10",
+                   "left": "10",
+                   "isLinked": true
+                  },
+                  "icon_typography_font_size": {
+                   "unit": "px",
+                   "size": 14,
+                   "sizes": []
+                  },
+                  "text_color_hover": "#F47421",
+                  "icon_typography_typography": "custom",
+                  "_css_classes": "nias-lichild"
+                 },
+                 "elements": [],
+                 "isInner": false,
+                 "widgetType": "icon-list",
+                 "elType": "widget"
+                },
+                {
+                 "id": "e93eddb",
+                 "settings": {
+                  "icon_list": [
+                   {
+                    "text": "سیستم هوشمند خودرو",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "8653ca4"
+                   },
+                   {
+                    "text": "رادار نقطه کور",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "3f77090"
+                   },
+                   {
+                    "text": "کیلس استارتر",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "13d2e7d"
+                   }
+                  ],
+                  "_padding": {
+                   "unit": "px",
+                   "top": "10",
+                   "right": "10",
+                   "bottom": "10",
+                   "left": "10",
+                   "isLinked": true
+                  },
+                  "icon_typography_font_size": {
+                   "unit": "px",
+                   "size": 14,
+                   "sizes": []
+                  },
+                  "text_color_hover": "#F47421",
+                  "icon_typography_typography": "custom",
+                  "_css_classes": "nias-lichild"
+                 },
+                 "elements": [],
+                 "isInner": false,
+                 "widgetType": "icon-list",
+                 "elType": "widget"
+                }
+               ],
+               "isInner": true,
+               "elType": "container"
+              },
+              {
+               "id": "1f2adf1",
+               "settings": {
+                "flex_direction": "row",
+                "border_width": {
+                 "unit": "px",
+                 "top": "0",
+                 "right": "1",
+                 "bottom": "0",
+                 "left": "0",
+                 "isLinked": false
+                },
+                "padding": {
+                 "unit": "px",
+                 "top": "0",
+                 "right": "20",
+                 "bottom": "0",
+                 "left": "0",
+                 "isLinked": false
+                },
+                "flex_gap": {
+                 "column": "5",
+                 "row": "5",
+                 "isLinked": true,
+                 "unit": "px",
+                 "size": 5
+                },
+                "border_border": "solid",
+                "border_color": "#F474212E",
+                "width": {
+                 "unit": "%",
+                 "size": 66,
+                 "sizes": []
+                },
+                "flex_wrap": "wrap",
+                "content_width": "full"
+               },
+               "elements": [
+                {
+                 "id": "e1adfc8",
+                 "settings": {
+                  "selected_icon": {
+                   "value": "fas fa-angle-left",
+                   "library": "fa-solid"
+                  },
+                  "title_text": "تجهیزات بیرونی خودرو",
+                  "title_size": "p",
+                  "_flex_align_self": "flex-start",
+                  "_border_border": "dashed",
+                  "_border_width": {
+                   "unit": "px",
+                   "top": "0",
+                   "right": "0",
+                   "bottom": "1",
+                   "left": "0",
+                   "isLinked": false
+                  },
+                  "_border_color": "#F47421",
+                  "content_vertical_alignment": "middle",
+                  "primary_color": "#F47421",
+                  "icon_size": {
+                   "unit": "px",
+                   "size": 16,
+                   "sizes": []
+                  },
+                  "title_color": "#F47421",
+                  "position": "inline-end"
+                 },
+                 "elements": [],
+                 "isInner": false,
+                 "widgetType": "icon-box",
+                 "elType": "widget"
+                },
+                {
+                 "id": "d83016a",
+                 "settings": {
+                  "icon_list": [
+                   {
+                    "text": "کاور باتری",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "5301d9b"
+                   },
+                   {
+                    "text": "گل پخش کن",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "5172795"
+                   },
+                   {
+                    "text": "قاب پلاک",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "0032192"
+                   },
+                   {
+                    "text": "زه خودرو",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "ffb0ee1"
+                   },
+                   {
+                    "text": "هد لایت",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "68db332"
+                   },
+                   {
+                    "text": "دی لایت",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "57aedf2"
+                   },
+                   {
+                    "text": "آرم و لوگو",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "8a5034c"
+                   }
+                  ],
+                  "_padding": {
+                   "unit": "px",
+                   "top": "10",
+                   "right": "10",
+                   "bottom": "10",
+                   "left": "10",
+                   "isLinked": true
+                  },
+                  "icon_typography_font_size": {
+                   "unit": "px",
+                   "size": 14,
+                   "sizes": []
+                  },
+                  "text_color_hover": "#F47421",
+                  "icon_typography_typography": "custom",
+                  "_css_classes": "nias-lichild"
+                 },
+                 "elements": [],
+                 "isInner": false,
+                 "widgetType": "icon-list",
+                 "elType": "widget"
+                },
+                {
+                 "id": "be280a1",
+                 "settings": {
+                  "icon_list": [
+                   {
+                    "text": "گارد",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "a611cdc"
+                   },
+                   {
+                    "text": "بادگیر پنجره",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "88328df"
+                   },
+                   {
+                    "text": "رکاب",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "0df6353"
+                   },
+                   {
+                    "text": "باربند",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "834ec67"
+                   },
+                   {
+                    "text": "پارکابی",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "e210631"
+                   },
+                   {
+                    "text": "سینی زیر موتور",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "2850e71"
+                   },
+                   {
+                    "text": "قاب موتور",
+                    "selected_icon": {
+                     "value": "",
+                     "library": ""
+                    },
+                    "_id": "f5ae15d"
+                   }
+                  ],
+                  "_padding": {
+                   "unit": "px",
+                   "top": "10",
+                   "right": "10",
+                   "bottom": "10",
+                   "left": "10",
+                   "isLinked": true
+                  },
+                  "icon_typography_font_size": {
+                   "unit": "px",
+                   "size": 14,
+                   "sizes": []
+                  },
+                  "text_color_hover": "#F47421",
+                  "icon_typography_typography": "custom",
+                  "_css_classes": "nias-lichild"
+                 },
+                 "elements": [],
+                 "isInner": false,
+                 "widgetType": "icon-list",
+                 "elType": "widget"
+                }
+               ],
+               "isInner": true,
+               "elType": "container"
+              }
+             ],
+             "isInner": true,
+             "elType": "container"
+            }
+           ],
+           "isInner": true,
+           "elType": "container"
+          },
+          {
+           "id": "ba68f4c",
+           "settings": {},
+           "elements": [],
+           "isInner": true,
+           "elType": "container"
+          }
+         ],
+         "isInner": false,
+         "widgetType": "mega-menu",
+         "elType": "widget"
+        }
+       ],
+       "isInner": true,
+       "elType": "container"
+      },
+      {
+       "id": "59241a7",
+       "settings": {
+        "flex_direction": "column",
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "flex_align_items": "flex-end",
+        "width": {
+         "unit": "%",
+         "size": 50,
+         "sizes": []
+        },
+        "content_width": "full"
+       },
+       "elements": [
+        {
+         "id": "ce060d5",
+         "settings": {
+          "_ef_menu_items": [
+           {
+            "text": "خانه",
+            "href": "http://localhost/saipa/"
+           },
+           {
+            "text": "فروشگاه",
+            "href": "http://localhost/saipa/shop/"
+           },
+           {
+            "text": "تماس با ما",
+            "href": "http://localhost/saipa/contact-us/"
+           },
+           {
+            "text": "درباره ما",
+            "href": "http://localhost/saipa/about-us/"
+           },
+           {
+            "text": "حساب کاربری من",
+            "href": "http://localhost/saipa/my-account/"
+           }
+          ],
+          "layout": "horizontal",
+          "_padding": {
+           "unit": "px",
+           "top": "0",
+           "right": "0",
+           "bottom": "0",
+           "left": "10",
+           "isLinked": false
+          },
+          "menu_typography_font_size": {
+           "unit": "px",
+           "size": 14,
+           "sizes": []
+          },
+          "color_menu_item": "#FFFFFF",
+          "padding_horizontal_menu_item": {
+           "unit": "px",
+           "size": 9,
+           "sizes": []
+          },
+          "padding_vertical_menu_item": {
+           "unit": "px",
+           "size": 10,
+           "sizes": []
+          },
+          "pointer_width": {
+           "unit": "px",
+           "size": 2,
+           "sizes": []
+          },
+          "menu_space_between": {
+           "unit": "px",
+           "size": 5,
+           "sizes": []
+          },
+          "background_color_dropdown_item_hover": "#FFFFFF",
+          "dropdown_border_border": "solid",
+          "dropdown_border_width": {
+           "unit": "px",
+           "top": "1",
+           "right": "1",
+           "bottom": "1",
+           "left": "1",
+           "isLinked": true
+          },
+          "dropdown_border_color": "#E1E1E1",
+          "dropdown_border_radius": {
+           "unit": "px",
+           "top": "10",
+           "right": "10",
+           "bottom": "10",
+           "left": "10",
+           "isLinked": true
+          },
+          "dropdown_box_shadow_box_shadow": {
+           "horizontal": 0,
+           "vertical": 0,
+           "blur": 30,
+           "spread": 0,
+           "color": "rgba(0, 0, 0, 0.12)"
+          },
+          "hide_tablet": "hidden-tablet",
+          "hide_mobile": "hidden-mobile",
+          "menu_typography_typography": "custom",
+          "dropdown_box_shadow_box_shadow_type": "yes",
+          "custom_css": "selector .elementor-nav-menu__container.elementor-nav-menu--dropdown{margin-top:6px !important;}\nselector .elementor-nav-menu--main > .elementor-nav-menu > li > .elementor-nav-menu--dropdown{margin-top:6px !important;}",
+          "submenu_icon": {
+           "value": "<svg aria-hidden=\"true\" class=\"e-font-icon-svg e-fas-caret-down\" viewBox=\"0 0 320 512\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z\"></path></svg>",
+           "library": "fa-solid"
+          },
+          "toggle": "burger"
+         },
+         "elements": [],
+         "isInner": false,
+         "widgetType": "nav-menu",
+         "elType": "widget"
+        }
+       ],
+       "isInner": true,
+       "elType": "container"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "2b8c5ff",
+   "settings": {
+    "flex_direction": "row",
+    "flex_gap": {
+     "column": "0",
+     "row": "0",
+     "isLinked": true,
+     "unit": "px",
+     "size": 0
+    },
+    "z_index": 0,
+    "_flex_size": "none",
+    "flex_direction_tablet": "column"
+   },
+   "elements": [
+    {
+     "id": "83e29ae",
+     "settings": {
+      "flex_direction": "column",
+      "width": {
+       "unit": "%",
+       "size": 50,
+       "sizes": []
+      },
+      "_flex_align_self": "center",
+      "width_tablet": {
+       "unit": "%",
+       "size": 100,
+       "sizes": []
+      },
+      "flex_gap_mobile": {
+       "column": "5",
+       "row": "5",
+       "isLinked": true,
+       "unit": "px",
+       "size": 5
+      },
+      "content_width": "full"
+     },
+     "elements": [
+      {
+       "id": "f7503cf",
+       "settings": {
+        "image": {
+         "url": "http://localhost/saipa/wp-content/uploads/2024/01/Mask-group-10.webp",
+         "id": "",
+         "alt": "",
+         "source": "library",
+         "size": ""
+        },
+        "image_size": "medium",
+        "width": {
+         "unit": "px",
+         "size": 68,
+         "sizes": []
+        },
+        "hide_tablet": "hidden-tablet",
+        "hide_mobile": "hidden-mobile"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "image",
+       "elType": "widget"
+      },
+      {
+       "id": "5b5d4f2",
+       "settings": {
+        "flex_direction": "row",
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "flex_gap": {
+         "column": "5",
+         "row": "5",
+         "isLinked": true,
+         "unit": "px",
+         "size": 5
+        },
+        "flex_align_items": "center",
+        "flex_wrap_mobile": "nowrap"
+       },
+       "elements": [
+        {
+         "id": "7168490",
+         "settings": {
+          "title": "نمایندگی رسمی",
+          "header_size": "p",
+          "typography_font_size": {
+           "unit": "px",
+           "size": 30,
+           "sizes": []
+          },
+          "typography_font_weight": "bold",
+          "typography_font_size_mobile": {
+           "unit": "px",
+           "size": 20,
+           "sizes": []
+          },
+          "typography_typography": "custom"
+         },
+         "elements": [],
+         "isInner": false,
+         "widgetType": "heading",
+         "elType": "widget"
+        },
+        {
+         "id": "e3cdfe9",
+         "settings": {
+          "title": "سایپا لاهیجان",
+          "header_size": "h1",
+          "title_color": "#F47421",
+          "typography_font_size_mobile": {
+           "unit": "px",
+           "size": 23,
+           "sizes": []
+          },
+          "typography_typography": "custom"
+         },
+         "elements": [],
+         "isInner": false,
+         "widgetType": "heading",
+         "elType": "widget"
+        }
+       ],
+       "isInner": true,
+       "elType": "container"
+      },
+      {
+       "id": "82427bd",
+       "settings": {
+        "editor": "<div class=\"animentor-line\" aria-hidden=\"true\" style=\"position: relative; display: block; text-align: justify;\"> <div class=\"elementor-widget-container\"> <p></p><div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">نمایندگی</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">سایپا</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">لاهیجان،</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">منبع</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">اصلی</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">و</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">قابل</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">اعتماد</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">تامین</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">قطعات</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">اصلی</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">خودروهای</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">سایپا</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">با</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">گارانتی</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">شرکتی</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">معتبر.</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">با</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">اعتماد</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">به</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">خدمات</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">ما،</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">شما</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">امکان</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">دسترسی</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">به</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">قطعات</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">اصلی</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">و</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">کیفیت</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">بالا</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">برای</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">خودروهای</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">خود</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">را</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">دارید،</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">همچنین</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">ما</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">به</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">شما</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">اطمینان</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">می‌دهیم</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">که</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">خودروهایتان</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">با</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">قطعات</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">اورجینال</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">بهترین</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">عملکرد</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">و</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">کارایی</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">را</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">خواهند</div> <div class=\"animentor-word\" aria-hidden=\"true\" style=\"position: relative; display: inline-block; opacity: 1;\">داشت</div><p></p> </div> </div>",
+        "align": "justify"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "text-editor",
+       "elType": "widget"
+      },
+      {
+       "id": "01657bb",
+       "settings": {
+        "flex_direction": "row",
+        "padding": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "flex_wrap_mobile": "nowrap"
+       },
+       "elements": [
+        {
+         "id": "f3e529d",
+         "settings": {
+          "text": "محصولات ما",
+          "link": {
+           "url": "#",
+           "is_external": "",
+           "nofollow": "",
+           "custom_attributes": ""
+          },
+          "size": "sm",
+          "selected_icon": {
+           "value": {
+            "url": "http://localhost/saipa/wp-content/uploads/2024/01/Frame-3-9.svg",
+            "id": ""
+           },
+           "library": "svg"
+          },
+          "background_color": "#F47421",
+          "border_radius": {
+           "unit": "px",
+           "top": "20",
+           "right": "20",
+           "bottom": "20",
+           "left": "20",
+           "isLinked": true
+          },
+          "text_padding": {
+           "unit": "px",
+           "top": "5",
+           "right": "20",
+           "bottom": "5",
+           "left": "20",
+           "isLinked": false
+          },
+          "text_padding_mobile": {
+           "unit": "px",
+           "top": "5",
+           "right": "10",
+           "bottom": "5",
+           "left": "10",
+           "isLinked": false
+          }
+         },
+         "elements": [],
+         "isInner": false,
+         "widgetType": "button",
+         "elType": "widget"
+        },
+        {
+         "id": "ccdf2ca",
+         "settings": {
+          "text": "درباره ما بیشتر بدانید",
+          "link": {
+           "url": "#",
+           "is_external": "",
+           "nofollow": "",
+           "custom_attributes": ""
+          },
+          "size": "sm",
+          "button_text_color": "#F47421",
+          "background_color": "#F4742100",
+          "border_border": "dashed",
+          "border_width": {
+           "unit": "px",
+           "top": "1",
+           "right": "1",
+           "bottom": "1",
+           "left": "1",
+           "isLinked": true
+          },
+          "border_radius": {
+           "unit": "px",
+           "top": "20",
+           "right": "20",
+           "bottom": "20",
+           "left": "20",
+           "isLinked": true
+          },
+          "text_padding": {
+           "unit": "px",
+           "top": "5",
+           "right": "20",
+           "bottom": "5",
+           "left": "20",
+           "isLinked": false
+          },
+          "text_padding_mobile": {
+           "unit": "px",
+           "top": "5",
+           "right": "10",
+           "bottom": "5",
+           "left": "10",
+           "isLinked": false
+          }
+         },
+         "elements": [],
+         "isInner": false,
+         "widgetType": "button",
+         "elType": "widget"
+        }
+       ],
+       "isInner": true,
+       "elType": "container"
+      },
+      {
+       "id": "2e286f6",
+       "settings": {
+        "image": {
+         "url": "http://localhost/saipa/wp-content/uploads/2024/01/Mask-group-12.webp",
+         "id": "",
+         "alt": "",
+         "source": "library",
+         "size": ""
+        },
+        "image_size": "large",
+        "_offset_x_end": {
+         "unit": "px",
+         "size": 118.7,
+         "sizes": []
+        },
+        "_offset_y_end": {
+         "unit": "px",
+         "size": -63,
+         "sizes": []
+        },
+        "width": {
+         "unit": "px",
+         "size": 56,
+         "sizes": []
+        },
+        "_offset_y_end_mobile": {
+         "unit": "px",
+         "size": -50,
+         "sizes": []
+        },
+        "width_mobile": {
+         "unit": "px",
+         "size": 31,
+         "sizes": []
+        },
+        "_position": "absolute",
+        "_offset_orientation_h": "end",
+        "_offset_orientation_v": "end"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "image",
+       "elType": "widget"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    },
+    {
+     "id": "2d314d0",
+     "settings": {
+      "flex_direction": "column",
+      "padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": true
+      },
+      "width": {
+       "unit": "%",
+       "size": 50,
+       "sizes": []
+      },
+      "min_height": {
+       "unit": "px",
+       "size": 372,
+       "sizes": []
+      },
+      "background_image": {
+       "url": "http://localhost/saipa/wp-content/uploads/2024/02/Frame-3-14.webp",
+       "id": "",
+       "size": ""
+      },
+      "background_position": "center center",
+      "background_repeat": "no-repeat",
+      "background_size": "contain",
+      "background_hover_image": {
+       "url": "http://localhost/saipa/wp-content/uploads/2024/02/Frame-3-15.webp",
+       "id": "",
+       "size": ""
+      },
+      "background_hover_position": "center center",
+      "background_hover_repeat": "no-repeat",
+      "background_hover_size": "contain",
+      "width_tablet": {
+       "unit": "%",
+       "size": 100,
+       "sizes": []
+      },
+      "_flex_order_tablet": "start",
+      "min_height_mobile": {
+       "unit": "px",
+       "size": 200,
+       "sizes": []
+      },
+      "_flex_order_mobile": "start",
+      "content_width": "full",
+      "background_hover_background": "classic",
+      "background_background": "classic"
+     },
+     "elements": [],
+     "isInner": true,
+     "elType": "container"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "ac24623",
+   "settings": {
+    "flex_direction": "column",
+    "margin": {
+     "unit": "px",
+     "top": "70",
+     "right": "0",
+     "bottom": "50",
+     "left": "0",
+     "isLinked": false
+    }
+   },
+   "elements": [
+    {
+     "id": "0d179cd",
+     "settings": {
+      "title": "ماشینتو انتخاب کن",
+      "header_size": "h2",
+      "_flex_align_self": "flex-start",
+      "_css_classes": "nias-tiltebefore"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "heading",
+     "elType": "widget"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "494baa2",
+   "settings": {
+    "flex_direction": "column"
+   },
+   "elements": [
+    {
+     "id": "beafb51",
+     "settings": {
+      "title": "سیستم صوتی و تصویری",
+      "header_size": "h2",
+      "_flex_align_self": "flex-start",
+      "_css_classes": "nias-tiltebefore"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "heading",
+     "elType": "widget"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "d9d89da",
+   "settings": {
+    "flex_direction": "column",
+    "margin": {
+     "unit": "px",
+     "top": "-150",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": false
+    },
+    "margin_tablet": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "margin_mobile": {
+     "unit": "px",
+     "top": "-20",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": false
+    }
+   },
+   "elements": [
+    {
+     "id": "0dcd42e",
+     "settings": {
+      "title": "محصولات جانبی",
+      "header_size": "h2",
+      "_flex_align_self": "flex-start",
+      "_css_classes": "nias-tiltebefore"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "heading",
+     "elType": "widget"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "c3a0e3c",
+   "settings": {
+    "flex_direction": "column",
+    "margin": {
+     "unit": "px",
+     "top": "-150",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": false
+    },
+    "margin_tablet": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "margin_mobile": {
+     "unit": "px",
+     "top": "-20",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": false
+    }
+   },
+   "elements": [
+    {
+     "id": "46527a5",
+     "settings": {
+      "title": "جدیدترین مقالات",
+      "header_size": "h2",
+      "_flex_align_self": "flex-start",
+      "_css_classes": "nias-tiltebefore"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "heading",
+     "elType": "widget"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "c19780c",
+   "settings": {},
+   "elements": [
+    {
+     "id": "8f1f316",
+     "settings": {
+      "title": "ورود / ثبت نام",
+      "custom_css": "selector .nias-main-modal.nias-elementor{width:360px !important;}\nselector .nias-main-modal.nias-elementor .nsinput-field input[type=\"text\"]:focus ~ label.ns-radio-label{background-color:#ffffff !important;color:#0034de !important;padding:0px 5px 0px 5px !important;border-radius:100px 100px 100px 100px !important;letter-spacing:1px !important;}\nselector .nias-main-modal.nias-elementor .nsinput-field input[type=\"password\"]:focus ~ label.ns-radio-label{background-color:#ffffff !important;color:#0034de !important;padding:0px 5px 0px 5px !important;border-radius:100px 100px 100px 100px !important;letter-spacing:1px !important;}\nselector .nias-main-modal.nias-elementor .nsinput-field input[type=\"tel\"]:focus ~ label.ns-radio-label{background-color:#ffffff !important;color:#0034de !important;padding:0px 5px 0px 5px !important;border-radius:100px 100px 100px 100px !important;letter-spacing:1px !important;}\nselector .nias-main-modal.nias-elementor .nsinput-field input[type=\"email\"]:focus ~ label.ns-radio-label{background-color:#ffffff !important;color:#0034de !important;padding:0px 5px 0px 5px !important;border-radius:100px 100px 100px 100px !important;letter-spacing:1px !important;}\nselector .nias-main-modal.nias-elementor .nsinput-field input[type=\"text\"]:valid ~ label.ns-radio-label{background-color:#ffffff !important;color:#0034de !important;padding:0px 5px 0px 5px !important;border-radius:100px 100px 100px 100px !important;letter-spacing:1px !important;}\nselector .nias-main-modal.nias-elementor .nsinput-field input[type=\"password\"]:valid ~ label.ns-radio-label{background-color:#ffffff !important;color:#0034de !important;padding:0px 5px 0px 5px !important;border-radius:100px 100px 100px 100px !important;letter-spacing:1px !important;}\nselector .nias-main-modal.nias-elementor .nsinput-field input[type=\"tel\"]:valid ~ label.ns-radio-label{background-color:#ffffff !important;color:#0034de !important;padding:0px 5px 0px 5px !important;border-radius:100px 100px 100px 100px !important;letter-spacing:1px !important;}\nselector .nias-main-modal.nias-elementor .nsinput-field input[type=\"email\"]:not(:placeholder-shown) ~ label.ns-radio-label{background-color:#ffffff !important;color:#0034de !important;padding:0px 5px 0px 5px !important;border-radius:100px 100px 100px 100px !important;letter-spacing:1px !important;}\nselector .nias-login-result{text-align:center !important;}\nselector .nias-main-modal .nias-resendbox{border-radius:10px 10px 10px 10px !important;}"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "nias_login_widget",
+     "elType": "widget"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "642d82ef",
+   "settings": {
+    "flex_direction": "column",
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "content_width": "full"
+   },
+   "elements": [
+    {
+     "id": "7f851549",
+     "settings": {
+      "html": "<div class=\"sc_relative\"><div id=\"sc_separator_321\" class=\"sc_separator cz_sep2_65 sc_sep_bottom z99 sc_relative\"><svg class=\"editorial\" preserveAspectRatio=\"none\" xmlns=\"http://www.w3.org/2000/svg\" height=\"100px\" width=\"100%\" viewBox=\"0 24 150 28 \"> <defs> <path id=\"gentle-wave\" d=\"M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z\"></path> </defs> <g style=\"display:none\" class=\"parallax1\"> <use xlink:href=\"#gentle-wave\" x=\"50\" y=\"3\" fill=\"#ffffff\"></use> </g> <g class=\"parallax2\"> <use xlink:href=\"#gentle-wave\" x=\"50\" y=\"0\" fill=\"#F474212E\"></use> </g> <g class=\"parallax3\"> <use xlink:href=\"#gentle-wave\" x=\"50\" y=\"9\" fill=\"#ff8722\"></use> </g> <g class=\"parallax4\"> <use xlink:href=\"#gentle-wave\" x=\"50\" y=\"6\" fill=\"#f47421\"></use> </g> </svg></div></div>",
+      "_element_width": "inherit",
+      "_flex_order_custom_mobile": 1,
+      "_flex_order_mobile": "custom",
+      "custom_css": "/* separator styles */\n.sc_relative {\n    position: relative !important;\n}\n.sc_separator{\n\tposition: absolute; \n    z-index: 0;\n    display: grid;\n    /*width: calc(100% + 0px);\n    margin-left: -1px;*/\n    \n    overflow: hidden;\n    left: 0;\n    width: 100%;\n    line-height: 0;\n    direction: ltr;\n}\n.sc_separator svg {\n    transform: translateX(-50%);\n    left: 50%;\n    position: relative;\n    width: calc(100% + 1px);\n}\n.sc_sep_top {\n    top: -2px;\n    transform: rotateX(180deg);\n}\n.sc_sep_rotatey_top {\n    top: -2px;\n    transform: rotateX(180deg) rotateY(180deg);\n}\n.sc_sep_bottom {\n    bottom: -1px;\n}\t\n.sc_sep_rotatey_bottom {\n    bottom: -1px;\n    transform: rotateY(180deg);\n}\n\n.parallax1 > use {\n  animation: move-forever1 10s linear infinite;\n  &:nth-child(1) {\n    animation-delay: -2s;\n  }\n}\n.parallax2 > use {\n  animation: move-forever2 8s linear infinite;\n  &:nth-child(1) {\n    animation-delay: -2s;\n  }\n}\n.parallax3 > use {\n  animation: move-forever3 6s linear infinite;\n  &:nth-child(1) {\n    animation-delay: -2s;\n  }\n}\n.parallax4 > use {\n  animation: move-forever4 4s linear infinite;\n  &:nth-child(1) {\n    animation-delay: -2s;\n  }\n}\n@keyframes move-forever1 {\n  0% {\n    transform: translate(85px, 0%);\n  }\n  100% {\n    transform: translate(-90px, 0%);\n  }\n}\n@keyframes move-forever2 {\n  0% {\n    transform: translate(-90px, 0%);\n  }\n  100% {\n    transform: translate(85px, 0%);\n  }\n}\n@keyframes move-forever3 {\n  0% {\n    transform: translate(85px, 0%);\n  }\n  100% {\n    transform: translate(-90px, 0%);\n  }\n}\n@keyframes move-forever4 {\n  0% {\n    transform: translate(-90px, 0%);\n  }\n  100% {\n    transform: translate(85px, 0%);\n  }\n}\n\n.editorial {\n  display: block;\n  width: 100%;\n  height: 60px;\n  max-height: 60px;\n  margin: 0;\n  z-index:5;\n  bottom:0;\n  position:absolute;\n  left:0px;\n  float:left;\n}\n\n.vc_row[data-vc-full-width], footer .vc_row[data-vc-full-width] {\n    z-index: 0 !important;\n    overflow: visible !important;\n}\n.vc_col-has-fill>.vc_column-inner, .vc_row-has-fill+.vc_row-full-width+.vc_row>.vc_column_container>.vc_column-inner, .vc_row-has-fill+.vc_row>.vc_column_container>.vc_column-inner, .vc_row-has-fill>.vc_column_container>.vc_column-inner {\n    padding-top: 0 !important;\n}"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "html",
+     "elType": "widget"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "1e7210cc",
+   "settings": {
+    "flex_direction": "row",
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "flex_gap": {
+     "column": "0",
+     "row": "0",
+     "isLinked": true,
+     "unit": "px",
+     "size": 0
+    },
+    "flex_wrap": "wrap",
+    "background_overlay_opacity": {
+     "unit": "px",
+     "size": 1,
+     "sizes": []
+    },
+    "background_color": "#F47421",
+    "background_overlay_background": "classic",
+    "background_background": "classic",
+    "css_classes": "Nias-footer"
+   },
+   "elements": [
+    {
+     "id": "31d8121d",
+     "settings": {
+      "padding": {
+       "unit": "px",
+       "top": "10",
+       "right": "50",
+       "bottom": "10",
+       "left": "10",
+       "isLinked": false
+      },
+      "width": {
+       "unit": "%",
+       "size": 25,
+       "sizes": []
+      },
+      "padding_mobile": {
+       "unit": "px",
+       "top": "10",
+       "right": "10",
+       "bottom": "10",
+       "left": "10",
+       "isLinked": true
+      },
+      "_flex_order_custom_mobile": 3,
+      "content_width": "full",
+      "_flex_order_mobile": "custom"
+     },
+     "elements": [
+      {
+       "id": "767ead5",
+       "settings": {
+        "title": "فروشگاه ما",
+        "header_size": "span",
+        "typography_font_family": "iranyekanwebextrabold",
+        "typography_font_size": {
+         "unit": "px",
+         "size": 16,
+         "sizes": []
+        },
+        "typography_font_weight": "bold",
+        "title_color": "#000000",
+        "typography_typography": "custom"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "heading",
+       "elType": "widget"
+      },
+      {
+       "id": "163fe618",
+       "settings": {
+        "icon_list": [
+         {
+          "text": "لورم اپیسوم",
+          "selected_icon": {
+           "value": "",
+           "library": ""
+          },
+          "_id": "db67cfd"
+         },
+         {
+          "text": "لورم اپیسوم 2",
+          "selected_icon": {
+           "value": "",
+           "library": ""
+          },
+          "_id": "f22e976"
+         },
+         {
+          "text": "لورم اپیسوم 3",
+          "selected_icon": {
+           "value": "",
+           "library": ""
+          },
+          "_id": "2426339"
+         }
+        ],
+        "space_between": {
+         "unit": "px",
+         "size": 10,
+         "sizes": []
+        },
+        "icon_typography_font_size": {
+         "unit": "px",
+         "size": 13,
+         "sizes": []
+        },
+        "text_color": "#FFFFFF",
+        "icon_typography_typography": "custom",
+        "custom_css": ".niaslist .elementor-icon-list-item:before{\n    content: \"\";\n    width: 0px;\n    height: 5px;\n    background-color: white;\n    border-radius: 10px;\n    transition: all 0.3s;\n}\n\n.niaslist .elementor-icon-list-item:hover:before{\n    width: 20px;\n    \n}",
+        "_css_classes": "niaslist"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "icon-list",
+       "elType": "widget"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    },
+    {
+     "id": "53733e97",
+     "settings": {
+      "width": {
+       "unit": "%",
+       "size": 25,
+       "sizes": []
+      },
+      "_flex_order_custom_mobile": 4,
+      "content_width": "full",
+      "_flex_order_mobile": "custom"
+     },
+     "elements": [
+      {
+       "id": "2f811565",
+       "settings": {
+        "title": "خدمات مشتریان",
+        "header_size": "span",
+        "typography_font_family": "iranyekanwebextrabold",
+        "typography_font_size": {
+         "unit": "px",
+         "size": 16,
+         "sizes": []
+        },
+        "typography_font_weight": "bold",
+        "title_color": "#000000",
+        "typography_typography": "custom"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "heading",
+       "elType": "widget"
+      },
+      {
+       "id": "30903fec",
+       "settings": {
+        "icon_list": [
+         {
+          "text": "لورم اپیسوم",
+          "selected_icon": {
+           "value": "",
+           "library": ""
+          },
+          "_id": "60e3469"
+         },
+         {
+          "text": "لورم اپیسوم 2",
+          "selected_icon": {
+           "value": "",
+           "library": ""
+          },
+          "_id": "2b0c800"
+         },
+         {
+          "text": "لورم اپیسوم 3",
+          "selected_icon": {
+           "value": "",
+           "library": ""
+          },
+          "_id": "b4c93ad"
+         }
+        ],
+        "space_between": {
+         "unit": "px",
+         "size": 10,
+         "sizes": []
+        },
+        "icon_typography_font_size": {
+         "unit": "px",
+         "size": 13,
+         "sizes": []
+        },
+        "text_color": "#FFFFFF",
+        "icon_typography_typography": "custom",
+        "custom_css": ".niaslist .elementor-icon-list-item:before{\n    content: \"\";\n    width: 0px;\n    height: 5px;\n    background-color: white;\n    border-radius: 10px;\n    transition: all 0.3s;\n}\n\n.niaslist .elementor-icon-list-item:hover:before{\n    width: 20px;\n    \n}",
+        "_css_classes": "niaslist"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "icon-list",
+       "elType": "widget"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    },
+    {
+     "id": "25d8c75d",
+     "settings": {
+      "width": {
+       "unit": "%",
+       "size": 25,
+       "sizes": []
+      },
+      "_flex_order_custom_mobile": 5,
+      "content_width": "full",
+      "_flex_order_mobile": "custom"
+     },
+     "elements": [
+      {
+       "id": "17113665",
+       "settings": {
+        "title": "دسترسی ها",
+        "header_size": "span",
+        "typography_font_family": "iranyekanwebextrabold",
+        "typography_font_size": {
+         "unit": "px",
+         "size": 16,
+         "sizes": []
+        },
+        "typography_font_weight": "bold",
+        "title_color": "#000000",
+        "typography_typography": "custom"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "heading",
+       "elType": "widget"
+      },
+      {
+       "id": "2604089",
+       "settings": {
+        "icon_list": [
+         {
+          "text": "قانون مندی کسب و کار اینترنتی",
+          "selected_icon": {
+           "value": "",
+           "library": ""
+          },
+          "_id": "9591256",
+          "link": {
+           "url": "http://localhost/saipa/policy/",
+           "is_external": "",
+           "nofollow": "",
+           "custom_attributes": ""
+          }
+         },
+         {
+          "text": "لورم اپیسوم 2",
+          "selected_icon": {
+           "value": "",
+           "library": ""
+          },
+          "_id": "9110bc2"
+         },
+         {
+          "text": "لورم اپیسوم 3",
+          "selected_icon": {
+           "value": "",
+           "library": ""
+          },
+          "_id": "665d984"
+         }
+        ],
+        "space_between": {
+         "unit": "px",
+         "size": 10,
+         "sizes": []
+        },
+        "icon_typography_font_size": {
+         "unit": "px",
+         "size": 13,
+         "sizes": []
+        },
+        "text_color": "#FFFFFF",
+        "icon_typography_typography": "custom",
+        "custom_css": ".niaslist .elementor-icon-list-item:before{\n    content: \"\";\n    width: 0px;\n    height: 5px;\n    background-color: white;\n    border-radius: 10px;\n    transition: all 0.3s;\n}\n\n.niaslist .elementor-icon-list-item:hover:before{\n    width: 20px;\n    \n}",
+        "_css_classes": "niaslist"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "icon-list",
+       "elType": "widget"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    },
+    {
+     "id": "68880622",
+     "settings": {
+      "width": {
+       "unit": "%",
+       "size": 25,
+       "sizes": []
+      },
+      "flex_align_items_mobile": "center",
+      "_flex_order_custom_mobile": 2,
+      "content_width": "full",
+      "_flex_order_mobile": "custom"
+     },
+     "elements": [
+      {
+       "id": "1baed45",
+       "settings": {
+        "width": {
+         "unit": "px",
+         "size": 100,
+         "sizes": []
+        },
+        "min_height": {
+         "unit": "px",
+         "size": 100,
+         "sizes": []
+        },
+        "border_radius": {
+         "unit": "px",
+         "top": "20",
+         "right": "20",
+         "bottom": "20",
+         "left": "20",
+         "isLinked": true
+        },
+        "background_color": "#FFFFFF",
+        "_flex_align_self": "center",
+        "width_mobile": {
+         "unit": "px",
+         "size": 100,
+         "sizes": []
+        },
+        "content_width": "full",
+        "background_background": "classic"
+       },
+       "elements": [
+        {
+         "id": "9587386",
+         "settings": {
+          "html": "<a target=\"_blank\" href=\"https://trustseal.enamad.ir/?id=467530&amp;Code=uH3SDivz7i0MwaxQqNPSwdOVsItskFZs\"><img referrerpolicy=\"origin\" src=\"https://trustseal.enamad.ir/logo.aspx?id=467530&amp;Code=uH3SDivz7i0MwaxQqNPSwdOVsItskFZs\" alt=\"\" style=\"cursor:pointer\" code=\"uH3SDivz7i0MwaxQqNPSwdOVsItskFZs\"></a>",
+          "_element_custom_width": {
+           "unit": "px",
+           "size": 62,
+           "sizes": []
+          },
+          "_padding": {
+           "unit": "px",
+           "top": "10",
+           "right": "10",
+           "bottom": "10",
+           "left": "10",
+           "isLinked": true
+          },
+          "_border_radius": {
+           "unit": "px",
+           "top": "10",
+           "right": "10",
+           "bottom": "10",
+           "left": "10",
+           "isLinked": true
+          },
+          "_flex_align_self": "center",
+          "_element_width": "initial"
+         },
+         "elements": [],
+         "isInner": false,
+         "widgetType": "html",
+         "elType": "widget"
+        }
+       ],
+       "isInner": true,
+       "elType": "container"
+      },
+      {
+       "id": "80c78fc",
+       "settings": {
+        "title": "سایپا را در شبکه های اجتماعی دنبال کنید",
+        "header_size": "p",
+        "_margin": {
+         "unit": "px",
+         "top": "0",
+         "right": "0",
+         "bottom": "0",
+         "left": "0",
+         "isLinked": true
+        },
+        "align": "center",
+        "typography_font_size": {
+         "unit": "px",
+         "size": 13,
+         "sizes": []
+        },
+        "title_color": "#FFFFFF",
+        "_element_custom_width_tablet": {
+         "unit": "px",
+         "size": 174,
+         "sizes": []
+        },
+        "_element_custom_width_mobile": {
+         "unit": "px",
+         "size": 310,
+         "sizes": []
+        },
+        "typography_font_size_mobile": {
+         "unit": "px",
+         "size": 16,
+         "sizes": []
+        },
+        "_element_width_tablet": "initial",
+        "_element_width_mobile": "initial",
+        "typography_typography": "custom"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "heading",
+       "elType": "widget"
+      },
+      {
+       "id": "297bc9cc",
+       "settings": {
+        "social_icon_list": [
+         {
+          "social_icon": {
+           "value": "fab fa-instagram",
+           "library": "fa-brands"
+          },
+          "_id": "c9b78de",
+          "item_icon_primary_color": "#D4D4D4",
+          "item_icon_color": "custom"
+         },
+         {
+          "social_icon": {
+           "value": "fab fa-telegram",
+           "library": "fa-brands"
+          },
+          "_id": "ee86bf5",
+          "item_icon_primary_color": "#D4D4D4",
+          "item_icon_color": "custom"
+         }
+        ],
+        "icon_size": {
+         "unit": "px",
+         "size": 20,
+         "sizes": []
+        },
+        "icon_spacing": {
+         "unit": "px",
+         "size": 7,
+         "sizes": []
+        },
+        "icon_primary_color": "#F2F2F2BF",
+        "icon_secondary_color": "#1C1D1D",
+        "border_radius": {
+         "unit": "px",
+         "top": "7",
+         "right": "7",
+         "bottom": "7",
+         "left": "7",
+         "isLinked": true
+        },
+        "_element_custom_width_tablet": {
+         "unit": "px",
+         "size": 187,
+         "sizes": []
+        },
+        "align_mobile": "center",
+        "_element_width_tablet": "initial",
+        "icon_color": "custom"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "social-icons",
+       "elType": "widget"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    },
+    {
+     "id": "39947e47",
+     "settings": {
+      "flex_direction": "row",
+      "padding": {
+       "unit": "px",
+       "top": "50",
+       "right": "10",
+       "bottom": "50",
+       "left": "10",
+       "isLinked": false
+      },
+      "flex_gap": {
+       "column": "5",
+       "row": "5",
+       "isLinked": true,
+       "unit": "px",
+       "size": 5
+      },
+      "flex_align_items": "center",
+      "flex_justify_content": "space-around",
+      "flex_wrap": "nowrap",
+      "flex_direction_mobile": "column",
+      "flex_gap_mobile": {
+       "column": "25",
+       "row": "25",
+       "isLinked": true,
+       "unit": "px",
+       "size": 25
+      },
+      "_flex_order_custom_mobile": 6,
+      "content_width": "full",
+      "_flex_order_mobile": "custom"
+     },
+     "elements": [
+      {
+       "id": "7fce7137",
+       "settings": {
+        "editor": "<p><span style=\"color: #000000;\">نمایندگی سایپا لاهیجان </span>، <span style=\"color: #ffffff;\">همه روزه از ساعت 9 صبح تا 22 شب در کنار شما هستیم.</span></p>",
+        "align_mobile": "center"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "text-editor",
+       "elType": "widget"
+      },
+      {
+       "id": "ff430af",
+       "settings": {
+        "editor": "<p>تلفن پشتیبانی : <span style=\"color: #ffffff;\">09999316323</span></p>",
+        "align_mobile": "center"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "text-editor",
+       "elType": "widget"
+      },
+      {
+       "id": "700f43a7",
+       "settings": {
+        "editor": "<p>ایمیل : <span style=\"color: #ffffff;\">info@saipalahijan.com</span></p>",
+        "align_mobile": "center"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "text-editor",
+       "elType": "widget"
+      },
+      {
+       "id": "31e59475",
+       "settings": {
+        "editor": "<p>آدرس: <span style=\"color: #333399;\"><span style=\"color: #ffffff;\">گیلان&nbsp;</span><br></span></p>",
+        "align_mobile": "center"
+       },
+       "elements": [],
+       "isInner": false,
+       "widgetType": "text-editor",
+       "elType": "widget"
+      }
+     ],
+     "isInner": true,
+     "elType": "container"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "5ee49a46",
+   "settings": {
+    "padding": {
+     "unit": "px",
+     "top": "0",
+     "right": "0",
+     "bottom": "0",
+     "left": "0",
+     "isLinked": true
+    },
+    "flex_gap": {
+     "column": "0",
+     "row": "0",
+     "isLinked": true,
+     "unit": "px",
+     "size": 0
+    },
+    "background_overlay_opacity": {
+     "unit": "px",
+     "size": 0.11,
+     "sizes": []
+    },
+    "background_color": "#3D3D3D",
+    "background_overlay_image": {
+     "url": "http://localhost/saipa/wp-content/uploads/2024/01/Asset-1motor2.png",
+     "id": "",
+     "size": ""
+    },
+    "background_overlay_repeat": "repeat",
+    "background_overlay_size": "contain",
+    "background_overlay_background": "classic",
+    "background_background": "classic"
+   },
+   "elements": [
+    {
+     "id": "37e2fb6a",
+     "settings": {
+      "image": {
+       "url": "http://localhost/saipa/wp-content/uploads/2024/01/LogoMenuMini-1.webp",
+       "id": "",
+       "alt": "",
+       "source": "library",
+       "size": ""
+      },
+      "image_size": "large",
+      "link_to": "custom",
+      "link": {
+       "url": "http://localhost/saipa",
+       "is_external": "on",
+       "nofollow": "",
+       "custom_attributes": ""
+      },
+      "_element_width": "inherit",
+      "align": "center",
+      "_padding": {
+       "unit": "px",
+       "top": "0",
+       "right": "20",
+       "bottom": "20",
+       "left": "20",
+       "isLinked": false
+      },
+      "_background_image": {
+       "url": "http://localhost/saipa/wp-content/uploads/2024/01/svgexport-3-2-1.svg",
+       "id": "",
+       "size": ""
+      },
+      "_background_xpos": {
+       "unit": "%",
+       "size": 50,
+       "sizes": []
+      },
+      "_background_ypos": {
+       "unit": "px",
+       "size": -2,
+       "sizes": []
+      },
+      "_background_repeat": "no-repeat",
+      "_background_bg_width": {
+       "unit": "px",
+       "size": 454,
+       "sizes": []
+      },
+      "_flex_align_self": "center",
+      "width": {
+       "unit": "px",
+       "size": 84,
+       "sizes": []
+      },
+      "image_border_radius": {
+       "unit": "px",
+       "top": "8",
+       "right": "8",
+       "bottom": "8",
+       "left": "8",
+       "isLinked": true
+      },
+      "_background_xpos_tablet": {
+       "unit": "%",
+       "size": 50,
+       "sizes": []
+      },
+      "_background_ypos_tablet": {
+       "unit": "px",
+       "size": -2,
+       "sizes": []
+      },
+      "_background_xpos_mobile": {
+       "unit": "%",
+       "size": 50,
+       "sizes": []
+      },
+      "_background_ypos_mobile": {
+       "unit": "px",
+       "size": -2,
+       "sizes": []
+      },
+      "_background_bg_width_mobile": {
+       "unit": "px",
+       "size": 299,
+       "sizes": []
+      },
+      "width_mobile": {
+       "unit": "px",
+       "size": 54,
+       "sizes": []
+      },
+      "_background_background": "classic",
+      "_background_position": "initial",
+      "_background_size": "initial",
+      "_background_position_tablet": "initial",
+      "_background_position_mobile": "initial",
+      "_background_size_mobile": "initial"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "image",
+     "elType": "widget"
+    },
+    {
+     "id": "54f5edea",
+     "settings": {
+      "title": "طراحی شده توسط تیم درنیتو",
+      "header_size": "p",
+      "_padding": {
+       "unit": "px",
+       "top": "30",
+       "right": "30",
+       "bottom": "30",
+       "left": "30",
+       "isLinked": true
+      },
+      "align": "center",
+      "typography_font_family": "nias Peyda",
+      "typography_font_size": {
+       "unit": "px",
+       "size": 15,
+       "sizes": []
+      },
+      "typography_font_weight": "500",
+      "title_color": "#FFFFFF",
+      "typography_font_size_mobile": {
+       "unit": "px",
+       "size": 11,
+       "sizes": []
+      },
+      "typography_typography": "custom"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "heading",
+     "elType": "widget"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  },
+  {
+   "id": "caa5ce6",
+   "settings": {
+    "flex_direction": "row",
+    "flex_justify_content": "center",
+    "background_image_mobile": {
+     "url": "http://localhost/saipa/wp-content/uploads/2024/01/Frame-3.svg",
+     "id": "",
+     "size": ""
+    },
+    "background_position_mobile": "center center",
+    "background_repeat_mobile": "no-repeat",
+    "background_size_mobile": "cover",
+    "flex_direction_mobile": "row",
+    "flex_gap_mobile": {
+     "column": "0",
+     "row": "0",
+     "isLinked": true,
+     "unit": "px",
+     "size": 0
+    },
+    "flex_justify_content_mobile": "space-around",
+    "flex_wrap_mobile": "nowrap",
+    "hide_desktop": "hidden-desktop",
+    "hide_tablet": "hidden-tablet",
+    "background_background": "classic",
+    "sticky": "bottom",
+    "sticky_on": [
+     "desktop",
+     "tablet",
+     "mobile"
+    ],
+    "sticky_offset": 0,
+    "sticky_effects_offset": 0,
+    "sticky_anchor_link_offset": 0
+   },
+   "elements": [
+    {
+     "id": "e93ffeb",
+     "settings": {
+      "selected_icon": {
+       "value": "fas fa-home",
+       "library": "fa-solid"
+      },
+      "title_text": "خانه",
+      "title_size": "span",
+      "link": {
+       "url": "http://localhost/saipa/",
+       "is_external": "",
+       "nofollow": "",
+       "custom_attributes": ""
+      },
+      "secondary_color": "#F47421",
+      "primary_color": "#F474212E",
+      "_element_custom_width_mobile": {
+       "unit": "px",
+       "size": 65,
+       "sizes": []
+      },
+      "icon_space_mobile": {
+       "unit": "px",
+       "size": 0,
+       "sizes": []
+      },
+      "icon_size_mobile": {
+       "unit": "px",
+       "size": 18,
+       "sizes": []
+      },
+      "icon_padding_mobile": {
+       "unit": "px",
+       "size": 8,
+       "sizes": []
+      },
+      "title_typography_font_size_mobile": {
+       "unit": "px",
+       "size": 12,
+       "sizes": []
+      },
+      "_element_width_mobile": "initial",
+      "view": "stacked",
+      "title_typography_typography": "custom",
+      "_css_classes": "nias-bottom-icon"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "icon-box",
+     "elType": "widget"
+    },
+    {
+     "id": "eed7bb9",
+     "settings": {
+      "selected_icon": {
+       "value": "fas fa-blog",
+       "library": "fa-solid"
+      },
+      "title_text": "بلاگ",
+      "title_size": "span",
+      "link": {
+       "url": "http://localhost/saipa/blog/",
+       "is_external": "",
+       "nofollow": "",
+       "custom_attributes": ""
+      },
+      "secondary_color": "#F47421",
+      "primary_color": "#F474212E",
+      "_element_custom_width_mobile": {
+       "unit": "px",
+       "size": 65,
+       "sizes": []
+      },
+      "icon_space_mobile": {
+       "unit": "px",
+       "size": 0,
+       "sizes": []
+      },
+      "icon_size_mobile": {
+       "unit": "px",
+       "size": 18,
+       "sizes": []
+      },
+      "icon_padding_mobile": {
+       "unit": "px",
+       "size": 8,
+       "sizes": []
+      },
+      "title_typography_font_size_mobile": {
+       "unit": "px",
+       "size": 12,
+       "sizes": []
+      },
+      "_element_width_mobile": "initial",
+      "view": "stacked",
+      "title_typography_typography": "custom",
+      "_css_classes": "nias-bottom-icon"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "icon-box",
+     "elType": "widget"
+    },
+    {
+     "id": "fee6a3f",
+     "settings": {
+      "automatically_open_cart": "yes",
+      "cart_type": "side-cart",
+      "open_cart": "click",
+      "close_cart_button_alignment": "end",
+      "toggle_button_icon_color": "#F47421",
+      "toggle_button_hover_icon_color": "#F47421",
+      "toggle_button_border_width": {
+       "unit": "px",
+       "size": 0,
+       "sizes": []
+      },
+      "border_radius": {
+       "unit": "px",
+       "top": "0",
+       "right": "30",
+       "bottom": "30",
+       "left": "0",
+       "isLinked": false
+      },
+      "cart_padding": {
+       "unit": "px",
+       "top": "20",
+       "right": "10",
+       "bottom": "20",
+       "left": "10",
+       "isLinked": false
+      },
+      "subtotal_alignment": "center",
+      "product_price_color": "#F47421",
+      "button_border_radius": {
+       "unit": "px",
+       "size": 15,
+       "sizes": []
+      },
+      "view_cart_button_text_color": "#F47421",
+      "view_cart_button_background_color": "#F474212E",
+      "view_cart_button_hover_text_color": "#F47421",
+      "view_cart_button_hover_background": "#F474212E",
+      "checkout_button_text_color": "#FFFFFF",
+      "checkout_button_background_color": "#F47421",
+      "checkout_button_hover_text_color": "#FFFFFF",
+      "checkout_button_hover_background": "#F47421",
+      "empty_message_color": "#FFFFFF",
+      "product_title_color": "#54595F",
+      "_margin_mobile": {
+       "unit": "px",
+       "top": "-35",
+       "right": "0",
+       "bottom": "0",
+       "left": "0",
+       "isLinked": false
+      },
+      "toggle_icon_size_mobile": {
+       "unit": "px",
+       "size": 31,
+       "sizes": []
+      },
+      "toggle_button_padding_mobile": {
+       "unit": "px",
+       "top": "10",
+       "right": "10",
+       "bottom": "10",
+       "left": "10",
+       "isLinked": true
+      },
+      "icon": "custom",
+      "remove_item_button_position": "top",
+      "_css_classes": "toggle-icon--custom nias-cart remove-item-position--top"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "woocommerce-menu-cart",
+     "elType": "widget"
+    },
+    {
+     "id": "2bb1e87",
+     "settings": {
+      "selected_icon": {
+       "value": "fas fa-search",
+       "library": "fa-solid"
+      },
+      "title_text": "جستجو کردن",
+      "title_size": "span",
+      "secondary_color": "#F47421",
+      "primary_color": "#F474212E",
+      "_element_custom_width_mobile": {
+       "unit": "px",
+       "size": 65,
+       "sizes": []
+      },
+      "icon_space_mobile": {
+       "unit": "px",
+       "size": 0,
+       "sizes": []
+      },
+      "icon_size_mobile": {
+       "unit": "px",
+       "size": 18,
+       "sizes": []
+      },
+      "icon_padding_mobile": {
+       "unit": "px",
+       "size": 8,
+       "sizes": []
+      },
+      "title_typography_font_size_mobile": {
+       "unit": "px",
+       "size": 12,
+       "sizes": []
+      },
+      "_element_width_mobile": "initial",
+      "view": "stacked",
+      "title_typography_typography": "custom",
+      "_css_classes": "nias-bottom-icon nias-search-icon"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "icon-box",
+     "elType": "widget"
+    },
+    {
+     "id": "dab5481",
+     "settings": {
+      "selected_icon": {
+       "value": "fas fa-exclamation",
+       "library": "fa-solid"
+      },
+      "title_text": "درباره ما",
+      "title_size": "span",
+      "link": {
+       "url": "http://localhost/saipa/about-us/",
+       "is_external": "",
+       "nofollow": "",
+       "custom_attributes": ""
+      },
+      "secondary_color": "#F47421",
+      "primary_color": "#F474212E",
+      "_element_custom_width_mobile": {
+       "unit": "px",
+       "size": 65,
+       "sizes": []
+      },
+      "icon_space_mobile": {
+       "unit": "px",
+       "size": 0,
+       "sizes": []
+      },
+      "icon_size_mobile": {
+       "unit": "px",
+       "size": 18,
+       "sizes": []
+      },
+      "icon_padding_mobile": {
+       "unit": "px",
+       "size": 8,
+       "sizes": []
+      },
+      "title_typography_font_size_mobile": {
+       "unit": "px",
+       "size": 12,
+       "sizes": []
+      },
+      "_element_width_mobile": "initial",
+      "view": "stacked",
+      "title_typography_typography": "custom",
+      "_css_classes": "nias-bottom-icon"
+     },
+     "elements": [],
+     "isInner": false,
+     "widgetType": "icon-box",
+     "elType": "widget"
+    }
+   ],
+   "isInner": false,
+   "elType": "container"
+  }
+ ],
+ "page_settings": {
+  "custom_css": ".nias-carbox:hover .carbox-btn p{\n    background-color: #F47421;\n    color: white!important}\n.carbox-btn p{\n    padding: 10px 20px;\n    background-color: white;\n    border-radius: 10px 10px 0 10px\n}\n.nias-tiltebefore:before{content:\"\";background-color:#f47421;width:100%;height:10px;position:absolute;bottom:-10px;border-radius:10px 10px 0 0;}\n.nias-tiltebefore:after{content:\"\";top:20px;width:100%;height:0px;position:absolute;box-shadow:0 0 70px 10px #f47421;z-index:-1;}\n.frontmenu{position:fixed;top:0;height:100vh;overflow-y:scroll;right:-100%;transition:all 0.2s linear;z-index:999999999;}\n.frontmenu .e-con-inner{height:100vh;overflow-y:scroll;}\n.frontmenu.active{right:0;}\nspan.woocommerce-Price-amount.amount{font-size:20px !important;font-weight:bold;}\n.price del span.woocommerce-Price-amount.amount{font-size:17px !important;font-weight:normal;}\n.nias-bottom-icon .elementor-icon-box-content{position:absolute;width:100%;top:20px;z-index:-9;opacity:0;background-color:white;border-radius:5px;transition:all 0.2s linear;}\n.nias-bottom-icon:hover .elementor-icon-box-content{opacity:1;top:-50px;}\n.nias-bottom-icon .elementor-icon-box-icon{display:flex;justify-content:center;align-items:center;}\n.nias-search-icon,.nias-search-close{cursor:pointer;}\n.nias-contentchmenu{height:0;overflow:hidden;transition:all 0.3s linear;}\n.nias-contentchmenu.active{height:425px;}\n.nias-titlechmenu.active{background-color:#fde6d7;padding:10px;border-radius:10px;color:#f47421;}\n.nias-titlechmenu .elementor-icon.elementor-animation- svg{transition:all 0.3s linear;}\n.nias-titlechmenu.active .elementor-icon.elementor-animation- svg{transform:rotate(180deg);fill:#f47421;}\n.nias-titlechmenu{transition:all 0.3s linear;cursor:pointer;}\n.nias-lichild li{padding:5px !important;transition:all 0.3s linear;border:1px dashed transparent;cursor:pointer;}\n.nias-lichild li:hover{border:1px dashed #f47421;border-radius:10px;}\n.nias-login-field button{background-color:#f47421;padding:10px;font-family:'nias Peyda';}\nspan.nias-modal-title{color:#f47421;}\nbutton.nias-close-modal{cursor:pointer;}\ninput#niasphoneinput,button.nias-close-modal{font-family:'nias Peyda';}\n.nias-close-modal.container{position:fixed;height:100vh;width:100vw;top:0;right:0;display:block;z-index:-9;}\n.elementor-editor-active .nias-main-modal,.elementor-editor-active .nias-modal-box,.elementor-editor-active .nias-login-code{display:block !important;width:auto !important;height:auto !important;transform:scale(1) !important;opacity:1 !important;}\n.nias-main-modal.nias-elementor .nias-login-message{display:none !important;}",
+  "_ef_source_direction": "rtl",
+  "_ef_source_url": "http://localhost/saipa/"
+ },
+ "version": "0.4",
+ "title": "fidelity",
+ "type": "page"
+}

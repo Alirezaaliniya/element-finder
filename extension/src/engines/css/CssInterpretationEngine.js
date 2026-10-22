@@ -19,12 +19,12 @@ import { containsVar, resolveCssVars, resolveElementorGlobals } from './var-reso
 
 export const CAPTURED_PROPS = [
   'display', 'position', 'top', 'right', 'bottom', 'left', 'z-index',
-  'width', 'max-width', 'height', 'min-height',
+  'width', 'max-width', 'min-width', 'height', 'min-height',
   'margin-top', 'margin-right', 'margin-bottom', 'margin-left',
   'padding-top', 'padding-right', 'padding-bottom', 'padding-left',
   'font-family', 'font-size', 'font-weight', 'font-style', 'line-height',
   'letter-spacing', 'text-transform', 'text-decoration-line', 'text-align',
-  'color',
+  'white-space', 'list-style-type', 'color',
   'background-color', 'background-image', 'background-position',
   'background-repeat', 'background-size', 'background-attachment',
   'border-top-style', 'border-top-width', 'border-right-width',
@@ -33,7 +33,7 @@ export const CAPTURED_PROPS = [
   'border-bottom-right-radius', 'border-bottom-left-radius',
   'box-shadow', 'opacity', 'overflow',
   'flex-direction', 'flex-wrap', 'justify-content', 'align-items',
-  'align-self', 'order', 'flex-grow', 'row-gap', 'column-gap',
+  'align-self', 'order', 'flex-grow', 'flex-shrink', 'flex-basis', 'row-gap', 'column-gap',
   'grid-template-columns',
   'object-fit', 'aspect-ratio', 'transform',
   // Elementor custom properties preserve authored (unresolved) values that
@@ -50,7 +50,7 @@ export const CAPTURED_PROPS = [
  */
 const INHERITED_PROPS = new Set([
   'font-family', 'font-size', 'font-weight', 'font-style', 'line-height',
-  'letter-spacing', 'text-transform', 'text-align', 'color',
+  'letter-spacing', 'text-transform', 'text-align', 'white-space', 'list-style-type', 'color',
   // CSS custom properties inherit by default — Elementor's --width on a
   // container would otherwise be re-read on every descendant and exported as
   // a bogus width. Keep only when the element declares its own value.

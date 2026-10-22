@@ -99,13 +99,21 @@ export class DomAnalysisEngine {
 
       if (node.role === NODE_ROLES.CONTAINER) {
         const childPatterns = detectRepeatingPatterns(el);
-        for (const child of el.children) {
-          const childNode = build(child, depth + 1, childPatterns);
-          if (childNode) node.children.push(childNode);
+        for (const child of el.childNodes) {
+          // Text mixed with elements (`<a><i></i> Label <span>…</span></a>`)
+          // has no element of its own; without a node it would vanish.
+          const childNode = child.nodeType === 1 ? build(child, depth + 1, childPatterns)
+            : child.nodeType === 3 ? textRunNode(child, ctx, node) : null;
+          if (childNode) {
+            if (child.nodeType === 3) { usedIds.add(childNode.id); stats.nodesExtracted++; }
+            node.children.push(childNode);
+          }
         }
         // A container that lost all its children to skipping but has text
-        // becomes a text widget instead of an empty shell.
-        if (!node.children.length && el.textContent?.trim()) {
+        // becomes a text widget instead of an empty shell. Only RENDERED
+        // text counts: textContent also returns the text of the hidden
+        // children that were just skipped (closed search/dropdown panels).
+        if (!node.children.length && visibleText(el)) {
           node.role = NODE_ROLES.WIDGET;
         }
       }
@@ -124,7 +132,12 @@ export class DomAnalysisEngine {
 
     // Collapse pointless single-child wrapper chains (div > div > div…)
     // to keep the Elementor structure shallow and editable.
-    if (snapshot.tree) collapseWrappers(snapshot.tree, elementsByNodeId);
+    // The source-CSS engine needs to know where each collapsed wrapper went:
+    // the fonts, colours and variables it declared are inherited by the node
+    // that replaced it.
+    const collapsedInto = new Map();
+    ctx.scratch.set('collapsedInto', collapsedInto);
+    if (snapshot.tree) collapseWrappers(snapshot.tree, elementsByNodeId, ctx.window, collapsedInto);
 
     log.info(`tree built: ${stats.nodesExtracted} nodes, ${stats.nodesSkipped} skipped, ${patternKeys.size} patterns`);
   }
@@ -158,30 +171,85 @@ function flattenStructuralWrappers(node, elementsByNodeId, layoutElements) {
 }
 
 /** Merge wrapper-only containers into their single child (preserving styles precedence: child wins). */
-function collapseWrappers(node, elementsByNodeId) {
+function collapseWrappers(node, elementsByNodeId, win, collapsedInto) {
   for (let i = 0; i < node.children.length; i++) {
     let child = node.children[i];
+    const removed = [];
     while (
       child.role === NODE_ROLES.CONTAINER &&
       child.children.length === 1 &&
       !child.semantic.kind &&
       !child.semantic.elementorNative &&
-      isStyleNeutral(child)
+      isStyleNeutral(child, elementsByNodeId.get(child.id), win)
     ) {
+      removed.push(elementsByNodeId.get(child.id));
       elementsByNodeId.delete(child.id);
       child = child.children[0];
       node.children[i] = child;
     }
-    collapseWrappers(child, elementsByNodeId);
+    for (const el of removed) if (el) collapsedInto?.set(el, child.id);
+    collapseWrappers(child, elementsByNodeId, win, collapsedInto);
   }
 }
 
-/** True when a wrapper contributes no meaningful visual styling of its own. */
-function isStyleNeutral(node) {
+/**
+ * True when a wrapper contributes no meaningful visual styling of its own.
+ * Collapsing drops the wrapper's styles entirely, so a box that paints
+ * (background, border, shadow), spaces (padding, margin), positions, sizes
+ * or hides its child must survive — on hand-written sites (Bootstrap rows and
+ * columns, cards, dropdown shells) that styling IS the design.
+ */
+function isStyleNeutral(node, el, win) {
   const l = node.layout || {};
   const flexish = (l.display || '').includes('flex') || (l.display || '').includes('grid');
   // Keep flex/grid wrappers: they carry layout semantics.
-  return !flexish;
+  if (flexish) return false;
+  if (!el || !win) return true;
+  const s = win.getComputedStyle(el);
+  if (s.position !== 'static' || s.opacity !== '1' || s.transform !== 'none') return false;
+  if (s.backgroundImage !== 'none' || !isTransparent(s.backgroundColor) || s.boxShadow !== 'none') return false;
+  if (s.maxWidth !== 'none' || (s.overflow !== 'visible' && s.overflow !== 'clip')) return false;
+  for (const side of ['Top', 'Right', 'Bottom', 'Left']) {
+    if (parseFloat(s[`padding${side}`]) || parseFloat(s[`margin${side}`])) return false;
+    if (s[`border${side}Style`] !== 'none' && parseFloat(s[`border${side}Width`])) return false;
+  }
+  return true;
+}
+
+function isTransparent(color) {
+  return color === 'transparent' || /rgba\([^)]*,\s*0\)$/.test(color);
+}
+
+/**
+ * Text-widget node for a non-blank text run inside a container. It has no
+ * element, so the style engines skip it: it inherits typography from its
+ * parent node in preview and export, exactly as the bare text does.
+ */
+function textRunNode(textNode, ctx, parent) {
+  const text = textNode.nodeValue.replace(/\s+/g, ' ').trim();
+  if (!text) return null;
+  const range = ctx.document.createRange();
+  range.selectNodeContents(textNode);
+  const rect = range.getBoundingClientRect();
+  if (!rect.width && !rect.height) return null;
+  return createNode({
+    tag: 'span',
+    role: NODE_ROLES.WIDGET,
+    label: `text: ${truncate(text, 32)}`,
+    domPath: `${parent.domPath}>#text`,
+    rect: {
+      x: Math.round(rect.x + ctx.window.scrollX),
+      y: Math.round(rect.y + ctx.window.scrollY),
+      width: Math.round(rect.width),
+      height: Math.round(rect.height),
+    },
+    content: { text },
+  });
+}
+
+/** Text the element actually renders (excludes display:none descendants). */
+function visibleText(el) {
+  return (el.innerText ?? el.textContent ?? '').trim();
 }
 
 function makeLabel(node, el) {

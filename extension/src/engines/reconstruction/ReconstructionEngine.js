@@ -20,13 +20,13 @@ import { classicEquivalent } from '../mapping/widget-catalog.js';
 const PREVIEW_PROPS = [
   'display', 'position', 'top', 'right', 'bottom', 'left', 'z-index',
   'flex-direction', 'flex-wrap', 'justify-content', 'align-items',
-  'align-self', 'order', 'flex-grow', 'row-gap', 'column-gap',
+  'align-self', 'order', 'flex-grow', 'flex-shrink', 'flex-basis', 'row-gap', 'column-gap',
   'grid-template-columns', 'transform',
-  'width', 'max-width', 'min-height', 'aspect-ratio', 'overflow',
+  'width', 'max-width', 'min-width', 'min-height', 'aspect-ratio', 'overflow',
   'margin-top', 'margin-right', 'margin-bottom', 'margin-left',
   'padding-top', 'padding-right', 'padding-bottom', 'padding-left',
   'font-family', 'font-size', 'font-weight', 'font-style', 'line-height',
-  'letter-spacing', 'text-transform', 'text-decoration-line', 'text-align', 'color',
+  'letter-spacing', 'text-transform', 'text-decoration-line', 'text-align', 'white-space', 'list-style-type', 'color',
   'background-color', 'background-image', 'background-position',
   'background-repeat', 'background-size',
   'border-top-style', 'border-top-width', 'border-right-width',
@@ -46,6 +46,17 @@ export class ReconstructionEngine {
   buildPreviewParts(snapshot, options = {}) {
     if (!snapshot?.tree) {
       return { bodyHtml: '<p>No extracted tree.</p>', pageCss: '', baseCss: BASE_PREVIEW_CSS, dir: 'ltr', lang: '' };
+    }
+    if (previewMode(snapshot, options.mode) === 'source') {
+      // The page's own stylesheets, resolved per node by the Source CSS
+      // Engine, over markup that keeps every element's tag and attributes.
+      return {
+        bodyHtml: renderSourceNode(snapshot.tree, true),
+        pageCss: [fontFaceCss(snapshot), snapshot.sourceStyles.css].filter(Boolean).join('\n'),
+        baseCss: SOURCE_BASE_CSS,
+        dir: snapshot.meta.dir === 'rtl' ? 'rtl' : 'ltr',
+        lang: snapshot.meta.lang || '',
+      };
     }
     const cssRules = [];
     const bodyHtml = this.#renderNode(snapshot.tree, snapshot, cssRules, options);
@@ -116,7 +127,12 @@ ${bodyHtml}
     const renderer = WIDGET_RENDERERS[mapping.widgetType] ?? WIDGET_RENDERERS[classicEquivalent(mapping.widgetType)];
     const isNative = !!node.semantic?.elementorNative && mapping.source === 'elementor-native';
     let inner;
-    if (renderer) {
+    if (!isNative && SUMMARY_WIDGETS.has(mapping.widgetType) && node.children?.some((c) => !c.hidden)) {
+      // These renderers draw a generic summary (plain menu labels, stock
+      // bullets/icons). For a heuristically mapped source the extracted
+      // subtree carries the real markup and styles — preview that instead.
+      inner = `<div class="ef-native-render">${helpers.renderChildren(node)}</div>`;
+    } else if (renderer) {
       try { inner = renderer(node, helpers); } catch { inner = placeholder(mapping.widgetType, 'render error'); }
       // The widget's real styling usually lives on the hoisted descendant
       // (h2/a/p under the wrapper) whose markup the renderer replaced —
@@ -181,6 +197,44 @@ ${bodyHtml}
     }
   }
 }
+
+/**
+ * 'source' (the page's real CSS) when the snapshot carries it, otherwise
+ * 'interpreted' (captured computed styles, closer to the Elementor result).
+ */
+export function previewMode(snapshot, requested) {
+  const available = !!snapshot?.sourceStyles?.css;
+  if (requested === 'interpreted' || !available) return 'interpreted';
+  return 'source';
+}
+
+const VOID_TAGS = new Set(['img', 'input', 'br', 'hr', 'source', 'wbr', 'area', 'col', 'embed', 'track', 'param']);
+
+/**
+ * A node as its source element: same tag and attributes, so the rewritten
+ * page CSS (and UA defaults) apply as they did on the page. Leaves carry
+ * their captured inner markup; text runs have no element of their own.
+ */
+function renderSourceNode(node, isRoot = false) {
+  if (!node || node.hidden) return '';
+  if (!node.source) {
+    return node.content?.text ? `<ef-t data-ef-id="${node.id}">${escapeHtml(node.content.text)}</ef-t>` : '';
+  }
+  // <body>/<html> as root: a block element no source rule names by tag.
+  const tag = isRoot && (node.tag === 'body' || node.tag === 'html') ? 'ef-body' : node.tag;
+  const attrs = node.source.attrs
+    .filter(([name]) => !/^(on|data-ef-)/i.test(name))
+    .map(([name, value]) => ` ${escapeHtml(name)}="${escapeHtml(value)}"`)
+    .join('');
+  const open = `<${tag} data-ef-id="${node.id}"${attrs}>`;
+  if (VOID_TAGS.has(tag)) return open;
+  const inner = node.children?.length
+    ? node.children.map((c) => renderSourceNode(c)).join('')
+    : node.source.html ?? escapeHtml(node.content?.text ?? '');
+  return `${open}${inner}</${tag}>`;
+}
+
+const SUMMARY_WIDGETS = new Set(['nav-menu', 'icon-list', 'social-icons']);
 
 const HEADINGISH = new Set(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']);
 
@@ -261,16 +315,29 @@ function declBlock(raw, skip) {
 
 /** Skip default values that only add noise to the generated stylesheet. */
 function isNoise(prop, value) {
-  if (value === 'none' && prop !== 'display') return true;
+  // `list-style-type: none` is the design (menus): <li> render as <div>s
+  // that keep display:list-item, and would otherwise draw bullets.
+  if (value === 'none' && prop !== 'display' && prop !== 'list-style-type') return true;
   if (value === 'normal' || value === 'auto') return true;
   if (prop.startsWith('margin') && value === '0px') return true;
   if (prop.startsWith('padding') && value === '0px') return true;
   if (prop.includes('radius') && value === '0px') return true;
   if (prop === 'background-color' && value === 'rgba(0, 0, 0, 0)') return true;
   if (prop === 'opacity' && value === '1') return true;
+  if (prop === 'flex-shrink' && value === '1') return true;
+  if (prop === 'min-width' && value === '0px') return true;
   if (prop === 'width' && value.endsWith('px') && parseFloat(value) > 1200) return true; // viewport-derived
   return false;
 }
+
+/** Source mode: only what the builder itself needs, at zero specificity so
+ *  the page's own rules win wherever they say anything. */
+const SOURCE_BASE_CSS = `
+:where(body){margin:0}
+:where(ef-body){display:block}
+.ef-selected{outline:2px solid #0677FE!important;outline-offset:-2px}
+[data-ef-id]:hover{outline:1px dashed rgba(6,119,254,.55);outline-offset:-1px;cursor:pointer}
+`;
 
 const BASE_PREVIEW_CSS = `
 *,*::before,*::after{box-sizing:border-box}
@@ -301,6 +368,7 @@ img,video,iframe{max-width:100%}
 .ef-w-divider hr{border:none;border-top:1px solid #999;margin:8px 0}
 .ef-w-icon svg{width:1em;height:1em;font-size:24px}
 .ef-icon-fallback{font-size:22px;color:#0677FE}
+.ef-w-icon-glyph{font-style:normal;line-height:1;display:inline-block}
 .ef-w-icon-list{list-style:none;padding:0;margin:0}
 .ef-w-icon-list li{display:flex;gap:8px;align-items:center;padding:3px 0}
 .ef-li-bullet{font-size:8px;color:#0677FE}

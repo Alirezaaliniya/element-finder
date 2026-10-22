@@ -37,16 +37,22 @@ const MAX_SHEET_BYTES = 3 * 1024 * 1024;
  * @param {object} [opts]
  * @param {(url: string) => Promise<string|null>} [opts.fetchText]
  * @param {(sheet: CSSStyleSheet) => boolean} [opts.filter] sheets to include
- * @returns {Promise<{rules: CssRule[], regions: CssRegion[], sheets: number, failed: string[]}>}
+ * @returns {Promise<{rules: CssRule[], regions: CssRegion[], keyframes: Array<{name: string, text: string, media: string|null, href: string|null}>, sheets: number, failed: string[]}>}
  */
 export async function collectCssRules(document, opts = {}) {
   const fetchText = opts.fetchText ?? defaultFetchText;
-  const sheets = [...document.styleSheets].filter((s) => !opts.filter || opts.filter(s));
+  // Constructed sheets (adoptedStyleSheets) cascade after the document's.
+  const sheets = [...document.styleSheets, ...(document.adoptedStyleSheets ?? [])]
+    .filter((s) => !opts.filter || opts.filter(s));
 
   // Fetch in parallel; order is restored by sheet index.
   const texts = await Promise.all(sheets.map(async (sheet) => {
     const node = sheet.ownerNode;
-    if (node?.tagName === 'STYLE') return { text: node.textContent || '' };
+    if (node?.tagName === 'STYLE') {
+      // CSS-in-JS libraries fill an empty <style> through insertRule().
+      const text = node.textContent || '';
+      return { text: text.trim() ? text : (cssomText(sheet) ?? '') };
+    }
     if (!sheet.href) return { text: cssomText(sheet) };
     try {
       const text = await fetchText(sheet.href);
@@ -58,6 +64,7 @@ export async function collectCssRules(document, opts = {}) {
 
   const rules = [];
   const regions = [];
+  const keyframes = [];
   const failed = [];
   let order = 0;
   sheets.forEach((sheet, i) => {
@@ -76,8 +83,9 @@ export async function collectCssRules(document, opts = {}) {
       region.href = sheet.href ?? null;
       regions.push(region);
     }
+    for (const kf of parsed.keyframes) keyframes.push({ ...kf, href: sheet.href ?? null });
   });
-  return { rules, regions, sheets: sheets.length, failed };
+  return { rules, regions, keyframes, sheets: sheets.length, failed };
 }
 
 /** Text of a URL: direct fetch, then the service worker (CORS-free). */
@@ -151,9 +159,9 @@ export function parseCss(css) {
 /** Rules plus the verbatim text of each Pro custom-CSS region. */
 export function parseCssWithRegions(css) {
   const rules = [];
-  const state = { i: 0, region: null, regionStart: 0, regions: [] };
+  const state = { i: 0, region: null, regionStart: 0, regions: [], keyframes: [] };
   parseBlock(css, state, null, rules, false);
-  return { rules, regions: state.regions };
+  return { rules, regions: state.regions, keyframes: state.keyframes };
 }
 
 function parseBlock(css, state, media, rules, nested) {
@@ -197,6 +205,11 @@ function parseBlock(css, state, media, rules, nested) {
           parseBlock(css, state, joinMedia(media, head.slice(6).trim()), rules, true);
         } else if (name === 'supports' || name === 'layer' || name === 'container' || name === 'document' || name === 'scope') {
           parseBlock(css, state, media, rules, true);
+        } else if (name.endsWith('keyframes')) {
+          // Kept verbatim: the source-styled preview replays animations.
+          const start = state.i;
+          skipBlock(css, state);
+          state.keyframes.push({ name: head.slice(name.length + 1).trim(), text: `${head}{${css.slice(start, state.i)}`, media });
         } else {
           skipBlock(css, state);
         }

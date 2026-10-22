@@ -95,7 +95,9 @@ export class ContentExtractionEngine {
 
       // --- Menus ----------------------------------------------------------------
       if (tag === 'nav' || (node.semantic.kind === 'nav' && (tag === 'ul' || tag === 'div'))) {
-        const list = tag === 'ul' ? el : el.querySelector('ul');
+        // The first <ul> in DOM order is often a closed mega-menu or search
+        // panel; the menu is the first list that is actually rendered.
+        const list = tag === 'ul' ? el : [...el.querySelectorAll('ul')].find(isRendered);
         if (list) c.menu = extractMenu(list, baseUrl, 0);
       }
       if (tag === 'ul' || tag === 'ol') {
@@ -206,6 +208,11 @@ function extractMenu(listEl, baseUrl, depth) {
     if (items.length >= 50) break;
   }
   return items;
+}
+
+function isRendered(el) {
+  if (el.checkVisibility) return el.checkVisibility({ opacityProperty: true, visibilityProperty: true });
+  return el.getClientRects().length > 0;
 }
 
 /** Text directly inside the element (not from descendants). */

@@ -61,6 +61,10 @@ export function shouldSkipElement(el, style) {
   // into view (Elementor's .elementor-invisible, WOW/AOS, animation plugins).
   // That is a transient state, not a design decision.
   if (style.visibility === 'hidden' && !isAnimationPending(el)) return true;
+  // Closed dropdowns, search-suggestion panels and popovers are commonly
+  // hidden with opacity alone (faded in on hover/focus). Same exception:
+  // entrance animations also start from opacity 0.
+  if (style.opacity === '0' && !isAnimationPending(el)) return true;
   // Decorative/measurement helpers that render nothing.
   const rect = el.getBoundingClientRect();
   if (rect.width === 0 && rect.height === 0 && !el.childElementCount && !el.textContent?.trim()) {
@@ -118,7 +122,9 @@ export function classifyRole(el, style) {
       return el.textContent?.trim() ? NODE_ROLES.WIDGET : NODE_ROLES.CONTAINER;
     }
     // A div containing only inline text markup (b/i/span/br/a-inline) reads as one rich-text widget.
-    if (isRichTextBlock(el)) return NODE_ROLES.WIDGET;
+    // Not when it lays its children out as flex/grid items: that is a row of
+    // separately styled boxes (icon + label + chevron), not a run of text.
+    if (!/flex|grid/.test(style.display) && isRichTextBlock(el)) return NODE_ROLES.WIDGET;
     return NODE_ROLES.CONTAINER;
   }
   return el.childElementCount > 0 ? NODE_ROLES.CONTAINER : NODE_ROLES.WIDGET;

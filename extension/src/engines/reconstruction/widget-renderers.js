@@ -44,6 +44,12 @@ export const WIDGET_RENDERERS = {
       const sized = box ? fillSvg(svg) : svg;
       return `<span class="ef-w-icon"${style}>${sized}</span>`;
     }
+    // Icon-font glyph: drawn as text in the source's icon font, which the
+    // preview loads from the catalogued @font-face assets.
+    const glyph = node.content.iconGlyph;
+    if (glyph) {
+      return `<i class="ef-w-icon-glyph" style="font-family:${escapeHtml(glyph.fontFamily)};font-weight:${escapeHtml(String(glyph.fontWeight || 'normal'))}">${escapeHtml(glyph.char)}</i>`;
+    }
     return `<span class="ef-w-icon ef-icon-fallback">${svgIcon('icon', { size: 24 })}</span>`;
   },
 
